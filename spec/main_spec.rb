@@ -85,9 +85,7 @@ describe ".parse_man_page" do
         string = File.read(path)
         parsed = parse_man_page(string).transform_keys(&:to_s)
         fixture_path = "./spec/fixtures/man-pages/#{command}.json"
-        File.open(fixture_path,"w") do |f|
-          f.write(JSON.pretty_generate(parsed))
-        end
+        # File.write(fixture_path, JSON.pretty_generate(parsed))
         expected = JSON.parse(File.read(fixture_path))
         expect(parsed).to eq(expected)
       end

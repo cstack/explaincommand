@@ -1,11 +1,11 @@
 # Import a man page
 ```
-man ls | groff -T html - > man-pages/ls.txt
+man ls | groff -T html - > man-pages/ls.html
 ```
 
 # Run server
 ```
-be ruby main.rb
+make serve
 ```
 Then visit:
 http://localhost:5678/explain?cmd=ls%20-lof

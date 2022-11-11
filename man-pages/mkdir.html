@@ -1,0 +1,112 @@
+<!-- Creator     : groff version 1.22.4 -->
+<!-- CreationDate: Fri Nov 11 14:21:44 2022 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title></title>
+</head>
+<body>
+
+<hr>
+
+
+<p>MKDIR(1) General Commands Manual MKDIR(1)</p>
+
+<p style="margin-top: 1em">NAME <br>
+mkdir &acirc; make directories</p>
+
+<p style="margin-top: 1em">SYNOPSIS <br>
+mkdir [-pv] [-m mode] directory_name ...</p>
+
+<p style="margin-top: 1em">DESCRIPTION <br>
+The mkdir utility creates the directories named as operands,
+in the order <br>
+specified, using mode &acirc;rwxrwxrwx&acirc; (0777) as
+modified by the current <br>
+umask(2).</p>
+
+<p style="margin-top: 1em">The options are as follows:</p>
+
+<p style="margin-top: 1em">-m mode Set the file permission
+bits of the final created <br>
+directory to the specified mode. The mode argument can be
+<br>
+in any of the formats specified to the chmod(1) command.
+<br>
+If a symbolic mode is specified, the operation characters
+<br>
+&acirc;+&acirc; and &acirc;-&acirc; are interpreted relative
+to an initial mode of <br>
+&acirc;a=rwx&acirc;.</p>
+
+<p style="margin-top: 1em">-p Create intermediate
+directories as required. If this <br>
+option is not specified, the full path prefix of each <br>
+operand must already exist. On the other hand, with this
+<br>
+option specified, no error will be reported if a directory
+<br>
+given as an operand already exists. Intermediate <br>
+directories are created with permission bits of <br>
+&acirc;rwxrwxrwx&acirc; (0777) as modified by the current
+umask, plus <br>
+write and search permission for the owner.</p>
+
+<p style="margin-top: 1em">-v Be verbose when creating
+directories, listing them as they <br>
+are created.</p>
+
+<p style="margin-top: 1em">The user must have write
+permission in the parent directory.</p>
+
+<p style="margin-top: 1em">EXIT STATUS <br>
+The mkdir utility exits&Acirc;&nbsp;0 on success,
+and&Acirc;&nbsp;&gt;0 if an error occurs.</p>
+
+<p style="margin-top: 1em">EXAMPLES <br>
+Create a directory named foobar:</p>
+
+<p style="margin-top: 1em">$ mkdir foobar</p>
+
+<p style="margin-top: 1em">Create a directory named foobar
+and set its file mode to 700:</p>
+
+<p style="margin-top: 1em">$ mkdir -m 700 foobar</p>
+
+<p style="margin-top: 1em">Create a directory named
+cow/horse/monkey, creating any non-existent <br>
+intermediate directories as necessary:</p>
+
+<p style="margin-top: 1em">$ mkdir -p cow/horse/monkey</p>
+
+<p style="margin-top: 1em">COMPATIBILITY <br>
+The -v option is non-standard and its use in scripts is not
+recommended.</p>
+
+<p style="margin-top: 1em">SEE ALSO <br>
+rmdir(1)</p>
+
+<p style="margin-top: 1em">STANDARDS <br>
+The mkdir utility is expected to be IEEE Std 1003.2
+(&acirc;POSIX.2&acirc;) <br>
+compatible.</p>
+
+<p style="margin-top: 1em">HISTORY <br>
+A mkdir command appeared in Version&Acirc;&nbsp;1 AT&amp;T
+UNIX.</p>
+
+<p style="margin-top: 1em">macOS 13.0 March 15, 2013 macOS
+13.0</p>
+<hr>
+</body>
+</html>
