@@ -1,11 +1,11 @@
 # Import a man page
 ```
-man ls | groff -T html - > man-pages/ls.html
+man ls | groff -T html - > data/manpages/ls.html
 ```
 
 # Run server
 ```
-make serve
+bundle exec rails s
 ```
 Then visit:
-http://localhost:5678/explain?cmd=ls%20-lof
+http://localhost:3000/explain?cmd=ls%20-lof
