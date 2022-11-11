@@ -1,6 +1,10 @@
 require "nokogiri"
 require "json"
 
+def read_man_page(command)
+  File.read("man-pages/#{command}.html")
+end
+
 def parse_command_line_arguments(string)
   words = string.split
   command = words.shift
@@ -56,7 +60,7 @@ end
 def explain_command_line_arguments(string)
   parsed_command_line_arguments = parse_command_line_arguments(string)
   command = parsed_command_line_arguments[:command]
-  parsed_man_page = parse_man_page(File.read("./man-pages/#{command}.html"))
+  parsed_man_page = parse_man_page(read_man_page(command))
   parsed_command_line_arguments[:flags].map do |provided_flag|
     parsed_man_page[:flags].find do |man_flag|
       man_flag[0] == provided_flag
