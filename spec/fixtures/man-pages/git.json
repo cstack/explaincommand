@@ -1,0 +1,93 @@
+{
+  "name": "NAME \ngit - the stupid content tracker",
+  "flags": [
+    [
+      "-h,",
+      "--help  Prints the synopsis and a list of the most commonly used commands.  If the option --all or -a is given then all available commands are  printed. If a Git command is named this option will bring up the  manual page for that command."
+    ],
+    [
+      "-C",
+      "<path>  Run as if git was started in <path> instead of the current working  directory. When multiple -C options are given, each subsequent  non-absolute -C <path> is interpreted relative to the preceding -C  <path>. If <path> is present but empty, e.g. -C \"\", then the  current working directory is left unchanged."
+    ],
+    [
+      "-c",
+      "<name>=<value>  Pass a configuration parameter to the command. The value given will  override values from configuration files. The <name> is expected in  the same format as listed by git config (subkeys separated by  dots)."
+    ],
+    [
+      "--config-env=<name>=<envvar>",
+      "Like -c <name>=<value>, give configuration variable <name> a value,  where <envvar> is the name of an environment variable from which to  retrieve the value. Unlike -c there is no shortcut for directly  setting the value to an empty string, instead the environment  variable itself must be set to the empty string. It is an error if  the <envvar> does not exist in the environment. <envvar> may not  contain an equals sign to avoid ambiguity with <name> containing  one."
+    ],
+    [
+      "--exec-path[=<path>]",
+      "Path to wherever your core Git programs are installed. This can  also be controlled by setting the GIT_EXEC_PATH environment  variable. If no path is given, git will print the current setting  and then exit."
+    ],
+    [
+      "--html-path",
+      "Print the path, without trailing slash, where Gitâs HTML  documentation is installed and exit."
+    ],
+    [
+      "--man-path",
+      "Print the manpath (see man(1)) for the man pages for this version  of Git and exit."
+    ],
+    [
+      "--info-path",
+      "Print the path where the Info files documenting this version of Git  are installed and exit."
+    ],
+    [
+      "-p,",
+      "--paginate  Pipe all output into less (or if set, $PAGER) if standard output is  a terminal. This overrides the pager.<cmd> configuration options  (see the \"Configuration Mechanism\" section below)."
+    ],
+    [
+      "-P,",
+      "--no-pager  Do not pipe Git output into a pager."
+    ],
+    [
+      "--git-dir=<path>",
+      "Set the path to the repository (\".git\" directory). This can also be  controlled by setting the GIT_DIR environment variable. It can be  an absolute path or relative path to current working directory."
+    ],
+    [
+      "--work-tree=<path>",
+      "Set the path to the working tree. It can be an absolute path or a  path relative to the current working directory. This can also be  controlled by setting the GIT_WORK_TREE environment variable and  the core.worktree configuration variable (see core.worktree in git-  config(1) for a more detailed discussion)."
+    ],
+    [
+      "--namespace=<path>",
+      "Set the Git namespace. See gitnamespaces(7) for more details.  Equivalent to setting the GIT_NAMESPACE environment variable."
+    ],
+    [
+      "--super-prefix=<path>",
+      "Currently for internal use only. Set a prefix which gives a path  from above a repository down to its root. One use is to give  submodules context about the superproject that invoked it."
+    ],
+    [
+      "--bare",
+      "Treat the repository as a bare repository. If GIT_DIR environment  is not set, it is set to the current working directory."
+    ],
+    [
+      "--no-replace-objects",
+      "Do not use replacement refs to replace Git objects. See git-  replace(1) for more information."
+    ],
+    [
+      "--literal-pathspecs",
+      "Treat pathspecs literally (i.e. no globbing, no pathspec magic).  This is equivalent to setting the GIT_LITERAL_PATHSPECS environment  variable to 1."
+    ],
+    [
+      "--glob-pathspecs",
+      "Add \"glob\" magic to all pathspec. This is equivalent to setting the  GIT_GLOB_PATHSPECS environment variable to 1. Disabling globbing on  individual pathspecs can be done using pathspec magic \":(literal)\""
+    ],
+    [
+      "--noglob-pathspecs",
+      "Add \"literal\" magic to all pathspec. This is equivalent to setting  the GIT_NOGLOB_PATHSPECS environment variable to 1. Enabling  globbing on individual pathspecs can be done using pathspec magic  \":(glob)\""
+    ],
+    [
+      "--icase-pathspecs",
+      "Add \"icase\" magic to all pathspec. This is equivalent to setting  the GIT_ICASE_PATHSPECS environment variable to 1."
+    ],
+    [
+      "--no-optional-locks",
+      "Do not perform optional operations that require locks. This is  equivalent to setting the GIT_OPTIONAL_LOCKS to 0."
+    ],
+    [
+      "--list-cmds=group[,group...]",
+      "List commands by group. This is an internal/experimental option and  may change or be removed in the future. Supported groups are:  builtins, parseopt (builtin commands that use parse-options), main  (all commands in libexec directory), others (all other commands in  $PATH that have git- prefix), list-<category> (see categories in  command-list.txt), nohelpers (exclude helper commands), alias and  config (retrieve command list from config variable  completion.commands)"
+    ]
+  ]
+}
