@@ -1,0 +1,776 @@
+<!-- Creator     : groff version 1.22.4 -->
+<!-- CreationDate: Fri Nov 11 12:31:24 2022 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title></title>
+</head>
+<body>
+
+<hr>
+
+
+<p>LS(1) General Commands Manual LS(1)</p>
+
+<p style="margin-top: 1em">NAME <br>
+ls &acirc; list directory contents</p>
+
+<p style="margin-top: 1em">SYNOPSIS <br>
+ls [-@ABCFGHILOPRSTUWabcdefghiklmnopqrstuvwxy1%,]
+[--color=when] <br>
+[-D format] [file ...]</p>
+
+<p style="margin-top: 1em">DESCRIPTION <br>
+For each operand that names a file of a type other than
+directory, ls <br>
+displays its name as well as any requested, associated
+information. For <br>
+each operand that names a file of type directory, ls
+displays the names <br>
+of files contained within that directory, as well as any
+requested, <br>
+associated information.</p>
+
+<p style="margin-top: 1em">If no operands are given, the
+contents of the current directory are <br>
+displayed. If more than one operand is given, non-directory
+operands are <br>
+displayed first; directory and non-directory operands are
+sorted <br>
+separately and in lexicographical order.</p>
+
+<p style="margin-top: 1em">The following options are
+available:</p>
+
+<p style="margin-top: 1em">-@ Display extended attribute
+keys and sizes in long (-l) output.</p>
+
+<p style="margin-top: 1em">-A Include directory entries
+whose names begin with a dot (&acirc;.&acirc;) <br>
+except for . and ... Automatically set for the super-user
+unless <br>
+-I is specified.</p>
+
+<p style="margin-top: 1em">-B Force printing of
+non-printable characters (as defined by <br>
+ctype(3) and current locale settings) in file names as xxx,
+<br>
+where xxx is the numeric value of the character in octal.
+This <br>
+option is not defined in IEEE Std 1003.1-2008
+(&acirc;POSIX.1&acirc;).</p>
+
+<p style="margin-top: 1em">-C Force multi-column output;
+this is the default when output is to <br>
+a terminal.</p>
+
+<p style="margin-top: 1em">-D format <br>
+When printing in the long (-l) format, use format to format
+the <br>
+date and time output. The argument format is a string used
+by <br>
+strftime(3). Depending on the choice of format string, this
+may <br>
+result in a different number of columns in the output. This
+<br>
+option overrides the -T option. This option is not defined
+in <br>
+IEEE Std 1003.1-2008 (&acirc;POSIX.1&acirc;).</p>
+
+<p style="margin-top: 1em">-F Display a slash
+(&acirc;/&acirc;) immediately after each pathname that is a
+<br>
+directory, an asterisk (&acirc;*&acirc;) after each that is
+executable, an at <br>
+sign (&acirc;@&acirc;) after each symbolic link, an equals
+sign (&acirc;=&acirc;) after <br>
+each socket, a percent sign (&acirc;%&acirc;) after each
+whiteout, and a <br>
+vertical bar (&acirc;|&acirc;) after each that is a
+FIFO.</p>
+
+<p style="margin-top: 1em">-G Enable colorized output. This
+option is equivalent to defining <br>
+CLICOLOR or COLORTERM in the environment and setting <br>
+--color=auto. (See below.) This functionality can be
+compiled <br>
+out by removing the definition of COLORLS. This option is
+not <br>
+defined in IEEE Std 1003.1-2008 (&acirc;POSIX.1&acirc;).</p>
+
+<p style="margin-top: 1em">-H Symbolic links on the command
+line are followed. This option is <br>
+assumed if none of the -F, -d, or -l options are
+specified.</p>
+
+<p style="margin-top: 1em">-I Prevent -A from being
+automatically set for the super-user. This <br>
+option is not defined in IEEE Std 1003.1-2008
+(&acirc;POSIX.1&acirc;).</p>
+
+<p style="margin-top: 1em">-L Follow all symbolic links to
+final target and list the file or <br>
+directory the link references rather than the link itself.
+This <br>
+option cancels the -P option.</p>
+
+<p style="margin-top: 1em">-O Include the file flags in a
+long (-l) output. This option is <br>
+incompatible with IEEE Std 1003.1-2008
+(&acirc;POSIX.1&acirc;). See <br>
+chflags(1) for a list of file flags and their meanings.</p>
+
+<p style="margin-top: 1em">-P If argument is a symbolic
+link, list the link itself rather than <br>
+the object the link references. This option cancels the -H
+and <br>
+-L options.</p>
+
+<p style="margin-top: 1em">-R Recursively list
+subdirectories encountered.</p>
+
+<p style="margin-top: 1em">-S Sort by size (largest file
+first) before sorting the operands in <br>
+lexicographical order.</p>
+
+<p style="margin-top: 1em">-T When printing in the long
+(-l) format, display complete time <br>
+information for the file, including month, day, hour,
+minute, <br>
+second, and year. The -D option gives even more control over
+the <br>
+output format. This option is not defined in IEEE Std <br>
+1003.1-2008 (&acirc;POSIX.1&acirc;).</p>
+
+<p style="margin-top: 1em">-U Use time when file was
+created for sorting or printing. This <br>
+option is not defined in IEEE Std 1003.1-2008
+(&acirc;POSIX.1&acirc;).</p>
+
+<p style="margin-top: 1em">-W Display whiteouts when
+scanning directories. This option is not <br>
+defined in IEEE Std 1003.1-2008 (&acirc;POSIX.1&acirc;).</p>
+
+<p style="margin-top: 1em">-a Include directory entries
+whose names begin with a dot (&acirc;.&acirc;).</p>
+
+<p style="margin-top: 1em">-b As -B, but use C escape codes
+whenever possible. This option is <br>
+not defined in IEEE Std 1003.1-2008
+(&acirc;POSIX.1&acirc;).</p>
+
+<p style="margin-top: 1em">-c Use time when file status was
+last changed for sorting or <br>
+printing.</p>
+
+<p style="margin-top: 1em">--color=when <br>
+Output colored escape sequences based on when, which may be
+set <br>
+to either always, auto, or never.</p>
+
+<p style="margin-top: 1em">always will make ls always
+output color. If TERM is unset or set <br>
+to an invalid terminal, then ls will fall back to explicit
+ANSI <br>
+escape sequences without the help of termcap(5). always is
+the <br>
+default if --color is specified without an argument.</p>
+
+<p style="margin-top: 1em">auto will make ls output escape
+sequences based on termcap(5), <br>
+but only if stdout is a tty and either the -G flag is
+specified <br>
+or the COLORTERM environment variable is set and not
+empty.</p>
+
+<p style="margin-top: 1em">never will disable color
+regardless of environment variables. <br>
+never is the default when neither --color nor -G is
+specified.</p>
+
+<p style="margin-top: 1em">For compatibility with GNU
+coreutils, ls supports yes or force as <br>
+equivalent to always, no or none as equivalent to never, and
+tty <br>
+or if-tty as equivalent to auto.</p>
+
+<p style="margin-top: 1em">-d Directories are listed as
+plain files (not searched recursively).</p>
+
+<p style="margin-top: 1em">-e Print the Access Control List
+(ACL) associated with the file, if <br>
+present, in long (-l) output.</p>
+
+<p style="margin-top: 1em">-f Output is not sorted. This
+option turns on -a. It also negates <br>
+the effect of the -r, -S and -t options. As allowed by IEEE
+Std <br>
+1003.1-2008 (&acirc;POSIX.1&acirc;), this option has no
+effect on the -d, -l, <br>
+-R and -s options.</p>
+
+<p style="margin-top: 1em">-g This option has no effect. It
+is only available for <br>
+compatibility with 4.3BSD, where it was used to display the
+group <br>
+name in the long (-l) format output. This option is
+incompatible <br>
+with IEEE Std 1003.1-2008 (&acirc;POSIX.1&acirc;).</p>
+
+<p style="margin-top: 1em">-h When used with the -l option,
+use unit suffixes: Byte, Kilobyte, <br>
+Megabyte, Gigabyte, Terabyte and Petabyte in order to reduce
+the <br>
+number of digits to four or fewer using base 2 for sizes.
+This <br>
+option is not defined in IEEE Std 1003.1-2008
+(&acirc;POSIX.1&acirc;).</p>
+
+<p style="margin-top: 1em">-i For each file, print the
+file&rsquo;s file serial number (inode <br>
+number).</p>
+
+<p style="margin-top: 1em">-k This has the same effect as
+setting environment variable <br>
+BLOCKSIZE to 1024, except that it also nullifies any -h
+options <br>
+to its left.</p>
+
+<p style="margin-top: 1em">-l (The lowercase letter
+&acirc;ell&acirc;.) List files in the long format, as <br>
+described in the The Long Format subsection below.</p>
+
+<p style="margin-top: 1em">-m Stream output format; list
+files across the page, separated by <br>
+commas.</p>
+
+<p style="margin-top: 1em">-n Display user and group IDs
+numerically rather than converting to <br>
+a user or group name in a long (-l) output. This option
+turns on <br>
+the -l option.</p>
+
+<p style="margin-top: 1em">-o List in long format, but omit
+the group id.</p>
+
+<p style="margin-top: 1em">-p Write a slash
+(&acirc;/&acirc;) after each filename if that file is a <br>
+directory.</p>
+
+<p style="margin-top: 1em">-q Force printing of non-graphic
+characters in file names as the <br>
+character &acirc;?&acirc;; this is the default when output
+is to a terminal.</p>
+
+<p style="margin-top: 1em">-r Reverse the order of the
+sort.</p>
+
+<p style="margin-top: 1em">-s Display the number of blocks
+used in the file system by each <br>
+file. Block sizes and directory totals are handled as
+described <br>
+in The Long Format subsection below, except (if the long
+format <br>
+is not also requested) the directory totals are not output
+when <br>
+the output is in a single column, even if multi-column
+output is <br>
+requested. (-l) format, display complete time information
+for <br>
+the file, including month, day, hour, minute, second, and
+year. <br>
+The -D option gives even more control over the output
+format. <br>
+This option is not defined in IEEE Std 1003.1-2008
+(&acirc;POSIX.1&acirc;).</p>
+
+<p style="margin-top: 1em">-t Sort by descending time
+modified (most recently modified first). <br>
+If two files have the same modification timestamp, sort
+their <br>
+names in ascending lexicographical order. The -r option
+reverses <br>
+both of these sort orders.</p>
+
+<p style="margin-top: 1em">Note that these sort orders are
+contradictory: the time sequence <br>
+is in descending order, the lexicographical sort is in
+ascending <br>
+order. This behavior is mandated by IEEE Std 1003.2
+(&acirc;POSIX.2&acirc;). <br>
+This feature can cause problems listing files stored with
+<br>
+sequential names on FAT file systems, such as from digital
+<br>
+cameras, where it is possible to have more than one image
+with <br>
+the same timestamp. In such a case, the photos cannot be
+listed <br>
+in the sequence in which they were taken. To ensure the same
+<br>
+sort order for time and for lexicographical sorting, set the
+<br>
+environment variable LS_SAMESORT or use the -y option. This
+<br>
+causes ls to reverse the lexicographical sort order when
+sorting <br>
+files with the same modification timestamp.</p>
+
+<p style="margin-top: 1em">-u Use time of last access,
+instead of time of last modification of <br>
+the file for sorting (-t) or long printing (-l).</p>
+
+<p style="margin-top: 1em">-v Force unedited printing of
+non-graphic characters; this is the <br>
+default when output is not to a terminal.</p>
+
+<p style="margin-top: 1em">-w Force raw printing of
+non-printable characters. This is the <br>
+default when output is not to a terminal. This option is not
+<br>
+defined in IEEE Std 1003.1-2001 (&acirc;POSIX.1&acirc;).</p>
+
+<p style="margin-top: 1em">-x The same as -C, except that
+the multi-column output is produced <br>
+with entries sorted across, rather than down, the
+columns.</p>
+
+<p style="margin-top: 1em">-y When the -t option is set,
+sort the alphabetical output in the <br>
+same order as the time output. This has the same effect as
+<br>
+setting LS_SAMESORT. See the description of the -t option
+for <br>
+more details. This option is not defined in IEEE Std
+1003.1-2001 <br>
+(&acirc;POSIX.1&acirc;).</p>
+
+<p style="margin-top: 1em">-% Distinguish dataless files
+and directories with a &rsquo;%&rsquo; character <br>
+in long</p>
+
+<p style="margin-top: 1em">-1 (The numeric digit
+&acirc;one&acirc;.) Force output to be one entry per line.
+<br>
+This is the default when output is not to a terminal. (-l)
+<br>
+output, and don&rsquo;t materialize dataless directories
+when listing <br>
+them.</p>
+
+<p style="margin-top: 1em">-, (Comma) When the -l option is
+set, print file sizes grouped and <br>
+separated by thousands using the non-monetary separator
+returned <br>
+by localeconv(3), typically a comma or period. If no locale
+is <br>
+set, or the locale does not have a non-monetary separator,
+this <br>
+option has no effect. This option is not defined in IEEE Std
+<br>
+1003.1-2001 (&acirc;POSIX.1&acirc;).</p>
+
+<p style="margin-top: 1em">The -1, -C, -x, and -l options
+all override each other; the last one <br>
+specified determines the format used.</p>
+
+<p style="margin-top: 1em">The -c, -u, and -U options all
+override each other; the last one <br>
+specified determines the file time used.</p>
+
+<p style="margin-top: 1em">The -S and -t options override
+each other; the last one specified <br>
+determines the sort order used.</p>
+
+<p style="margin-top: 1em">The -B, -b, -w, and -q options
+all override each other; the last one <br>
+specified determines the format used for non-printable
+characters.</p>
+
+<p style="margin-top: 1em">The -H, -L and -P options all
+override each other (either partially or <br>
+fully); they are applied in the order specified.</p>
+
+<p style="margin-top: 1em">By default, ls lists one entry
+per line to standard output; the <br>
+exceptions are to terminals or when the -C or -x options are
+specified.</p>
+
+<p style="margin-top: 1em">File information is displayed
+with one or more &acirc;&uml;blank&acirc;&copy;s separating
+the <br>
+information associated with the -i, -s, and -l options.</p>
+
+<p style="margin-top: 1em">The Long Format <br>
+If the -l option is given, the following information is
+displayed for <br>
+each file: file mode, number of links, owner name, group
+name, number of <br>
+bytes in the file, abbreviated month, day-of-month file was
+last <br>
+modified, hour file last modified, minute file last
+modified, and the <br>
+pathname. If the file or directory has extended attributes,
+the <br>
+permissions field printed by the -l option is followed by a
+&rsquo;@&rsquo; <br>
+character. Otherwise, if the file or directory has extended
+security <br>
+information (such as an access control list), the
+permissions field <br>
+printed by the -l option is followed by a &rsquo;+&rsquo;
+character. If the -% <br>
+option is given, a &rsquo;%&rsquo; character follows the
+permissions field for <br>
+dataless files and directories, possibly replacing the
+&rsquo;@&rsquo; or &rsquo;+&rsquo; <br>
+character.</p>
+
+<p style="margin-top: 1em">If the modification time of the
+file is more than 6 months in the past or <br>
+future, and the -D or -T are not specified, then the year of
+the last <br>
+modification is displayed in place of the hour and minute
+fields.</p>
+
+<p style="margin-top: 1em">If the owner or group names are
+not a known user or group name, or the -n <br>
+option is given, the numeric ID&rsquo;s are displayed.</p>
+
+<p style="margin-top: 1em">If the file is a character
+special or block special file, the device <br>
+number for the file is displayed in the size field. If the
+file is a <br>
+symbolic link the pathname of the linked-to file is preceded
+by &acirc;-&gt;&acirc;.</p>
+
+<p style="margin-top: 1em">The listing of a
+directory&rsquo;s contents is preceded by a labeled total
+<br>
+number of blocks used in the file system by the files which
+are listed as <br>
+the directory&rsquo;s contents (which may or may not include
+. and .. and other <br>
+files which start with a dot, depending on other
+options).</p>
+
+<p style="margin-top: 1em">The default block size is 512
+bytes. The block size may be set with <br>
+option -k or environment variable BLOCKSIZE. Numbers of
+blocks in the <br>
+output will have been rounded up so the numbers of bytes is
+at least as <br>
+many as used by the corresponding file system blocks (which
+might have a <br>
+different size).</p>
+
+<p style="margin-top: 1em">The file mode printed under the
+-l option consists of the entry type and <br>
+the permissions. The entry type character describes the type
+of file, as <br>
+follows:</p>
+
+<p style="margin-top: 1em">- Regular file. <br>
+b Block special file. <br>
+c Character special file. <br>
+d Directory. <br>
+l Symbolic link. <br>
+p FIFO. <br>
+s Socket. <br>
+w Whiteout.</p>
+
+<p style="margin-top: 1em">The next three fields are three
+characters each: owner permissions, group <br>
+permissions, and other permissions. Each field has three
+character <br>
+positions:</p>
+
+<p style="margin-top: 1em">1. If r, the file is readable;
+if -, it is not readable.</p>
+
+<p style="margin-top: 1em">2. If w, the file is writable;
+if -, it is not writable.</p>
+
+<p style="margin-top: 1em">3. The first of the following
+that applies:</p>
+
+<p style="margin-top: 1em">S If in the owner permissions,
+the file is not <br>
+executable and set-user-ID mode is set. If in the <br>
+group permissions, the file is not executable and <br>
+set-group-ID mode is set.</p>
+
+<p style="margin-top: 1em">s If in the owner permissions,
+the file is <br>
+executable and set-user-ID mode is set. If in the <br>
+group permissions, the file is executable and <br>
+setgroup-ID mode is set.</p>
+
+<p style="margin-top: 1em">x The file is executable or the
+directory is <br>
+searchable.</p>
+
+<p style="margin-top: 1em">- The file is neither readable,
+writable, <br>
+executable, nor set-user-ID nor set-group-ID mode, <br>
+nor sticky. (See below.)</p>
+
+<p style="margin-top: 1em">These next two apply only to the
+third character in the last <br>
+group (other permissions).</p>
+
+<p style="margin-top: 1em">T The sticky bit is set (mode
+1000), but not execute <br>
+or search permission. (See chmod(1) or <br>
+sticky(7).)</p>
+
+<p style="margin-top: 1em">t The sticky bit is set (mode
+1000), and is <br>
+searchable or executable. (See chmod(1) or <br>
+sticky(7).)</p>
+
+<p style="margin-top: 1em">The next field contains a plus
+(&acirc;+&acirc;) character if the file has an ACL, or <br>
+a space (&acirc; &acirc;) if it does not. The ls utility
+does not show the actual <br>
+ACL unless the -e option is used in conjunction with the -l
+option.</p>
+
+<p style="margin-top: 1em">ENVIRONMENT <br>
+The following environment variables affect the execution of
+ls:</p>
+
+<p style="margin-top: 1em">BLOCKSIZE If this is set, its
+value, rounded up to 512 or down <br>
+to a multiple of 512, will be used as the block size <br>
+in bytes by the -l and -s options. See The Long <br>
+Format subsection for more information.</p>
+
+<p style="margin-top: 1em">CLICOLOR Use ANSI color
+sequences to distinguish file types. <br>
+See LSCOLORS below. In addition to the file types <br>
+mentioned in the -F option some extra attributes <br>
+(setuid bit set, etc.) are also displayed. The <br>
+colorization is dependent on a terminal type with the <br>
+proper termcap(5) capabilities. The default
+&acirc;cons25&acirc; <br>
+console has the proper capabilities, but to display <br>
+the colors in an xterm(1), for example, the TERM <br>
+variable must be set to &acirc;xterm-color&acirc;. Other
+<br>
+terminal types may require similar adjustments. <br>
+Colorization is silently disabled if the output is <br>
+not directed to a terminal unless the CLICOLOR_FORCE <br>
+variable is defined or --color is set to
+&acirc;always&acirc;.</p>
+
+<p style="margin-top: 1em">CLICOLOR_FORCE Color sequences
+are normally disabled if the output <br>
+is not directed to a terminal. This can be <br>
+overridden by setting this variable. The TERM <br>
+variable still needs to reference a color capable <br>
+terminal however otherwise it is not possible to <br>
+determine which color sequences to use.</p>
+
+<p style="margin-top: 1em">COLORTERM See description for
+CLICOLOR above.</p>
+
+<p style="margin-top: 1em">COLUMNS If this variable
+contains a string representing a <br>
+decimal integer, it is used as the column position <br>
+width for displaying multiple-text-column output. <br>
+The ls utility calculates how many pathname text <br>
+columns to display based on the width provided. (See <br>
+-C and -x.)</p>
+
+<p style="margin-top: 1em">LANG The locale to use when
+determining the order of day <br>
+and month in the long -l format output. See <br>
+environ(7) for more information.</p>
+
+<p style="margin-top: 1em">LSCOLORS The value of this
+variable describes what color to <br>
+use for which attribute when colors are enabled with <br>
+CLICOLOR or COLORTERM. This string is a <br>
+concatenation of pairs of the format fb, where f is <br>
+the foreground color and b is the background color.</p>
+
+<p style="margin-top: 1em">The color designators are as
+follows:</p>
+
+<p style="margin-top: 1em">a black <br>
+b red <br>
+c green <br>
+d brown <br>
+e blue <br>
+f magenta <br>
+g cyan <br>
+h light grey <br>
+A bold black, usually shows up as dark grey <br>
+B bold red <br>
+C bold green <br>
+D bold brown, usually shows up as yellow <br>
+E bold blue <br>
+F bold magenta <br>
+G bold cyan <br>
+H bold light grey; looks like bright white <br>
+x default foreground or background</p>
+
+<p style="margin-top: 1em">Note that the above are standard
+ANSI colors. The <br>
+actual display may differ depending on the color <br>
+capabilities of the terminal in use.</p>
+
+<p style="margin-top: 1em">The order of the attributes are
+as follows:</p>
+
+<p style="margin-top: 1em">1. directory <br>
+2. symbolic link <br>
+3. socket <br>
+4. pipe <br>
+5. executable <br>
+6. block special <br>
+7. character special <br>
+8. executable with setuid bit set <br>
+9. executable with setgid bit set <br>
+10. directory writable to others, with sticky <br>
+bit <br>
+11. directory writable to others, without <br>
+sticky bit</p>
+
+<p style="margin-top: 1em">The default is
+&quot;exfxcxdxbxegedabagacad&quot;, i.e., blue <br>
+foreground and default background for regular <br>
+directories, black foreground and red background for <br>
+setuid executables, etc.</p>
+
+<p style="margin-top: 1em">LS_COLWIDTHS If this variable is
+set, it is considered to be a <br>
+colon-delimited list of minimum column widths. <br>
+Unreasonable and insufficient widths are ignored <br>
+(thus zero signifies a dynamically sized column). <br>
+Not all columns have changeable widths. The fields <br>
+are, in order: inode, block count, number of links, <br>
+user name, group name, flags, file size, file name.</p>
+
+<p style="margin-top: 1em">LS_SAMESORT If this variable is
+set, the -t option sorts the <br>
+names of files with the same modification timestamp <br>
+in the same sense as the time sort. See the <br>
+description of the -t option for more details.</p>
+
+<p style="margin-top: 1em">TERM The CLICOLOR and COLORTERM
+functionality depends on a <br>
+terminal type with color capabilities.</p>
+
+<p style="margin-top: 1em">TZ The timezone to use when
+displaying dates. See <br>
+environ(7) for more information.</p>
+
+<p style="margin-top: 1em">EXIT STATUS <br>
+The ls utility exits&Acirc;&nbsp;0 on success,
+and&Acirc;&nbsp;&gt;0 if an error occurs.</p>
+
+<p style="margin-top: 1em">EXAMPLES <br>
+List the contents of the current working directory in long
+format:</p>
+
+<p style="margin-top: 1em">$ ls -l</p>
+
+<p style="margin-top: 1em">In addition to listing the
+contents of the current working directory in <br>
+long format, show inode numbers, file flags (see
+chflags(1)), and suffix <br>
+each filename with a symbol representing its file type:</p>
+
+<p style="margin-top: 1em">$ ls -lioF</p>
+
+<p style="margin-top: 1em">List the files in /var/log,
+sorting the output such that the most <br>
+recently modified entries are printed first:</p>
+
+<p style="margin-top: 1em">$ ls -lt /var/log</p>
+
+<p style="margin-top: 1em">COMPATIBILITY <br>
+The group field is now automatically included in the long
+listing for <br>
+files in order to be compatible with the IEEE Std 1003.2
+(&acirc;POSIX.2&acirc;) <br>
+specification.</p>
+
+<p style="margin-top: 1em">LEGACY DESCRIPTION <br>
+In legacy mode, the -f option does not turn on the -a option
+and the -g, <br>
+-n, and -o options do not turn on the -l option.</p>
+
+<p style="margin-top: 1em">Also, the -o option causes the
+file flags to be included in a long (-l) <br>
+output; there is no -O option.</p>
+
+<p style="margin-top: 1em">When -H is specified (and not
+overridden by -L or -P) and a file argument <br>
+is a symlink that resolves to a non-directory file, the
+output will <br>
+reflect the nature of the link, rather than that of the
+file. In legacy <br>
+operation, the output will describe the file.</p>
+
+<p style="margin-top: 1em">For more information about
+legacy mode, see compat(5).</p>
+
+<p style="margin-top: 1em">SEE ALSO <br>
+chflags(1), chmod(1), sort(1), xterm(1), localeconv(3),
+strftime(3), <br>
+strmode(3), compat(5), termcap(5), sticky(7), symlink(7)</p>
+
+<p style="margin-top: 1em">STANDARDS <br>
+With the exception of options -g, -n and -o, the ls utility
+conforms to <br>
+IEEE Std 1003.1-2001 (&acirc;POSIX.1&acirc;) and IEEE Std
+1003.1-2008 (&acirc;POSIX.1&acirc;). <br>
+The options -B, -D, -G, -I, -T, -U, -W, -Z, -b, -h, -w, -y
+and -, are <br>
+non-standard extensions.</p>
+
+<p style="margin-top: 1em">The ACL support is compatible
+with IEEE Std&Acirc;&nbsp;1003.2c (&acirc;POSIX.2c&acirc;)
+Draft&Acirc;&nbsp;17 <br>
+(withdrawn).</p>
+
+<p style="margin-top: 1em">HISTORY <br>
+An ls command appeared in Version&Acirc;&nbsp;1 AT&amp;T
+UNIX.</p>
+
+<p style="margin-top: 1em">BUGS <br>
+To maintain backward compatibility, the relationships
+between the many <br>
+options are quite complex.</p>
+
+<p style="margin-top: 1em">The exception mentioned in the
+-s option description might be a feature <br>
+that was based on the fact that single-column output usually
+goes to <br>
+something other than a terminal. It is debatable whether
+this is a <br>
+design bug.</p>
+
+<p style="margin-top: 1em">IEEE Std 1003.2
+(&acirc;POSIX.2&acirc;) mandates opposite sort orders for
+files with <br>
+the same timestamp when sorting with the -t option.</p>
+
+<p style="margin-top: 1em">macOS 13.0 August 31, 2020 macOS
+13.0</p>
+<hr>
+</body>
+</html>
