@@ -1,17 +1,26 @@
 {
   "description": "NAME \nmkdir â make directories",
   "flags": [
-    [
-      "-m",
-      "-m mode Set the file permission\nbits of the final created \ndirectory to the specified mode. The mode argument can be\n\nin any of the formats specified to the chmod(1) command.\n\nIf a symbolic mode is specified, the operation characters\n\nâ+â and â-â are interpreted relative\nto an initial mode of \nâa=rwxâ."
-    ],
-    [
-      "-p",
-      "-p Create intermediate\ndirectories as required. If this \noption is not specified, the full path prefix of each \noperand must already exist. On the other hand, with this\n\noption specified, no error will be reported if a directory\n\ngiven as an operand already exists. Intermediate \ndirectories are created with permission bits of \nârwxrwxrwxâ (0777) as modified by the current\numask, plus \nwrite and search permission for the owner."
-    ],
-    [
-      "-v",
-      "-v Be verbose when creating\ndirectories, listing them as they \nare created."
-    ]
+    {
+      "aliases": [
+        "-m"
+      ],
+      "description": "-m mode Set the file permission\nbits of the final created \ndirectory to the specified mode. The mode argument can be\n\nin any of the formats specified to the chmod(1) command.\n\nIf a symbolic mode is specified, the operation characters\n\nâ+â and â-â are interpreted relative\nto an initial mode of \nâa=rwxâ.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-p"
+      ],
+      "description": "-p Create intermediate\ndirectories as required. If this \noption is not specified, the full path prefix of each \noperand must already exist. On the other hand, with this\n\noption specified, no error will be reported if a directory\n\ngiven as an operand already exists. Intermediate \ndirectories are created with permission bits of \nârwxrwxrwxâ (0777) as modified by the current\numask, plus \nwrite and search permission for the owner.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-v"
+      ],
+      "description": "-v Be verbose when creating\ndirectories, listing them as they \nare created.",
+      "takes_argument": false
+    }
   ]
 }

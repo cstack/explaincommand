@@ -11,7 +11,7 @@ class Explanation
     annotations = []
     command.flags.each do |provided_flag|
       flag_explanation = manpage.flags.find do |man_flag|
-        man_flag[0] == provided_flag
+        man_flag.aliases.include?(provided_flag)
       end
       annotations << flag_explanation
     end

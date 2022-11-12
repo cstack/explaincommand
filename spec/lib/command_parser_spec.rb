@@ -82,6 +82,14 @@ describe CommandParser do
           "flags": ['-t'],
           "arguments": ['getting-started', '.']
         }
+      ],
+      [
+        'git checkout -b my-branch',
+        {
+          "name": 'git-checkout',
+          "flags": ['-b'],
+          "arguments": ['my-branch']
+        }
       ]
     ].each do |string, expected|
       context string do

@@ -38,38 +38,66 @@ describe ManpageParser do
   describe 'extract_flags' do
     subject { described_class.send(:extract_flags, text) }
 
+    context 'does not start with a flag' do
+      let(:text) { 'this is just some text with a --flag near the end' }
+      it 'returns nil' do
+        expect(subject).to eq(nil)
+      end
+    end
+
     context 'starts with a short flag' do
       let(:text) { '-f is a flag' }
       it 'extracts the flag' do
-        expect(subject).to eq(['-f'])
+        expect(subject.aliases).to eq(['-f'])
+        expect(subject.takes_argument).to eq(false)
       end
     end
 
     context 'starts with a long flag' do
       let(:text) { '--flag is a flag' }
       it 'extracts the flag' do
-        expect(subject).to eq(['--flag'])
+        expect(subject.aliases).to eq(['--flag'])
+        expect(subject.takes_argument).to eq(false)
       end
     end
 
     context 'starts with both a short and long flag' do
       let(:text) { '-f, --flag are both flags' }
       it 'extracts the flags' do
-        expect(subject).to eq(['-f', '--flag'])
+        expect(subject.aliases).to eq(['-f', '--flag'])
+        expect(subject.takes_argument).to eq(false)
       end
     end
 
     context 'starts with flags, then mentions another flag in the description' do
       let(:text) { '-f, --flag is a flag that is similar to --other-flag' }
       it 'only extracts the flags at the beginning' do
-        expect(subject).to eq(['-f', '--flag'])
+        expect(subject.aliases).to eq(['-f', '--flag'])
+        expect(subject.takes_argument).to eq(false)
       end
     end
 
     context 'has a multi-word flag' do
       let(:text) { '--multi-word-flag is treated as a single flag' }
       it 'only extracts the flags at the beginning' do
-        expect(subject).to eq(['--multi-word-flag'])
+        expect(subject.aliases).to eq(['--multi-word-flag'])
+        expect(subject.takes_argument).to eq(false)
+      end
+    end
+
+    context 'has a multi-word flag' do
+      let(:text) { '--multi-word-flag is treated as a single flag' }
+      it 'only extracts the flags at the beginning' do
+        expect(subject.aliases).to eq(['--multi-word-flag'])
+        expect(subject.takes_argument).to eq(false)
+      end
+    end
+
+    context 'takes an argument' do
+      let(:text) { "  -f, --file string             Name of the Dockerfile (Default is 'PATH/Dockerfile')" }
+      it 'recognizes the argument' do
+        expect(subject.aliases).to eq(['-f', '--file'])
+        expect(subject.takes_argument).to eq(true)
       end
     end
   end

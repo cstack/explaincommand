@@ -10,12 +10,8 @@ class ManpageParser
         description = text
         next
       end
-      flags_in_paragraph = extract_flags(text)
-      next unless flags_in_paragraph.length > 0
-
-      flags_in_paragraph.each do |flag|
-        flags << [flag, text]
-      end
+      flag = extract_flags(text)
+      flags << flag unless flag.nil?
     end
     Manpage.new(
       description:,
@@ -35,12 +31,8 @@ class ManpageParser
       break
     end
     lines.each do |text|
-      flags_in_paragraph = extract_flags(text)
-      next unless flags_in_paragraph.length > 0
-
-      flags_in_paragraph.each do |flag|
-        flags << [flag, text]
-      end
+      flag = extract_flags(text)
+      flags << flag unless flag.nil?
     end
     Manpage.new(
       description:,
@@ -55,12 +47,24 @@ class ManpageParser
   def self.extract_flags(text)
     first_non_flag = text.match(/\s\w+\s/)
     first_non_flag_position = Regexp.last_match&.begin(0) || text.length
-    flags_with_positions = text.enum_for(:scan, /--?[\w-]+/).map do |flag|
-      position = Regexp.last_match.begin(0)
-      [flag, position]
+    flags_with_match_data = text.enum_for(:scan, /--?[\w-]+/).map do |flag|
+      match_data = Regexp.last_match
+      [flag, match_data]
     end
-    flags_with_positions.select do |_flag, position|
-      position < first_non_flag_position
-    end.map(&:first)
+    flags_with_match_data_at_beginning = flags_with_match_data.select do |_flag, match_data|
+      match_data.begin(0) < first_non_flag_position
+    end
+    return nil if flags_with_match_data_at_beginning.length == 0
+
+    aliases = flags_with_match_data_at_beginning.map(&:first)
+    where_flags_end = flags_with_match_data_at_beginning.last.last.end(0)
+    text_after_flags = text[where_flags_end, text.length]
+    spacers = text_after_flags.scan(/\s+/)
+    takes_argument = if spacers.length > 1 && spacers[0].length == 1 && spacers[1].length > 1
+                       true
+                     else
+                       false
+                     end
+    Flag.new(aliases:, description: text, takes_argument:)
   end
 end

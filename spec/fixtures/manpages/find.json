@@ -1,373 +1,625 @@
 {
   "description": "NAME \nfind â walk a file hierarchy",
   "flags": [
-    [
-      "-E",
-      "-E Interpret regular expressions\nfollowed by -regex and -iregex \nprimaries as extended (modern) regular expressions rather\nthan \nbasic regular expressions (BRE’s). The re_format(7)\nmanual page \nfully describes both formats."
-    ],
-    [
-      "-H",
-      "-H Cause the file information\nand file type (see stat(2)) returned \nfor each symbolic link specified on the command line to be\nthose \nof the file referenced by the link, not the link itself. If\nthe \nreferenced file does not exist, the file information and\ntype \nwill be for the link itself. File information of all\nsymbolic \nlinks not on the command line is that of the link\nitself."
-    ],
-    [
-      "-L",
-      "-L Cause the file information\nand file type (see stat(2)) returned \nfor each symbolic link to be those of the file referenced by\nthe \nlink, not the link itself. If the referenced file does not\n\nexist, the file information and type will be for the link\nitself."
-    ],
-    [
-      "-P",
-      "-P Cause the file information\nand file type (see stat(2)) returned \nfor each symbolic link to be those of the link itself. This\nis \nthe default."
-    ],
-    [
-      "-X",
-      "-X Permit find to be safely used\nin conjunction with xargs(1). If a \nfile name contains any of the delimiting characters used by\n\nxargs(1), a diagnostic message is displayed on standard\nerror, \nand the file is skipped. The delimiting characters include\n\nsingle (â ’ â) and double (â \"\nâ) quotes, backslash (ââ), space, \ntab and newline characters."
-    ],
-    [
-      "-d",
-      "-d Cause find to perform a\ndepth-first traversal."
-    ],
-    [
-      "-s",
-      "-s Cause find to traverse the\nfile hierarchies in lexicographical \norder, i.e., alphabetical order within each directory. Note:\n\nâfind -sâ and âfind | sortâ may give\ndifferent results."
-    ],
-    [
-      "-x",
-      "-x Prevent find from descending\ninto directories that have a device \nnumber different than that of the file from which the\ndescent \nbegan."
-    ],
-    [
-      "-Bmin",
-      "-Bmin n \nTrue if the difference between the time of a file’s\ninode \ncreation and the time find was started, rounded up to the\nnext \nfull minute, is n minutes."
-    ],
-    [
-      "-Bnewer",
-      "-Bnewer file \nSame as -newerBm."
-    ],
-    [
-      "-Btime",
-      "-Btime n[smhdw] \nIf no units are specified, this primary evaluates to true if\nthe \ndifference between the time of a file’s inode creation\nand the \ntime find was started, rounded up to the next full 24-hour\n\nperiod, is n 24-hour periods."
-    ],
-    [
-      "-acl",
-      "-acl May be used in conjunction\nwith other primaries to locate files \nwith extended ACLs. See acl(3) for more information."
-    ],
-    [
-      "-amin",
-      "-amin [-|+]n \nTrue if the difference between the file last access time and\nthe \ntime find was started, rounded up to the next full minute,\nis \nmore than n (+n), less than n (-n), or exactly n minutes\nago."
-    ],
-    [
-      "-anewer",
-      "-anewer file \nSame as -neweram."
-    ],
-    [
-      "-atime",
-      "-atime n[smhdw] \nIf no units are specified, this primary evaluates to true if\nthe \ndifference between the file last access time and the time\nfind \nwas started, rounded up to the next full 24-hour period, is\nn \n24-hour periods."
-    ],
-    [
-      "-cmin",
-      "-cmin [-|+]n \nTrue if the difference between the time of last change of\nfile \nstatus information and the time find was started, rounded up\nto \nthe next full minute, is more than n (+n), less than n (-n),\nor \nexactly n minutes ago."
-    ],
-    [
-      "-cnewer",
-      "-cnewer file \nSame as -newercm."
-    ],
-    [
-      "-ctime",
-      "-ctime n[smhdw] \nIf no units are specified, this primary evaluates to true if\nthe \ndifference between the time of last change of file status\n\ninformation and the time find was started, rounded up to the\nnext \nfull 24-hour period, is n 24-hour periods."
-    ],
-    [
-      "-d",
-      "-d Non-portable, BSD-specific\nversion of depth. GNU find implements \nthis as a primary in mistaken emulation of FreeBSD find."
-    ],
-    [
-      "-portable",
-      "-d Non-portable, BSD-specific\nversion of depth. GNU find implements \nthis as a primary in mistaken emulation of FreeBSD find."
-    ],
-    [
-      "-specific",
-      "-d Non-portable, BSD-specific\nversion of depth. GNU find implements \nthis as a primary in mistaken emulation of FreeBSD find."
-    ],
-    [
-      "-delete",
-      "-delete \nDelete found files and/or directories. Always returns true.\n\nThis executes from the current working directory as find\nrecurses \ndown the tree. It will not attempt to delete a filename with\na \nâ/â character in its pathname relative to\nâ.â for security \nreasons. Depth-first traversal processing is implied by this\n\noption. The -delete primary will fail to delete a directory\nif \nit is not empty. Following symlinks is incompatible with\nthis \noption."
-    ],
-    [
-      "-depth",
-      "-depth Always true; same as the\nnon-portable -d option. Cause find to \nperform a depth-first traversal, i.e., directories are\nvisited in \npost-order and all entries in a directory will be acted on\nbefore \nthe directory itself. By default, find visits directories in\n\npre-order, i.e., before their contents. Note, the default is\nnot \na breadth-first traversal."
-    ],
-    [
-      "-depth",
-      "The -depth primary can be useful\nwhen find is used with cpio(1) \nto process files that are contained in directories with\nunusual \npermissions. It ensures that you have write permission while\nyou \nare placing files in a directory, then sets the\ndirectory’s \npermissions as the last thing."
-    ],
-    [
-      "-depth",
-      "-depth n \nTrue if the depth of the file relative to the starting point\nof \nthe traversal is n."
-    ],
-    [
-      "-empty",
-      "-empty True if the current file\nor directory is empty."
-    ],
-    [
-      "-exec",
-      "-exec utility [argument ...] ;\n\nTrue if the program named utility returns a zero value as\nits \nexit status. Optional arguments may be passed to the\nutility. \nThe expression must be terminated by a semicolon\n(â;â). If you \ninvoke find from a shell you may need to quote the semicolon\nif \nthe shell would otherwise treat it as a control operator. If\nthe \nstring â{}â appears anywhere in the utility name\nor the arguments \nit is replaced by the pathname of the current file. Utility\nwill \nbe executed from the directory from which find was executed.\n\nUtility and arguments are not subject to the further\nexpansion of \nshell patterns and constructs."
-    ],
-    [
-      "-exec",
-      "-exec utility [argument ...] {}\n+ \nSame as -exec, except that â{}â is replaced with\nas many \npathnames as possible for each invocation of utility. This\n\nbehaviour is similar to that of xargs(1). The primary always\n\nreturns true; if at least one invocation of utility returns\na \nnon-zero exit status, find will return a non-zero exit\nstatus."
-    ],
-    [
-      "-execdir",
-      "-execdir utility [argument ...]\n; \nThe -execdir primary is identical to the -exec primary with\nthe \nexception that utility will be executed from the directory\nthat \nholds the current file. The filename substituted for the\nstring \nâ{}â is not qualified."
-    ],
-    [
-      "-execdir",
-      "-execdir utility [argument ...]\n{} + \nSame as -execdir, except that â{}â is replaced\nwith as many \npathnames as possible for each invocation of utility. This\n\nbehaviour is similar to that of xargs(1). The primary always\n\nreturns true; if at least one invocation of utility returns\na \nnon-zero exit status, find will return a non-zero exit\nstatus."
-    ],
-    [
-      "-flags",
-      "-flags [-|+]flags,notflags \nThe flags are specified using symbolic names (see\nchflags(1)). \nThose with the \"no\" prefix (except\n\"nodump\") are said to be \nnotflags. Flags in flags are checked to be set, and flags in\n\nnotflags are checked to be not set. Note that this is\ndifferent \nfrom -perm, which only allows the user to specify mode bits\nthat \nare set."
-    ],
-    [
-      "-fstype",
-      "-fstype type \nTrue if the file is contained in a file system of type type.\nThe \nlsvfs(1) command can be used to find out the types of file\n\nsystems that are available on the system. In addition, there\nare \ntwo pseudo-types, âlocalâ and\nârdonlyâ. The former matches any \nfile system physically mounted on the system where the find\nis \nbeing executed and the latter matches any file system which\nis \nmounted read-only."
-    ],
-    [
-      "-gid",
-      "-gid gname \nThe same thing as -group gname for compatibility with GNU\nfind. \nGNU find imposes a restriction that gname is numeric, while\nfind \ndoes not."
-    ],
-    [
-      "-group",
-      "-group gname \nTrue if the file belongs to the group gname. If gname is\nnumeric \nand there is no such group name, then gname is treated as a\ngroup \nID."
-    ],
-    [
-      "-ignore_readdir_race",
-      "-ignore_readdir_race \nIgnore errors because a file or a directory is deleted after\n\nreading the name from a directory. This option does not\naffect \nerrors occurring on starting points."
-    ],
-    [
-      "-ilname",
-      "-ilname pattern \nLike -lname, but the match is case insensitive. This is a\nGNU \nfind extension."
-    ],
-    [
-      "-iname",
-      "-iname pattern \nLike -name, but the match is case insensitive."
-    ],
-    [
-      "-inum",
-      "-inum n \nTrue if the file has inode number n."
-    ],
-    [
-      "-ipath",
-      "-ipath pattern \nLike -path, but the match is case insensitive."
-    ],
-    [
-      "-iregex",
-      "-iregex pattern \nLike -regex, but the match is case insensitive."
-    ],
-    [
-      "-iwholename",
-      "-iwholename pattern \nThe same thing as -ipath, for GNU find compatibility."
-    ],
-    [
-      "-links",
-      "-links n \nTrue if the file has n links."
-    ],
-    [
-      "-lname",
-      "-lname pattern \nLike -name, but the contents of the symbolic link are\nmatched \ninstead of the file name. Note that this only matches broken\n\nsymbolic links if symbolic links are being followed. This is\na \nGNU find extension."
-    ],
-    [
-      "-ls",
-      "-ls This primary always\nevaluates to true. The following information \nfor the current file is written to standard output: its\ninode \nnumber, size in 512-byte blocks, file permissions, number of\nhard \nlinks, owner, group, size in bytes, last modification time,\nand \npathname. If the file is a block or character special file,\nthe \ndevice number will be displayed instead of the size in\nbytes. If \nthe file is a symbolic link, the pathname of the linked-to\nfile \nwill be displayed preceded by â->â. The\nformat is identical to \nthat produced by âls -dgilsâ."
-    ],
-    [
-      "-maxdepth",
-      "-maxdepth n \nAlways true; descend at most n directory levels below the\ncommand \nline arguments. If any -maxdepth primary is specified, it\n\napplies to the entire expression even if it would not\nnormally be \nevaluated. â-maxdepth 0â limits the whole search\nto the command \nline arguments."
-    ],
-    [
-      "-mindepth",
-      "-mindepth n \nAlways true; do not apply any tests or actions at levels\nless \nthan n. If any -mindepth primary is specified, it applies to\nthe \nentire expression even if it would not normally be\nevaluated. \nâ-mindepth 1â processes all but the command line\narguments."
-    ],
-    [
-      "-mmin",
-      "-mmin [-|+]n \nTrue if the difference between the file last modification\ntime \nand the time find was started, rounded up to the next full\n\nminute, is more than n (+n), less than n (-n), or exactly n\n\nminutes ago."
-    ],
-    [
-      "-mnewer",
-      "-mnewer file \nSame as -newer."
-    ],
-    [
-      "-mount",
-      "-mount The same thing as -xdev,\nfor GNU find compatibility."
-    ],
-    [
-      "-mtime",
-      "-mtime n[smhdw] \nIf no units are specified, this primary evaluates to true if\nthe \ndifference between the file last modification time and the\ntime \nfind was started, rounded up to the next full 24-hour\nperiod, is \nn 24-hour periods."
-    ],
-    [
-      "-name",
-      "-name pattern \nTrue if the last component of the pathname being examined\nmatches \npattern. Special shell pattern matching characters\n(â[â, â]â, \nâ*â, and â?â) may be used as part of\npattern. These characters \nmay be matched explicitly by escaping them with a backslash\n\n(ââ)."
-    ],
-    [
-      "-newer",
-      "-newer file \nTrue if the current file has a more recent last modification\ntime \nthan file."
-    ],
-    [
-      "-newerXY",
-      "-newerXY file \nTrue if the current file has a more recent last access time\n\n(X=a), inode creation time (X=B), change time (X=c), or \nmodification time (X=m) than the last access time (Y=a),\ninode \ncreation time (Y=B), change time (Y=c), or modification time\n\n(Y=m) of file. In addition, if Y=t, then file is instead\n\ninterpreted as a direct date specification of the form\nunderstood \nby cvs(1). Note that -newermm is equivalent to -newer."
-    ],
-    [
-      "-nogroup",
-      "-nogroup \nTrue if the file belongs to an unknown group."
-    ],
-    [
-      "-noignore_readdir_race",
-      "-noignore_readdir_race \nTurn off the effect of -ignore_readdir_race. This is default\n\nbehaviour."
-    ],
-    [
-      "-noleaf",
-      "-noleaf \nThis option is for GNU find compatibility. In GNU find it\n\ndisables an optimization not relevant to find, so it is\nignored."
-    ],
-    [
-      "-nouser",
-      "-nouser \nTrue if the file belongs to an unknown user."
-    ],
-    [
-      "-ok",
-      "-ok utility [argument ...] ;\n\nThe -ok primary is identical to the -exec primary with the\n\nexception that find requests user affirmation for the\nexecution \nof the utility by printing a message to the terminal and\nreading \na response. If the response is not affirmative\n(âyâ in the \nâPOSIXâ locale), the command is not executed and\nthe value of the \n-ok expression is false."
-    ],
-    [
-      "-okdir",
-      "-okdir utility [argument ...] ;\n\nThe -okdir primary is identical to the -execdir primary with\nthe \nsame exception as described for the -ok primary."
-    ],
-    [
-      "-path",
-      "-path pattern \nTrue if the pathname being examined matches pattern. Special\n\nshell pattern matching characters (â[â,\nâ]â, â*â, and â?â) may\nbe \nused as part of pattern. These characters may be matched\n\nexplicitly by escaping them with a backslash\n(ââ). Slashes \n(â/â) are treated as normal characters and do\nnot have to be \nmatched explicitly."
-    ],
-    [
-      "-perm",
-      "-perm [-|+]mode \nThe mode may be either symbolic (see chmod(1)) or an octal\n\nnumber. If the mode is symbolic, a starting value of zero is\n\nassumed and the mode sets or clears permissions without\nregard to \nthe process’ file mode creation mask. If the mode is\noctal, only \nbits 07777 (S_ISUID | S_ISGID | S_ISTXT | S_IRWXU | S_IRWXG\n| \nS_IRWXO) of the file’s mode bits participate in the\ncomparison. \nIf the mode is preceded by a dash (â-â), this\nprimary evaluates \nto true if at least all of the bits in the mode are set in\nthe \nfile’s mode bits. If the mode is preceded by a plus\n(â+â), this \nprimary evaluates to true if any of the bits in the mode are\nset \nin the file’s mode bits. Otherwise, this primary\nevaluates to \ntrue if the bits in the mode exactly match the file’s\nmode bits. \nNote, the first character of a symbolic mode may not be a\ndash \n(â-â)."
-    ],
-    [
-      "-print",
-      "-print This primary always\nevaluates to true. It prints the pathname of \nthe current file to standard output. If none of -exec, -ls,\n\n-print, -print0, or -ok is specified, the given expression\nshall \nbe effectively replaced by ( given expression ) -print."
-    ],
-    [
-      "-print0",
-      "-print0 \nThis primary always evaluates to true. It prints the\npathname of \nthe current file to standard output, followed by an ASCII\nNUL \ncharacter (character code 0)."
-    ],
-    [
-      "-prune",
-      "-prune This primary always\nevaluates to true. It causes find to not \ndescend into the current file. Note, the -prune primary has\nno \neffect if the -d option was specified."
-    ],
-    [
-      "-quit",
-      "-quit Causes find to terminate\nimmediately."
-    ],
-    [
-      "-regex",
-      "-regex pattern \nTrue if the whole path of the file matches pattern using\nregular \nexpression. To match a file named â./foo/xyzzyâ,\nyou can use the \nregular expression â.*/[xyz]*â or\nâ.*/foo/.*â, but not âxyzzyâ or \nâ/foo/â."
-    ],
-    [
-      "-samefile",
-      "-samefile name \nTrue if the file is a hard link to name. If the command\noption \n-L is specified, it is also true if the file is a symbolic\nlink \nand points to name."
-    ],
-    [
-      "-size",
-      "-size n[ckMGTP] \nTrue if the file’s size, rounded up, in 512-byte\nblocks is n. If \nn is followed by a c, then the primary is true if the\nfile’s size \nis n bytes (characters). Similarly if n is followed by a\nscale \nindicator then the file’s size is compared to n scaled\nas:"
-    ],
-    [
-      "-sparse",
-      "-sparse \nTrue if the current file is sparse, i.e. has fewer blocks\n\nallocated than expected based on its size in bytes. This\nmight \nalso match files that have been compressed by the\nfilesystem."
-    ],
-    [
-      "-type",
-      "-type t \nTrue if the file is of the specified type. Possible file\ntypes \nare as follows:"
-    ],
-    [
-      "-uid",
-      "-uid uname \nThe same thing as -user uname for compatibility with GNU\nfind. \nGNU find imposes a restriction that uname is numeric, while\nfind \ndoes not."
-    ],
-    [
-      "-user",
-      "-user uname \nTrue if the file belongs to the user uname. If uname is\nnumeric \nand there is no such user name, then uname is treated as a\nuser \nID."
-    ],
-    [
-      "-wholename",
-      "-wholename pattern \nThe same thing as -path, for GNU find compatibility."
-    ],
-    [
-      "-xattr",
-      "-xattr True if the file has any\nextended attributes."
-    ],
-    [
-      "-xattrname",
-      "-xattrname name \nTrue if the file has an extended attribute with the\nspecified \nname."
-    ],
-    [
-      "-false",
-      "-false Always false. \n-true Always true."
-    ],
-    [
-      "-and",
-      "expression -and expression \nexpression expression \nThe -and operator is the logical AND operator. As it is\nimplied \nby the juxtaposition of two expressions it does not have to\nbe \nspecified. The expression evaluates to true if both\nexpressions \nare true. The second expression is not evaluated if the\nfirst \nexpression is false."
-    ],
-    [
-      "-or",
-      "expression -or expression \nThe -or operator is the logical OR operator. The expression\n\nevaluates to true if either the first or the second\nexpression is \ntrue. The second expression is not evaluated if the first\n\nexpression is true."
-    ],
-    [
-      "-name",
-      "find / -name \"*.c\"\n-print \nPrint out a list of all the files whose names do not end in\n.c."
-    ],
-    [
-      "-print",
-      "find / -name \"*.c\"\n-print \nPrint out a list of all the files whose names do not end in\n.c."
-    ],
-    [
-      "-newer",
-      "find / -newer ttt -user wnj\n-print \nPrint out a list of all the files owned by user\nâwnjâ that are \nnewer than the file ttt."
-    ],
-    [
-      "-newer",
-      "find / -newer ttt -user wnj\n-print \nPrint out a list of all the files which are not both newer\nthan \nttt and owned by âwnjâ."
-    ],
-    [
-      "-newer",
-      "find / -newer ttt -or -user wnj\n-print \nPrint out a list of all the files that are either owned by\nâwnjâ \nor that are newer than ttt."
-    ],
-    [
-      "-newerct",
-      "find / -newerct ’1 minute\nago’ -print \nPrint out a list of all the files whose inode change time is\nmore \nrecent than the current time minus one minute."
-    ],
-    [
-      "-type",
-      "find / -type f -exec echo {} ;\n\nUse the echo(1) command to print out a list of all the\nfiles."
-    ],
-    [
-      "-L",
-      "find -L /usr/ports/packages\n-type l -exec rm -- {} + \nDelete all broken symbolic links in /usr/ports/packages."
-    ],
-    [
-      "-type",
-      "find -L /usr/ports/packages\n-type l -exec rm -- {} + \nDelete all broken symbolic links in /usr/ports/packages."
-    ],
-    [
-      "-name",
-      "find /usr/src -name CVS -prune\n-o -depth +6 -print \nFind files and directories that are at least seven levels\ndeep in \nthe working directory /usr/src."
-    ],
-    [
-      "-name",
-      "find /usr/src -name CVS -prune\n-o -mindepth 7 -print \nIs not equivalent to the previous example, since -prune is\nnot \nevaluated below level seven."
-    ],
-    [
-      "-E",
-      "The -E option was inspired by\nthe equivalent grep(1) and sed(1) options."
-    ],
-    [
-      "-delete",
-      "The -delete primary does not\ninteract well with other options that cause \nthe file system tree traversal options to be changed."
-    ],
-    [
-      "-mindepth",
-      "The -mindepth and -maxdepth\nprimaries are actually global options (as \ndocumented above). They should probably be replaced by\noptions which \nlook like options."
-    ]
+    {
+      "aliases": [
+        "-E"
+      ],
+      "description": "-E Interpret regular expressions\nfollowed by -regex and -iregex \nprimaries as extended (modern) regular expressions rather\nthan \nbasic regular expressions (BRE’s). The re_format(7)\nmanual page \nfully describes both formats.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-H"
+      ],
+      "description": "-H Cause the file information\nand file type (see stat(2)) returned \nfor each symbolic link specified on the command line to be\nthose \nof the file referenced by the link, not the link itself. If\nthe \nreferenced file does not exist, the file information and\ntype \nwill be for the link itself. File information of all\nsymbolic \nlinks not on the command line is that of the link\nitself.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-L"
+      ],
+      "description": "-L Cause the file information\nand file type (see stat(2)) returned \nfor each symbolic link to be those of the file referenced by\nthe \nlink, not the link itself. If the referenced file does not\n\nexist, the file information and type will be for the link\nitself.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-P"
+      ],
+      "description": "-P Cause the file information\nand file type (see stat(2)) returned \nfor each symbolic link to be those of the link itself. This\nis \nthe default.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-X"
+      ],
+      "description": "-X Permit find to be safely used\nin conjunction with xargs(1). If a \nfile name contains any of the delimiting characters used by\n\nxargs(1), a diagnostic message is displayed on standard\nerror, \nand the file is skipped. The delimiting characters include\n\nsingle (â ’ â) and double (â \"\nâ) quotes, backslash (ââ), space, \ntab and newline characters.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-d"
+      ],
+      "description": "-d Cause find to perform a\ndepth-first traversal.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-s"
+      ],
+      "description": "-s Cause find to traverse the\nfile hierarchies in lexicographical \norder, i.e., alphabetical order within each directory. Note:\n\nâfind -sâ and âfind | sortâ may give\ndifferent results.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-x"
+      ],
+      "description": "-x Prevent find from descending\ninto directories that have a device \nnumber different than that of the file from which the\ndescent \nbegan.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-Bmin"
+      ],
+      "description": "-Bmin n \nTrue if the difference between the time of a file’s\ninode \ncreation and the time find was started, rounded up to the\nnext \nfull minute, is n minutes.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-Bnewer"
+      ],
+      "description": "-Bnewer file \nSame as -newerBm.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-Btime"
+      ],
+      "description": "-Btime n[smhdw] \nIf no units are specified, this primary evaluates to true if\nthe \ndifference between the time of a file’s inode creation\nand the \ntime find was started, rounded up to the next full 24-hour\n\nperiod, is n 24-hour periods.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-acl"
+      ],
+      "description": "-acl May be used in conjunction\nwith other primaries to locate files \nwith extended ACLs. See acl(3) for more information.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-amin"
+      ],
+      "description": "-amin [-|+]n \nTrue if the difference between the file last access time and\nthe \ntime find was started, rounded up to the next full minute,\nis \nmore than n (+n), less than n (-n), or exactly n minutes\nago.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-anewer"
+      ],
+      "description": "-anewer file \nSame as -neweram.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-atime"
+      ],
+      "description": "-atime n[smhdw] \nIf no units are specified, this primary evaluates to true if\nthe \ndifference between the file last access time and the time\nfind \nwas started, rounded up to the next full 24-hour period, is\nn \n24-hour periods.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-cmin"
+      ],
+      "description": "-cmin [-|+]n \nTrue if the difference between the time of last change of\nfile \nstatus information and the time find was started, rounded up\nto \nthe next full minute, is more than n (+n), less than n (-n),\nor \nexactly n minutes ago.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-cnewer"
+      ],
+      "description": "-cnewer file \nSame as -newercm.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-ctime"
+      ],
+      "description": "-ctime n[smhdw] \nIf no units are specified, this primary evaluates to true if\nthe \ndifference between the time of last change of file status\n\ninformation and the time find was started, rounded up to the\nnext \nfull 24-hour period, is n 24-hour periods.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-d",
+        "-portable",
+        "-specific"
+      ],
+      "description": "-d Non-portable, BSD-specific\nversion of depth. GNU find implements \nthis as a primary in mistaken emulation of FreeBSD find.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-delete"
+      ],
+      "description": "-delete \nDelete found files and/or directories. Always returns true.\n\nThis executes from the current working directory as find\nrecurses \ndown the tree. It will not attempt to delete a filename with\na \nâ/â character in its pathname relative to\nâ.â for security \nreasons. Depth-first traversal processing is implied by this\n\noption. The -delete primary will fail to delete a directory\nif \nit is not empty. Following symlinks is incompatible with\nthis \noption.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-depth"
+      ],
+      "description": "-depth Always true; same as the\nnon-portable -d option. Cause find to \nperform a depth-first traversal, i.e., directories are\nvisited in \npost-order and all entries in a directory will be acted on\nbefore \nthe directory itself. By default, find visits directories in\n\npre-order, i.e., before their contents. Note, the default is\nnot \na breadth-first traversal.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-depth"
+      ],
+      "description": "The -depth primary can be useful\nwhen find is used with cpio(1) \nto process files that are contained in directories with\nunusual \npermissions. It ensures that you have write permission while\nyou \nare placing files in a directory, then sets the\ndirectory’s \npermissions as the last thing.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-depth"
+      ],
+      "description": "-depth n \nTrue if the depth of the file relative to the starting point\nof \nthe traversal is n.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-empty"
+      ],
+      "description": "-empty True if the current file\nor directory is empty.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-exec"
+      ],
+      "description": "-exec utility [argument ...] ;\n\nTrue if the program named utility returns a zero value as\nits \nexit status. Optional arguments may be passed to the\nutility. \nThe expression must be terminated by a semicolon\n(â;â). If you \ninvoke find from a shell you may need to quote the semicolon\nif \nthe shell would otherwise treat it as a control operator. If\nthe \nstring â{}â appears anywhere in the utility name\nor the arguments \nit is replaced by the pathname of the current file. Utility\nwill \nbe executed from the directory from which find was executed.\n\nUtility and arguments are not subject to the further\nexpansion of \nshell patterns and constructs.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-exec"
+      ],
+      "description": "-exec utility [argument ...] {}\n+ \nSame as -exec, except that â{}â is replaced with\nas many \npathnames as possible for each invocation of utility. This\n\nbehaviour is similar to that of xargs(1). The primary always\n\nreturns true; if at least one invocation of utility returns\na \nnon-zero exit status, find will return a non-zero exit\nstatus.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-execdir"
+      ],
+      "description": "-execdir utility [argument ...]\n; \nThe -execdir primary is identical to the -exec primary with\nthe \nexception that utility will be executed from the directory\nthat \nholds the current file. The filename substituted for the\nstring \nâ{}â is not qualified.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-execdir"
+      ],
+      "description": "-execdir utility [argument ...]\n{} + \nSame as -execdir, except that â{}â is replaced\nwith as many \npathnames as possible for each invocation of utility. This\n\nbehaviour is similar to that of xargs(1). The primary always\n\nreturns true; if at least one invocation of utility returns\na \nnon-zero exit status, find will return a non-zero exit\nstatus.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-flags"
+      ],
+      "description": "-flags [-|+]flags,notflags \nThe flags are specified using symbolic names (see\nchflags(1)). \nThose with the \"no\" prefix (except\n\"nodump\") are said to be \nnotflags. Flags in flags are checked to be set, and flags in\n\nnotflags are checked to be not set. Note that this is\ndifferent \nfrom -perm, which only allows the user to specify mode bits\nthat \nare set.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-fstype"
+      ],
+      "description": "-fstype type \nTrue if the file is contained in a file system of type type.\nThe \nlsvfs(1) command can be used to find out the types of file\n\nsystems that are available on the system. In addition, there\nare \ntwo pseudo-types, âlocalâ and\nârdonlyâ. The former matches any \nfile system physically mounted on the system where the find\nis \nbeing executed and the latter matches any file system which\nis \nmounted read-only.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-gid"
+      ],
+      "description": "-gid gname \nThe same thing as -group gname for compatibility with GNU\nfind. \nGNU find imposes a restriction that gname is numeric, while\nfind \ndoes not.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-group"
+      ],
+      "description": "-group gname \nTrue if the file belongs to the group gname. If gname is\nnumeric \nand there is no such group name, then gname is treated as a\ngroup \nID.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-ignore_readdir_race"
+      ],
+      "description": "-ignore_readdir_race \nIgnore errors because a file or a directory is deleted after\n\nreading the name from a directory. This option does not\naffect \nerrors occurring on starting points.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-ilname"
+      ],
+      "description": "-ilname pattern \nLike -lname, but the match is case insensitive. This is a\nGNU \nfind extension.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-iname"
+      ],
+      "description": "-iname pattern \nLike -name, but the match is case insensitive.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-inum"
+      ],
+      "description": "-inum n \nTrue if the file has inode number n.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-ipath"
+      ],
+      "description": "-ipath pattern \nLike -path, but the match is case insensitive.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-iregex"
+      ],
+      "description": "-iregex pattern \nLike -regex, but the match is case insensitive.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-iwholename"
+      ],
+      "description": "-iwholename pattern \nThe same thing as -ipath, for GNU find compatibility.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-links"
+      ],
+      "description": "-links n \nTrue if the file has n links.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-lname"
+      ],
+      "description": "-lname pattern \nLike -name, but the contents of the symbolic link are\nmatched \ninstead of the file name. Note that this only matches broken\n\nsymbolic links if symbolic links are being followed. This is\na \nGNU find extension.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-ls"
+      ],
+      "description": "-ls This primary always\nevaluates to true. The following information \nfor the current file is written to standard output: its\ninode \nnumber, size in 512-byte blocks, file permissions, number of\nhard \nlinks, owner, group, size in bytes, last modification time,\nand \npathname. If the file is a block or character special file,\nthe \ndevice number will be displayed instead of the size in\nbytes. If \nthe file is a symbolic link, the pathname of the linked-to\nfile \nwill be displayed preceded by â->â. The\nformat is identical to \nthat produced by âls -dgilsâ.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-maxdepth"
+      ],
+      "description": "-maxdepth n \nAlways true; descend at most n directory levels below the\ncommand \nline arguments. If any -maxdepth primary is specified, it\n\napplies to the entire expression even if it would not\nnormally be \nevaluated. â-maxdepth 0â limits the whole search\nto the command \nline arguments.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-mindepth"
+      ],
+      "description": "-mindepth n \nAlways true; do not apply any tests or actions at levels\nless \nthan n. If any -mindepth primary is specified, it applies to\nthe \nentire expression even if it would not normally be\nevaluated. \nâ-mindepth 1â processes all but the command line\narguments.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-mmin"
+      ],
+      "description": "-mmin [-|+]n \nTrue if the difference between the file last modification\ntime \nand the time find was started, rounded up to the next full\n\nminute, is more than n (+n), less than n (-n), or exactly n\n\nminutes ago.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-mnewer"
+      ],
+      "description": "-mnewer file \nSame as -newer.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-mount"
+      ],
+      "description": "-mount The same thing as -xdev,\nfor GNU find compatibility.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-mtime"
+      ],
+      "description": "-mtime n[smhdw] \nIf no units are specified, this primary evaluates to true if\nthe \ndifference between the file last modification time and the\ntime \nfind was started, rounded up to the next full 24-hour\nperiod, is \nn 24-hour periods.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-name"
+      ],
+      "description": "-name pattern \nTrue if the last component of the pathname being examined\nmatches \npattern. Special shell pattern matching characters\n(â[â, â]â, \nâ*â, and â?â) may be used as part of\npattern. These characters \nmay be matched explicitly by escaping them with a backslash\n\n(ââ).",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-newer"
+      ],
+      "description": "-newer file \nTrue if the current file has a more recent last modification\ntime \nthan file.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-newerXY"
+      ],
+      "description": "-newerXY file \nTrue if the current file has a more recent last access time\n\n(X=a), inode creation time (X=B), change time (X=c), or \nmodification time (X=m) than the last access time (Y=a),\ninode \ncreation time (Y=B), change time (Y=c), or modification time\n\n(Y=m) of file. In addition, if Y=t, then file is instead\n\ninterpreted as a direct date specification of the form\nunderstood \nby cvs(1). Note that -newermm is equivalent to -newer.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-nogroup"
+      ],
+      "description": "-nogroup \nTrue if the file belongs to an unknown group.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-noignore_readdir_race"
+      ],
+      "description": "-noignore_readdir_race \nTurn off the effect of -ignore_readdir_race. This is default\n\nbehaviour.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-noleaf"
+      ],
+      "description": "-noleaf \nThis option is for GNU find compatibility. In GNU find it\n\ndisables an optimization not relevant to find, so it is\nignored.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-nouser"
+      ],
+      "description": "-nouser \nTrue if the file belongs to an unknown user.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-ok"
+      ],
+      "description": "-ok utility [argument ...] ;\n\nThe -ok primary is identical to the -exec primary with the\n\nexception that find requests user affirmation for the\nexecution \nof the utility by printing a message to the terminal and\nreading \na response. If the response is not affirmative\n(âyâ in the \nâPOSIXâ locale), the command is not executed and\nthe value of the \n-ok expression is false.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-okdir"
+      ],
+      "description": "-okdir utility [argument ...] ;\n\nThe -okdir primary is identical to the -execdir primary with\nthe \nsame exception as described for the -ok primary.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-path"
+      ],
+      "description": "-path pattern \nTrue if the pathname being examined matches pattern. Special\n\nshell pattern matching characters (â[â,\nâ]â, â*â, and â?â) may\nbe \nused as part of pattern. These characters may be matched\n\nexplicitly by escaping them with a backslash\n(ââ). Slashes \n(â/â) are treated as normal characters and do\nnot have to be \nmatched explicitly.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-perm"
+      ],
+      "description": "-perm [-|+]mode \nThe mode may be either symbolic (see chmod(1)) or an octal\n\nnumber. If the mode is symbolic, a starting value of zero is\n\nassumed and the mode sets or clears permissions without\nregard to \nthe process’ file mode creation mask. If the mode is\noctal, only \nbits 07777 (S_ISUID | S_ISGID | S_ISTXT | S_IRWXU | S_IRWXG\n| \nS_IRWXO) of the file’s mode bits participate in the\ncomparison. \nIf the mode is preceded by a dash (â-â), this\nprimary evaluates \nto true if at least all of the bits in the mode are set in\nthe \nfile’s mode bits. If the mode is preceded by a plus\n(â+â), this \nprimary evaluates to true if any of the bits in the mode are\nset \nin the file’s mode bits. Otherwise, this primary\nevaluates to \ntrue if the bits in the mode exactly match the file’s\nmode bits. \nNote, the first character of a symbolic mode may not be a\ndash \n(â-â).",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-print"
+      ],
+      "description": "-print This primary always\nevaluates to true. It prints the pathname of \nthe current file to standard output. If none of -exec, -ls,\n\n-print, -print0, or -ok is specified, the given expression\nshall \nbe effectively replaced by ( given expression ) -print.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-print0"
+      ],
+      "description": "-print0 \nThis primary always evaluates to true. It prints the\npathname of \nthe current file to standard output, followed by an ASCII\nNUL \ncharacter (character code 0).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-prune"
+      ],
+      "description": "-prune This primary always\nevaluates to true. It causes find to not \ndescend into the current file. Note, the -prune primary has\nno \neffect if the -d option was specified.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-quit"
+      ],
+      "description": "-quit Causes find to terminate\nimmediately.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-regex"
+      ],
+      "description": "-regex pattern \nTrue if the whole path of the file matches pattern using\nregular \nexpression. To match a file named â./foo/xyzzyâ,\nyou can use the \nregular expression â.*/[xyz]*â or\nâ.*/foo/.*â, but not âxyzzyâ or \nâ/foo/â.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-samefile"
+      ],
+      "description": "-samefile name \nTrue if the file is a hard link to name. If the command\noption \n-L is specified, it is also true if the file is a symbolic\nlink \nand points to name.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-size"
+      ],
+      "description": "-size n[ckMGTP] \nTrue if the file’s size, rounded up, in 512-byte\nblocks is n. If \nn is followed by a c, then the primary is true if the\nfile’s size \nis n bytes (characters). Similarly if n is followed by a\nscale \nindicator then the file’s size is compared to n scaled\nas:",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-sparse"
+      ],
+      "description": "-sparse \nTrue if the current file is sparse, i.e. has fewer blocks\n\nallocated than expected based on its size in bytes. This\nmight \nalso match files that have been compressed by the\nfilesystem.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-type"
+      ],
+      "description": "-type t \nTrue if the file is of the specified type. Possible file\ntypes \nare as follows:",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-uid"
+      ],
+      "description": "-uid uname \nThe same thing as -user uname for compatibility with GNU\nfind. \nGNU find imposes a restriction that uname is numeric, while\nfind \ndoes not.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-user"
+      ],
+      "description": "-user uname \nTrue if the file belongs to the user uname. If uname is\nnumeric \nand there is no such user name, then uname is treated as a\nuser \nID.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-wholename"
+      ],
+      "description": "-wholename pattern \nThe same thing as -path, for GNU find compatibility.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-xattr"
+      ],
+      "description": "-xattr True if the file has any\nextended attributes.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-xattrname"
+      ],
+      "description": "-xattrname name \nTrue if the file has an extended attribute with the\nspecified \nname.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-false"
+      ],
+      "description": "-false Always false. \n-true Always true.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-and"
+      ],
+      "description": "expression -and expression \nexpression expression \nThe -and operator is the logical AND operator. As it is\nimplied \nby the juxtaposition of two expressions it does not have to\nbe \nspecified. The expression evaluates to true if both\nexpressions \nare true. The second expression is not evaluated if the\nfirst \nexpression is false.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-or"
+      ],
+      "description": "expression -or expression \nThe -or operator is the logical OR operator. The expression\n\nevaluates to true if either the first or the second\nexpression is \ntrue. The second expression is not evaluated if the first\n\nexpression is true.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-name",
+        "-print"
+      ],
+      "description": "find / -name \"*.c\"\n-print \nPrint out a list of all the files whose names do not end in\n.c.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-newer"
+      ],
+      "description": "find / -newer ttt -user wnj\n-print \nPrint out a list of all the files owned by user\nâwnjâ that are \nnewer than the file ttt.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-newer"
+      ],
+      "description": "find / -newer ttt -user wnj\n-print \nPrint out a list of all the files which are not both newer\nthan \nttt and owned by âwnjâ.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-newer"
+      ],
+      "description": "find / -newer ttt -or -user wnj\n-print \nPrint out a list of all the files that are either owned by\nâwnjâ \nor that are newer than ttt.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-newerct"
+      ],
+      "description": "find / -newerct ’1 minute\nago’ -print \nPrint out a list of all the files whose inode change time is\nmore \nrecent than the current time minus one minute.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-type"
+      ],
+      "description": "find / -type f -exec echo {} ;\n\nUse the echo(1) command to print out a list of all the\nfiles.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-L",
+        "-type"
+      ],
+      "description": "find -L /usr/ports/packages\n-type l -exec rm -- {} + \nDelete all broken symbolic links in /usr/ports/packages.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-name"
+      ],
+      "description": "find /usr/src -name CVS -prune\n-o -depth +6 -print \nFind files and directories that are at least seven levels\ndeep in \nthe working directory /usr/src.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-name"
+      ],
+      "description": "find /usr/src -name CVS -prune\n-o -mindepth 7 -print \nIs not equivalent to the previous example, since -prune is\nnot \nevaluated below level seven.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-E"
+      ],
+      "description": "The -E option was inspired by\nthe equivalent grep(1) and sed(1) options.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-delete"
+      ],
+      "description": "The -delete primary does not\ninteract well with other options that cause \nthe file system tree traversal options to be changed.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-mindepth"
+      ],
+      "description": "The -mindepth and -maxdepth\nprimaries are actually global options (as \ndocumented above). They should probably be replaced by\noptions which \nlook like options.",
+      "takes_argument": false
+    }
   ]
 }

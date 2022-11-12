@@ -1,221 +1,347 @@
 {
   "description": "NAME \nls â list directory contents",
   "flags": [
-    [
-      "-A",
-      "-A Include directory entries\nwhose names begin with a dot (â.â) \nexcept for . and ... Automatically set for the super-user\nunless \n-I is specified."
-    ],
-    [
-      "-B",
-      "-B Force printing of\nnon-printable characters (as defined by \nctype(3) and current locale settings) in file names as xxx,\n\nwhere xxx is the numeric value of the character in octal.\nThis \noption is not defined in IEEE Std 1003.1-2008\n(âPOSIX.1â)."
-    ],
-    [
-      "-C",
-      "-C Force multi-column output;\nthis is the default when output is to \na terminal."
-    ],
-    [
-      "-D",
-      "-D format \nWhen printing in the long (-l) format, use format to format\nthe \ndate and time output. The argument format is a string used\nby \nstrftime(3). Depending on the choice of format string, this\nmay \nresult in a different number of columns in the output. This\n\noption overrides the -T option. This option is not defined\nin \nIEEE Std 1003.1-2008 (âPOSIX.1â)."
-    ],
-    [
-      "-F",
-      "-F Display a slash\n(â/â) immediately after each pathname that is a\n\ndirectory, an asterisk (â*â) after each that is\nexecutable, an at \nsign (â@â) after each symbolic link, an equals\nsign (â=â) after \neach socket, a percent sign (â%â) after each\nwhiteout, and a \nvertical bar (â|â) after each that is a\nFIFO."
-    ],
-    [
-      "-G",
-      "-G Enable colorized output. This\noption is equivalent to defining \nCLICOLOR or COLORTERM in the environment and setting \n--color=auto. (See below.) This functionality can be\ncompiled \nout by removing the definition of COLORLS. This option is\nnot \ndefined in IEEE Std 1003.1-2008 (âPOSIX.1â)."
-    ],
-    [
-      "-H",
-      "-H Symbolic links on the command\nline are followed. This option is \nassumed if none of the -F, -d, or -l options are\nspecified."
-    ],
-    [
-      "-I",
-      "-I Prevent -A from being\nautomatically set for the super-user. This \noption is not defined in IEEE Std 1003.1-2008\n(âPOSIX.1â)."
-    ],
-    [
-      "-L",
-      "-L Follow all symbolic links to\nfinal target and list the file or \ndirectory the link references rather than the link itself.\nThis \noption cancels the -P option."
-    ],
-    [
-      "-O",
-      "-O Include the file flags in a\nlong (-l) output. This option is \nincompatible with IEEE Std 1003.1-2008\n(âPOSIX.1â). See \nchflags(1) for a list of file flags and their meanings."
-    ],
-    [
-      "-P",
-      "-P If argument is a symbolic\nlink, list the link itself rather than \nthe object the link references. This option cancels the -H\nand \n-L options."
-    ],
-    [
-      "-R",
-      "-R Recursively list\nsubdirectories encountered."
-    ],
-    [
-      "-S",
-      "-S Sort by size (largest file\nfirst) before sorting the operands in \nlexicographical order."
-    ],
-    [
-      "-T",
-      "-T When printing in the long\n(-l) format, display complete time \ninformation for the file, including month, day, hour,\nminute, \nsecond, and year. The -D option gives even more control over\nthe \noutput format. This option is not defined in IEEE Std \n1003.1-2008 (âPOSIX.1â)."
-    ],
-    [
-      "-U",
-      "-U Use time when file was\ncreated for sorting or printing. This \noption is not defined in IEEE Std 1003.1-2008\n(âPOSIX.1â)."
-    ],
-    [
-      "-W",
-      "-W Display whiteouts when\nscanning directories. This option is not \ndefined in IEEE Std 1003.1-2008 (âPOSIX.1â)."
-    ],
-    [
-      "-a",
-      "-a Include directory entries\nwhose names begin with a dot (â.â)."
-    ],
-    [
-      "-b",
-      "-b As -B, but use C escape codes\nwhenever possible. This option is \nnot defined in IEEE Std 1003.1-2008\n(âPOSIX.1â)."
-    ],
-    [
-      "-c",
-      "-c Use time when file status was\nlast changed for sorting or \nprinting."
-    ],
-    [
-      "--color",
-      "--color=when \nOutput colored escape sequences based on when, which may be\nset \nto either always, auto, or never."
-    ],
-    [
-      "-d",
-      "-d Directories are listed as\nplain files (not searched recursively)."
-    ],
-    [
-      "-e",
-      "-e Print the Access Control List\n(ACL) associated with the file, if \npresent, in long (-l) output."
-    ],
-    [
-      "-f",
-      "-f Output is not sorted. This\noption turns on -a. It also negates \nthe effect of the -r, -S and -t options. As allowed by IEEE\nStd \n1003.1-2008 (âPOSIX.1â), this option has no\neffect on the -d, -l, \n-R and -s options."
-    ],
-    [
-      "-g",
-      "-g This option has no effect. It\nis only available for \ncompatibility with 4.3BSD, where it was used to display the\ngroup \nname in the long (-l) format output. This option is\nincompatible \nwith IEEE Std 1003.1-2008 (âPOSIX.1â)."
-    ],
-    [
-      "-h",
-      "-h When used with the -l option,\nuse unit suffixes: Byte, Kilobyte, \nMegabyte, Gigabyte, Terabyte and Petabyte in order to reduce\nthe \nnumber of digits to four or fewer using base 2 for sizes.\nThis \noption is not defined in IEEE Std 1003.1-2008\n(âPOSIX.1â)."
-    ],
-    [
-      "-i",
-      "-i For each file, print the\nfile’s file serial number (inode \nnumber)."
-    ],
-    [
-      "-k",
-      "-k This has the same effect as\nsetting environment variable \nBLOCKSIZE to 1024, except that it also nullifies any -h\noptions \nto its left."
-    ],
-    [
-      "-l",
-      "-l (The lowercase letter\nâellâ.) List files in the long format, as \ndescribed in the The Long Format subsection below."
-    ],
-    [
-      "-m",
-      "-m Stream output format; list\nfiles across the page, separated by \ncommas."
-    ],
-    [
-      "-n",
-      "-n Display user and group IDs\nnumerically rather than converting to \na user or group name in a long (-l) output. This option\nturns on \nthe -l option."
-    ],
-    [
-      "-o",
-      "-o List in long format, but omit\nthe group id."
-    ],
-    [
-      "-p",
-      "-p Write a slash\n(â/â) after each filename if that file is a \ndirectory."
-    ],
-    [
-      "-q",
-      "-q Force printing of non-graphic\ncharacters in file names as the \ncharacter â?â; this is the default when output\nis to a terminal."
-    ],
-    [
-      "-r",
-      "-r Reverse the order of the\nsort."
-    ],
-    [
-      "-s",
-      "-s Display the number of blocks\nused in the file system by each \nfile. Block sizes and directory totals are handled as\ndescribed \nin The Long Format subsection below, except (if the long\nformat \nis not also requested) the directory totals are not output\nwhen \nthe output is in a single column, even if multi-column\noutput is \nrequested. (-l) format, display complete time information\nfor \nthe file, including month, day, hour, minute, second, and\nyear. \nThe -D option gives even more control over the output\nformat. \nThis option is not defined in IEEE Std 1003.1-2008\n(âPOSIX.1â)."
-    ],
-    [
-      "-t",
-      "-t Sort by descending time\nmodified (most recently modified first). \nIf two files have the same modification timestamp, sort\ntheir \nnames in ascending lexicographical order. The -r option\nreverses \nboth of these sort orders."
-    ],
-    [
-      "-u",
-      "-u Use time of last access,\ninstead of time of last modification of \nthe file for sorting (-t) or long printing (-l)."
-    ],
-    [
-      "-v",
-      "-v Force unedited printing of\nnon-graphic characters; this is the \ndefault when output is not to a terminal."
-    ],
-    [
-      "-w",
-      "-w Force raw printing of\nnon-printable characters. This is the \ndefault when output is not to a terminal. This option is not\n\ndefined in IEEE Std 1003.1-2001 (âPOSIX.1â)."
-    ],
-    [
-      "-x",
-      "-x The same as -C, except that\nthe multi-column output is produced \nwith entries sorted across, rather than down, the\ncolumns."
-    ],
-    [
-      "-y",
-      "-y When the -t option is set,\nsort the alphabetical output in the \nsame order as the time output. This has the same effect as\n\nsetting LS_SAMESORT. See the description of the -t option\nfor \nmore details. This option is not defined in IEEE Std\n1003.1-2001 \n(âPOSIX.1â)."
-    ],
-    [
-      "-1",
-      "-1 (The numeric digit\nâoneâ.) Force output to be one entry per line.\n\nThis is the default when output is not to a terminal. (-l)\n\noutput, and don’t materialize dataless directories\nwhen listing \nthem."
-    ],
-    [
-      "-1",
-      "The -1, -C, -x, and -l options\nall override each other; the last one \nspecified determines the format used."
-    ],
-    [
-      "-C",
-      "The -1, -C, -x, and -l options\nall override each other; the last one \nspecified determines the format used."
-    ],
-    [
-      "-x",
-      "The -1, -C, -x, and -l options\nall override each other; the last one \nspecified determines the format used."
-    ],
-    [
-      "-c",
-      "The -c, -u, and -U options all\noverride each other; the last one \nspecified determines the file time used."
-    ],
-    [
-      "-u",
-      "The -c, -u, and -U options all\noverride each other; the last one \nspecified determines the file time used."
-    ],
-    [
-      "-S",
-      "The -S and -t options override\neach other; the last one specified \ndetermines the sort order used."
-    ],
-    [
-      "-B",
-      "The -B, -b, -w, and -q options\nall override each other; the last one \nspecified determines the format used for non-printable\ncharacters."
-    ],
-    [
-      "-b",
-      "The -B, -b, -w, and -q options\nall override each other; the last one \nspecified determines the format used for non-printable\ncharacters."
-    ],
-    [
-      "-w",
-      "The -B, -b, -w, and -q options\nall override each other; the last one \nspecified determines the format used for non-printable\ncharacters."
-    ],
-    [
-      "-H",
-      "The -H, -L and -P options all\noverride each other (either partially or \nfully); they are applied in the order specified."
-    ],
-    [
-      "-L",
-      "The -H, -L and -P options all\noverride each other (either partially or \nfully); they are applied in the order specified."
-    ],
-    [
-      "-H",
-      "When -H is specified (and not\noverridden by -L or -P) and a file argument \nis a symlink that resolves to a non-directory file, the\noutput will \nreflect the nature of the link, rather than that of the\nfile. In legacy \noperation, the output will describe the file."
-    ]
+    {
+      "aliases": [
+        "-A"
+      ],
+      "description": "-A Include directory entries\nwhose names begin with a dot (â.â) \nexcept for . and ... Automatically set for the super-user\nunless \n-I is specified.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-B"
+      ],
+      "description": "-B Force printing of\nnon-printable characters (as defined by \nctype(3) and current locale settings) in file names as xxx,\n\nwhere xxx is the numeric value of the character in octal.\nThis \noption is not defined in IEEE Std 1003.1-2008\n(âPOSIX.1â).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-C"
+      ],
+      "description": "-C Force multi-column output;\nthis is the default when output is to \na terminal.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-D"
+      ],
+      "description": "-D format \nWhen printing in the long (-l) format, use format to format\nthe \ndate and time output. The argument format is a string used\nby \nstrftime(3). Depending on the choice of format string, this\nmay \nresult in a different number of columns in the output. This\n\noption overrides the -T option. This option is not defined\nin \nIEEE Std 1003.1-2008 (âPOSIX.1â).",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-F"
+      ],
+      "description": "-F Display a slash\n(â/â) immediately after each pathname that is a\n\ndirectory, an asterisk (â*â) after each that is\nexecutable, an at \nsign (â@â) after each symbolic link, an equals\nsign (â=â) after \neach socket, a percent sign (â%â) after each\nwhiteout, and a \nvertical bar (â|â) after each that is a\nFIFO.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-G"
+      ],
+      "description": "-G Enable colorized output. This\noption is equivalent to defining \nCLICOLOR or COLORTERM in the environment and setting \n--color=auto. (See below.) This functionality can be\ncompiled \nout by removing the definition of COLORLS. This option is\nnot \ndefined in IEEE Std 1003.1-2008 (âPOSIX.1â).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-H"
+      ],
+      "description": "-H Symbolic links on the command\nline are followed. This option is \nassumed if none of the -F, -d, or -l options are\nspecified.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-I"
+      ],
+      "description": "-I Prevent -A from being\nautomatically set for the super-user. This \noption is not defined in IEEE Std 1003.1-2008\n(âPOSIX.1â).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-L"
+      ],
+      "description": "-L Follow all symbolic links to\nfinal target and list the file or \ndirectory the link references rather than the link itself.\nThis \noption cancels the -P option.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-O"
+      ],
+      "description": "-O Include the file flags in a\nlong (-l) output. This option is \nincompatible with IEEE Std 1003.1-2008\n(âPOSIX.1â). See \nchflags(1) for a list of file flags and their meanings.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-P"
+      ],
+      "description": "-P If argument is a symbolic\nlink, list the link itself rather than \nthe object the link references. This option cancels the -H\nand \n-L options.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-R"
+      ],
+      "description": "-R Recursively list\nsubdirectories encountered.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-S"
+      ],
+      "description": "-S Sort by size (largest file\nfirst) before sorting the operands in \nlexicographical order.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-T"
+      ],
+      "description": "-T When printing in the long\n(-l) format, display complete time \ninformation for the file, including month, day, hour,\nminute, \nsecond, and year. The -D option gives even more control over\nthe \noutput format. This option is not defined in IEEE Std \n1003.1-2008 (âPOSIX.1â).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-U"
+      ],
+      "description": "-U Use time when file was\ncreated for sorting or printing. This \noption is not defined in IEEE Std 1003.1-2008\n(âPOSIX.1â).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-W"
+      ],
+      "description": "-W Display whiteouts when\nscanning directories. This option is not \ndefined in IEEE Std 1003.1-2008 (âPOSIX.1â).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-a"
+      ],
+      "description": "-a Include directory entries\nwhose names begin with a dot (â.â).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-b"
+      ],
+      "description": "-b As -B, but use C escape codes\nwhenever possible. This option is \nnot defined in IEEE Std 1003.1-2008\n(âPOSIX.1â).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-c"
+      ],
+      "description": "-c Use time when file status was\nlast changed for sorting or \nprinting.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--color"
+      ],
+      "description": "--color=when \nOutput colored escape sequences based on when, which may be\nset \nto either always, auto, or never.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-d"
+      ],
+      "description": "-d Directories are listed as\nplain files (not searched recursively).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-e"
+      ],
+      "description": "-e Print the Access Control List\n(ACL) associated with the file, if \npresent, in long (-l) output.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-f"
+      ],
+      "description": "-f Output is not sorted. This\noption turns on -a. It also negates \nthe effect of the -r, -S and -t options. As allowed by IEEE\nStd \n1003.1-2008 (âPOSIX.1â), this option has no\neffect on the -d, -l, \n-R and -s options.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-g"
+      ],
+      "description": "-g This option has no effect. It\nis only available for \ncompatibility with 4.3BSD, where it was used to display the\ngroup \nname in the long (-l) format output. This option is\nincompatible \nwith IEEE Std 1003.1-2008 (âPOSIX.1â).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-h"
+      ],
+      "description": "-h When used with the -l option,\nuse unit suffixes: Byte, Kilobyte, \nMegabyte, Gigabyte, Terabyte and Petabyte in order to reduce\nthe \nnumber of digits to four or fewer using base 2 for sizes.\nThis \noption is not defined in IEEE Std 1003.1-2008\n(âPOSIX.1â).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-i"
+      ],
+      "description": "-i For each file, print the\nfile’s file serial number (inode \nnumber).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-k"
+      ],
+      "description": "-k This has the same effect as\nsetting environment variable \nBLOCKSIZE to 1024, except that it also nullifies any -h\noptions \nto its left.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-l"
+      ],
+      "description": "-l (The lowercase letter\nâellâ.) List files in the long format, as \ndescribed in the The Long Format subsection below.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-m"
+      ],
+      "description": "-m Stream output format; list\nfiles across the page, separated by \ncommas.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-n"
+      ],
+      "description": "-n Display user and group IDs\nnumerically rather than converting to \na user or group name in a long (-l) output. This option\nturns on \nthe -l option.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-o"
+      ],
+      "description": "-o List in long format, but omit\nthe group id.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-p"
+      ],
+      "description": "-p Write a slash\n(â/â) after each filename if that file is a \ndirectory.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-q"
+      ],
+      "description": "-q Force printing of non-graphic\ncharacters in file names as the \ncharacter â?â; this is the default when output\nis to a terminal.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-r"
+      ],
+      "description": "-r Reverse the order of the\nsort.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-s"
+      ],
+      "description": "-s Display the number of blocks\nused in the file system by each \nfile. Block sizes and directory totals are handled as\ndescribed \nin The Long Format subsection below, except (if the long\nformat \nis not also requested) the directory totals are not output\nwhen \nthe output is in a single column, even if multi-column\noutput is \nrequested. (-l) format, display complete time information\nfor \nthe file, including month, day, hour, minute, second, and\nyear. \nThe -D option gives even more control over the output\nformat. \nThis option is not defined in IEEE Std 1003.1-2008\n(âPOSIX.1â).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-t"
+      ],
+      "description": "-t Sort by descending time\nmodified (most recently modified first). \nIf two files have the same modification timestamp, sort\ntheir \nnames in ascending lexicographical order. The -r option\nreverses \nboth of these sort orders.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-u"
+      ],
+      "description": "-u Use time of last access,\ninstead of time of last modification of \nthe file for sorting (-t) or long printing (-l).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-v"
+      ],
+      "description": "-v Force unedited printing of\nnon-graphic characters; this is the \ndefault when output is not to a terminal.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-w"
+      ],
+      "description": "-w Force raw printing of\nnon-printable characters. This is the \ndefault when output is not to a terminal. This option is not\n\ndefined in IEEE Std 1003.1-2001 (âPOSIX.1â).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-x"
+      ],
+      "description": "-x The same as -C, except that\nthe multi-column output is produced \nwith entries sorted across, rather than down, the\ncolumns.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-y"
+      ],
+      "description": "-y When the -t option is set,\nsort the alphabetical output in the \nsame order as the time output. This has the same effect as\n\nsetting LS_SAMESORT. See the description of the -t option\nfor \nmore details. This option is not defined in IEEE Std\n1003.1-2001 \n(âPOSIX.1â).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-1"
+      ],
+      "description": "-1 (The numeric digit\nâoneâ.) Force output to be one entry per line.\n\nThis is the default when output is not to a terminal. (-l)\n\noutput, and don’t materialize dataless directories\nwhen listing \nthem.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-1",
+        "-C",
+        "-x"
+      ],
+      "description": "The -1, -C, -x, and -l options\nall override each other; the last one \nspecified determines the format used.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-c",
+        "-u"
+      ],
+      "description": "The -c, -u, and -U options all\noverride each other; the last one \nspecified determines the file time used.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-S"
+      ],
+      "description": "The -S and -t options override\neach other; the last one specified \ndetermines the sort order used.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-B",
+        "-b",
+        "-w"
+      ],
+      "description": "The -B, -b, -w, and -q options\nall override each other; the last one \nspecified determines the format used for non-printable\ncharacters.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-H",
+        "-L"
+      ],
+      "description": "The -H, -L and -P options all\noverride each other (either partially or \nfully); they are applied in the order specified.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-H"
+      ],
+      "description": "When -H is specified (and not\noverridden by -L or -P) and a file argument \nis a symlink that resolves to a non-directory file, the\noutput will \nreflect the nature of the link, rather than that of the\nfile. In legacy \noperation, the output will describe the file.",
+      "takes_argument": false
+    }
   ]
 }

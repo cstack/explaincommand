@@ -1,41 +1,56 @@
 {
   "description": "NAME \ngit-update-ref - Update the object name stored in a ref\nsafely",
   "flags": [
-    [
-      "-UPDATE-REF",
-      "GIT-UPDATE-REF(1) Git Manual GIT-UPDATE-REF(1)"
-    ],
-    [
-      "--no-deref",
-      "If --no-deref is given,\n<ref> itself is overwritten, rather than the \nresult of following the symbolic pointers."
-    ],
-    [
-      "-ref",
-      "git update-ref HEAD\n\"$head\""
-    ],
-    [
-      "-d",
-      "With -d flag, it deletes the\nnamed <ref> after verifying it still \ncontains <oldvalue>."
-    ],
-    [
-      "--stdin",
-      "With --stdin, update-ref reads\ninstructions from standard input and \nperforms all modifications together. Specify commands of the\nform:"
-    ],
-    [
-      "-ref",
-      "With --stdin, update-ref reads\ninstructions from standard input and \nperforms all modifications together. Specify commands of the\nform:"
-    ],
-    [
-      "--create-reflog",
-      "With --create-reflog, update-ref\nwill create a reflog for each ref even \nif one would not ordinarily be created."
-    ],
-    [
-      "-ref",
-      "With --create-reflog, update-ref\nwill create a reflog for each ref even \nif one would not ordinarily be created."
-    ],
-    [
-      "-UPDATE-REF",
-      "Git 2.37.0 06/27/2022\nGIT-UPDATE-REF(1)"
-    ]
+    {
+      "aliases": [
+        "-UPDATE-REF"
+      ],
+      "description": "GIT-UPDATE-REF(1) Git Manual GIT-UPDATE-REF(1)",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--no-deref"
+      ],
+      "description": "If --no-deref is given,\n<ref> itself is overwritten, rather than the \nresult of following the symbolic pointers.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-ref"
+      ],
+      "description": "git update-ref HEAD\n\"$head\"",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-d"
+      ],
+      "description": "With -d flag, it deletes the\nnamed <ref> after verifying it still \ncontains <oldvalue>.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--stdin",
+        "-ref"
+      ],
+      "description": "With --stdin, update-ref reads\ninstructions from standard input and \nperforms all modifications together. Specify commands of the\nform:",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--create-reflog",
+        "-ref"
+      ],
+      "description": "With --create-reflog, update-ref\nwill create a reflog for each ref even \nif one would not ordinarily be created.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-UPDATE-REF"
+      ],
+      "description": "Git 2.37.0 06/27/2022\nGIT-UPDATE-REF(1)",
+      "takes_argument": false
+    }
   ]
 }

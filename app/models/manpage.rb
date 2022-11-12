@@ -12,7 +12,11 @@ class Manpage
   end
 
   def self.from_json(json_string)
-    new(**JSON.parse(json_string).transform_keys(&:to_sym))
+    ruby_hash = JSON.parse(json_string).transform_keys(&:to_sym)
+    ruby_hash[:flags] = ruby_hash[:flags].map do |flag_hash|
+      Flag.from_hash(flag_hash)
+    end
+    new(**ruby_hash)
   end
 
   def to_json(*a)

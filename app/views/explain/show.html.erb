@@ -5,7 +5,7 @@
 <ul>
 <h2><%= @cmd %></h2>
 <h3><%= @explanation.command_description %></h3>
-<% @explanation.annotations.each do |part| %>
-<li><%= part %></li>
+<% @explanation.annotations.each do |flag| %>
+<li><%= flag.description %></li>
 <% end %>
 </ul>

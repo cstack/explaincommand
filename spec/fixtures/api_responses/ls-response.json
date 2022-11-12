@@ -2,17 +2,26 @@
   "command_name": "ls",
   "command_description": "NAME \nls â list directory contents",
   "annotations": [
-    [
-      "-l",
-      "-l (The lowercase letter\nâellâ.) List files in the long format, as \ndescribed in the The Long Format subsection below."
-    ],
-    [
-      "-t",
-      "-t Sort by descending time\nmodified (most recently modified first). \nIf two files have the same modification timestamp, sort\ntheir \nnames in ascending lexicographical order. The -r option\nreverses \nboth of these sort orders."
-    ],
-    [
-      "-r",
-      "-r Reverse the order of the\nsort."
-    ]
+    {
+      "aliases": [
+        "-l"
+      ],
+      "description": "-l (The lowercase letter\nâellâ.) List files in the long format, as \ndescribed in the The Long Format subsection below.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-t"
+      ],
+      "description": "-t Sort by descending time\nmodified (most recently modified first). \nIf two files have the same modification timestamp, sort\ntheir \nnames in ascending lexicographical order. The -r option\nreverses \nboth of these sort orders.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-r"
+      ],
+      "description": "-r Reverse the order of the\nsort.",
+      "takes_argument": false
+    }
   ]
 }
