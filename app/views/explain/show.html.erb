@@ -3,6 +3,8 @@
   <input id="top-search" name="cmd" type="text" autocapitalize="off" autocorrect="off" value="<%= @cmd %>">
 </form>
 <ul>
+<h2><%= @cmd %></h2>
+<h3><%= @explanation.command_description %></h3>
 <% @explanation.annotations.each do |part| %>
 <li><%= part %></li>
 <% end %>
