@@ -1,17 +1,17 @@
 {
-  "name": "NAME \nmkdir â make directories",
+  "description": "NAME \nmkdir â make directories",
   "flags": [
     [
       "-m",
-      "mode Set the file permission bits of the final created  directory to the specified mode. The mode argument can be  in any of the formats specified to the chmod(1) command.  If a symbolic mode is specified, the operation characters  â+â and â-â are interpreted relative to an initial mode of  âa=rwxâ."
+      "-m mode Set the file permission\nbits of the final created \ndirectory to the specified mode. The mode argument can be\n\nin any of the formats specified to the chmod(1) command.\n\nIf a symbolic mode is specified, the operation characters\n\nâ+â and â-â are interpreted relative\nto an initial mode of \nâa=rwxâ."
     ],
     [
       "-p",
-      "Create intermediate directories as required. If this  option is not specified, the full path prefix of each  operand must already exist. On the other hand, with this  option specified, no error will be reported if a directory  given as an operand already exists. Intermediate  directories are created with permission bits of  ârwxrwxrwxâ (0777) as modified by the current umask, plus  write and search permission for the owner."
+      "-p Create intermediate\ndirectories as required. If this \noption is not specified, the full path prefix of each \noperand must already exist. On the other hand, with this\n\noption specified, no error will be reported if a directory\n\ngiven as an operand already exists. Intermediate \ndirectories are created with permission bits of \nârwxrwxrwxâ (0777) as modified by the current\numask, plus \nwrite and search permission for the owner."
     ],
     [
       "-v",
-      "Be verbose when creating directories, listing them as they  are created."
+      "-v Be verbose when creating\ndirectories, listing them as they \nare created."
     ]
   ]
 }
