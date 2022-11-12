@@ -1,17 +1,17 @@
 require 'rails_helper'
 
-describe Manpage do
-  describe '.for_command' do
+describe ManpageDirectory do
+  describe '.get_manpage' do
     Dir['./data/manpages/*'].each do |path|
       filename = path.split('/').last
       command = filename.split('.').first
       context filename do
         it 'parses as expected' do
-          parsed = described_class.for_command(command).transform_keys(&:to_s)
+          manpage = described_class.get_manpage(command)
           fixture_path = "./spec/fixtures/manpages/#{command}.json"
-          # File.write(fixture_path, JSON.pretty_generate(parsed))
-          expected = JSON.parse(File.read(fixture_path))
-          expect(parsed).to eq(expected)
+          # File.write(fixture_path, manpage.to_json)
+          expected = Manpage.from_json(File.read(fixture_path))
+          expect(manpage).to eq(expected)
         end
       end
     end

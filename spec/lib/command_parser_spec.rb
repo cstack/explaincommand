@@ -6,7 +6,7 @@ describe CommandParser do
       [
         'ls',
         {
-          "command": 'ls',
+          "name": 'ls',
           "flags": [],
           "arguments": []
         }
@@ -14,7 +14,7 @@ describe CommandParser do
       [
         'ls -l',
         {
-          "command": 'ls',
+          "name": 'ls',
           "flags": ['-l'],
           "arguments": []
         }
@@ -22,7 +22,7 @@ describe CommandParser do
       [
         'ls -lh',
         {
-          "command": 'ls',
+          "name": 'ls',
           "flags": ['-l', '-h'],
           "arguments": []
         }
@@ -30,7 +30,7 @@ describe CommandParser do
       [
         'ls -ltr',
         {
-          "command": 'ls',
+          "name": 'ls',
           "flags": ['-l', '-t', '-r'],
           "arguments": []
         }
@@ -38,7 +38,7 @@ describe CommandParser do
       [
         'ls --version',
         {
-          "command": 'ls',
+          "name": 'ls',
           "flags": ['--version'],
           "arguments": []
         }
@@ -46,7 +46,7 @@ describe CommandParser do
       [
         'ls /tmp',
         {
-          "command": 'ls',
+          "name": 'ls',
           "flags": [],
           "arguments": ['/tmp']
         }
@@ -54,7 +54,7 @@ describe CommandParser do
       [
         'ls -ld /tmp',
         {
-          "command": 'ls',
+          "name": 'ls',
           "flags": ['-l', '-d'],
           "arguments": ['/tmp']
         }
@@ -62,16 +62,24 @@ describe CommandParser do
       [
         'ls --color=auto',
         {
-          "command": 'ls',
+          "name": 'ls',
           "flags": [['--color', 'auto']],
           "arguments": []
+        }
+      ],
+      [
+        'git add --patch test.txt',
+        {
+          "name": 'git-add',
+          "flags": ['--patch'],
+          "arguments": ['test.txt']
         }
       ]
     ].each do |string, expected|
       context string do
         it 'parses as expected' do
           parsed = described_class.parse(string)
-          expect(parsed).to eq(expected)
+          expect(parsed).to eq(Command.new(**expected))
         end
       end
     end

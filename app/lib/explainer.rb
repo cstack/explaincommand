@@ -1,9 +1,8 @@
 class Explainer
   def self.explain(cmd)
-    parsed_arguments = CommandParser.parse(cmd)
-    command = parsed_arguments[:command]
-    manpage = Manpage.for_command(command)
-    Explanation.from_manpage(manpage:, parsed_arguments:)
+    command = CommandParser.parse(cmd)
+    manpage = ManpageDirectory.get_manpage(command.name)
+    Explanation.from_manpage(manpage:, command:)
   end
 
   def self.parse_man_page(string)

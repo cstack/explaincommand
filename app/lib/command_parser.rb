@@ -1,7 +1,7 @@
 class CommandParser
   def self.parse(cmd)
     words = cmd.split
-    command = words.shift
+    command = full_command(words)
     flags = []
     arguments = []
     while words.length > 0
@@ -20,10 +20,23 @@ class CommandParser
         arguments << word
       end
     end
-    {
-      command:,
+    Command.new(
+      name: command,
       flags:,
       arguments:
-    }
+    )
+  end
+
+  def self.full_command(words)
+    command = words.shift
+    while words.length > 0
+      command_to_check = "#{command}-#{words.first}"
+      return command unless ManpageDirectory.manpage_exists?(command_to_check)
+
+      command = command_to_check
+      words.shift
+
+    end
+    command
   end
 end
