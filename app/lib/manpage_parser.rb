@@ -8,10 +8,13 @@ class ManpageParser
       text = paragraph.text
       if is_paragraph_description?(text)
         description = text
-      elsif flags_in_paragraph = extract_flags(text); flags_in_paragraph.length > 0
-                                                      flags_in_paragraph.each do |flag|
-                                                        flags << [flag, text]
-                                                      end
+        next
+      end
+      flags_in_paragraph = extract_flags(text)
+      next unless flags_in_paragraph.length > 0
+
+      flags_in_paragraph.each do |flag|
+        flags << [flag, text]
       end
     end
     Manpage.new(
@@ -32,8 +35,10 @@ class ManpageParser
       break
     end
     lines.each do |text|
-      next unless flags_in_paragraph = extract_flags(text) flags_in_paragraph.length > 0
-   flags_in_paragraph.each do |flag|
+      flags_in_paragraph = extract_flags(text)
+      next unless flags_in_paragraph.length > 0
+
+      flags_in_paragraph.each do |flag|
         flags << [flag, text]
       end
     end
@@ -42,7 +47,6 @@ class ManpageParser
       flags:
     )
   end
-
 
   def self.is_paragraph_description?(text)
     text.start_with?('NAME')
