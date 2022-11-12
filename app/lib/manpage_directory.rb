@@ -4,7 +4,7 @@ class ManpageDirectory
   def self.get_manpage(command)
     raise ManpageDoesNotExist, "Manpage for command `#{command}` does not exist" unless manpage_exists?(command)
 
-    Manpage.from_string(File.read(filepath(command)))
+    ManpageParser.parse_html_string(File.read(filepath(command)))
   end
 
   def self.manpage_exists?(command)
