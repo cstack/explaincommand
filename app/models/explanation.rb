@@ -15,6 +15,6 @@ class Explanation
       end
       annotations << flag_explanation
     end
-    new(command: command, annotations: annotations)
+    new(command:, annotations:)
   end
 end

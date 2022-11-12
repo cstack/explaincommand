@@ -1,9 +1,8 @@
 class ExplainController < ActionController::Base
-  def index
-  end
+  def index; end
 
   def show
-    @cmd = params["cmd"]
+    @cmd = params['cmd']
     @explanation = Explainer.explain(@cmd)
     respond_to do |format|
       format.html

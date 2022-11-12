@@ -4,15 +4,15 @@ class Manpage
     html = Nokogiri::HTML(html_string)
     result = {
       name: nil,
-      flags: [],
+      flags: []
     }
-    paragraphs = html.css("p")
+    paragraphs = html.css('p')
     paragraphs.each do |paragraph|
       text = paragraph.text
-      if text.start_with?("NAME")
+      if text.start_with?('NAME')
         result[:name] = text
-      elsif text.start_with?("-")
-        text = text.gsub("\n", " ")
+      elsif text.start_with?('-')
+        text = text.gsub("\n", ' ')
         matches = text.match(/(-[^\s]+)\s+(.+)/)
         if matches
           flag = matches[1]

@@ -6,13 +6,13 @@ class CommandParser
     arguments = []
     while words.length > 0
       word = words.shift
-      if word.start_with?("--")
-        if word.include?("=")
-          flags << word.split("=")
-        else
-          flags << word
-        end
-      elsif word.start_with?("-")
+      if word.start_with?('--')
+        flags << if word.include?('=')
+                   word.split('=')
+                 else
+                   word
+                 end
+      elsif word.start_with?('-')
         chars = word.chars
         chars.shift
         flags += chars.map { |char| "-#{char}" }
@@ -21,9 +21,9 @@ class CommandParser
       end
     end
     {
-      command: command,
-      flags: flags,
-      arguments: arguments,
+      command:,
+      flags:,
+      arguments:
     }
   end
 end
