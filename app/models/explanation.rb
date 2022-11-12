@@ -10,9 +10,7 @@ class Explanation
   def self.from_manpage(manpage:, command:)
     annotations = []
     command.flags.each do |provided_flag|
-      flag_explanation = manpage.flags.find do |man_flag|
-        man_flag.aliases.include?(provided_flag)
-      end
+      flag_explanation = manpage.get_flag(provided_flag)
       annotations << flag_explanation
     end
     new(command_name: command.name, command_description: manpage.description, annotations:)

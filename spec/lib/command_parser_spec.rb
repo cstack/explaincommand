@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 describe CommandParser do
+  subject { described_class.parse(cmd, manpage:) }
+  let(:manpage) { nil }
+
   describe '.parse' do
     [
       [
@@ -97,6 +100,18 @@ describe CommandParser do
           parsed = described_class.parse(string)
           expect(parsed).to eq(Command.new(**expected))
         end
+      end
+    end
+
+    context 'when flag takes argument' do
+      let(:cmd) { 'docker build -t getting-started .' }
+      let(:manpage) { ManpageDirectory.get_manpage('docker-build') }
+      it 'binds argument to flag' do
+        expect(subject).to eq(Command.new(
+                                "name": 'docker-build',
+                                "flags": [['-t', 'getting-started']],
+                                "arguments": ['.']
+                              ))
       end
     end
   end

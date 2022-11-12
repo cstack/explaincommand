@@ -25,4 +25,10 @@ class Manpage
       'flags' => flags
     }.to_json(*a)
   end
+
+  def get_flag(string)
+    flags.find do |flag|
+      flag.aliases.include?(string)
+    end
+  end
 end
