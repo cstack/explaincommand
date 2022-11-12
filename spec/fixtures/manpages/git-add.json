@@ -10,11 +10,7 @@
       "-n, --dry-run \nDonât actually add the file(s), just show if they\nexist and/or will \nbe ignored."
     ],
     [
-      "--dry",
-      "-n, --dry-run \nDonât actually add the file(s), just show if they\nexist and/or will \nbe ignored."
-    ],
-    [
-      "-run",
+      "--dry-run",
       "-n, --dry-run \nDonât actually add the file(s), just show if they\nexist and/or will \nbe ignored."
     ],
     [
@@ -78,31 +74,15 @@
       "-A, --all, --no-ignore-removal\n\nUpdate the index not only where the working tree has a file\n\nmatching <pathspec> but also where the index already\nhas an entry. \nThis adds, modifies, and removes index entries to match the\nworking \ntree."
     ],
     [
-      "--no",
+      "--no-ignore-removal",
       "-A, --all, --no-ignore-removal\n\nUpdate the index not only where the working tree has a file\n\nmatching <pathspec> but also where the index already\nhas an entry. \nThis adds, modifies, and removes index entries to match the\nworking \ntree."
     ],
     [
-      "-ignore",
-      "-A, --all, --no-ignore-removal\n\nUpdate the index not only where the working tree has a file\n\nmatching <pathspec> but also where the index already\nhas an entry. \nThis adds, modifies, and removes index entries to match the\nworking \ntree."
-    ],
-    [
-      "-removal",
-      "-A, --all, --no-ignore-removal\n\nUpdate the index not only where the working tree has a file\n\nmatching <pathspec> but also where the index already\nhas an entry. \nThis adds, modifies, and removes index entries to match the\nworking \ntree."
-    ],
-    [
-      "--no",
+      "--no-all",
       "--no-all, --ignore-removal \nUpdate the index by adding new files that are unknown to the\nindex \nand files modified in the working tree, but ignore files\nthat have \nbeen removed from the working tree. This option is a no-op\nwhen no \n<pathspec> is used."
     ],
     [
-      "-all",
-      "--no-all, --ignore-removal \nUpdate the index by adding new files that are unknown to the\nindex \nand files modified in the working tree, but ignore files\nthat have \nbeen removed from the working tree. This option is a no-op\nwhen no \n<pathspec> is used."
-    ],
-    [
-      "--ignore",
-      "--no-all, --ignore-removal \nUpdate the index by adding new files that are unknown to the\nindex \nand files modified in the working tree, but ignore files\nthat have \nbeen removed from the working tree. This option is a no-op\nwhen no \n<pathspec> is used."
-    ],
-    [
-      "-removal",
+      "--ignore-removal",
       "--no-all, --ignore-removal \nUpdate the index by adding new files that are unknown to the\nindex \nand files modified in the working tree, but ignore files\nthat have \nbeen removed from the working tree. This option is a no-op\nwhen no \n<pathspec> is used."
     ],
     [
@@ -110,15 +90,7 @@
       "-N, --intent-to-add \nRecord only the fact that the path will be added later. An\nentry \nfor the path is placed in the index with no content. This is\nuseful \nfor, among other things, showing the unstaged content of\nsuch files \nwith git diff and committing them with git commit -a."
     ],
     [
-      "--intent",
-      "-N, --intent-to-add \nRecord only the fact that the path will be added later. An\nentry \nfor the path is placed in the index with no content. This is\nuseful \nfor, among other things, showing the unstaged content of\nsuch files \nwith git diff and committing them with git commit -a."
-    ],
-    [
-      "-to",
-      "-N, --intent-to-add \nRecord only the fact that the path will be added later. An\nentry \nfor the path is placed in the index with no content. This is\nuseful \nfor, among other things, showing the unstaged content of\nsuch files \nwith git diff and committing them with git commit -a."
-    ],
-    [
-      "-add",
+      "--intent-to-add",
       "-N, --intent-to-add \nRecord only the fact that the path will be added later. An\nentry \nfor the path is placed in the index with no content. This is\nuseful \nfor, among other things, showing the unstaged content of\nsuch files \nwith git diff and committing them with git commit -a."
     ],
     [
@@ -126,35 +98,15 @@
       "--refresh \nDonât add the file(s), but only refresh their stat()\ninformation in \nthe index."
     ],
     [
-      "--ignore",
+      "--ignore-errors",
       "--ignore-errors \nIf some files could not be added because of errors indexing\nthem, \ndo not abort the operation, but continue adding the others.\nThe \ncommand shall still exit with non-zero status. The\nconfiguration \nvariable add.ignoreErrors can be set to true to make this\nthe \ndefault behaviour."
     ],
     [
-      "-errors",
-      "--ignore-errors \nIf some files could not be added because of errors indexing\nthem, \ndo not abort the operation, but continue adding the others.\nThe \ncommand shall still exit with non-zero status. The\nconfiguration \nvariable add.ignoreErrors can be set to true to make this\nthe \ndefault behaviour."
-    ],
-    [
-      "--ignore",
+      "--ignore-missing",
       "--ignore-missing \nThis option can only be used together with --dry-run. By\nusing this \noption the user can check if any of the given files would be\n\nignored, no matter if they are already present in the work\ntree or \nnot."
     ],
     [
-      "-missing",
-      "--ignore-missing \nThis option can only be used together with --dry-run. By\nusing this \noption the user can check if any of the given files would be\n\nignored, no matter if they are already present in the work\ntree or \nnot."
-    ],
-    [
-      "--no",
-      "--no-warn-embedded-repo \nBy default, git add will warn when adding an embedded\nrepository to \nthe index without using git submodule add to create an entry\nin \n.gitmodules. This option will suppress the warning (e.g., if\nyou \nare manually performing operations on submodules)."
-    ],
-    [
-      "-warn",
-      "--no-warn-embedded-repo \nBy default, git add will warn when adding an embedded\nrepository to \nthe index without using git submodule add to create an entry\nin \n.gitmodules. This option will suppress the warning (e.g., if\nyou \nare manually performing operations on submodules)."
-    ],
-    [
-      "-embedded",
-      "--no-warn-embedded-repo \nBy default, git add will warn when adding an embedded\nrepository to \nthe index without using git submodule add to create an entry\nin \n.gitmodules. This option will suppress the warning (e.g., if\nyou \nare manually performing operations on submodules)."
-    ],
-    [
-      "-repo",
+      "--no-warn-embedded-repo",
       "--no-warn-embedded-repo \nBy default, git add will warn when adding an embedded\nrepository to \nthe index without using git submodule add to create an entry\nin \n.gitmodules. This option will suppress the warning (e.g., if\nyou \nare manually performing operations on submodules)."
     ],
     [
@@ -166,28 +118,16 @@
       "--chmod=(+|-)x \nOverride the executable bit of the added files. The\nexecutable bit \nis only changed in the index, the files on disk are left\nunchanged."
     ],
     [
-      "--pathspec",
+      "--pathspec-from-file",
       "--pathspec-from-file=<file>\n\nPathspec is passed in <file> instead of commandline\nargs. If <file> \nis exactly - then standard input is used. Pathspec elements\nare \nseparated by LF or CR/LF. Pathspec elements can be quoted as\n\nexplained for the configuration variable core.quotePath (see\ngit- \nconfig(1)). See also --pathspec-file-nul and global \n--literal-pathspecs."
     ],
     [
-      "-from",
-      "--pathspec-from-file=<file>\n\nPathspec is passed in <file> instead of commandline\nargs. If <file> \nis exactly - then standard input is used. Pathspec elements\nare \nseparated by LF or CR/LF. Pathspec elements can be quoted as\n\nexplained for the configuration variable core.quotePath (see\ngit- \nconfig(1)). See also --pathspec-file-nul and global \n--literal-pathspecs."
-    ],
-    [
-      "-file",
-      "--pathspec-from-file=<file>\n\nPathspec is passed in <file> instead of commandline\nargs. If <file> \nis exactly - then standard input is used. Pathspec elements\nare \nseparated by LF or CR/LF. Pathspec elements can be quoted as\n\nexplained for the configuration variable core.quotePath (see\ngit- \nconfig(1)). See also --pathspec-file-nul and global \n--literal-pathspecs."
-    ],
-    [
-      "--pathspec",
+      "--pathspec-file-nul",
       "--pathspec-file-nul \nOnly meaningful with --pathspec-from-file. Pathspec elements\nare \nseparated with NUL character and all other characters are\ntaken \nliterally (including newlines and quotes)."
     ],
     [
-      "-file",
-      "--pathspec-file-nul \nOnly meaningful with --pathspec-from-file. Pathspec elements\nare \nseparated with NUL character and all other characters are\ntaken \nliterally (including newlines and quotes)."
-    ],
-    [
-      "-nul",
-      "--pathspec-file-nul \nOnly meaningful with --pathspec-from-file. Pathspec elements\nare \nseparated with NUL character and all other characters are\ntaken \nliterally (including newlines and quotes)."
+      "--",
+      "-- \nThis option can be used to separate command-line options\nfrom the \nlist of files, (useful when filenames might be mistaken for\n\ncommand-line options)."
     ],
     [
       "-2",

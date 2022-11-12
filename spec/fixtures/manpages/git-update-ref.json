@@ -2,19 +2,11 @@
   "description": "NAME \ngit-update-ref - Update the object name stored in a ref\nsafely",
   "flags": [
     [
-      "-UPDATE",
+      "-UPDATE-REF",
       "GIT-UPDATE-REF(1) Git Manual GIT-UPDATE-REF(1)"
     ],
     [
-      "-REF",
-      "GIT-UPDATE-REF(1) Git Manual GIT-UPDATE-REF(1)"
-    ],
-    [
-      "--no",
-      "If --no-deref is given,\n<ref> itself is overwritten, rather than the \nresult of following the symbolic pointers."
-    ],
-    [
-      "-deref",
+      "--no-deref",
       "If --no-deref is given,\n<ref> itself is overwritten, rather than the \nresult of following the symbolic pointers."
     ],
     [
@@ -34,11 +26,7 @@
       "With --stdin, update-ref reads\ninstructions from standard input and \nperforms all modifications together. Specify commands of the\nform:"
     ],
     [
-      "--create",
-      "With --create-reflog, update-ref\nwill create a reflog for each ref even \nif one would not ordinarily be created."
-    ],
-    [
-      "-reflog",
+      "--create-reflog",
       "With --create-reflog, update-ref\nwill create a reflog for each ref even \nif one would not ordinarily be created."
     ],
     [
@@ -46,11 +34,7 @@
       "With --create-reflog, update-ref\nwill create a reflog for each ref even \nif one would not ordinarily be created."
     ],
     [
-      "-UPDATE",
-      "Git 2.37.0 06/27/2022\nGIT-UPDATE-REF(1)"
-    ],
-    [
-      "-REF",
+      "-UPDATE-REF",
       "Git 2.37.0 06/27/2022\nGIT-UPDATE-REF(1)"
     ]
   ]

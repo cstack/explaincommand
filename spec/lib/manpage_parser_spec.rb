@@ -48,5 +48,12 @@ describe ManpageParser do
         expect(subject).to eq(['-f', '--flag'])
       end
     end
+
+    context 'has a multi-word flag' do
+      let(:text) { '--multi-word-flag is treated as a single flag' }
+      it 'only extracts the flags at the beginning' do
+        expect(subject).to eq(['--multi-word-flag'])
+      end
+    end
   end
 end

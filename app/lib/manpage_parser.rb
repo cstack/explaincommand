@@ -27,7 +27,7 @@ class ManpageParser
   def self.extract_flags(text)
     first_non_flag = text.match(/\s\w+\s/)
     first_non_flag_position = Regexp.last_match&.begin(0) || text.length
-    flags_with_positions = text.enum_for(:scan, /--?\w+/).map do |flag|
+    flags_with_positions = text.enum_for(:scan, /--?[\w-]+/).map do |flag|
       position = Regexp.last_match.begin(0)
       [flag, position]
     end

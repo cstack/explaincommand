@@ -22,19 +22,11 @@
       "-C <path> \nRun as if git was started in <path> instead of the\ncurrent working \ndirectory. When multiple -C options are given, each\nsubsequent \nnon-absolute -C <path> is interpreted relative to the\npreceding -C \n<path>. If <path> is present but empty, e.g. -C\n\"\", then the \ncurrent working directory is left unchanged."
     ],
     [
-      "--git",
+      "--git-dir",
       "git --git-dir=a.git\n--work-tree=b -C c status \ngit --git-dir=c/a.git --work-tree=c/b status"
     ],
     [
-      "-dir",
-      "git --git-dir=a.git\n--work-tree=b -C c status \ngit --git-dir=c/a.git --work-tree=c/b status"
-    ],
-    [
-      "--work",
-      "git --git-dir=a.git\n--work-tree=b -C c status \ngit --git-dir=c/a.git --work-tree=c/b status"
-    ],
-    [
-      "-tree",
+      "--work-tree",
       "git --git-dir=a.git\n--work-tree=b -C c status \ngit --git-dir=c/a.git --work-tree=c/b status"
     ],
     [
@@ -46,43 +38,23 @@
       "-c <name>=<value>\n\nPass a configuration parameter to the command. The value\ngiven will \noverride values from configuration files. The <name>\nis expected in \nthe same format as listed by git config (subkeys separated\nby \ndots)."
     ],
     [
-      "--config",
+      "--config-env",
       "--config-env=<name>=<envvar>\n\nLike -c <name>=<value>, give configuration\nvariable <name> a value, \nwhere <envvar> is the name of an environment variable\nfrom which to \nretrieve the value. Unlike -c there is no shortcut for\ndirectly \nsetting the value to an empty string, instead the\nenvironment \nvariable itself must be set to the empty string. It is an\nerror if \nthe <envvar> does not exist in the environment.\n<envvar> may not \ncontain an equals sign to avoid ambiguity with <name>\ncontaining \none."
     ],
     [
-      "-env",
-      "--config-env=<name>=<envvar>\n\nLike -c <name>=<value>, give configuration\nvariable <name> a value, \nwhere <envvar> is the name of an environment variable\nfrom which to \nretrieve the value. Unlike -c there is no shortcut for\ndirectly \nsetting the value to an empty string, instead the\nenvironment \nvariable itself must be set to the empty string. It is an\nerror if \nthe <envvar> does not exist in the environment.\n<envvar> may not \ncontain an equals sign to avoid ambiguity with <name>\ncontaining \none."
-    ],
-    [
-      "--exec",
+      "--exec-path",
       "--exec-path[=<path>] \nPath to wherever your core Git programs are installed. This\ncan \nalso be controlled by setting the GIT_EXEC_PATH environment\n\nvariable. If no path is given, git will print the current\nsetting \nand then exit."
     ],
     [
-      "-path",
-      "--exec-path[=<path>] \nPath to wherever your core Git programs are installed. This\ncan \nalso be controlled by setting the GIT_EXEC_PATH environment\n\nvariable. If no path is given, git will print the current\nsetting \nand then exit."
-    ],
-    [
-      "--html",
+      "--html-path",
       "--html-path \nPrint the path, without trailing slash, where Gitâs\nHTML \ndocumentation is installed and exit."
     ],
     [
-      "-path",
-      "--html-path \nPrint the path, without trailing slash, where Gitâs\nHTML \ndocumentation is installed and exit."
-    ],
-    [
-      "--man",
+      "--man-path",
       "--man-path \nPrint the manpath (see man(1)) for the man pages for this\nversion \nof Git and exit."
     ],
     [
-      "-path",
-      "--man-path \nPrint the manpath (see man(1)) for the man pages for this\nversion \nof Git and exit."
-    ],
-    [
-      "--info",
-      "--info-path \nPrint the path where the Info files documenting this version\nof Git \nare installed and exit."
-    ],
-    [
-      "-path",
+      "--info-path",
       "--info-path \nPrint the path where the Info files documenting this version\nof Git \nare installed and exit."
     ],
     [
@@ -98,27 +70,15 @@
       "-P, --no-pager \nDo not pipe Git output into a pager."
     ],
     [
-      "--no",
+      "--no-pager",
       "-P, --no-pager \nDo not pipe Git output into a pager."
     ],
     [
-      "-pager",
-      "-P, --no-pager \nDo not pipe Git output into a pager."
-    ],
-    [
-      "--git",
+      "--git-dir",
       "--git-dir=<path> \nSet the path to the repository (\".git\" directory).\nThis can also be \ncontrolled by setting the GIT_DIR environment variable. It\ncan be \nan absolute path or relative path to current working\ndirectory."
     ],
     [
-      "-dir",
-      "--git-dir=<path> \nSet the path to the repository (\".git\" directory).\nThis can also be \ncontrolled by setting the GIT_DIR environment variable. It\ncan be \nan absolute path or relative path to current working\ndirectory."
-    ],
-    [
-      "--work",
-      "--work-tree=<path> \nSet the path to the working tree. It can be an absolute path\nor a \npath relative to the current working directory. This can\nalso be \ncontrolled by setting the GIT_WORK_TREE environment variable\nand \nthe core.worktree configuration variable (see core.worktree\nin git- \nconfig(1) for a more detailed discussion)."
-    ],
-    [
-      "-tree",
+      "--work-tree",
       "--work-tree=<path> \nSet the path to the working tree. It can be an absolute path\nor a \npath relative to the current working directory. This can\nalso be \ncontrolled by setting the GIT_WORK_TREE environment variable\nand \nthe core.worktree configuration variable (see core.worktree\nin git- \nconfig(1) for a more detailed discussion)."
     ],
     [
@@ -126,11 +86,7 @@
       "--namespace=<path> \nSet the Git namespace. See gitnamespaces(7) for more\ndetails. \nEquivalent to setting the GIT_NAMESPACE environment\nvariable."
     ],
     [
-      "--super",
-      "--super-prefix=<path> \nCurrently for internal use only. Set a prefix which gives a\npath \nfrom above a repository down to its root. One use is to give\n\nsubmodules context about the superproject that invoked\nit."
-    ],
-    [
-      "-prefix",
+      "--super-prefix",
       "--super-prefix=<path> \nCurrently for internal use only. Set a prefix which gives a\npath \nfrom above a repository down to its root. One use is to give\n\nsubmodules context about the superproject that invoked\nit."
     ],
     [
@@ -138,67 +94,31 @@
       "--bare \nTreat the repository as a bare repository. If GIT_DIR\nenvironment \nis not set, it is set to the current working directory."
     ],
     [
-      "--no",
+      "--no-replace-objects",
       "--no-replace-objects \nDo not use replacement refs to replace Git objects. See git-\n\nreplace(1) for more information."
     ],
     [
-      "-replace",
-      "--no-replace-objects \nDo not use replacement refs to replace Git objects. See git-\n\nreplace(1) for more information."
-    ],
-    [
-      "-objects",
-      "--no-replace-objects \nDo not use replacement refs to replace Git objects. See git-\n\nreplace(1) for more information."
-    ],
-    [
-      "--literal",
+      "--literal-pathspecs",
       "--literal-pathspecs \nTreat pathspecs literally (i.e. no globbing, no pathspec\nmagic). \nThis is equivalent to setting the GIT_LITERAL_PATHSPECS\nenvironment \nvariable to 1."
     ],
     [
-      "-pathspecs",
-      "--literal-pathspecs \nTreat pathspecs literally (i.e. no globbing, no pathspec\nmagic). \nThis is equivalent to setting the GIT_LITERAL_PATHSPECS\nenvironment \nvariable to 1."
-    ],
-    [
-      "--glob",
+      "--glob-pathspecs",
       "--glob-pathspecs \nAdd \"glob\" magic to all pathspec. This is\nequivalent to setting the \nGIT_GLOB_PATHSPECS environment variable to 1. Disabling\nglobbing on \nindividual pathspecs can be done using pathspec magic\n\":(literal)\""
     ],
     [
-      "-pathspecs",
-      "--glob-pathspecs \nAdd \"glob\" magic to all pathspec. This is\nequivalent to setting the \nGIT_GLOB_PATHSPECS environment variable to 1. Disabling\nglobbing on \nindividual pathspecs can be done using pathspec magic\n\":(literal)\""
-    ],
-    [
-      "--noglob",
+      "--noglob-pathspecs",
       "--noglob-pathspecs \nAdd \"literal\" magic to all pathspec. This is\nequivalent to setting \nthe GIT_NOGLOB_PATHSPECS environment variable to 1. Enabling\n\nglobbing on individual pathspecs can be done using pathspec\nmagic \n\":(glob)\""
     ],
     [
-      "-pathspecs",
-      "--noglob-pathspecs \nAdd \"literal\" magic to all pathspec. This is\nequivalent to setting \nthe GIT_NOGLOB_PATHSPECS environment variable to 1. Enabling\n\nglobbing on individual pathspecs can be done using pathspec\nmagic \n\":(glob)\""
-    ],
-    [
-      "--icase",
+      "--icase-pathspecs",
       "--icase-pathspecs \nAdd \"icase\" magic to all pathspec. This is\nequivalent to setting \nthe GIT_ICASE_PATHSPECS environment variable to 1."
     ],
     [
-      "-pathspecs",
-      "--icase-pathspecs \nAdd \"icase\" magic to all pathspec. This is\nequivalent to setting \nthe GIT_ICASE_PATHSPECS environment variable to 1."
-    ],
-    [
-      "--no",
+      "--no-optional-locks",
       "--no-optional-locks \nDo not perform optional operations that require locks. This\nis \nequivalent to setting the GIT_OPTIONAL_LOCKS to 0."
     ],
     [
-      "-optional",
-      "--no-optional-locks \nDo not perform optional operations that require locks. This\nis \nequivalent to setting the GIT_OPTIONAL_LOCKS to 0."
-    ],
-    [
-      "-locks",
-      "--no-optional-locks \nDo not perform optional operations that require locks. This\nis \nequivalent to setting the GIT_OPTIONAL_LOCKS to 0."
-    ],
-    [
-      "--list",
-      "--list-cmds=group[,group...]\n\nList commands by group. This is an internal/experimental\noption and \nmay change or be removed in the future. Supported groups\nare: \nbuiltins, parseopt (builtin commands that use\nparse-options), main \n(all commands in libexec directory), others (all other\ncommands in \n$PATH that have git- prefix), list-<category> (see\ncategories in \ncommand-list.txt), nohelpers (exclude helper commands),\nalias and \nconfig (retrieve command list from config variable \ncompletion.commands)"
-    ],
-    [
-      "-cmds",
+      "--list-cmds",
       "--list-cmds=group[,group...]\n\nList commands by group. This is an internal/experimental\noption and \nmay change or be removed in the future. Supported groups\nare: \nbuiltins, parseopt (builtin commands that use\nparse-options), main \n(all commands in libexec directory), others (all other\ncommands in \n$PATH that have git- prefix), list-<category> (see\ncategories in \ncommand-list.txt), nohelpers (exclude helper commands),\nalias and \nconfig (retrieve command list from config variable \ncompletion.commands)"
     ],
     [
@@ -230,11 +150,7 @@
       "git-checkout(1) \nSwitch branches or restore working tree files."
     ],
     [
-      "-cherry",
-      "git-cherry-pick(1) \nApply the changes introduced by some existing commits."
-    ],
-    [
-      "-pick",
+      "-cherry-pick",
       "git-cherry-pick(1) \nApply the changes introduced by some existing commits."
     ],
     [
@@ -266,11 +182,7 @@
       "git-fetch(1) \nDownload objects and refs from another repository."
     ],
     [
-      "-format",
-      "git-format-patch(1) \nPrepare patches for e-mail submission."
-    ],
-    [
-      "-patch",
+      "-format-patch",
       "git-format-patch(1) \nPrepare patches for e-mail submission."
     ],
     [
@@ -318,11 +230,7 @@
       "git-push(1) \nUpdate remote refs along with associated objects."
     ],
     [
-      "-range",
-      "git-range-diff(1) \nCompare two commit ranges (e.g. two versions of a\nbranch)."
-    ],
-    [
-      "-diff",
+      "-range-diff",
       "git-range-diff(1) \nCompare two commit ranges (e.g. two versions of a\nbranch)."
     ],
     [
@@ -354,11 +262,7 @@
       "git-show(1) \nShow various types of objects."
     ],
     [
-      "-sparse",
-      "git-sparse-checkout(1) \nReduce your working tree to a subset of tracked files."
-    ],
-    [
-      "-checkout",
+      "-sparse-checkout",
       "git-sparse-checkout(1) \nReduce your working tree to a subset of tracked files."
     ],
     [
@@ -390,27 +294,15 @@
       "git-config(1) \nGet and set repository or global options."
     ],
     [
-      "-fast",
+      "-fast-export",
       "git-fast-export(1) \nGit data exporter."
     ],
     [
-      "-export",
-      "git-fast-export(1) \nGit data exporter."
-    ],
-    [
-      "-fast",
+      "-fast-import",
       "git-fast-import(1) \nBackend for fast Git data importers."
     ],
     [
-      "-import",
-      "git-fast-import(1) \nBackend for fast Git data importers."
-    ],
-    [
-      "-filter",
-      "git-filter-branch(1) \nRewrite branches."
-    ],
-    [
-      "-branch",
+      "-filter-branch",
       "git-filter-branch(1) \nRewrite branches."
     ],
     [
@@ -418,11 +310,7 @@
       "git-mergetool(1) \nRun merge conflict resolution tools to resolve merge\nconflicts."
     ],
     [
-      "-pack",
-      "git-pack-refs(1) \nPack heads and tags for efficient repository access."
-    ],
-    [
-      "-refs",
+      "-pack-refs",
       "git-pack-refs(1) \nPack heads and tags for efficient repository access."
     ],
     [
@@ -458,11 +346,7 @@
       "git-bugreport(1) \nCollect information for user to file a bug report."
     ],
     [
-      "-count",
-      "git-count-objects(1) \nCount unpacked number of objects and their disk\nconsumption."
-    ],
-    [
-      "-objects",
+      "-count-objects",
       "git-count-objects(1) \nCount unpacked number of objects and their disk\nconsumption."
     ],
     [
@@ -482,11 +366,7 @@
       "git-instaweb(1) \nInstantly browse your working repository in gitweb."
     ],
     [
-      "-merge",
-      "git-merge-tree(1) \nShow three-way merge without touching index."
-    ],
-    [
-      "-tree",
+      "-merge-tree",
       "git-merge-tree(1) \nShow three-way merge without touching index."
     ],
     [
@@ -494,27 +374,15 @@
       "git-rerere(1) \nReuse recorded resolution of conflicted merges."
     ],
     [
-      "-show",
+      "-show-branch",
       "git-show-branch(1) \nShow branches and their commits."
     ],
     [
-      "-branch",
-      "git-show-branch(1) \nShow branches and their commits."
-    ],
-    [
-      "-verify",
+      "-verify-commit",
       "git-verify-commit(1) \nCheck the GPG signature of commits."
     ],
     [
-      "-commit",
-      "git-verify-commit(1) \nCheck the GPG signature of commits."
-    ],
-    [
-      "-verify",
-      "git-verify-tag(1) \nCheck the GPG signature of tags."
-    ],
-    [
-      "-tag",
+      "-verify-tag",
       "git-verify-tag(1) \nCheck the GPG signature of tags."
     ],
     [
@@ -538,11 +406,7 @@
       "git-cvsserver(1) \nA CVS server emulator for Git."
     ],
     [
-      "-imap",
-      "git-imap-send(1) \nSend a collection of patches from stdin to an IMAP\nfolder."
-    ],
-    [
-      "-send",
+      "-imap-send",
       "git-imap-send(1) \nSend a collection of patches from stdin to an IMAP\nfolder."
     ],
     [
@@ -554,19 +418,11 @@
       "git-quiltimport(1) \nApplies a quilt patchset onto the current branch."
     ],
     [
-      "-request",
+      "-request-pull",
       "git-request-pull(1) \nGenerates a summary of pending changes."
     ],
     [
-      "-pull",
-      "git-request-pull(1) \nGenerates a summary of pending changes."
-    ],
-    [
-      "-send",
-      "git-send-email(1) \nSend a collection of patches as emails."
-    ],
-    [
-      "-email",
+      "-send-email",
       "git-send-email(1) \nSend a collection of patches as emails."
     ],
     [
@@ -590,59 +446,31 @@
       "LOW-LEVEL COMMANDS (PLUMBING)\n\nAlthough Git includes its own porcelain layer, its low-level\ncommands \nare sufficient to support development of alternative\nporcelains. \nDevelopers of such porcelains might start by reading about\ngit-update- \nindex(1) and git-read-tree(1)."
     ],
     [
-      "-checkout",
+      "-checkout-index",
       "git-checkout-index(1) \nCopy files from the index to the working tree."
     ],
     [
-      "-index",
-      "git-checkout-index(1) \nCopy files from the index to the working tree."
-    ],
-    [
-      "-commit",
+      "-commit-graph",
       "git-commit-graph(1) \nWrite and verify Git commit-graph files."
     ],
     [
-      "-graph",
-      "git-commit-graph(1) \nWrite and verify Git commit-graph files."
-    ],
-    [
-      "-commit",
+      "-commit-tree",
       "git-commit-tree(1) \nCreate a new commit object."
     ],
     [
-      "-tree",
-      "git-commit-tree(1) \nCreate a new commit object."
-    ],
-    [
-      "-hash",
+      "-hash-object",
       "git-hash-object(1) \nCompute object ID and optionally creates a blob from a\nfile."
     ],
     [
-      "-object",
-      "git-hash-object(1) \nCompute object ID and optionally creates a blob from a\nfile."
-    ],
-    [
-      "-index",
+      "-index-pack",
       "git-index-pack(1) \nBuild pack index file for an existing packed archive."
     ],
     [
-      "-pack",
-      "git-index-pack(1) \nBuild pack index file for an existing packed archive."
-    ],
-    [
-      "-merge",
+      "-merge-file",
       "git-merge-file(1) \nRun a three-way file merge."
     ],
     [
-      "-file",
-      "git-merge-file(1) \nRun a three-way file merge."
-    ],
-    [
-      "-merge",
-      "git-merge-index(1) \nRun a merge for files needing merging."
-    ],
-    [
-      "-index",
+      "-merge-index",
       "git-merge-index(1) \nRun a merge for files needing merging."
     ],
     [
@@ -654,79 +482,39 @@
       "git-mktree(1) \nBuild a tree-object from ls-tree formatted text."
     ],
     [
-      "-multi",
+      "-multi-pack-index",
       "git-multi-pack-index(1) \nWrite and verify multi-pack-indexes."
     ],
     [
-      "-pack",
-      "git-multi-pack-index(1) \nWrite and verify multi-pack-indexes."
-    ],
-    [
-      "-index",
-      "git-multi-pack-index(1) \nWrite and verify multi-pack-indexes."
-    ],
-    [
-      "-pack",
+      "-pack-objects",
       "git-pack-objects(1) \nCreate a packed archive of objects."
     ],
     [
-      "-objects",
-      "git-pack-objects(1) \nCreate a packed archive of objects."
-    ],
-    [
-      "-prune",
+      "-prune-packed",
       "git-prune-packed(1) \nRemove extra objects that are already in pack files."
     ],
     [
-      "-packed",
-      "git-prune-packed(1) \nRemove extra objects that are already in pack files."
-    ],
-    [
-      "-read",
+      "-read-tree",
       "git-read-tree(1) \nReads tree information into the index."
     ],
     [
-      "-tree",
-      "git-read-tree(1) \nReads tree information into the index."
-    ],
-    [
-      "-symbolic",
+      "-symbolic-ref",
       "git-symbolic-ref(1) \nRead, modify and delete symbolic refs."
     ],
     [
-      "-ref",
-      "git-symbolic-ref(1) \nRead, modify and delete symbolic refs."
-    ],
-    [
-      "-unpack",
+      "-unpack-objects",
       "git-unpack-objects(1) \nUnpack objects from a packed archive."
     ],
     [
-      "-objects",
-      "git-unpack-objects(1) \nUnpack objects from a packed archive."
-    ],
-    [
-      "-update",
+      "-update-index",
       "git-update-index(1) \nRegister file contents in the working tree to the index."
     ],
     [
-      "-index",
-      "git-update-index(1) \nRegister file contents in the working tree to the index."
-    ],
-    [
-      "-update",
+      "-update-ref",
       "git-update-ref(1) \nUpdate the object name stored in a ref safely."
     ],
     [
-      "-ref",
-      "git-update-ref(1) \nUpdate the object name stored in a ref safely."
-    ],
-    [
-      "-write",
-      "git-write-tree(1) \nCreate a tree object from the current index."
-    ],
-    [
-      "-tree",
+      "-write-tree",
       "git-write-tree(1) \nCreate a tree object from the current index."
     ],
     [
@@ -734,155 +522,71 @@
       "git-cherry(1) \nFind commits yet to be applied to upstream."
     ],
     [
-      "-diff",
+      "-diff-files",
       "git-diff-files(1) \nCompares files in the working tree and the index."
     ],
     [
-      "-files",
-      "git-diff-files(1) \nCompares files in the working tree and the index."
-    ],
-    [
-      "-diff",
+      "-diff-index",
       "git-diff-index(1) \nCompare a tree to the working tree or index."
     ],
     [
-      "-index",
-      "git-diff-index(1) \nCompare a tree to the working tree or index."
-    ],
-    [
-      "-diff",
+      "-diff-tree",
       "git-diff-tree(1) \nCompares the content and mode of blobs found via two tree\nobjects."
     ],
     [
-      "-tree",
-      "git-diff-tree(1) \nCompares the content and mode of blobs found via two tree\nobjects."
-    ],
-    [
-      "-for",
+      "-for-each-ref",
       "git-for-each-ref(1) \nOutput information on each ref."
     ],
     [
-      "-each",
-      "git-for-each-ref(1) \nOutput information on each ref."
-    ],
-    [
-      "-ref",
-      "git-for-each-ref(1) \nOutput information on each ref."
-    ],
-    [
-      "-for",
+      "-for-each-repo",
       "git-for-each-repo(1) \nRun a Git command on a list of repositories."
     ],
     [
-      "-each",
-      "git-for-each-repo(1) \nRun a Git command on a list of repositories."
-    ],
-    [
-      "-repo",
-      "git-for-each-repo(1) \nRun a Git command on a list of repositories."
-    ],
-    [
-      "-get",
+      "-get-tar-commit-id",
       "git-get-tar-commit-id(1) \nExtract commit ID from an archive created using\ngit-archive."
     ],
     [
-      "-tar",
-      "git-get-tar-commit-id(1) \nExtract commit ID from an archive created using\ngit-archive."
-    ],
-    [
-      "-commit",
-      "git-get-tar-commit-id(1) \nExtract commit ID from an archive created using\ngit-archive."
-    ],
-    [
-      "-id",
-      "git-get-tar-commit-id(1) \nExtract commit ID from an archive created using\ngit-archive."
-    ],
-    [
-      "-ls",
+      "-ls-files",
       "git-ls-files(1) \nShow information about files in the index and the working\ntree."
     ],
     [
-      "-files",
-      "git-ls-files(1) \nShow information about files in the index and the working\ntree."
-    ],
-    [
-      "-ls",
+      "-ls-remote",
       "git-ls-remote(1) \nList references in a remote repository."
     ],
     [
-      "-remote",
-      "git-ls-remote(1) \nList references in a remote repository."
-    ],
-    [
-      "-ls",
+      "-ls-tree",
       "git-ls-tree(1) \nList the contents of a tree object."
     ],
     [
-      "-tree",
-      "git-ls-tree(1) \nList the contents of a tree object."
-    ],
-    [
-      "-merge",
+      "-merge-base",
       "git-merge-base(1) \nFind as good common ancestors as possible for a merge."
     ],
     [
-      "-base",
-      "git-merge-base(1) \nFind as good common ancestors as possible for a merge."
-    ],
-    [
-      "-name",
+      "-name-rev",
       "git-name-rev(1) \nFind symbolic names for given revs."
     ],
     [
-      "-rev",
-      "git-name-rev(1) \nFind symbolic names for given revs."
-    ],
-    [
-      "-pack",
+      "-pack-redundant",
       "git-pack-redundant(1) \nFind redundant pack files."
     ],
     [
-      "-redundant",
-      "git-pack-redundant(1) \nFind redundant pack files."
-    ],
-    [
-      "-rev",
+      "-rev-list",
       "git-rev-list(1) \nLists commit objects in reverse chronological order."
     ],
     [
-      "-list",
-      "git-rev-list(1) \nLists commit objects in reverse chronological order."
-    ],
-    [
-      "-rev",
+      "-rev-parse",
       "git-rev-parse(1) \nPick out and massage parameters."
     ],
     [
-      "-parse",
-      "git-rev-parse(1) \nPick out and massage parameters."
-    ],
-    [
-      "-show",
+      "-show-index",
       "git-show-index(1) \nShow packed archive index."
     ],
     [
-      "-index",
-      "git-show-index(1) \nShow packed archive index."
-    ],
-    [
-      "-show",
+      "-show-ref",
       "git-show-ref(1) \nList references in a local repository."
     ],
     [
-      "-ref",
-      "git-show-ref(1) \nList references in a local repository."
-    ],
-    [
-      "-unpack",
-      "git-unpack-file(1) \nCreates a temporary file with a blobâs contents."
-    ],
-    [
-      "-file",
+      "-unpack-file",
       "git-unpack-file(1) \nCreates a temporary file with a blobâs contents."
     ],
     [
@@ -890,71 +594,35 @@
       "git-var(1) \nShow a Git logical variable."
     ],
     [
-      "-verify",
+      "-verify-pack",
       "git-verify-pack(1) \nValidate packed Git archive files."
     ],
     [
-      "-pack",
-      "git-verify-pack(1) \nValidate packed Git archive files."
-    ],
-    [
-      "-fetch",
+      "-fetch-pack",
       "git-fetch-pack(1) \nReceive missing objects from another repository."
     ],
     [
-      "-pack",
-      "git-fetch-pack(1) \nReceive missing objects from another repository."
-    ],
-    [
-      "-http",
+      "-http-backend",
       "git-http-backend(1) \nServer side implementation of Git over HTTP."
     ],
     [
-      "-backend",
-      "git-http-backend(1) \nServer side implementation of Git over HTTP."
-    ],
-    [
-      "-send",
+      "-send-pack",
       "git-send-pack(1) \nPush objects over Git protocol to another repository."
     ],
     [
-      "-pack",
-      "git-send-pack(1) \nPush objects over Git protocol to another repository."
-    ],
-    [
-      "-update",
+      "-update-server-info",
       "git-update-server-info(1) \nUpdate auxiliary info file to help dumb servers."
     ],
     [
-      "-server",
-      "git-update-server-info(1) \nUpdate auxiliary info file to help dumb servers."
-    ],
-    [
-      "-info",
-      "git-update-server-info(1) \nUpdate auxiliary info file to help dumb servers."
-    ],
-    [
-      "-http",
+      "-http-fetch",
       "git-http-fetch(1) \nDownload from a remote Git repository via HTTP."
     ],
     [
-      "-fetch",
-      "git-http-fetch(1) \nDownload from a remote Git repository via HTTP."
-    ],
-    [
-      "-http",
+      "-http-push",
       "git-http-push(1) \nPush objects over HTTP/DAV to another repository."
     ],
     [
-      "-push",
-      "git-http-push(1) \nPush objects over HTTP/DAV to another repository."
-    ],
-    [
-      "-receive",
-      "git-receive-pack(1) \nReceive what is pushed into the repository."
-    ],
-    [
-      "-pack",
+      "-receive-pack",
       "git-receive-pack(1) \nReceive what is pushed into the repository."
     ],
     [
@@ -962,55 +630,27 @@
       "git-shell(1) \nRestricted login shell for Git-only SSH access."
     ],
     [
-      "-upload",
+      "-upload-archive",
       "git-upload-archive(1) \nSend archive back to git-archive."
     ],
     [
-      "-archive",
-      "git-upload-archive(1) \nSend archive back to git-archive."
-    ],
-    [
-      "-upload",
+      "-upload-pack",
       "git-upload-pack(1) \nSend objects packed back to git-fetch-pack."
     ],
     [
-      "-pack",
-      "git-upload-pack(1) \nSend objects packed back to git-fetch-pack."
-    ],
-    [
-      "-check",
+      "-check-attr",
       "git-check-attr(1) \nDisplay gitattributes information."
     ],
     [
-      "-attr",
-      "git-check-attr(1) \nDisplay gitattributes information."
-    ],
-    [
-      "-check",
+      "-check-ignore",
       "git-check-ignore(1) \nDebug gitignore / exclude files."
     ],
     [
-      "-ignore",
-      "git-check-ignore(1) \nDebug gitignore / exclude files."
-    ],
-    [
-      "-check",
+      "-check-mailmap",
       "git-check-mailmap(1) \nShow canonical names and email addresses of contacts."
     ],
     [
-      "-mailmap",
-      "git-check-mailmap(1) \nShow canonical names and email addresses of contacts."
-    ],
-    [
-      "-check",
-      "git-check-ref-format(1) \nEnsures that a reference name is well formed."
-    ],
-    [
-      "-ref",
-      "git-check-ref-format(1) \nEnsures that a reference name is well formed."
-    ],
-    [
-      "-format",
+      "-check-ref-format",
       "git-check-ref-format(1) \nEnsures that a reference name is well formed."
     ],
     [
@@ -1022,31 +662,15 @@
       "git-credential(1) \nRetrieve and store user credentials."
     ],
     [
-      "-credential",
+      "-credential-cache",
       "git-credential-cache(1) \nHelper to temporarily store passwords in memory."
     ],
     [
-      "-cache",
-      "git-credential-cache(1) \nHelper to temporarily store passwords in memory."
-    ],
-    [
-      "-credential",
+      "-credential-store",
       "git-credential-store(1) \nHelper to store credentials on disk."
     ],
     [
-      "-store",
-      "git-credential-store(1) \nHelper to store credentials on disk."
-    ],
-    [
-      "-fmt",
-      "git-fmt-merge-msg(1) \nProduce a merge commit message."
-    ],
-    [
-      "-merge",
-      "git-fmt-merge-msg(1) \nProduce a merge commit message."
-    ],
-    [
-      "-msg",
+      "-fmt-merge-msg",
       "git-fmt-merge-msg(1) \nProduce a merge commit message."
     ],
     [
@@ -1054,11 +678,7 @@
       "git-hook(1) \nRun git hooks."
     ],
     [
-      "-interpret",
-      "git-interpret-trailers(1) \nAdd or parse structured information in commit messages."
-    ],
-    [
-      "-trailers",
+      "-interpret-trailers",
       "git-interpret-trailers(1) \nAdd or parse structured information in commit messages."
     ],
     [
@@ -1070,39 +690,19 @@
       "git-mailsplit(1) \nSimple UNIX mbox splitter program."
     ],
     [
-      "-merge",
+      "-merge-one-file",
       "git-merge-one-file(1) \nThe standard helper program to use with git-merge-index."
     ],
     [
-      "-one",
-      "git-merge-one-file(1) \nThe standard helper program to use with git-merge-index."
-    ],
-    [
-      "-file",
-      "git-merge-one-file(1) \nThe standard helper program to use with git-merge-index."
-    ],
-    [
-      "-patch",
+      "-patch-id",
       "git-patch-id(1) \nCompute unique ID for a patch."
     ],
     [
-      "-id",
-      "git-patch-id(1) \nCompute unique ID for a patch."
-    ],
-    [
-      "-sh",
+      "-sh-i18n",
       "git-sh-i18n(1) \nGitâs i18n setup code for shell scripts."
     ],
     [
-      "-i18n",
-      "git-sh-i18n(1) \nGitâs i18n setup code for shell scripts."
-    ],
-    [
-      "-sh",
-      "git-sh-setup(1) \nCommon Git shell script setup code."
-    ],
-    [
-      "-setup",
+      "-sh-setup",
       "git-sh-setup(1) \nCommon Git shell script setup code."
     ],
     [
