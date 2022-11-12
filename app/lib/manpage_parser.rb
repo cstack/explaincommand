@@ -20,6 +20,30 @@ class ManpageParser
     )
   end
 
+  def self.parse_helppage_string(helppage_string)
+    lines = helppage_string.split("\n")
+    description = nil
+    flags = []
+    lines.each do |line|
+      next if line.blank?
+      next if line.start_with?('Usage:')
+
+      description = line
+      break
+    end
+    lines.each do |text|
+      next unless flags_in_paragraph = extract_flags(text) flags_in_paragraph.length > 0
+   flags_in_paragraph.each do |flag|
+        flags << [flag, text]
+      end
+    end
+    Manpage.new(
+      description:,
+      flags:
+    )
+  end
+
+
   def self.is_paragraph_description?(text)
     text.start_with?('NAME')
   end

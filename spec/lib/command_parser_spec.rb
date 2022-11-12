@@ -74,6 +74,14 @@ describe CommandParser do
           "flags": ['--patch'],
           "arguments": ['test.txt']
         }
+      ],
+      [
+        'docker build -t getting-started .',
+        {
+          "name": 'docker-build',
+          "flags": ['-t'],
+          "arguments": ['getting-started', '.']
+        }
       ]
     ].each do |string, expected|
       context string do

@@ -18,6 +18,23 @@ describe ManpageParser do
     end
   end
 
+  describe '.parse_helppage_string' do
+    Dir['./data/helppages/*'].each do |path|
+      filename = path.split('/').last
+      command = filename.split('.').first
+      context filename do
+        it 'parses as expected' do
+          helppage_string = File.read(path)
+          manpage = described_class.parse_helppage_string(helppage_string)
+          fixture_path = "./spec/fixtures/manpages/#{command}.json"
+          # File.write(fixture_path, JSON.pretty_generate(manpage))
+          expected = Manpage.from_json(File.read(fixture_path))
+          expect(manpage).to eq(expected)
+        end
+      end
+    end
+  end
+
   describe 'extract_flags' do
     subject { described_class.send(:extract_flags, text) }
 

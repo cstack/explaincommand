@@ -1,0 +1,97 @@
+{
+  "description": "Build an image from a Dockerfile",
+  "flags": [
+    [
+      "--add-host",
+      "      --add-host list           Add a custom host-to-IP mapping (host:ip)"
+    ],
+    [
+      "--build-arg",
+      "      --build-arg list          Set build-time variables"
+    ],
+    [
+      "--cache-from",
+      "      --cache-from strings      Images to consider as cache sources"
+    ],
+    [
+      "--disable-content-trust",
+      "      --disable-content-trust   Skip image verification (default true)"
+    ],
+    [
+      "-f",
+      "  -f, --file string             Name of the Dockerfile (Default is 'PATH/Dockerfile')"
+    ],
+    [
+      "--file",
+      "  -f, --file string             Name of the Dockerfile (Default is 'PATH/Dockerfile')"
+    ],
+    [
+      "--iidfile",
+      "      --iidfile string          Write the image ID to the file"
+    ],
+    [
+      "--isolation",
+      "      --isolation string        Container isolation technology"
+    ],
+    [
+      "--label",
+      "      --label list              Set metadata for an image"
+    ],
+    [
+      "--network",
+      "      --network string          Set the networking mode for the RUN instructions during build (default \"default\")"
+    ],
+    [
+      "--no-cache",
+      "      --no-cache                Do not use cache when building the image"
+    ],
+    [
+      "-o",
+      "  -o, --output stringArray      Output destination (format: type=local,dest=path)"
+    ],
+    [
+      "--output",
+      "  -o, --output stringArray      Output destination (format: type=local,dest=path)"
+    ],
+    [
+      "--platform",
+      "      --platform string         Set platform if server is multi-platform capable"
+    ],
+    [
+      "--progress",
+      "      --progress string         Set type of progress output (auto, plain, tty). Use plain to show container output (default \"auto\")"
+    ],
+    [
+      "--pull",
+      "      --pull                    Always attempt to pull a newer version of the image"
+    ],
+    [
+      "-q",
+      "  -q, --quiet                   Suppress the build output and print image ID on success"
+    ],
+    [
+      "--quiet",
+      "  -q, --quiet                   Suppress the build output and print image ID on success"
+    ],
+    [
+      "--secret",
+      "      --secret stringArray      Secret file to expose to the build (only if BuildKit enabled): id=mysecret,src=/local/secret"
+    ],
+    [
+      "--ssh",
+      "      --ssh stringArray         SSH agent socket or keys to expose to the build (only if BuildKit enabled) (format: default|<id>[=<socket>|<key>[,<key>]])"
+    ],
+    [
+      "-t",
+      "  -t, --tag list                Name and optionally a tag in the 'name:tag' format"
+    ],
+    [
+      "--tag",
+      "  -t, --tag list                Name and optionally a tag in the 'name:tag' format"
+    ],
+    [
+      "--target",
+      "      --target string           Set the target build stage to build."
+    ]
+  ]
+}
