@@ -10,7 +10,7 @@ describe ManpageParser do
           html_string = File.read(path)
           manpage = described_class.parse_html_string(html_string)
           fixture_path = "./spec/fixtures/manpages/#{command}.json"
-          File.write(fixture_path, JSON.pretty_generate(manpage))
+          # File.write(fixture_path, JSON.pretty_generate(manpage))
           expected = Manpage.from_json(File.read(fixture_path))
           expect(manpage).to eq(expected)
         end

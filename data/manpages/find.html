@@ -1,0 +1,933 @@
+<!-- Creator     : groff version 1.22.4 -->
+<!-- CreationDate: Sat Nov 12 15:38:15 2022 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title></title>
+</head>
+<body>
+
+<hr>
+
+
+<p>FIND(1) General Commands Manual FIND(1)</p>
+
+<p style="margin-top: 1em">NAME <br>
+find &acirc; walk a file hierarchy</p>
+
+<p style="margin-top: 1em">SYNOPSIS <br>
+find [-H | -L | -P] [-EXdsx] [-f path] path ... [expression]
+<br>
+find [-H | -L | -P] [-EXdsx] -f path [path ...]
+[expression]</p>
+
+<p style="margin-top: 1em">DESCRIPTION <br>
+The find utility recursively descends the directory tree for
+each path <br>
+listed, evaluating an expression (composed of the
+&acirc;primaries&acirc; and <br>
+&acirc;operands&acirc; listed below) in terms of each file
+in the tree.</p>
+
+<p style="margin-top: 1em">The options are as follows:</p>
+
+<p style="margin-top: 1em">-E Interpret regular expressions
+followed by -regex and -iregex <br>
+primaries as extended (modern) regular expressions rather
+than <br>
+basic regular expressions (BRE&rsquo;s). The re_format(7)
+manual page <br>
+fully describes both formats.</p>
+
+<p style="margin-top: 1em">-H Cause the file information
+and file type (see stat(2)) returned <br>
+for each symbolic link specified on the command line to be
+those <br>
+of the file referenced by the link, not the link itself. If
+the <br>
+referenced file does not exist, the file information and
+type <br>
+will be for the link itself. File information of all
+symbolic <br>
+links not on the command line is that of the link
+itself.</p>
+
+<p style="margin-top: 1em">-L Cause the file information
+and file type (see stat(2)) returned <br>
+for each symbolic link to be those of the file referenced by
+the <br>
+link, not the link itself. If the referenced file does not
+<br>
+exist, the file information and type will be for the link
+itself.</p>
+
+<p style="margin-top: 1em">This option is equivalent to the
+deprecated -follow primary.</p>
+
+<p style="margin-top: 1em">-P Cause the file information
+and file type (see stat(2)) returned <br>
+for each symbolic link to be those of the link itself. This
+is <br>
+the default.</p>
+
+<p style="margin-top: 1em">-X Permit find to be safely used
+in conjunction with xargs(1). If a <br>
+file name contains any of the delimiting characters used by
+<br>
+xargs(1), a diagnostic message is displayed on standard
+error, <br>
+and the file is skipped. The delimiting characters include
+<br>
+single (&acirc; &rsquo; &acirc;) and double (&acirc; &quot;
+&acirc;) quotes, backslash (&acirc;&acirc;), space, <br>
+tab and newline characters.</p>
+
+<p style="margin-top: 1em">However, you may wish to
+consider the -print0 primary in <br>
+conjunction with &acirc;xargs -0&acirc; as an effective
+alternative.</p>
+
+<p style="margin-top: 1em">-d Cause find to perform a
+depth-first traversal.</p>
+
+<p style="margin-top: 1em">This option is a BSD-specific
+equivalent of the -depth primary <br>
+specified by IEEE Std 1003.1-2001 (&acirc;POSIX.1&acirc;).
+Refer to its <br>
+description under PRIMARIES for more information.</p>
+
+<p style="margin-top: 1em">-s Cause find to traverse the
+file hierarchies in lexicographical <br>
+order, i.e., alphabetical order within each directory. Note:
+<br>
+&acirc;find -s&acirc; and &acirc;find | sort&acirc; may give
+different results.</p>
+
+<p style="margin-top: 1em">-x Prevent find from descending
+into directories that have a device <br>
+number different than that of the file from which the
+descent <br>
+began.</p>
+
+<p style="margin-top: 1em">This option is equivalent to the
+deprecated -xdev primary.</p>
+
+<p style="margin-top: 1em">PRIMARIES <br>
+All primaries which take a numeric argument allow the number
+to be <br>
+preceded by a plus sign (&acirc;+&acirc;) or a minus sign
+(&acirc;-&acirc;). A preceding plus <br>
+sign means &acirc;more than n&acirc;, a preceding minus sign
+means &acirc;less than n&acirc; and <br>
+neither means &acirc;exactly n&acirc;.</p>
+
+<p style="margin-top: 1em">-Bmin n <br>
+True if the difference between the time of a file&rsquo;s
+inode <br>
+creation and the time find was started, rounded up to the
+next <br>
+full minute, is n minutes.</p>
+
+<p style="margin-top: 1em">-Bnewer file <br>
+Same as -newerBm.</p>
+
+<p style="margin-top: 1em">-Btime n[smhdw] <br>
+If no units are specified, this primary evaluates to true if
+the <br>
+difference between the time of a file&rsquo;s inode creation
+and the <br>
+time find was started, rounded up to the next full 24-hour
+<br>
+period, is n 24-hour periods.</p>
+
+<p style="margin-top: 1em">If units are specified, this
+primary evaluates to true if the <br>
+difference between the time of a file&rsquo;s inode creation
+and the <br>
+time find was started is exactly n units. Please refer to
+the <br>
+-atime primary description for information on supported time
+<br>
+units.</p>
+
+<p style="margin-top: 1em">-acl May be used in conjunction
+with other primaries to locate files <br>
+with extended ACLs. See acl(3) for more information.</p>
+
+<p style="margin-top: 1em">-amin [-|+]n <br>
+True if the difference between the file last access time and
+the <br>
+time find was started, rounded up to the next full minute,
+is <br>
+more than n (+n), less than n (-n), or exactly n minutes
+ago.</p>
+
+<p style="margin-top: 1em">-anewer file <br>
+Same as -neweram.</p>
+
+<p style="margin-top: 1em">-atime n[smhdw] <br>
+If no units are specified, this primary evaluates to true if
+the <br>
+difference between the file last access time and the time
+find <br>
+was started, rounded up to the next full 24-hour period, is
+n <br>
+24-hour periods.</p>
+
+<p style="margin-top: 1em">If units are specified, this
+primary evaluates to true if the <br>
+difference between the file last access time and the time
+find <br>
+was started is exactly n units. Possible time units are as
+<br>
+follows:</p>
+
+<p style="margin-top: 1em">s second <br>
+m minute (60 seconds) <br>
+h hour (60 minutes) <br>
+d day (24 hours) <br>
+w week (7 days)</p>
+
+<p style="margin-top: 1em">Any number of units may be
+combined in one -atime argument, for <br>
+example, &acirc;-atime -1h30m&acirc;. Units are probably
+only useful when <br>
+used in conjunction with the + or - modifier.</p>
+
+<p style="margin-top: 1em">-cmin [-|+]n <br>
+True if the difference between the time of last change of
+file <br>
+status information and the time find was started, rounded up
+to <br>
+the next full minute, is more than n (+n), less than n (-n),
+or <br>
+exactly n minutes ago.</p>
+
+<p style="margin-top: 1em">-cnewer file <br>
+Same as -newercm.</p>
+
+<p style="margin-top: 1em">-ctime n[smhdw] <br>
+If no units are specified, this primary evaluates to true if
+the <br>
+difference between the time of last change of file status
+<br>
+information and the time find was started, rounded up to the
+next <br>
+full 24-hour period, is n 24-hour periods.</p>
+
+<p style="margin-top: 1em">If units are specified, this
+primary evaluates to true if the <br>
+difference between the time of last change of file status
+<br>
+information and the time find was started is exactly n
+units. <br>
+Please refer to the -atime primary description for
+information on <br>
+supported time units.</p>
+
+<p style="margin-top: 1em">-d Non-portable, BSD-specific
+version of depth. GNU find implements <br>
+this as a primary in mistaken emulation of FreeBSD find.</p>
+
+<p style="margin-top: 1em">-delete <br>
+Delete found files and/or directories. Always returns true.
+<br>
+This executes from the current working directory as find
+recurses <br>
+down the tree. It will not attempt to delete a filename with
+a <br>
+&acirc;/&acirc; character in its pathname relative to
+&acirc;.&acirc; for security <br>
+reasons. Depth-first traversal processing is implied by this
+<br>
+option. The -delete primary will fail to delete a directory
+if <br>
+it is not empty. Following symlinks is incompatible with
+this <br>
+option.</p>
+
+<p style="margin-top: 1em">-depth Always true; same as the
+non-portable -d option. Cause find to <br>
+perform a depth-first traversal, i.e., directories are
+visited in <br>
+post-order and all entries in a directory will be acted on
+before <br>
+the directory itself. By default, find visits directories in
+<br>
+pre-order, i.e., before their contents. Note, the default is
+not <br>
+a breadth-first traversal.</p>
+
+<p style="margin-top: 1em">The -depth primary can be useful
+when find is used with cpio(1) <br>
+to process files that are contained in directories with
+unusual <br>
+permissions. It ensures that you have write permission while
+you <br>
+are placing files in a directory, then sets the
+directory&rsquo;s <br>
+permissions as the last thing.</p>
+
+<p style="margin-top: 1em">-depth n <br>
+True if the depth of the file relative to the starting point
+of <br>
+the traversal is n.</p>
+
+<p style="margin-top: 1em">-empty True if the current file
+or directory is empty.</p>
+
+<p style="margin-top: 1em">-exec utility [argument ...] ;
+<br>
+True if the program named utility returns a zero value as
+its <br>
+exit status. Optional arguments may be passed to the
+utility. <br>
+The expression must be terminated by a semicolon
+(&acirc;;&acirc;). If you <br>
+invoke find from a shell you may need to quote the semicolon
+if <br>
+the shell would otherwise treat it as a control operator. If
+the <br>
+string &acirc;{}&acirc; appears anywhere in the utility name
+or the arguments <br>
+it is replaced by the pathname of the current file. Utility
+will <br>
+be executed from the directory from which find was executed.
+<br>
+Utility and arguments are not subject to the further
+expansion of <br>
+shell patterns and constructs.</p>
+
+<p style="margin-top: 1em">-exec utility [argument ...] {}
++ <br>
+Same as -exec, except that &acirc;{}&acirc; is replaced with
+as many <br>
+pathnames as possible for each invocation of utility. This
+<br>
+behaviour is similar to that of xargs(1). The primary always
+<br>
+returns true; if at least one invocation of utility returns
+a <br>
+non-zero exit status, find will return a non-zero exit
+status.</p>
+
+<p style="margin-top: 1em">-execdir utility [argument ...]
+; <br>
+The -execdir primary is identical to the -exec primary with
+the <br>
+exception that utility will be executed from the directory
+that <br>
+holds the current file. The filename substituted for the
+string <br>
+&acirc;{}&acirc; is not qualified.</p>
+
+<p style="margin-top: 1em">-execdir utility [argument ...]
+{} + <br>
+Same as -execdir, except that &acirc;{}&acirc; is replaced
+with as many <br>
+pathnames as possible for each invocation of utility. This
+<br>
+behaviour is similar to that of xargs(1). The primary always
+<br>
+returns true; if at least one invocation of utility returns
+a <br>
+non-zero exit status, find will return a non-zero exit
+status.</p>
+
+<p style="margin-top: 1em">-flags [-|+]flags,notflags <br>
+The flags are specified using symbolic names (see
+chflags(1)). <br>
+Those with the &quot;no&quot; prefix (except
+&quot;nodump&quot;) are said to be <br>
+notflags. Flags in flags are checked to be set, and flags in
+<br>
+notflags are checked to be not set. Note that this is
+different <br>
+from -perm, which only allows the user to specify mode bits
+that <br>
+are set.</p>
+
+<p style="margin-top: 1em">If flags are preceded by a dash
+(&acirc;-&acirc;), this primary evaluates to <br>
+true if at least all of the bits in flags and none of the
+bits in <br>
+notflags are set in the file&rsquo;s flags bits. If flags
+are preceded <br>
+by a plus (&acirc;+&acirc;), this primary evaluates to true
+if any of the <br>
+bits in flags is set in the file&rsquo;s flags bits, or any
+of the bits <br>
+in notflags is not set in the file&rsquo;s flags bits.
+Otherwise, this <br>
+primary evaluates to true if the bits in flags exactly match
+the <br>
+file&rsquo;s flags bits, and none of the flags bits match
+those of <br>
+notflags.</p>
+
+<p style="margin-top: 1em">-fstype type <br>
+True if the file is contained in a file system of type type.
+The <br>
+lsvfs(1) command can be used to find out the types of file
+<br>
+systems that are available on the system. In addition, there
+are <br>
+two pseudo-types, &acirc;local&acirc; and
+&acirc;rdonly&acirc;. The former matches any <br>
+file system physically mounted on the system where the find
+is <br>
+being executed and the latter matches any file system which
+is <br>
+mounted read-only.</p>
+
+<p style="margin-top: 1em">-gid gname <br>
+The same thing as -group gname for compatibility with GNU
+find. <br>
+GNU find imposes a restriction that gname is numeric, while
+find <br>
+does not.</p>
+
+<p style="margin-top: 1em">-group gname <br>
+True if the file belongs to the group gname. If gname is
+numeric <br>
+and there is no such group name, then gname is treated as a
+group <br>
+ID.</p>
+
+<p style="margin-top: 1em">-ignore_readdir_race <br>
+Ignore errors because a file or a directory is deleted after
+<br>
+reading the name from a directory. This option does not
+affect <br>
+errors occurring on starting points.</p>
+
+<p style="margin-top: 1em">-ilname pattern <br>
+Like -lname, but the match is case insensitive. This is a
+GNU <br>
+find extension.</p>
+
+<p style="margin-top: 1em">-iname pattern <br>
+Like -name, but the match is case insensitive.</p>
+
+<p style="margin-top: 1em">-inum n <br>
+True if the file has inode number n.</p>
+
+<p style="margin-top: 1em">-ipath pattern <br>
+Like -path, but the match is case insensitive.</p>
+
+<p style="margin-top: 1em">-iregex pattern <br>
+Like -regex, but the match is case insensitive.</p>
+
+<p style="margin-top: 1em">-iwholename pattern <br>
+The same thing as -ipath, for GNU find compatibility.</p>
+
+<p style="margin-top: 1em">-links n <br>
+True if the file has n links.</p>
+
+<p style="margin-top: 1em">-lname pattern <br>
+Like -name, but the contents of the symbolic link are
+matched <br>
+instead of the file name. Note that this only matches broken
+<br>
+symbolic links if symbolic links are being followed. This is
+a <br>
+GNU find extension.</p>
+
+<p style="margin-top: 1em">-ls This primary always
+evaluates to true. The following information <br>
+for the current file is written to standard output: its
+inode <br>
+number, size in 512-byte blocks, file permissions, number of
+hard <br>
+links, owner, group, size in bytes, last modification time,
+and <br>
+pathname. If the file is a block or character special file,
+the <br>
+device number will be displayed instead of the size in
+bytes. If <br>
+the file is a symbolic link, the pathname of the linked-to
+file <br>
+will be displayed preceded by &acirc;-&gt;&acirc;. The
+format is identical to <br>
+that produced by &acirc;ls -dgils&acirc;.</p>
+
+<p style="margin-top: 1em">-maxdepth n <br>
+Always true; descend at most n directory levels below the
+command <br>
+line arguments. If any -maxdepth primary is specified, it
+<br>
+applies to the entire expression even if it would not
+normally be <br>
+evaluated. &acirc;-maxdepth 0&acirc; limits the whole search
+to the command <br>
+line arguments.</p>
+
+<p style="margin-top: 1em">-mindepth n <br>
+Always true; do not apply any tests or actions at levels
+less <br>
+than n. If any -mindepth primary is specified, it applies to
+the <br>
+entire expression even if it would not normally be
+evaluated. <br>
+&acirc;-mindepth 1&acirc; processes all but the command line
+arguments.</p>
+
+<p style="margin-top: 1em">-mmin [-|+]n <br>
+True if the difference between the file last modification
+time <br>
+and the time find was started, rounded up to the next full
+<br>
+minute, is more than n (+n), less than n (-n), or exactly n
+<br>
+minutes ago.</p>
+
+<p style="margin-top: 1em">-mnewer file <br>
+Same as -newer.</p>
+
+<p style="margin-top: 1em">-mount The same thing as -xdev,
+for GNU find compatibility.</p>
+
+<p style="margin-top: 1em">-mtime n[smhdw] <br>
+If no units are specified, this primary evaluates to true if
+the <br>
+difference between the file last modification time and the
+time <br>
+find was started, rounded up to the next full 24-hour
+period, is <br>
+n 24-hour periods.</p>
+
+<p style="margin-top: 1em">If units are specified, this
+primary evaluates to true if the <br>
+difference between the file last modification time and the
+time <br>
+find was started is exactly n units. Please refer to the
+-atime <br>
+primary description for information on supported time
+units.</p>
+
+<p style="margin-top: 1em">-name pattern <br>
+True if the last component of the pathname being examined
+matches <br>
+pattern. Special shell pattern matching characters
+(&acirc;[&acirc;, &acirc;]&acirc;, <br>
+&acirc;*&acirc;, and &acirc;?&acirc;) may be used as part of
+pattern. These characters <br>
+may be matched explicitly by escaping them with a backslash
+<br>
+(&acirc;&acirc;).</p>
+
+<p style="margin-top: 1em">-newer file <br>
+True if the current file has a more recent last modification
+time <br>
+than file.</p>
+
+<p style="margin-top: 1em">-newerXY file <br>
+True if the current file has a more recent last access time
+<br>
+(X=a), inode creation time (X=B), change time (X=c), or <br>
+modification time (X=m) than the last access time (Y=a),
+inode <br>
+creation time (Y=B), change time (Y=c), or modification time
+<br>
+(Y=m) of file. In addition, if Y=t, then file is instead
+<br>
+interpreted as a direct date specification of the form
+understood <br>
+by cvs(1). Note that -newermm is equivalent to -newer.</p>
+
+<p style="margin-top: 1em">-nogroup <br>
+True if the file belongs to an unknown group.</p>
+
+<p style="margin-top: 1em">-noignore_readdir_race <br>
+Turn off the effect of -ignore_readdir_race. This is default
+<br>
+behaviour.</p>
+
+<p style="margin-top: 1em">-noleaf <br>
+This option is for GNU find compatibility. In GNU find it
+<br>
+disables an optimization not relevant to find, so it is
+ignored.</p>
+
+<p style="margin-top: 1em">-nouser <br>
+True if the file belongs to an unknown user.</p>
+
+<p style="margin-top: 1em">-ok utility [argument ...] ;
+<br>
+The -ok primary is identical to the -exec primary with the
+<br>
+exception that find requests user affirmation for the
+execution <br>
+of the utility by printing a message to the terminal and
+reading <br>
+a response. If the response is not affirmative
+(&acirc;y&acirc; in the <br>
+&acirc;POSIX&acirc; locale), the command is not executed and
+the value of the <br>
+-ok expression is false.</p>
+
+<p style="margin-top: 1em">-okdir utility [argument ...] ;
+<br>
+The -okdir primary is identical to the -execdir primary with
+the <br>
+same exception as described for the -ok primary.</p>
+
+<p style="margin-top: 1em">-path pattern <br>
+True if the pathname being examined matches pattern. Special
+<br>
+shell pattern matching characters (&acirc;[&acirc;,
+&acirc;]&acirc;, &acirc;*&acirc;, and &acirc;?&acirc;) may
+be <br>
+used as part of pattern. These characters may be matched
+<br>
+explicitly by escaping them with a backslash
+(&acirc;&acirc;). Slashes <br>
+(&acirc;/&acirc;) are treated as normal characters and do
+not have to be <br>
+matched explicitly.</p>
+
+<p style="margin-top: 1em">-perm [-|+]mode <br>
+The mode may be either symbolic (see chmod(1)) or an octal
+<br>
+number. If the mode is symbolic, a starting value of zero is
+<br>
+assumed and the mode sets or clears permissions without
+regard to <br>
+the process&rsquo; file mode creation mask. If the mode is
+octal, only <br>
+bits 07777 (S_ISUID | S_ISGID | S_ISTXT | S_IRWXU | S_IRWXG
+| <br>
+S_IRWXO) of the file&rsquo;s mode bits participate in the
+comparison. <br>
+If the mode is preceded by a dash (&acirc;-&acirc;), this
+primary evaluates <br>
+to true if at least all of the bits in the mode are set in
+the <br>
+file&rsquo;s mode bits. If the mode is preceded by a plus
+(&acirc;+&acirc;), this <br>
+primary evaluates to true if any of the bits in the mode are
+set <br>
+in the file&rsquo;s mode bits. Otherwise, this primary
+evaluates to <br>
+true if the bits in the mode exactly match the file&rsquo;s
+mode bits. <br>
+Note, the first character of a symbolic mode may not be a
+dash <br>
+(&acirc;-&acirc;).</p>
+
+<p style="margin-top: 1em">-print This primary always
+evaluates to true. It prints the pathname of <br>
+the current file to standard output. If none of -exec, -ls,
+<br>
+-print, -print0, or -ok is specified, the given expression
+shall <br>
+be effectively replaced by ( given expression ) -print.</p>
+
+<p style="margin-top: 1em">-print0 <br>
+This primary always evaluates to true. It prints the
+pathname of <br>
+the current file to standard output, followed by an ASCII
+NUL <br>
+character (character code 0).</p>
+
+<p style="margin-top: 1em">-prune This primary always
+evaluates to true. It causes find to not <br>
+descend into the current file. Note, the -prune primary has
+no <br>
+effect if the -d option was specified.</p>
+
+<p style="margin-top: 1em">-quit Causes find to terminate
+immediately.</p>
+
+<p style="margin-top: 1em">-regex pattern <br>
+True if the whole path of the file matches pattern using
+regular <br>
+expression. To match a file named &acirc;./foo/xyzzy&acirc;,
+you can use the <br>
+regular expression &acirc;.*/[xyz]*&acirc; or
+&acirc;.*/foo/.*&acirc;, but not &acirc;xyzzy&acirc; or <br>
+&acirc;/foo/&acirc;.</p>
+
+<p style="margin-top: 1em">-samefile name <br>
+True if the file is a hard link to name. If the command
+option <br>
+-L is specified, it is also true if the file is a symbolic
+link <br>
+and points to name.</p>
+
+<p style="margin-top: 1em">-size n[ckMGTP] <br>
+True if the file&rsquo;s size, rounded up, in 512-byte
+blocks is n. If <br>
+n is followed by a c, then the primary is true if the
+file&rsquo;s size <br>
+is n bytes (characters). Similarly if n is followed by a
+scale <br>
+indicator then the file&rsquo;s size is compared to n scaled
+as:</p>
+
+<p style="margin-top: 1em">k kilobytes (1024 bytes) <br>
+M megabytes (1024 kilobytes) <br>
+G gigabytes (1024 megabytes) <br>
+T terabytes (1024 gigabytes) <br>
+P petabytes (1024 terabytes)</p>
+
+<p style="margin-top: 1em">-sparse <br>
+True if the current file is sparse, i.e. has fewer blocks
+<br>
+allocated than expected based on its size in bytes. This
+might <br>
+also match files that have been compressed by the
+filesystem.</p>
+
+<p style="margin-top: 1em">-type t <br>
+True if the file is of the specified type. Possible file
+types <br>
+are as follows:</p>
+
+<p style="margin-top: 1em">b block special <br>
+c character special <br>
+d directory <br>
+f regular file <br>
+l symbolic link <br>
+p FIFO <br>
+s socket</p>
+
+<p style="margin-top: 1em">-uid uname <br>
+The same thing as -user uname for compatibility with GNU
+find. <br>
+GNU find imposes a restriction that uname is numeric, while
+find <br>
+does not.</p>
+
+<p style="margin-top: 1em">-user uname <br>
+True if the file belongs to the user uname. If uname is
+numeric <br>
+and there is no such user name, then uname is treated as a
+user <br>
+ID.</p>
+
+<p style="margin-top: 1em">-wholename pattern <br>
+The same thing as -path, for GNU find compatibility.</p>
+
+<p style="margin-top: 1em">-xattr True if the file has any
+extended attributes.</p>
+
+<p style="margin-top: 1em">-xattrname name <br>
+True if the file has an extended attribute with the
+specified <br>
+name.</p>
+
+<p style="margin-top: 1em">OPERATORS <br>
+The primaries may be combined using the following operators.
+The <br>
+operators are listed in order of decreasing precedence.</p>
+
+<p style="margin-top: 1em">( expression ) <br>
+This evaluates to true if the parenthesized expression
+evaluates <br>
+to true.</p>
+
+<p style="margin-top: 1em">! expression <br>
+-not expression <br>
+This is the unary NOT operator. It evaluates to true if the
+<br>
+expression is false.</p>
+
+<p style="margin-top: 1em">-false Always false. <br>
+-true Always true.</p>
+
+<p style="margin-top: 1em">expression -and expression <br>
+expression expression <br>
+The -and operator is the logical AND operator. As it is
+implied <br>
+by the juxtaposition of two expressions it does not have to
+be <br>
+specified. The expression evaluates to true if both
+expressions <br>
+are true. The second expression is not evaluated if the
+first <br>
+expression is false.</p>
+
+<p style="margin-top: 1em">expression -or expression <br>
+The -or operator is the logical OR operator. The expression
+<br>
+evaluates to true if either the first or the second
+expression is <br>
+true. The second expression is not evaluated if the first
+<br>
+expression is true.</p>
+
+<p style="margin-top: 1em">All operands and primaries must
+be separate arguments to find. Primaries <br>
+which themselves take arguments expect each argument to be a
+separate <br>
+argument to find.</p>
+
+<p style="margin-top: 1em">ENVIRONMENT <br>
+The LANG, LC_ALL, LC_COLLATE, LC_CTYPE, LC_MESSAGES and
+LC_TIME <br>
+environment variables affect the execution of the find
+utility as <br>
+described in environ(7).</p>
+
+<p style="margin-top: 1em">EXAMPLES <br>
+The following examples are shown as given to the shell:</p>
+
+<p style="margin-top: 1em">find / -name &quot;*.c&quot;
+-print <br>
+Print out a list of all the files whose names do not end in
+.c.</p>
+
+<p style="margin-top: 1em">find / -newer ttt -user wnj
+-print <br>
+Print out a list of all the files owned by user
+&acirc;wnj&acirc; that are <br>
+newer than the file ttt.</p>
+
+<p style="margin-top: 1em">find / -newer ttt -user wnj
+-print <br>
+Print out a list of all the files which are not both newer
+than <br>
+ttt and owned by &acirc;wnj&acirc;.</p>
+
+<p style="margin-top: 1em">find / -newer ttt -or -user wnj
+-print <br>
+Print out a list of all the files that are either owned by
+&acirc;wnj&acirc; <br>
+or that are newer than ttt.</p>
+
+<p style="margin-top: 1em">find / -newerct &rsquo;1 minute
+ago&rsquo; -print <br>
+Print out a list of all the files whose inode change time is
+more <br>
+recent than the current time minus one minute.</p>
+
+<p style="margin-top: 1em">find / -type f -exec echo {} ;
+<br>
+Use the echo(1) command to print out a list of all the
+files.</p>
+
+<p style="margin-top: 1em">find -L /usr/ports/packages
+-type l -exec rm -- {} + <br>
+Delete all broken symbolic links in /usr/ports/packages.</p>
+
+<p style="margin-top: 1em">find /usr/src -name CVS -prune
+-o -depth +6 -print <br>
+Find files and directories that are at least seven levels
+deep in <br>
+the working directory /usr/src.</p>
+
+<p style="margin-top: 1em">find /usr/src -name CVS -prune
+-o -mindepth 7 -print <br>
+Is not equivalent to the previous example, since -prune is
+not <br>
+evaluated below level seven.</p>
+
+<p style="margin-top: 1em">COMPATIBILITY <br>
+The -follow primary is deprecated; the -L option should be
+used instead. <br>
+See the STANDARDS section below for details.</p>
+
+<p style="margin-top: 1em">SEE ALSO <br>
+chflags(1), chmod(1), cvs(1), locate(1), lsvfs(1),
+whereis(1), which(1), <br>
+xargs(1), stat(2), acl(3), fts(3), getgrent(3), getpwent(3),
+strmode(3), <br>
+re_format(7), symlink(7)</p>
+
+<p style="margin-top: 1em">STANDARDS <br>
+The find utility syntax is a superset of the syntax
+specified by the IEEE <br>
+Std 1003.1-2001 (&acirc;POSIX.1&acirc;) standard.</p>
+
+<p style="margin-top: 1em">All the single character options
+except -H and -L as well as -amin, <br>
+-anewer, -cmin, -cnewer, -delete, -empty, -fstype, -iname,
+-inum, <br>
+-iregex, -ls, -maxdepth, -mindepth, -mmin, -not, -path,
+-print0, -regex, <br>
+-sparse and all of the -B* birthtime related primaries are
+extensions to <br>
+IEEE Std 1003.1-2001 (&acirc;POSIX.1&acirc;).</p>
+
+<p style="margin-top: 1em">Historically, the -d, -L and -x
+options were implemented using the <br>
+primaries -depth, -follow, and -xdev. These primaries always
+evaluated <br>
+to true. As they were really global variables that took
+effect before <br>
+the traversal began, some legal expressions could have
+unexpected <br>
+results. An example is the expression -print -o -depth. As
+-print <br>
+always evaluates to true, the standard order of evaluation
+implies that <br>
+-depth would never be evaluated. This is not the case.</p>
+
+<p style="margin-top: 1em">The operator -or was implemented
+as -o, and the operator -and was <br>
+implemented as -a.</p>
+
+<p style="margin-top: 1em">Historic implementations of the
+-exec and -ok primaries did not replace <br>
+the string &acirc;{}&acirc; in the utility name or the
+utility arguments if it had <br>
+preceding or following non-whitespace characters. This
+version replaces <br>
+it no matter where in the utility name or arguments it
+appears.</p>
+
+<p style="margin-top: 1em">The -E option was inspired by
+the equivalent grep(1) and sed(1) options.</p>
+
+<p style="margin-top: 1em">HISTORY <br>
+A simple find command appeared in Version&Acirc;&nbsp;1
+AT&amp;T UNIX and was removed in <br>
+Version&Acirc;&nbsp;3 AT&amp;T UNIX. It was rewritten for
+Version&Acirc;&nbsp;5 AT&amp;T UNIX and later <br>
+be enhanced for the Programmer&rsquo;s Workbench (PWB).
+These changes were <br>
+later incorporated in AT&amp;T UNIX v7.</p>
+
+<p style="margin-top: 1em">BUGS <br>
+The special characters used by find are also special
+characters to many <br>
+shell programs. In particular, the characters
+&acirc;*&acirc;, &acirc;[&acirc;, &acirc;]&acirc;,
+&acirc;?&acirc;, &acirc;(&acirc;, <br>
+&acirc;)&acirc;, &acirc;!&acirc;, &acirc;&acirc; and
+&acirc;;&acirc; may have to be escaped from the shell.</p>
+
+<p style="margin-top: 1em">As there is no delimiter
+separating options and file names or file names <br>
+and the expression, it is difficult to specify files named
+-xdev or !. <br>
+These problems are handled by the -f option and the
+getopt(3) &acirc;--&acirc; <br>
+construct.</p>
+
+<p style="margin-top: 1em">The -delete primary does not
+interact well with other options that cause <br>
+the file system tree traversal options to be changed.</p>
+
+<p style="margin-top: 1em">The -mindepth and -maxdepth
+primaries are actually global options (as <br>
+documented above). They should probably be replaced by
+options which <br>
+look like options.</p>
+
+<p style="margin-top: 1em">macOS 13.0 March 13, 2021 macOS
+13.0</p>
+<hr>
+</body>
+</html>
