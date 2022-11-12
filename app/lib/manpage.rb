@@ -1,17 +1,11 @@
-class Explainer
-  def self.explain(cmd)
-    parsed_arguments = CommandParser.parse(cmd)
-    command = parsed_arguments[:command]
-    manpage = Manpage.for_command(command)   
-    Explanation.from_manpage(manpage: manpage, parsed_arguments: parsed_arguments)
-  end
-
-  def self.parse_man_page(string)
+class Manpage
+  def self.for_command(command)
+    html_string = File.read(Rails.root.join("data/manpages/#{command}.html"))
+    html = Nokogiri::HTML(html_string)
     result = {
       name: nil,
       flags: [],
     }
-    html = Nokogiri::HTML(string)
     paragraphs = html.css("p")
     paragraphs.each do |paragraph|
       text = paragraph.text
