@@ -8,108 +8,262 @@ describe CommandParser do
     [
       [
         'ls',
-        {
-          "name": 'ls',
-          "flags": [],
-          "arguments": []
-        }
+        [
+          {
+            type: :command_name,
+            text: 'ls'
+          }
+        ]
       ],
       [
         'ls -l',
-        {
-          "name": 'ls',
-          "flags": ['-l'],
-          "arguments": []
-        }
+        [
+          {
+            type: :command_name,
+            text: 'ls'
+          },
+          {
+            type: :flag,
+            text: '-l'
+          }
+        ]
       ],
       [
         'ls -lh',
-        {
-          "name": 'ls',
-          "flags": ['-l', '-h'],
-          "arguments": []
-        }
+        [
+          {
+            type: :command_name,
+            text: 'ls'
+          },
+          {
+            type: :flag,
+            text: '-l'
+          },
+          {
+            type: :flag,
+            text: '-h'
+          }
+        ]
       ],
       [
         'ls -ltr',
-        {
-          "name": 'ls',
-          "flags": ['-l', '-t', '-r'],
-          "arguments": []
-        }
+        [
+          {
+            type: :command_name,
+            text: 'ls'
+          },
+          {
+            type: :flag,
+            text: '-l'
+          },
+          {
+            type: :flag,
+            text: '-t'
+          },
+          {
+            type: :flag,
+            text: '-r'
+          }
+        ]
       ],
       [
         'ls --version',
-        {
-          "name": 'ls',
-          "flags": ['--version'],
-          "arguments": []
-        }
+        [
+          {
+            type: :command_name,
+            text: 'ls'
+          },
+          {
+            type: :flag,
+            text: '--version'
+          }
+        ]
       ],
       [
         'ls /tmp',
-        {
-          "name": 'ls',
-          "flags": [],
-          "arguments": ['/tmp']
-        }
+        [
+          {
+            type: :command_name,
+            text: 'ls'
+          },
+          {
+            type: :unknown,
+            text: '/tmp'
+          }
+        ]
       ],
       [
         'ls -ld /tmp',
-        {
-          "name": 'ls',
-          "flags": ['-l', '-d'],
-          "arguments": ['/tmp']
-        }
+        [
+          {
+            type: :command_name,
+            text: 'ls'
+          },
+          {
+            type: :flag,
+            text: '-l'
+          },
+          {
+            type: :flag,
+            text: '-d'
+          },
+          {
+            type: :unknown,
+            text: '/tmp'
+          }
+        ]
       ],
       [
         'ls --color=auto',
-        {
-          "name": 'ls',
-          "flags": [['--color', 'auto']],
-          "arguments": []
-        }
+        [
+          {
+            type: :command_name,
+            text: 'ls'
+          },
+          {
+            type: :flag,
+            text: '--color',
+            value: 'auto'
+          }
+        ]
       ],
       [
         'git add --patch test.txt',
-        {
-          "name": 'git-add',
-          "flags": ['--patch'],
-          "arguments": ['test.txt']
-        }
-      ],
-      [
-        'docker build -t getting-started .',
-        {
-          "name": 'docker-build',
-          "flags": ['-t'],
-          "arguments": ['getting-started', '.']
-        }
+        [
+          {
+            type: :command_name,
+            text: 'git'
+          },
+          {
+            type: :command_name,
+            text: 'add'
+          },
+          {
+            type: :flag,
+            text: '--patch'
+          },
+          {
+            type: :unknown,
+            text: 'test.txt'
+          }
+        ]
       ],
       [
         'git checkout -b my-branch',
-        {
-          "name": 'git-checkout',
-          "flags": ['-b'],
-          "arguments": ['my-branch']
-        }
+        [
+          {
+            type: :command_name,
+            text: 'git'
+          },
+          {
+            type: :command_name,
+            text: 'checkout'
+          },
+          {
+            type: :flag,
+            text: '-b'
+          },
+          {
+            type: :unknown,
+            text: 'my-branch'
+          }
+        ]
       ]
     ].each do |string, expected|
       context string do
         it 'parses as expected' do
           parsed = described_class.parse(string)
-          expect(parsed.name).to eq(expected[:name])
-          expect(parsed.flags).to eq(expected[:flags])
-          expect(parsed.arguments).to eq(expected[:arguments])
+          expect(parsed.tokens).to eq(expected.map do |expected_token|
+            Command::Token.new(**expected_token)
+          end)
         end
       end
     end
 
-    context 'when flag takes argument' do
+    context 'when flag takes argument, but no manpage is provided' do
+      let(:cmd) { 'docker build -t getting-started .' }
+      let(:manpage) { nil }
+      it 'does not bind argument' do
+        expect(subject.tokens).to eq(
+          [
+            Command::Token.new(
+              type: :command_name,
+              text: 'docker'
+            ),
+            Command::Token.new(
+              type: :command_name,
+              text: 'build'
+            ),
+            Command::Token.new(
+              type: :flag,
+              text: '-t'
+            ),
+            Command::Token.new(
+              type: :unknown,
+              text: 'getting-started'
+            ),
+            Command::Token.new(
+              type: :unknown,
+              text: '.'
+            )
+          ]
+        )
+      end
+    end
+
+    context 'when flag takes argument and manpage is provided' do
       let(:cmd) { 'docker build -t getting-started .' }
       let(:manpage) { ManpageDirectory.get_manpage('docker-build') }
       it 'binds argument to flag' do
-        expect(subject.flags).to eq([['-t', 'getting-started']])
+        expect(subject.tokens).to eq(
+          [
+            Command::Token.new(
+              type: :command_name,
+              text: 'docker'
+            ),
+            Command::Token.new(
+              type: :command_name,
+              text: 'build'
+            ),
+            Command::Token.new(
+              type: :flag,
+              text: '-t',
+              value: 'getting-started'
+            ),
+            Command::Token.new(
+              type: :unknown,
+              text: '.'
+            )
+          ]
+        )
+      end
+    end
+
+    context 'when documented single-dash flag has multi-character name' do
+      let(:cmd) { 'find . -type f -print0' }
+      let(:manpage) { ManpageDirectory.get_manpage('find') }
+      it 'interprets flag correclty' do
+        expect(subject.tokens).to eq(
+          [
+            Command::Token.new(
+              type: :command_name,
+              text: 'find'
+            ),
+            Command::Token.new(
+              type: :unknown,
+              text: '.'
+            ),
+            Command::Token.new(
+              type: :flag,
+              text: '-type',
+              value: 'f'
+            ),
+            Command::Token.new(
+              type: :flag,
+              text: '-print0'
+            )
+          ]
+        )
       end
     end
   end

@@ -3,7 +3,11 @@
 <form action="/explain" method="get">
   <input id="top-search" name="cmd" type="text" autocapitalize="off" autocorrect="off" value="<%= @cmd %>">
 </form>
-<h2><%= @cmd %></h2>
+<h2 id="command">
+  <% @explanation.command_spans.map do |command_span| %>
+  <span><%= command_span %></span>
+  <% end %>
+</h2>
 <% @explanation.annotations.each do |annotation| %>
 <code><%= annotation.referenced_text %></code>
 <blockquote><%= annotation.text %></blockquote>

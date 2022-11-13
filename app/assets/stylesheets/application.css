@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+#command span {
+  border-bottom: 1px solid lightgray;
+}

@@ -7,8 +7,9 @@ class CommandParser
       }
     end
     tokens = label_command_name(tokens)
-    tokens = label_flags(tokens)
+    tokens = label_documented_flags(tokens:, manpage:)
     tokens = expand_combined_short_flags(tokens)
+    tokens = label_all_remaining_flags(tokens)
     tokens = interpret_equal_signs(tokens)
     tokens = assign_arguments(tokens:, manpage:)
     command_name = tokens.select do |token|
@@ -20,6 +21,12 @@ class CommandParser
       name: command_name,
       tokens:
     )
+  end
+
+  def self.token_string_representation(tokens)
+    tokens.map do |token|
+      "(#{token[:type]}:#{token[:text]})"
+    end.join(' ')
   end
 
   def self.label_command_name(tokens)
@@ -48,25 +55,37 @@ class CommandParser
     command
   end
 
-  def self.label_flags(tokens)
+  def self.label_all_remaining_flags(tokens)
     tokens.each do |token|
-      if token[:text].start_with?('--')
-        token[:type] = :longflag
-      elsif token[:text].start_with?('-')
-        token[:type] = :shortflag
-      end
+      token[:type] = :flag if token[:type] == :unknown && token[:text].start_with?('-')
     end
     tokens
   end
 
+  def self.label_documented_flags(tokens:, manpage:)
+    return tokens if manpage.nil?
+
+    documented_flags = Set.new(manpage.flags.flat_map(&:aliases))
+    tokens.map do |token|
+      if token[:type] == :unknown && documented_flags.include?(token[:text])
+        {
+          type: :flag,
+          text: token[:text]
+        }
+      else
+        token
+      end
+    end
+  end
+
   def self.expand_combined_short_flags(tokens)
     tokens.flat_map do |token|
-      if token[:type] == :shortflag
+      if token[:type] == :unknown && token[:text].match?(/^-[a-zA-Z0-9]/)
         chars = token[:text].chars
         chars.shift
         chars.map do |char|
           {
-            type: :shortflag,
+            type: :flag,
             text: "-#{char}"
           }
         end
@@ -78,10 +97,10 @@ class CommandParser
 
   def self.interpret_equal_signs(tokens)
     tokens.map do |token|
-      if token[:type] == :longflag && token[:text].include?('=')
+      if token[:type] == :flag && token[:text].include?('=')
         key_value = token[:text].split('=')
         {
-          type: :longflag,
+          type: :flag,
           text: key_value[0],
           value: key_value[1]
         }
@@ -95,7 +114,7 @@ class CommandParser
     new_tokens = []
     while tokens.length > 0
       token = tokens.shift
-      if %i[shortflag longflag].include?(token[:type]) && token[:value].nil?
+      if token[:type] == :flag && token[:value].nil?
         takes_argument = manpage&.get_flag(token[:text])&.takes_argument?
         token[:value] = tokens.shift[:text] if takes_argument && tokens.length > 0 && tokens.first[:type] == :unknown
       end

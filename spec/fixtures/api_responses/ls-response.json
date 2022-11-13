@@ -1,5 +1,29 @@
 {
-  "command_name": "ls",
+  "command": {
+    "name": "ls",
+    "tokens": [
+      {
+        "type": "command_name",
+        "text": "ls",
+        "value": null
+      },
+      {
+        "type": "flag",
+        "text": "-l",
+        "value": null
+      },
+      {
+        "type": "flag",
+        "text": "-t",
+        "value": null
+      },
+      {
+        "type": "flag",
+        "text": "-r",
+        "value": null
+      }
+    ]
+  },
   "command_description": "NAME \nls â list directory contents",
   "annotations": [
     {

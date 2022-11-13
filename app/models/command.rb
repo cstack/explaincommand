@@ -1,9 +1,9 @@
 class Command
-  attr_reader :name
+  attr_reader :name, :tokens
 
   def initialize(name:, tokens:)
     @name = name
-    @tokens = tokens
+    @tokens = tokens.map { |token_hash| Token.new(**token_hash) }
   end
 
   def ==(other)
@@ -12,23 +12,26 @@ class Command
            arguments == other.arguments
   end
 
-  def flags
-    @tokens.select do |token|
-      %i[shortflag longflag].include?(token[:type])
-    end.map do |token|
-      if token[:value].nil?
-        token[:text]
-      else
-        [token[:text], token[:value]]
-      end
-    end
-  end
+  class Token
+    attr_reader :text, :type
 
-  def arguments
-    @tokens.select do |token|
-      token[:type] == :unknown
-    end.map do |token|
-      token[:text]
+    def initialize(type:, text:, value: nil)
+      @type = type
+      @text = text
+      @value = value
+    end
+
+    def ==(other)
+      type = other.type &&
+             original_text == other.original_text
+    end
+
+    def original_text
+      if @type == :flag && !@value.nil?
+        "#{text} #{@value}"
+      else
+        text
+      end
     end
   end
 end
