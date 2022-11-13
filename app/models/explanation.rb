@@ -15,8 +15,8 @@ class Explanation
     )
     command.flags.each do |provided_flag|
       if provided_flag.is_a?(Array)
-        provided_flag = provided_flag[0]
         argument = provided_flag[1]
+        provided_flag = provided_flag[0]
         referenced_text = "#{provided_flag} #{argument}"
       else
         referenced_text = provided_flag

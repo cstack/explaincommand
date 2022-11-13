@@ -107,11 +107,13 @@ describe CommandParser do
       let(:cmd) { 'docker build -t getting-started .' }
       let(:manpage) { ManpageDirectory.get_manpage('docker-build') }
       it 'binds argument to flag' do
-        expect(subject).to eq(Command.new(
-                                "name": 'docker-build',
-                                "flags": [['-t', 'getting-started']],
-                                "arguments": ['.']
-                              ))
+        expect(subject).to eq(
+          Command.new(
+            "name": 'docker-build',
+            "flags": [['-t', 'getting-started']],
+            "arguments": ['.']
+          )
+        )
       end
     end
   end
