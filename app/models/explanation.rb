@@ -25,6 +25,8 @@ class Explanation
       next unless token.type == :flag
 
       flag_explanation = manpage.get_flag(token.text)
+      next if flag_explanation.nil?
+
       annotations << Annotation.new(
         referenced_text: token.original_text,
         text: flag_explanation.description
