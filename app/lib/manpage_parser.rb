@@ -7,7 +7,7 @@ class ManpageParser
     paragraphs.each do |paragraph|
       text = paragraph.text
       if is_paragraph_description?(text)
-        description = text
+        description = extract_description_from_paragraph(text)
         next
       end
       flag = extract_flags(text)
@@ -42,6 +42,10 @@ class ManpageParser
 
   def self.is_paragraph_description?(text)
     text.start_with?('NAME')
+  end
+
+  def self.extract_description_from_paragraph(text)
+    text.match(/^NAME\s+(.+)$/)[1]
   end
 
   def self.extract_flags(text)

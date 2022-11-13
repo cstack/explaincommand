@@ -1,5 +1,5 @@
 {
-  "description": "NAME \ngit-add - Add file contents to the index",
+  "description": "git-add - Add file contents to the index",
   "flags": [
     {
       "aliases": [

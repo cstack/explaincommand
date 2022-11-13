@@ -1,5 +1,5 @@
 {
-  "description": "NAME \nmkdir â make directories",
+  "description": "mkdir â make directories",
   "flags": [
     {
       "aliases": [

@@ -24,11 +24,11 @@
       }
     ]
   },
-  "command_description": "NAME \nls â list directory contents",
+  "command_description": "ls â list directory contents",
   "annotations": [
     {
       "referenced_text": "ls",
-      "text": "NAME \nls â list directory contents"
+      "text": "ls â list directory contents"
     },
     {
       "referenced_text": "-l",

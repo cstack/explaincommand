@@ -1,5 +1,5 @@
 {
-  "description": "NAME \ngit - the stupid content tracker",
+  "description": "git - the stupid content tracker",
   "flags": [
     {
       "aliases": [

@@ -1,5 +1,5 @@
 {
-  "description": "NAME \ngit-update-ref - Update the object name stored in a ref\nsafely",
+  "description": "git-update-ref - Update the object name stored in a ref",
   "flags": [
     {
       "aliases": [

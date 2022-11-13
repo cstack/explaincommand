@@ -1,5 +1,5 @@
 {
-  "description": "NAME \nls â list directory contents",
+  "description": "ls â list directory contents",
   "flags": [
     {
       "aliases": [

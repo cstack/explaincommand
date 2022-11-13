@@ -1,5 +1,5 @@
 {
-  "description": "NAME \ngit-checkout - Switch branches or restore working tree\nfiles",
+  "description": "git-checkout - Switch branches or restore working tree",
   "flags": [
     {
       "aliases": [
