@@ -1,30 +1,38 @@
 class CommandParser
   def self.parse(cmd, manpage: nil)
-    words = cmd.split
-    command = full_command(words)
-    flags = []
-    arguments = []
-    tokens = categorize_words(words)
+    tokens = cmd.split.map do |word|
+      {
+        type: :unknown,
+        text: word
+      }
+    end
+    tokens = label_command_name(tokens)
+    tokens = label_flags(tokens)
     tokens = expand_combined_short_flags(tokens)
     tokens = interpret_equal_signs(tokens)
     tokens = assign_arguments(tokens:, manpage:)
-    while tokens.length > 0
-      token = tokens.shift
-      if %i[shortflag longflag].include?(token[:type])
-        flags << if token[:value].nil?
-                   token[:text]
-                 else
-                   [token[:text], token[:value]]
-                 end
-      else
-        arguments << token[:text]
-      end
-    end
+    command_name = tokens.select do |token|
+      token[:type] == :command_name
+    end.map do |token|
+      token[:text]
+    end.join('-')
     Command.new(
-      name: command,
-      flags:,
-      arguments:
+      name: command_name,
+      tokens:
     )
+  end
+
+  def self.label_command_name(tokens)
+    num_words = 1
+    candidate_command_name = tokens.first[:text]
+    tokens.drop(1).each_with_index do |token, i|
+      candidate_command_name += '-' + token[:text]
+      num_words = i + 2 if ManpageDirectory.manpage_exists?(candidate_command_name)
+    end
+    tokens.first(num_words).each do |token|
+      token[:type] = :command_name
+    end
+    tokens
   end
 
   def self.full_command(words)
@@ -40,25 +48,15 @@ class CommandParser
     command
   end
 
-  def self.categorize_words(words)
-    words.map do |word|
-      if word.start_with?('--')
-        {
-          type: :longflag,
-          text: word
-        }
-      elsif word.start_with?('-')
-        {
-          type: :shortflag,
-          text: word
-        }
-      else
-        {
-          type: :unknown,
-          text: word
-        }
+  def self.label_flags(tokens)
+    tokens.each do |token|
+      if token[:text].start_with?('--')
+        token[:type] = :longflag
+      elsif token[:text].start_with?('-')
+        token[:type] = :shortflag
       end
     end
+    tokens
   end
 
   def self.expand_combined_short_flags(tokens)

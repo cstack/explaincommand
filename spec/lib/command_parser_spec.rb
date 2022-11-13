@@ -98,7 +98,9 @@ describe CommandParser do
       context string do
         it 'parses as expected' do
           parsed = described_class.parse(string)
-          expect(parsed).to eq(Command.new(**expected))
+          expect(parsed.name).to eq(expected[:name])
+          expect(parsed.flags).to eq(expected[:flags])
+          expect(parsed.arguments).to eq(expected[:arguments])
         end
       end
     end
@@ -107,13 +109,7 @@ describe CommandParser do
       let(:cmd) { 'docker build -t getting-started .' }
       let(:manpage) { ManpageDirectory.get_manpage('docker-build') }
       it 'binds argument to flag' do
-        expect(subject).to eq(
-          Command.new(
-            "name": 'docker-build',
-            "flags": [['-t', 'getting-started']],
-            "arguments": ['.']
-          )
-        )
+        expect(subject.flags).to eq([['-t', 'getting-started']])
       end
     end
   end
