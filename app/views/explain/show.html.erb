@@ -1,11 +1,12 @@
+<% content_for :content do %>
 <h1><a href="/">ExplainCommand</a></h1>
 <form action="/explain" method="get">
   <input id="top-search" name="cmd" type="text" autocapitalize="off" autocorrect="off" value="<%= @cmd %>">
 </form>
-<ul>
 <h2><%= @cmd %></h2>
-<h3><%= @explanation.command_description %></h3>
-<% @explanation.annotations.each do |flag| %>
-<li><%= flag.description %></li>
+<% @explanation.annotations.each do |annotation| %>
+<code><%= annotation.referenced_text %></code>
+<blockquote><%= annotation.text %></blockquote>
 <% end %>
-</ul>
+<% end %>
+<%= render template: "layouts/application" %>

@@ -1,3 +1,4 @@
+<% content_for :content do %>
 <h1><a href="/">ExplainCommand</a></h1>
 <form action="/explain" method="get">
   <input id="top-search" name="cmd" type="text" autocapitalize="off" autocorrect="off" placeholder="explain...">
@@ -17,3 +18,5 @@
     <a href="/explain?cmd=docker+build+-t+getting-started+.">docker build -t getting-started .</a>
   </li>
 </ul>
+<% end %>
+<%= render template: "layouts/application" %>
