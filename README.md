@@ -1,9 +1,20 @@
-# Import a man page
+# Explaincommand
+
+A tool to match command-line arguments to their help text.
+
+Inspired by https://github.com/idank/explainshell
+
+## Import a man page
 ```
 man ls | groff -T html - > data/manpages/ls.html
 ```
 
-# Run server
+## Import a help page
+```
+docker run --help > data/helppages/docker-run.txt
+```
+
+## Run server
 ```
 bundle exec rails s
 ```
