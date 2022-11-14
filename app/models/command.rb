@@ -3,7 +3,9 @@ class Command
 
   def initialize(name:, tokens:)
     @name = name
-    @tokens = tokens.map { |token_hash| Token.new(**token_hash) }
+    @tokens = tokens.zip(0...tokens.length).map do |token_hash, i|
+      Token.new(**token_hash.merge(id: i))
+    end
   end
 
   def ==(other)
@@ -12,10 +14,15 @@ class Command
            arguments == other.arguments
   end
 
-  class Token
-    attr_reader :text, :type
+  def command_name_tokens
+    tokens.select(&:command_name?)
+  end
 
-    def initialize(type:, text:, value: nil)
+  class Token
+    attr_reader :id, :text, :type
+
+    def initialize(type:, text:, value: nil, id: nil)
+      @id = id
       @type = type
       @text = text
       @value = value
@@ -32,6 +39,10 @@ class Command
       else
         text
       end
+    end
+
+    def command_name?
+      type == :command_name
     end
   end
 end

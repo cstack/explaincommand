@@ -17,3 +17,11 @@
 #command span {
   border-bottom: 1px solid lightgray;
 }
+
+#command span.highlighted {
+  background: yellow;
+}
+
+.annotation.highlighted {
+  background: yellow;
+}

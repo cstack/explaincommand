@@ -4,13 +4,15 @@
   <input id="top-search" name="cmd" type="text" autocapitalize="off" autocorrect="off" value="<%= @cmd %>">
 </form>
 <h2 id="command">
-  <% @explanation.command_spans.map do |command_span| %>
-  <span><%= command_span %></span>
+  <% @explanation.command.tokens.map do |token| %>
+  <span data-token-id="<%= token.id %>"><%= token.original_text %></span>
   <% end %>
 </h2>
 <% @explanation.annotations.each do |annotation| %>
-<code><%= annotation.referenced_text %></code>
-<blockquote><%= annotation.text %></blockquote>
+<div class="annotation" data-token-ids="<%= annotation.token_ids.join(" ") %>">
+  <code><%= annotation.referenced_text %></code>
+  <blockquote><%= annotation.text %></blockquote>
+</div>
 <% end %>
 <% end %>
 <%= render template: "layouts/application" %>

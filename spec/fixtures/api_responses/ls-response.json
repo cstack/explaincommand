@@ -3,21 +3,25 @@
     "name": "ls",
     "tokens": [
       {
+        "id": 0,
         "type": "command_name",
         "text": "ls",
         "value": null
       },
       {
+        "id": 1,
         "type": "flag",
         "text": "-l",
         "value": null
       },
       {
+        "id": 2,
         "type": "flag",
         "text": "-t",
         "value": null
       },
       {
+        "id": 3,
         "type": "flag",
         "text": "-r",
         "value": null
@@ -28,19 +32,31 @@
   "annotations": [
     {
       "referenced_text": "ls",
-      "text": "ls â list directory contents"
+      "text": "ls â list directory contents",
+      "token_ids": [
+        0
+      ]
     },
     {
       "referenced_text": "-l",
-      "text": "-l (The lowercase letter\nâellâ.) List files in the long format, as \ndescribed in the The Long Format subsection below."
+      "text": "-l (The lowercase letter\nâellâ.) List files in the long format, as \ndescribed in the The Long Format subsection below.",
+      "token_ids": [
+        1
+      ]
     },
     {
       "referenced_text": "-t",
-      "text": "-t Sort by descending time\nmodified (most recently modified first). \nIf two files have the same modification timestamp, sort\ntheir \nnames in ascending lexicographical order. The -r option\nreverses \nboth of these sort orders."
+      "text": "-t Sort by descending time\nmodified (most recently modified first). \nIf two files have the same modification timestamp, sort\ntheir \nnames in ascending lexicographical order. The -r option\nreverses \nboth of these sort orders.",
+      "token_ids": [
+        2
+      ]
     },
     {
       "referenced_text": "-r",
-      "text": "-r Reverse the order of the\nsort."
+      "text": "-r Reverse the order of the\nsort.",
+      "token_ids": [
+        3
+      ]
     }
   ]
 }

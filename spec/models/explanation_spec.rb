@@ -8,17 +8,19 @@ describe Explanation do
       let(:command) { CommandParser.parse('docker build -t getting-started .', manpage:) }
       let(:manpage) { ManpageDirectory.get_manpage('docker-build') }
       it 'explains the command' do
-        expect(subject.command_name).to eq('docker-build')
+        expect(subject.command.name).to eq('docker-build')
         expect(subject.command_description).to eq('Build an image from a Dockerfile')
         expect(subject.annotations).to eq(
           [
             Annotation.new(
               referenced_text: 'docker-build',
-              text: 'Build an image from a Dockerfile'
+              text: 'Build an image from a Dockerfile',
+              token_ids: [0, 1]
             ),
             Annotation.new(
               referenced_text: '-t getting-started',
-              text: "  -t, --tag list                Name and optionally a tag in the 'name:tag' format"
+              text: "  -t, --tag list                Name and optionally a tag in the 'name:tag' format",
+              token_ids: [2, 3]
             )
           ]
         )
