@@ -1,0 +1,26 @@
+{
+  "description": "Attach local standard input, output, and error streams to a running container",
+  "flags": [
+    {
+      "aliases": [
+        "--detach-keys"
+      ],
+      "description": "      --detach-keys string   Override the key sequence for detaching a container",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--no-stdin"
+      ],
+      "description": "      --no-stdin             Do not attach STDIN",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--sig-proxy"
+      ],
+      "description": "      --sig-proxy            Proxy all received signals to the process (default true)",
+      "takes_argument": false
+    }
+  ]
+}

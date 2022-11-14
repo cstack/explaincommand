@@ -1,0 +1,28 @@
+{
+  "description": "Import the contents from a tarball to create a filesystem image",
+  "flags": [
+    {
+      "aliases": [
+        "-c",
+        "--change"
+      ],
+      "description": "  -c, --change list       Apply Dockerfile instruction to the created image",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-m",
+        "--message"
+      ],
+      "description": "  -m, --message string    Set commit message for imported image",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--platform"
+      ],
+      "description": "      --platform string   Set platform if server is multi-platform capable",
+      "takes_argument": true
+    }
+  ]
+}

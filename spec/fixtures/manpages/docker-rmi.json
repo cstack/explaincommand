@@ -1,0 +1,20 @@
+{
+  "description": "Remove one or more images",
+  "flags": [
+    {
+      "aliases": [
+        "-f",
+        "--force"
+      ],
+      "description": "  -f, --force      Force removal of the image",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--no-prune"
+      ],
+      "description": "      --no-prune   Do not delete untagged parents",
+      "takes_argument": false
+    }
+  ]
+}

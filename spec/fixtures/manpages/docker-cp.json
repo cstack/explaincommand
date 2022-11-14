@@ -1,0 +1,21 @@
+{
+  "description": "\tdocker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH",
+  "flags": [
+    {
+      "aliases": [
+        "-a",
+        "--archive"
+      ],
+      "description": "  -a, --archive       Archive mode (copy all uid/gid information)",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-L",
+        "--follow-link"
+      ],
+      "description": "  -L, --follow-link   Always follow symbol link in SRC_PATH",
+      "takes_argument": false
+    }
+  ]
+}

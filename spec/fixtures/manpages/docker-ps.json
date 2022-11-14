@@ -1,0 +1,67 @@
+{
+  "description": "List containers",
+  "flags": [
+    {
+      "aliases": [
+        "-a",
+        "--all"
+      ],
+      "description": "  -a, --all             Show all containers (default shows just running)",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-f",
+        "--filter"
+      ],
+      "description": "  -f, --filter filter   Filter output based on conditions provided",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--format"
+      ],
+      "description": "      --format string   Pretty-print containers using a Go template",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-n",
+        "--last"
+      ],
+      "description": "  -n, --last int        Show n last created containers (includes all states) (default -1)",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-l",
+        "--latest"
+      ],
+      "description": "  -l, --latest          Show the latest created container (includes all states)",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--no-trunc"
+      ],
+      "description": "      --no-trunc        Don't truncate output",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-q",
+        "--quiet"
+      ],
+      "description": "  -q, --quiet           Only display container IDs",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-s",
+        "--size"
+      ],
+      "description": "  -s, --size            Display total file sizes",
+      "takes_argument": false
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "description": "Search the Docker Hub for images",
+  "flags": [
+    {
+      "aliases": [
+        "-f",
+        "--filter"
+      ],
+      "description": "  -f, --filter filter   Filter output based on conditions provided",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--format"
+      ],
+      "description": "      --format string   Pretty-print search using a Go template",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--limit"
+      ],
+      "description": "      --limit int       Max number of search results (default 25)",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--no-trunc"
+      ],
+      "description": "      --no-trunc        Don't truncate output",
+      "takes_argument": false
+    }
+  ]
+}

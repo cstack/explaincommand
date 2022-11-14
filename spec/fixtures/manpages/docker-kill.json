@@ -1,0 +1,13 @@
+{
+  "description": "Kill one or more running containers",
+  "flags": [
+    {
+      "aliases": [
+        "-s",
+        "--signal"
+      ],
+      "description": "  -s, --signal string   Signal to send to the container (default \"KILL\")",
+      "takes_argument": true
+    }
+  ]
+}

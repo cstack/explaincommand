@@ -1,0 +1,29 @@
+{
+  "description": "Remove one or more containers",
+  "flags": [
+    {
+      "aliases": [
+        "-f",
+        "--force"
+      ],
+      "description": "  -f, --force     Force the removal of a running container (uses SIGKILL)",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-l",
+        "--link"
+      ],
+      "description": "  -l, --link      Remove the specified link",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-v",
+        "--volumes"
+      ],
+      "description": "  -v, --volumes   Remove anonymous volumes associated with the container",
+      "takes_argument": false
+    }
+  ]
+}

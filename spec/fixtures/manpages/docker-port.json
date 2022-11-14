@@ -1,0 +1,6 @@
+{
+  "description": "List port mappings or a specific mapping for the container",
+  "flags": [
+
+  ]
+}

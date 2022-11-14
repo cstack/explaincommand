@@ -1,0 +1,112 @@
+{
+  "description": "Update configuration of one or more containers",
+  "flags": [
+    {
+      "aliases": [
+        "--blkio-weight"
+      ],
+      "description": "      --blkio-weight uint16        Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--cpu-period"
+      ],
+      "description": "      --cpu-period int             Limit CPU CFS (Completely Fair Scheduler) period",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--cpu-quota"
+      ],
+      "description": "      --cpu-quota int              Limit CPU CFS (Completely Fair Scheduler) quota",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--cpu-rt-period"
+      ],
+      "description": "      --cpu-rt-period int          Limit the CPU real-time period in microseconds",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--cpu-rt-runtime"
+      ],
+      "description": "      --cpu-rt-runtime int         Limit the CPU real-time runtime in microseconds",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-c",
+        "--cpu-shares"
+      ],
+      "description": "  -c, --cpu-shares int             CPU shares (relative weight)",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--cpus"
+      ],
+      "description": "      --cpus decimal               Number of CPUs",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--cpuset-cpus"
+      ],
+      "description": "      --cpuset-cpus string         CPUs in which to allow execution (0-3, 0,1)",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--cpuset-mems"
+      ],
+      "description": "      --cpuset-mems string         MEMs in which to allow execution (0-3, 0,1)",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--kernel-memory"
+      ],
+      "description": "      --kernel-memory bytes        Kernel memory limit",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-m",
+        "--memory"
+      ],
+      "description": "  -m, --memory bytes               Memory limit",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--memory-reservation"
+      ],
+      "description": "      --memory-reservation bytes   Memory soft limit",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--memory-swap"
+      ],
+      "description": "      --memory-swap bytes          Swap limit equal to memory plus swap: '-1' to enable unlimited swap",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--pids-limit"
+      ],
+      "description": "      --pids-limit int             Tune container pids limit (set -1 for unlimited)",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--restart"
+      ],
+      "description": "      --restart string             Restart policy to apply when a container exits",
+      "takes_argument": true
+    }
+  ]
+}

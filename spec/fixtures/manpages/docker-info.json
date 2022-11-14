@@ -1,0 +1,20 @@
+{
+  "description": "Display system-wide information",
+  "flags": [
+    {
+      "aliases": [
+        "-wide"
+      ],
+      "description": "Display system-wide information",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-f",
+        "--format"
+      ],
+      "description": "  -f, --format string   Format the output using the given Go template",
+      "takes_argument": true
+    }
+  ]
+}

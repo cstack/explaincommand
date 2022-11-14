@@ -1,0 +1,13 @@
+{
+  "description": "Save one or more images to a tar archive (streamed to STDOUT by default)",
+  "flags": [
+    {
+      "aliases": [
+        "-o",
+        "--output"
+      ],
+      "description": "  -o, --output string   Write to a file, instead of STDOUT",
+      "takes_argument": true
+    }
+  ]
+}

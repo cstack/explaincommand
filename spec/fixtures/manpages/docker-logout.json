@@ -1,0 +1,13 @@
+{
+  "description": "Log out from a Docker registry or cloud backend.",
+  "flags": [
+    {
+      "aliases": [
+        "-h",
+        "--help"
+      ],
+      "description": "  -h, --help   Help for logout",
+      "takes_argument": false
+    }
+  ]
+}

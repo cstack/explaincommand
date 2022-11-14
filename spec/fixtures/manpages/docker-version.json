@@ -1,0 +1,28 @@
+{
+  "description": "Show the Docker version information",
+  "flags": [
+    {
+      "aliases": [
+        "-f",
+        "--format"
+      ],
+      "description": "  -f, --format string       Format the output. Values: [pretty | json]. (Default: pretty)",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-h",
+        "--help"
+      ],
+      "description": "  -h, --help                Help for version",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--kubeconfig"
+      ],
+      "description": "      --kubeconfig string   Kubernetes config file",
+      "takes_argument": true
+    }
+  ]
+}
