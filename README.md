@@ -14,10 +14,24 @@ man ls | groff -T html - > data/manpages/ls.html
 docker run --help > data/helppages/docker-run.txt
 ```
 
-## Run server
+## Run server locally
 ```
 bundle exec rails s
 ```
+Then visit:
+http://localhost:3000/explain?cmd=ls%20-lof
+
+Or request json results:
+```
+curl -H "Accept: application/json" "http://localhost:3000/explain?cmd=ls+-l"
+```
+
+## Run server in Docker
+```
+make build
+make run
+```
+
 Then visit:
 http://localhost:3000/explain?cmd=ls%20-lof
 
