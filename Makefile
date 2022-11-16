@@ -6,3 +6,8 @@ build:
 
 run:
 	docker run -p 3000:3000 explaincommand
+
+python:
+	virtualenv -p python3 venv
+	source venv/bin/activate
+	pip install bashlex
