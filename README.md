@@ -2,6 +2,8 @@
 
 A tool to match command-line arguments to their help text.
 
+Live version: https://shielded-basin-58652.herokuapp.com/
+
 Inspired by https://github.com/idank/explainshell
 
 ## Import a man page
@@ -39,3 +41,11 @@ Or request json results:
 ```
 curl -H "Accept: application/json" "http://localhost:3000/explain?cmd=ls+-l"
 ```
+
+## Deploy to Heroku
+
+```
+git push heroku main
+```
+
+Visit https://shielded-basin-58652.herokuapp.com/
