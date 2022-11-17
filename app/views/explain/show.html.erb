@@ -12,6 +12,9 @@
 <div class="annotation" data-token-ids="<%= annotation.token_ids.join(" ") %>">
   <code><%= annotation.referenced_text %></code>
   <blockquote><%= annotation.text %></blockquote>
+  <% if annotation.source_link.present? %>
+  <a href="<%= annotation.source_link %>"><%= annotation.source_description %></a>
+  <% end %>
 </div>
 <% end %>
 <% end %>

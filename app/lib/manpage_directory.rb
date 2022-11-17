@@ -7,7 +7,7 @@ class ManpageDirectory
     elsif File.exist?(helppage_filepath(command))
       ManpageParser.parse_helppage_string(File.read(helppage_filepath(command)))
     else
-      raise ManpageDoesNotExist, "Manpage for command `#{command}` does not exist" unless manpage_exists?(command)
+      Manpage::UnknownCommand.new
     end
   end
 

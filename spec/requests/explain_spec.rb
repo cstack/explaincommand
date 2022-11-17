@@ -21,4 +21,15 @@ RSpec.describe '/explain', type: :request do
       expect(JSON.parse(response.body)).to eq(JSON.parse(File.read(fixture_path)))
     end
   end
+
+  context 'for a command that does not exist' do
+    it 'displays the explanation for a command' do
+      get '/explain', params: { cmd: 'does-not-exist' }
+
+      expect(response.body).to include('does-not-exist')
+      expect(response.body).to include('Unknown command')
+      expect(response.body).to include('Contribute missing documentation')
+      expect(response.body).to include('https://github.com/cstack/explaincommand#import-a-man-page')
+    end
+  end
 end

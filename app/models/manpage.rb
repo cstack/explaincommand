@@ -31,4 +31,26 @@ class Manpage
       flag.aliases.include?(string)
     end
   end
+
+  def source_link
+    nil
+  end
+
+  def source_description
+    nil
+  end
+
+  class UnknownCommand < Manpage
+    def initialize
+      super(description: 'Unknown command', flags: [])
+    end
+
+    def source_link
+      'https://github.com/cstack/explaincommand#import-a-man-page'
+    end
+
+    def source_description
+      'Contribute missing documentation'
+    end
+  end
 end

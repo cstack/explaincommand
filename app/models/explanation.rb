@@ -12,7 +12,9 @@ class Explanation
     annotations << Annotation.new(
       referenced_text: command.name,
       text: manpage.description,
-      token_ids: command.command_name_tokens.map(&:id)
+      token_ids: command.command_name_tokens.map(&:id),
+      source_link: manpage.source_link,
+      source_description: manpage.source_description
     )
     command.tokens.each do |token|
       next unless token.type == :flag
