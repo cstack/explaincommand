@@ -33,7 +33,7 @@ class CommandParser
     num_words = 1
     candidate_command_name = tokens.first[:text]
     tokens.drop(1).each_with_index do |token, i|
-      candidate_command_name += '-' + token[:text]
+      candidate_command_name += "-#{token[:text]}"
       num_words = i + 2 if ManpageDirectory.manpage_exists?(candidate_command_name)
     end
     tokens.first(num_words).each do |token|
