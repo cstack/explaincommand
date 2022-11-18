@@ -6,7 +6,7 @@ class ManpageParser
     paragraphs = html.css('p')
     paragraphs.each do |paragraph|
       text = paragraph.text
-      if is_paragraph_description?(text)
+      if paragraph_description?(text)
         description = extract_description_from_paragraph(text)
         next
       end
@@ -40,7 +40,7 @@ class ManpageParser
     )
   end
 
-  def self.is_paragraph_description?(text)
+  def self.paragraph_description?(text)
     text.start_with?('NAME')
   end
 
