@@ -21,8 +21,7 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 Style/GlobalStdStream:
   Enabled: false
-Style/IfUnlessModifier:
-  Enabled: false
+
 Style/MultilineBlockChain:
   Enabled: false
 Style/NumericPredicate:
