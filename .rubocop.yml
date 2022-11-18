@@ -1,0 +1,65 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+Layout/LineLength:
+  Enabled: false
+Lint/UselessAssignment:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Metrics/ClassLength:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+Naming/MethodParameterName:
+  Enabled: false
+Naming/PredicateName:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/CombinableLoops:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/GlobalStdStream:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+Style/MultilineBlockChain:
+  Enabled: false
+Style/NumericPredicate:
+  Enabled: false
+Style/RedundantFetchBlock:
+  Enabled: false
+Style/SpecialGlobalVars:
+  Enabled: false
+Style/StringConcatenation:
+  Enabled: false
+Style/ZeroLengthPredicate:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/ContextWording:
+  Enabled: false
+RSpec/NamedSubject:
+  Enabled: false
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/EmptyLineAfterFinalLet:
+  Enabled: false
+RSpec/RepeatedExampleGroupDescription:
+  Enabled: false
+RSpec/RepeatedExampleGroupBody:
+  Enabled: false
+RSpec/EmptyLineAfterSubject:
+  Enabled: false
+Rails/ApplicationController:
+  Enabled: false

@@ -60,6 +60,8 @@ group :development do
   # gem "spring"
 
   gem 'rubocop'
+  gem 'rubocop-rails'
+  gem 'rubocop-rspec'
 end
 
 group :test do
