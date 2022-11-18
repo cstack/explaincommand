@@ -49,5 +49,3 @@ RSpec/RepeatedExampleGroupDescription:
   Enabled: false
 RSpec/RepeatedExampleGroupBody:
   Enabled: false
-RSpec/EmptyLineAfterSubject:
-  Enabled: false

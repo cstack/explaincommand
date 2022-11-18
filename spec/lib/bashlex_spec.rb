@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe Bashlex do
   subject { described_class.parse(string) }
+
   context 'two simple commands joined by an operator' do
     let(:string) { 'true && false' }
     xit 'parses correctly' do

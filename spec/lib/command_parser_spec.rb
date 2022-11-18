@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe CommandParser do
   subject { described_class.parse(cmd, manpage:) }
+
   let(:manpage) { nil }
 
   describe '.parse' do
