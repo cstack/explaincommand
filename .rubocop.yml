@@ -25,7 +25,6 @@ Style/MultilineBlockChain:
   Enabled: false
 Style/NumericPredicate:
   Enabled: false
-
 Style/ZeroLengthPredicate:
   Enabled: false
 RSpec/MultipleExpectations:
