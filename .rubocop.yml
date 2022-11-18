@@ -13,8 +13,6 @@ Metrics/MethodLength:
   Enabled: false
 Metrics/PerceivedComplexity:
   Enabled: false
-Style/ClassAndModuleChildren:
-  Enabled: false
 Style/CombinableLoops:
   Enabled: false
 Style/Documentation:
