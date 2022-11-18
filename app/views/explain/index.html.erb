@@ -5,18 +5,11 @@
 </form>
 <h2>Examples</h2>
 <ul>
+<% @examples.each do |example| %>
   <li>
-    <a href="/explain?cmd=ls+-ltr">ls -ltr</a>
+    <a href="/explain?cmd=<%= ERB::Util.url_encode(example) %>"><%= example %></a>
   </li>
-  <li>
-    <a href="/explain?cmd=git+update-ref+-d+HEAD">git update-ref -d HEAD</a>
-  </li>
-  <li>
-    <a href="/explain?cmd=find%20.%20-type%20f%20-print0">find . -type f -print0</a>
-  </li>
-  <li>
-    <a href="/explain?cmd=docker+build+-t+getting-started+.">docker build -t getting-started .</a>
-  </li>
+<% end %>
 </ul>
 <% end %>
 <%= render template: "layouts/application" %>
