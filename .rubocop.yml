@@ -3,8 +3,6 @@ require:
   - rubocop-rspec
 Layout/LineLength:
   Enabled: false
-Lint/UselessAssignment:
-  Enabled: false
 Metrics/AbcSize:
   Enabled: false
 Metrics/BlockLength:

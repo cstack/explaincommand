@@ -9,9 +9,9 @@ class Command
   end
 
   def ==(other)
-    name = other.name &&
-           flags == other.flags &&
-           arguments == other.arguments
+    name == other.name &&
+      flags == other.flags &&
+      arguments == other.arguments
   end
 
   def command_name_tokens
@@ -29,8 +29,8 @@ class Command
     end
 
     def ==(other)
-      type = other.type &&
-             original_text == other.original_text
+      type == other.type &&
+        original_text == other.original_text
     end
 
     def original_text
