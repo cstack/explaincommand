@@ -19,11 +19,11 @@ class Manpage
     new(**ruby_hash)
   end
 
-  def to_json(*a)
+  def to_json(*args)
     {
       'description' => description,
       'flags' => flags
-    }.to_json(*a)
+    }.to_json(*args)
   end
 
   def get_flag(string)

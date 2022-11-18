@@ -27,11 +27,11 @@ class Flag
     new(**ruby_hash.transform_keys(&:to_sym))
   end
 
-  def to_json(*a)
+  def to_json(*args)
     {
       'aliases' => aliases,
       'description' => description,
       'takes_argument' => takes_argument
-    }.to_json(*a)
+    }.to_json(*args)
   end
 end

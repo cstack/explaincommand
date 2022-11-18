@@ -14,10 +14,10 @@ class Annotation
       text == other.text
   end
 
-  def to_json(*a)
+  def to_json(*args)
     {
       'referenced_text' => referenced_text,
       'text' => text
-    }.to_json(*a)
+    }.to_json(*args)
   end
 end

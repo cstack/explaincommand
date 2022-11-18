@@ -13,8 +13,6 @@ Metrics/MethodLength:
   Enabled: false
 Metrics/PerceivedComplexity:
   Enabled: false
-Naming/MethodParameterName:
-  Enabled: false
 Naming/PredicateName:
   Enabled: false
 Style/ClassAndModuleChildren:
