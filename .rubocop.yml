@@ -47,5 +47,3 @@ RSpec/EmptyLineAfterFinalLet:
   Enabled: false
 RSpec/RepeatedExampleGroupDescription:
   Enabled: false
-RSpec/RepeatedExampleGroupBody:
-  Enabled: false

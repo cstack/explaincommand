@@ -85,14 +85,6 @@ describe ManpageParser do
       end
     end
 
-    context 'has a multi-word flag' do
-      let(:text) { '--multi-word-flag is treated as a single flag' }
-      it 'only extracts the flags at the beginning' do
-        expect(subject.aliases).to eq(['--multi-word-flag'])
-        expect(subject.takes_argument).to eq(false)
-      end
-    end
-
     context 'takes an argument' do
       let(:text) { "  -f, --file string             Name of the Dockerfile (Default is 'PATH/Dockerfile')" }
       it 'recognizes the argument' do
