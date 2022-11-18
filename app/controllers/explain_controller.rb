@@ -1,4 +1,4 @@
-class ExplainController < ActionController::Base
+class ExplainController < ApplicationController
   def index; end
 
   def show
