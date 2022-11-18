@@ -12,13 +12,7 @@ class CommandParser
     tokens = label_all_remaining_flags(tokens)
     tokens = interpret_equal_signs(tokens)
     tokens = assign_arguments(tokens:, manpage:)
-    command_name = tokens.select do |token|
-      token[:type] == :command_name
-    end.map do |token|
-      token[:text]
-    end.join('-')
     Command.new(
-      name: command_name,
       tokens:
     )
   end

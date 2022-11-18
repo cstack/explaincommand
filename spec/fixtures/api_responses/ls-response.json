@@ -1,6 +1,5 @@
 {
   "command": {
-    "name": "ls",
     "tokens": [
       {
         "id": 0,

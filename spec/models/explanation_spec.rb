@@ -9,12 +9,11 @@ describe Explanation do
       let(:manpage) { ManpageDirectory.get_manpage('docker-build') }
 
       it 'explains the command' do
-        expect(subject.command.name).to eq('docker-build')
         expect(subject.command_description).to eq('Build an image from a Dockerfile')
         expect(subject.annotations).to eq(
           [
             Annotation.new(
-              referenced_text: 'docker-build',
+              referenced_text: 'docker build',
               text: 'Build an image from a Dockerfile',
               token_ids: [0, 1]
             ),

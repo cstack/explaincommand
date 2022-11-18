@@ -10,7 +10,7 @@ class Explanation
   def self.from_manpage(manpage:, command:)
     annotations = []
     annotations << Annotation.new(
-      referenced_text: command.name,
+      referenced_text: command.display_name,
       text: manpage.description,
       token_ids: command.command_name_tokens.map(&:id),
       source_link: manpage.source_link,
