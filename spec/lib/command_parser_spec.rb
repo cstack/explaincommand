@@ -184,6 +184,7 @@ describe CommandParser do
     context 'when flag takes argument, but no manpage is provided' do
       let(:cmd) { 'docker build -t getting-started .' }
       let(:manpage) { nil }
+
       it 'does not bind argument' do
         expect(subject.tokens).to eq(
           [
@@ -215,6 +216,7 @@ describe CommandParser do
     context 'when flag takes argument and manpage is provided' do
       let(:cmd) { 'docker build -t getting-started .' }
       let(:manpage) { ManpageDirectory.get_manpage('docker-build') }
+
       it 'binds argument to flag' do
         expect(subject.tokens).to eq(
           [
@@ -243,6 +245,7 @@ describe CommandParser do
     context 'when documented single-dash flag has multi-character name' do
       let(:cmd) { 'find . -type f -print0' }
       let(:manpage) { ManpageDirectory.get_manpage('find') }
+
       it 'interprets flag correclty' do
         expect(subject.tokens).to eq(
           [

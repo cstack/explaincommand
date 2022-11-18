@@ -6,6 +6,7 @@ describe ManpageDirectory do
 
     context 'when manpage exists' do
       let(:command) { 'ls' }
+
       it 'is true' do
         expect(subject).to eq(true)
       end
@@ -13,6 +14,7 @@ describe ManpageDirectory do
 
     context 'when manpage does not exist' do
       let(:command) { 'does-not-exist' }
+
       it 'is false' do
         expect(subject).to eq(false)
       end

@@ -7,6 +7,7 @@ describe Explanation do
     context 'docker build command' do
       let(:command) { CommandParser.parse('docker build -t getting-started .', manpage:) }
       let(:manpage) { ManpageDirectory.get_manpage('docker-build') }
+
       it 'explains the command' do
         expect(subject.command.name).to eq('docker-build')
         expect(subject.command_description).to eq('Build an image from a Dockerfile')

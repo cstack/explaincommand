@@ -6,6 +6,7 @@ describe Explainer do
 
     context 'basic command' do
       let(:command) { 'ls -ltr /tmp' }
+
       it 'explains the command' do
         expect(subject).to be_a(Explanation)
         expect(subject.command.name).to eq('ls')
@@ -22,6 +23,7 @@ describe Explainer do
 
     context 'with a subcommand' do
       let(:command) { 'git add test.txt' }
+
       it 'identifies the manpage for the subcommand' do
         expect(subject.command.name).to eq('git-add')
       end
