@@ -21,13 +21,11 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 Style/GlobalStdStream:
   Enabled: false
-
 Style/MultilineBlockChain:
   Enabled: false
 Style/NumericPredicate:
   Enabled: false
-Style/RedundantFetchBlock:
-  Enabled: false
+
 Style/SpecialGlobalVars:
   Enabled: false
 Style/StringConcatenation:
