@@ -16,17 +16,30 @@ class Explanation
       source_link: manpage.source_link,
       source_description: manpage.source_description
     )
+    remaining_positional_arguments = manpage.positional_arguments
     command.tokens.each do |token|
-      next unless token.type == :flag
+      if token.type == :flag
+        flag_explanation = manpage.get_flag(token.text)
+        next if flag_explanation.nil?
 
-      flag_explanation = manpage.get_flag(token.text)
-      next if flag_explanation.nil?
+        annotations << Annotation.new(
+          referenced_text: token.original_text,
+          text: flag_explanation.description,
+          token_ids: [token.id]
+        )
+      elsif token.type == :positional_argument
+        argument_explanation = remaining_positional_arguments[0]
+        remaining_positional_arguments.shift unless argument_explanation[:repeated]
+        next if argument_explanation.nil?
 
-      annotations << Annotation.new(
-        referenced_text: token.original_text,
-        text: flag_explanation.description,
-        token_ids: [token.id]
-      )
+        argument_name = argument_explanation[:name]
+
+        annotations << Annotation.new(
+          referenced_text: token.original_text,
+          text: argument_name,
+          token_ids: [token.id]
+        )
+      end
     end
     new(command:, command_description: manpage.description, annotations:)
   end

@@ -11,7 +11,8 @@ class CommandParser
     tokens = expand_combined_short_flags(tokens)
     tokens = label_all_remaining_flags(tokens)
     tokens = interpret_equal_signs(tokens)
-    tokens = assign_arguments(tokens:, manpage:)
+    tokens = assign_arguments_to_flags(tokens:, manpage:)
+    tokens = label_documented_positional_arguments(tokens:, manpage:)
     Command.new(
       tokens:
     )
@@ -98,7 +99,7 @@ class CommandParser
     end
   end
 
-  def self.assign_arguments(tokens:, manpage:)
+  def self.assign_arguments_to_flags(tokens:, manpage:)
     new_tokens = []
     while tokens.length > 0
       token = tokens.shift
@@ -109,5 +110,22 @@ class CommandParser
       new_tokens << token
     end
     new_tokens
+  end
+
+  def self.label_documented_positional_arguments(tokens:, manpage:)
+    return tokens if manpage.nil?
+
+    num_positional_arguments = manpage.positional_arguments.length
+    has_repeated_arg = manpage.positional_arguments.any? { |arg| arg[:repeated] }
+    tokens.map do |token|
+      next token unless token[:type] == :unknown
+      next token unless num_positional_arguments > 0 || has_repeated_arg
+
+      num_positional_arguments -= 1
+      {
+        type: :positional_argument,
+        text: token[:text]
+      }
+    end
   end
 end

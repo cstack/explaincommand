@@ -13,7 +13,8 @@ describe Explainer do
             'ls',
             '-l',
             '-t',
-            '-r'
+            '-r',
+            '/tmp'
           ]
         )
       end
@@ -25,7 +26,8 @@ describe Explainer do
       it 'identifies the manpage for the subcommand' do
         expect(subject.annotations.map(&:referenced_text)).to eq(
           [
-            'git add'
+            'git add',
+            'test.txt'
           ]
         )
       end

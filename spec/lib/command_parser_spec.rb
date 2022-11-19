@@ -254,7 +254,7 @@ describe CommandParser do
               text: 'find'
             ),
             Command::Token.new(
-              type: :unknown,
+              type: :positional_argument,
               text: '.'
             ),
             Command::Token.new(
@@ -265,6 +265,30 @@ describe CommandParser do
             Command::Token.new(
               type: :flag,
               text: '-print0'
+            )
+          ]
+        )
+      end
+    end
+
+    context 'when command uses documented positional arguments' do
+      let(:cmd) { 'chmod 600 id_rsa_gh_deploy' }
+      let(:manpage) { ManpageDirectory.get_manpage(command_name: 'find', subcommand: nil) }
+
+      it 'labels positional arguments' do
+        expect(subject.tokens).to eq(
+          [
+            Command::Token.new(
+              type: :command_name,
+              text: 'chmod'
+            ),
+            Command::Token.new(
+              type: :positional_argument,
+              text: '600'
+            ),
+            Command::Token.new(
+              type: :positional_argument,
+              text: 'id_rsa_gh_deploy'
             )
           ]
         )

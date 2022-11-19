@@ -26,5 +26,32 @@ describe Explanation do
         )
       end
     end
+
+    context 'with positional arguments' do
+      let(:command) { CommandParser.parse('chmod 600 id_rsa_gh_deploy', manpage:) }
+      let(:manpage) { ManpageDirectory.get_manpage(command_name: 'chmod', subcommand: nil) }
+
+      it 'explains the command' do
+        expect(subject.annotations).to eq(
+          [
+            Annotation.new(
+              referenced_text: 'chmod',
+              text: 'chmod â change file modes or Access Control Lists',
+              token_ids: [0]
+            ),
+            Annotation.new(
+              referenced_text: '600',
+              text: 'mode',
+              token_ids: [1]
+            ),
+            Annotation.new(
+              referenced_text: 'id_rsa_gh_deploy',
+              text: 'file',
+              token_ids: [2]
+            )
+          ]
+        )
+      end
+    end
   end
 end
