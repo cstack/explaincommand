@@ -75,11 +75,7 @@ class ManpageParser
     where_flags_end = flags_with_match_data_at_beginning.last.last.end(0)
     text_after_flags = text[where_flags_end, text.length]
     spacers = text_after_flags.scan(/\s+/)
-    takes_argument = if spacers.length > 1 && spacers[0].length == 1 && spacers[1].length > 1
-                       true
-                     else
-                       false
-                     end
+    takes_argument = spacers.length > 1 && spacers[0].length == 1 && spacers[1].length > 1
     Flag.new(aliases:, description: text, takes_argument:)
   end
 
