@@ -25,5 +25,8 @@
       "description": "  -v, --volumes   Remove anonymous volumes associated with the container",
       "takes_argument": false
     }
+  ],
+  "positional_arguments": [
+
   ]
 }

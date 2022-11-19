@@ -9,5 +9,8 @@
       "description": "  -h, --help   Help for logout",
       "takes_argument": false
     }
+  ],
+  "positional_arguments": [
+
   ]
 }

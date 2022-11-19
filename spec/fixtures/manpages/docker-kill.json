@@ -9,5 +9,8 @@
       "description": "  -s, --signal string   Signal to send to the container (default \"KILL\")",
       "takes_argument": true
     }
+  ],
+  "positional_arguments": [
+
   ]
 }

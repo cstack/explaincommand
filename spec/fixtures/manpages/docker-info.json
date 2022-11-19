@@ -16,5 +16,8 @@
       "description": "  -f, --format string   Format the output using the given Go template",
       "takes_argument": true
     }
+  ],
+  "positional_arguments": [
+
   ]
 }

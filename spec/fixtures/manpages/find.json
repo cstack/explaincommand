@@ -621,5 +621,31 @@
       "description": "The -mindepth and -maxdepth\nprimaries are actually global options (as \ndocumented above). They should probably be replaced by\noptions which \nlook like options.",
       "takes_argument": false
     }
+  ],
+  "positional_arguments": [
+    {
+      "name": "path",
+      "repeated": true
+    },
+    {
+      "name": "[expression]",
+      "repeated": false
+    },
+    {
+      "name": "find",
+      "repeated": false
+    },
+    {
+      "name": "path",
+      "repeated": false
+    },
+    {
+      "name": "[path ...]",
+      "repeated": false
+    },
+    {
+      "name": "[expression]",
+      "repeated": false
+    }
   ]
 }

@@ -31,5 +31,8 @@
       "description": "      --type string     Return JSON for specified type",
       "takes_argument": true
     }
+  ],
+  "positional_arguments": [
+
   ]
 }

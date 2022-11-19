@@ -1,9 +1,10 @@
 class Manpage
-  attr_reader :flags, :description
+  attr_reader :flags, :description, :positional_arguments
 
-  def initialize(description:, flags:)
+  def initialize(description:, flags:, positional_arguments:)
     @description = description
     @flags = flags
+    @positional_arguments = positional_arguments
   end
 
   def ==(other)
@@ -22,7 +23,8 @@ class Manpage
   def to_json(*args)
     {
       'description' => description,
-      'flags' => flags
+      'flags' => flags,
+      'positional_arguments' => positional_arguments
     }.to_json(*args)
   end
 
@@ -42,7 +44,7 @@ class Manpage
 
   class UnknownCommand < Manpage
     def initialize
-      super(description: 'Unknown command', flags: [])
+      super(description: 'Unknown command', flags: [], positional_arguments: [])
     end
 
     def source_link

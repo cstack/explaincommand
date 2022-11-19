@@ -30,5 +30,8 @@
       "description": "      --no-trunc        Don't truncate output",
       "takes_argument": false
     }
+  ],
+  "positional_arguments": [
+
   ]
 }

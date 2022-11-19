@@ -32,5 +32,8 @@
       "description": "  -u, --username string   username",
       "takes_argument": true
     }
+  ],
+  "positional_arguments": [
+
   ]
 }

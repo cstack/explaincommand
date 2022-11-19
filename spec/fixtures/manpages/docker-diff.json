@@ -2,5 +2,8 @@
   "description": "Inspect changes to files or directories on a container's filesystem",
   "flags": [
 
+  ],
+  "positional_arguments": [
+
   ]
 }

@@ -17,5 +17,8 @@
       "description": "  -q, --quiet          Suppress the load output",
       "takes_argument": false
     }
+  ],
+  "positional_arguments": [
+
   ]
 }

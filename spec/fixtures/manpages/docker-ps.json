@@ -63,5 +63,8 @@
       "description": "  -s, --size            Display total file sizes",
       "takes_argument": false
     }
+  ],
+  "positional_arguments": [
+
   ]
 }

@@ -16,5 +16,8 @@
       "description": "      --no-prune   Do not delete untagged parents",
       "takes_argument": false
     }
+  ],
+  "positional_arguments": [
+
   ]
 }

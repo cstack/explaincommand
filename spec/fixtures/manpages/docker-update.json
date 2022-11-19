@@ -108,5 +108,8 @@
       "description": "      --restart string             Restart policy to apply when a container exits",
       "takes_argument": true
     }
+  ],
+  "positional_arguments": [
+
   ]
 }

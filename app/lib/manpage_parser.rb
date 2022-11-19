@@ -1,8 +1,9 @@
 class ManpageParser
-  def self.parse_html_string(html_string)
+  def self.parse_html_string(html_string:, command_name:)
     html = Nokogiri::HTML(html_string)
     description = nil
     flags = []
+    positional_arguments = []
     paragraphs = html.css('p')
     paragraphs.each do |paragraph|
       text = paragraph.text
@@ -10,12 +11,17 @@ class ManpageParser
         description = extract_description_from_paragraph(text)
         next
       end
+      if paragraph_synopsis?(text)
+        positional_arguments = extract_positional_arguments_from_paragraph(text:, command_name:)
+        next
+      end
       flag = extract_flags(text)
       flags << flag unless flag.nil?
     end
     Manpage.new(
       description:,
-      flags:
+      flags:,
+      positional_arguments:
     )
   end
 
@@ -36,12 +42,17 @@ class ManpageParser
     end
     Manpage.new(
       description:,
-      flags:
+      flags:,
+      positional_arguments: []
     )
   end
 
   def self.paragraph_description?(text)
     text.start_with?('NAME')
+  end
+
+  def self.paragraph_synopsis?(text)
+    text.start_with?('SYNOPSIS')
   end
 
   def self.extract_description_from_paragraph(text)
@@ -70,5 +81,46 @@ class ManpageParser
                        false
                      end
     Flag.new(aliases:, description: text, takes_argument:)
+  end
+
+  def self.extract_positional_arguments_from_paragraph(text:, command_name:)
+    words = text.split
+    index_of_first_usage = words.index(command_name)
+    index_of_second_usage = words[index_of_first_usage + 1, words.length].index('chmod')
+    words_of_first_usage = if index_of_second_usage.nil?
+                             words[index_of_first_usage, words.length]
+                           else
+                             words[index_of_first_usage, index_of_second_usage + 1]
+                           end
+    grouped_words = group_by_brackets(words_of_first_usage)
+    positional_argument_words = grouped_words.drop(1).reject do |word|
+      word.gsub('[', '').start_with?('-')
+    end
+    interpret_ellipses(positional_argument_words)
+  end
+
+  def self.group_by_brackets(words)
+    result = []
+    while words.length > 0
+      word = words.shift
+      word = "#{word} #{words.shift}" while word.count('[') > word.count(']') && words.length > 0
+      result << word
+    end
+    result
+  end
+
+  def self.interpret_ellipses(words)
+    result = []
+    words.each do |word|
+      if word == '...'
+        result.last[:repeated] = true
+      else
+        result << {
+          name: word,
+          repeated: false
+        }
+      end
+    end
+    result
   end
 end

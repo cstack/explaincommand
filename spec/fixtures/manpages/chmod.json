@@ -121,5 +121,15 @@
       "description": "-N Removes the ACL from the\nnamed file(s).",
       "takes_argument": false
     }
+  ],
+  "positional_arguments": [
+    {
+      "name": "mode",
+      "repeated": false
+    },
+    {
+      "name": "file",
+      "repeated": true
+    }
   ]
 }

@@ -9,5 +9,8 @@
       "description": "  -o, --output string   Write to a file, instead of STDOUT",
       "takes_argument": true
     }
+  ],
+  "positional_arguments": [
+
   ]
 }

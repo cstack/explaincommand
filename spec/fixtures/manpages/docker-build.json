@@ -138,5 +138,8 @@
       "description": "      --target string           Set the target build stage to build.",
       "takes_argument": true
     }
+  ],
+  "positional_arguments": [
+
   ]
 }

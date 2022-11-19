@@ -343,5 +343,11 @@
       "description": "When -H is specified (and not\noverridden by -L or -P) and a file argument \nis a symlink that resolves to a non-directory file, the\noutput will \nreflect the nature of the link, rather than that of the\nfile. In legacy \noperation, the output will describe the file.",
       "takes_argument": false
     }
+  ],
+  "positional_arguments": [
+    {
+      "name": "[file ...]",
+      "repeated": false
+    }
   ]
 }

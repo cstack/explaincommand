@@ -17,5 +17,8 @@
       "description": "  -L, --follow-link   Always follow symbol link in SRC_PATH",
       "takes_argument": false
     }
+  ],
+  "positional_arguments": [
+
   ]
 }

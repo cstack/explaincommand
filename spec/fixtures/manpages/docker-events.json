@@ -30,5 +30,8 @@
       "description": "      --until string    Stream events until this timestamp",
       "takes_argument": true
     }
+  ],
+  "positional_arguments": [
+
   ]
 }

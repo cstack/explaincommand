@@ -22,5 +22,11 @@
       "description": "-v Be verbose when creating\ndirectories, listing them as they \nare created.",
       "takes_argument": false
     }
+  ],
+  "positional_arguments": [
+    {
+      "name": "directory_name",
+      "repeated": true
+    }
   ]
 }

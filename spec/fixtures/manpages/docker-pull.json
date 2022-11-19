@@ -31,5 +31,8 @@
       "description": "  -q, --quiet                   Suppress verbose output",
       "takes_argument": false
     }
+  ],
+  "positional_arguments": [
+
   ]
 }

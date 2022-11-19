@@ -3,7 +3,10 @@ class ManpageDirectory
 
   def self.get_manpage(command_name:, subcommand:)
     if manpage_exists?(command_name:, subcommand:)
-      ManpageParser.parse_html_string(File.read(manpage_filepath(command_name:, subcommand:)))
+      ManpageParser.parse_html_string(
+        html_string: File.read(manpage_filepath(command_name:, subcommand:)),
+        command_name:
+      )
     elsif helppage_exists?(command_name:, subcommand:)
       ManpageParser.parse_helppage_string(File.read(helppage_filepath(command_name:, subcommand:)))
     else

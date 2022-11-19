@@ -5,10 +5,12 @@ describe ManpageParser do
     Dir['./data/manpages/*'].each do |path|
       filename = path.split('/').last
       command = filename.split('.').first
+      command_parts = command.split('-')
+      command_name = command_parts[0]
       context filename do
         it 'parses as expected' do
           html_string = File.read(path)
-          manpage = described_class.parse_html_string(html_string)
+          manpage = described_class.parse_html_string(html_string:, command_name:)
           fixture_path = "./spec/fixtures/manpages/#{command}.json"
           # File.write(fixture_path, JSON.pretty_generate(manpage))
           expected = Manpage.from_json(File.read(fixture_path))
@@ -97,6 +99,30 @@ describe ManpageParser do
       it 'recognizes the argument' do
         expect(subject.aliases).to eq(['-f', '--file'])
         expect(subject.takes_argument).to eq(true)
+      end
+    end
+  end
+
+  describe 'extract_positional_arguments_from_paragraph' do
+    subject { described_class.extract_positional_arguments_from_paragraph(text:, command_name:) }
+
+    context 'chmod' do
+      let(:text) { "SYNOPSIS \nchmod [-fhv] [-R [-H | -L | -P]] mode file ... \nchmod [-fhv] [-R [-H | -L | -P]] [-a | +a | =a] ACE file ...\n\nchmod [-fhv] [-R [-H | -L | -P]] [-E] file ... \nchmod [-fhv] [-R [-H | -L | -P]] [-C] file ... \nchmod [-fhv] [-R [-H | -L | -P]] [-N] file ..." }
+      let(:command_name) { 'chmod' }
+
+      it 'parses correctly' do
+        expect(subject).to eq(
+          [
+            {
+              name: 'mode',
+              repeated: false
+            },
+            {
+              name: 'file',
+              repeated: true
+            }
+          ]
+        )
       end
     end
   end

@@ -22,5 +22,8 @@
       "description": "      --sig-proxy            Proxy all received signals to the process (default true)",
       "takes_argument": false
     }
+  ],
+  "positional_arguments": [
+
   ]
 }

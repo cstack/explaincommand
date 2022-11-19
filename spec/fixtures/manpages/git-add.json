@@ -173,5 +173,15 @@
       "description": "Git 2.37.0 06/27/2022\nGIT-ADD(1)",
       "takes_argument": false
     }
+  ],
+  "positional_arguments": [
+    {
+      "name": "add",
+      "repeated": false
+    },
+    {
+      "name": "[<pathspec>...]",
+      "repeated": false
+    }
   ]
 }

@@ -31,5 +31,8 @@
       "description": "  -q, --quiet           Only show image IDs",
       "takes_argument": false
     }
+  ],
+  "positional_arguments": [
+
   ]
 }

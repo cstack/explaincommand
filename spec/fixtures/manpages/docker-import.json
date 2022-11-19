@@ -24,5 +24,8 @@
       "description": "      --platform string   Set platform if server is multi-platform capable",
       "takes_argument": true
     }
+  ],
+  "positional_arguments": [
+
   ]
 }
