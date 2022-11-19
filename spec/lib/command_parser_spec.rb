@@ -295,4 +295,32 @@ describe CommandParser do
       end
     end
   end
+
+  describe '.full_command' do
+    subject { described_class.full_command(string) }
+
+    context 'existing command with no subcommand' do
+      let(:string) { 'ls .' }
+
+      it 'parses correctly' do
+        expect(subject).to eq(['ls', nil])
+      end
+    end
+
+    context 'missing command' do
+      let(:string) { 'command-does-not-exist' }
+
+      it 'parses correctly' do
+        expect(subject).to eq(['command-does-not-exist', nil])
+      end
+    end
+
+    context 'existing command with subcommand' do
+      let(:string) { 'git add .' }
+
+      it 'parses correctly' do
+        expect(subject).to eq(%w[git add])
+      end
+    end
+  end
 end

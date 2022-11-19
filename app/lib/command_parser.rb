@@ -37,8 +37,8 @@ class CommandParser
   def self.full_command(string)
     words = string.split
     command_name = words.shift
-    if words.length > 1
-      possible_subcommand = words.second
+    if words.length > 0
+      possible_subcommand = words.first
       subcommand = possible_subcommand if ManpageDirectory.exists?(command_name:, subcommand: possible_subcommand)
     end
     [command_name, subcommand]
