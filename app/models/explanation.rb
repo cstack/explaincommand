@@ -18,7 +18,8 @@ class Explanation
     )
     remaining_positional_arguments = manpage.positional_arguments
     command.tokens.each do |token|
-      if token.type == :flag
+      case token.type
+      when :flag
         flag_explanation = manpage.get_flag(token.text)
         next if flag_explanation.nil?
 
@@ -27,7 +28,7 @@ class Explanation
           text: flag_explanation.description,
           token_ids: [token.id]
         )
-      elsif token.type == :positional_argument
+      when :positional_argument
         argument_explanation = remaining_positional_arguments[0]
         remaining_positional_arguments.shift unless argument_explanation[:repeated]
         next if argument_explanation.nil?
