@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 describe ManpageDirectory do
-  describe '.manpage_exists?' do
-    subject { described_class.manpage_exists?(command) }
+  describe '.exists?' do
+    subject { described_class.exists?(command_name:, subcommand:) }
 
     context 'when manpage exists' do
-      let(:command) { 'ls' }
+      let(:command_name) { 'ls' }
+      let(:subcommand) { nil }
 
       it 'is true' do
         expect(subject).to eq(true)
@@ -13,10 +14,20 @@ describe ManpageDirectory do
     end
 
     context 'when manpage does not exist' do
-      let(:command) { 'does-not-exist' }
+      let(:command_name) { 'does-not-exist' }
+      let(:subcommand) { nil }
 
       it 'is false' do
         expect(subject).to eq(false)
+      end
+    end
+
+    context 'when manpage for subcommand exists' do
+      let(:command_name) { 'git' }
+      let(:subcommand) { 'add' }
+
+      it 'is false' do
+        expect(subject).to eq(true)
       end
     end
   end

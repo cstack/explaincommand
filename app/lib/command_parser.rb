@@ -24,29 +24,23 @@ class CommandParser
   end
 
   def self.label_command_name(tokens)
-    num_words = 1
-    candidate_command_name = tokens.first[:text]
-    tokens.drop(1).each_with_index do |token, i|
-      candidate_command_name += "-#{token[:text]}"
-      num_words = i + 2 if ManpageDirectory.manpage_exists?(candidate_command_name)
-    end
-    tokens.first(num_words).each do |token|
-      token[:type] = :command_name
+    tokens.first[:type] = :command_name
+    command_name = tokens.first[:text]
+    if tokens.length > 1
+      possible_subcommand = tokens.second[:text]
+      tokens.second[:type] = :command_name if ManpageDirectory.exists?(command_name:, subcommand: possible_subcommand)
     end
     tokens
   end
 
-  def self.full_command(words)
-    command = words.shift
-    while words.length > 0
-      command_to_check = "#{command}-#{words.first}"
-      return command unless ManpageDirectory.manpage_exists?(command_to_check)
-
-      command = command_to_check
-      words.shift
-
+  def self.full_command(string)
+    words = string.split
+    command_name = words.shift
+    if words.length > 1
+      possible_subcommand = words.second
+      subcommand = possible_subcommand if ManpageDirectory.exists?(command_name:, subcommand: possible_subcommand)
     end
-    command
+    [command_name, subcommand]
   end
 
   def self.label_all_remaining_flags(tokens)
