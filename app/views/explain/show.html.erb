@@ -1,8 +1,4 @@
 <% content_for :content do %>
-<h1><a href="/">ExplainCommand</a></h1>
-<form action="/explain" method="get">
-  <input id="top-search" name="cmd" type="text" autocapitalize="off" autocorrect="off" value="<%= @cmd %>">
-</form>
 <h2 id="command">
   <% @explanation.command.tokens.map do |token| %>
   <span data-token-id="<%= token.id %>"><%= token.original_text %></span>
