@@ -165,11 +165,7 @@ describe ManpageParser do
 
     context 'when there is a subcommand' do
       let(:text) do
-        "git add [--verbose | -v] [--dry-run | -n] [--force | -f] [--interactive | -i] [--patch | -p]
-                 [--edit | -e] [--[no-]all | --[no-]ignore-removal | [--update | -u]] [--sparse]
-                 [--intent-to-add | -N] [--refresh] [--ignore-errors] [--ignore-missing] [--renormalize]
-                 [--chmod=(+|-)x] [--pathspec-from-file=<file> [--pathspec-file-nul]]
-                 [--] [<pathspec>...]"
+        'git checkout [-q] [-f] [-m] [<branch>]'
       end
       let(:command_name) { 'git' }
       let(:subcommand) { 'add' }
@@ -178,7 +174,7 @@ describe ManpageParser do
         expect(subject).to eq(
           [
             {
-              name: '[<pathspec>...]',
+              name: '[<branch>]',
               repeated: false
             }
           ]
