@@ -125,5 +125,25 @@ describe ManpageParser do
         )
       end
     end
+
+    context 'find' do
+      let(:text) { "SYNOPSIS \nfind [-H | -L | -P] [-EXdsx] [-f path] path ... [expression]\n\nfind [-H | -L | -P] [-EXdsx] -f path [path ...]\n[expression]" }
+      let(:command_name) { 'find' }
+
+      it 'parses correctly' do
+        expect(subject).to eq(
+          [
+            {
+              name: 'path',
+              repeated: true
+            },
+            {
+              name: '[expression]',
+              repeated: false
+            }
+          ]
+        )
+      end
+    end
   end
 end

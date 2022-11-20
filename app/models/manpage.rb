@@ -9,13 +9,17 @@ class Manpage
 
   def ==(other)
     description == other.description &&
-      flags == other.flags
+      flags == other.flags &&
+      positional_arguments == other.positional_arguments
   end
 
   def self.from_json(json_string)
     ruby_hash = JSON.parse(json_string).transform_keys(&:to_sym)
     ruby_hash[:flags] = ruby_hash[:flags].map do |flag_hash|
       Flag.from_hash(flag_hash)
+    end
+    ruby_hash[:positional_arguments] = ruby_hash[:positional_arguments].map do |arg|
+      arg.transform_keys(&:to_sym)
     end
     new(**ruby_hash)
   end

@@ -630,22 +630,6 @@
     {
       "name": "[expression]",
       "repeated": false
-    },
-    {
-      "name": "find",
-      "repeated": false
-    },
-    {
-      "name": "path",
-      "repeated": false
-    },
-    {
-      "name": "[path ...]",
-      "repeated": false
-    },
-    {
-      "name": "[expression]",
-      "repeated": false
     }
   ]
 }

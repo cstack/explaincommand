@@ -82,7 +82,7 @@ class ManpageParser
   def self.extract_positional_arguments_from_paragraph(text:, command_name:)
     words = text.split
     index_of_first_usage = words.index(command_name)
-    index_of_second_usage = words[index_of_first_usage + 1, words.length].index('chmod')
+    index_of_second_usage = words[index_of_first_usage + 1, words.length].index(command_name)
     words_of_first_usage = if index_of_second_usage.nil?
                              words[index_of_first_usage, words.length]
                            else
