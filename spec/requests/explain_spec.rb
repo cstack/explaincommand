@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe '/explain', type: :request do
+RSpec.describe '/explain' do
   context 'viewing the page' do
     it 'displays the explanation for a command' do
       get '/explain', params: { cmd: 'ls -ltr' }

@@ -46,7 +46,7 @@ describe ManpageParser do
       let(:text) { 'this is just some text with a --flag near the end' }
 
       it 'returns nil' do
-        expect(subject).to be(nil)
+        expect(subject).to be_nil
       end
     end
 
