@@ -64,7 +64,9 @@ class ManpageParser
   end
 
   def self.extract_description_from_paragraph(text)
-    text.match(/^NAME\s+(.+)$/)[1]
+    section_body = text.match(/^NAME\s+(.+)$/)[1]
+    parts = section_body.split(' â ')
+    parts.last
   end
 
   def self.extract_flags(text)

@@ -222,4 +222,16 @@ describe ManpageParser do
       end
     end
   end
+
+  describe '.extract_description_from_paragraph' do
+    subject { described_class.extract_description_from_paragraph(text) }
+
+    context 'when description starts with command name and a dash' do
+      let(:text) { "NAME \nfind â walk a file hierarchy" }
+
+      it 'parses correctly' do
+        expect(subject).to eq('walk a file hierarchy')
+      end
+    end
+  end
 end

@@ -41,7 +41,7 @@ describe Explanation do
           [
             Annotation.new(
               referenced_text: 'chmod',
-              text: 'chmod â change file modes or Access Control Lists',
+              text: 'change file modes or Access Control Lists',
               token_ids: [0]
             ),
             Annotation.new(

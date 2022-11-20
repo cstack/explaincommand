@@ -27,11 +27,11 @@
       }
     ]
   },
-  "command_description": "ls â list directory contents",
+  "command_description": "list directory contents",
   "annotations": [
     {
       "referenced_text": "ls",
-      "text": "ls â list directory contents",
+      "text": "list directory contents",
       "token_ids": [
         0
       ],

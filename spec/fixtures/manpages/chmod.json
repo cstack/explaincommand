@@ -1,5 +1,5 @@
 {
-  "description": "chmod â change file modes or Access Control Lists",
+  "description": "change file modes or Access Control Lists",
   "flags": [
     {
       "aliases": [

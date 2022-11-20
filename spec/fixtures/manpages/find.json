@@ -1,5 +1,5 @@
 {
-  "description": "find â walk a file hierarchy",
+  "description": "walk a file hierarchy",
   "flags": [
     {
       "aliases": [
