@@ -80,6 +80,11 @@ class ManpageParser
   end
 
   def self.extract_positional_arguments_from_paragraph(text:, command_name:, subcommand:)
+    first_usage = extract_first_usage_from_paragraph(text:, command_name:, subcommand:)
+    extract_positional_arguments_from_usage_pattern(text: first_usage, command_name:, subcommand:)
+  end
+
+  def self.extract_first_usage_from_paragraph(text:, command_name:, subcommand:)
     words = text.split
     num_words_in_command = subcommand.nil? ? 1 : 2
     index_of_first_usage = words.index(command_name)
@@ -89,7 +94,13 @@ class ManpageParser
                            else
                              words[index_of_first_usage, index_of_second_usage + 1]
                            end
-    grouped_words = group_by_brackets(words_of_first_usage)
+    words_of_first_usage.join(' ')
+  end
+
+  def self.extract_positional_arguments_from_usage_pattern(text:, command_name:, subcommand:)
+    words = text.split
+    num_words_in_command = subcommand.nil? ? 1 : 2
+    grouped_words = group_by_brackets(words)
     positional_argument_words = grouped_words.drop(num_words_in_command).reject do |word|
       word.gsub('[', '').start_with?('-')
     end

@@ -104,11 +104,11 @@ describe ManpageParser do
     end
   end
 
-  describe 'extract_positional_arguments_from_paragraph' do
-    subject { described_class.extract_positional_arguments_from_paragraph(text:, command_name:, subcommand:) }
+  describe 'extract_positional_arguments_from_usage_pattern' do
+    subject { described_class.extract_positional_arguments_from_usage_pattern(text:, command_name:, subcommand:) }
 
     context 'chmod' do
-      let(:text) { "SYNOPSIS \nchmod [-fhv] [-R [-H | -L | -P]] mode file ... \nchmod [-fhv] [-R [-H | -L | -P]] [-a | +a | =a] ACE file ...\n\nchmod [-fhv] [-R [-H | -L | -P]] [-E] file ... \nchmod [-fhv] [-R [-H | -L | -P]] [-C] file ... \nchmod [-fhv] [-R [-H | -L | -P]] [-N] file ..." }
+      let(:text) { 'chmod [-fhv] [-R [-H | -L | -P]] mode file ...' }
       let(:command_name) { 'chmod' }
       let(:subcommand) { nil }
 
@@ -129,7 +129,7 @@ describe ManpageParser do
     end
 
     context 'find' do
-      let(:text) { "SYNOPSIS \nfind [-H | -L | -P] [-EXdsx] [-f path] path ... [expression]\n\nfind [-H | -L | -P] [-EXdsx] -f path [path ...]\n[expression]" }
+      let(:text) { 'find [-H | -L | -P] [-EXdsx] [-f path] path ... [expression]' }
       let(:command_name) { 'find' }
       let(:subcommand) { nil }
 
@@ -150,7 +150,13 @@ describe ManpageParser do
     end
 
     context 'when there is a subcommand' do
-      let(:text) { "SYNOPSIS \ngit add [--verbose | -v] [--dry-run | -n] [--force | -f]\n[--interactive | -i] [--patch | -p] \n[--edit | -e] [--[no-]all | --[no-]ignore-removal |\n[--update | -u]] [--sparse] \n[--intent-to-add | -N] [--refresh] [--ignore-errors]\n[--ignore-missing] [--renormalize] \n[--chmod=(+|-)x] [--pathspec-from-file=<file>\n[--pathspec-file-nul]] \n[--] [<pathspec>...]" }
+      let(:text) do
+        "git add [--verbose | -v] [--dry-run | -n] [--force | -f] [--interactive | -i] [--patch | -p]
+                 [--edit | -e] [--[no-]all | --[no-]ignore-removal | [--update | -u]] [--sparse]
+                 [--intent-to-add | -N] [--refresh] [--ignore-errors] [--ignore-missing] [--renormalize]
+                 [--chmod=(+|-)x] [--pathspec-from-file=<file> [--pathspec-file-nul]]
+                 [--] [<pathspec>...]"
+      end
       let(:command_name) { 'git' }
       let(:subcommand) { 'add' }
 
