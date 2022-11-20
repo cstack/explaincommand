@@ -55,10 +55,6 @@
   ],
   "positional_arguments": [
     {
-      "name": "update-ref",
-      "repeated": false
-    },
-    {
       "name": "(-d",
       "repeated": false
     },

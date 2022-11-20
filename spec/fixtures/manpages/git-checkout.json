@@ -228,13 +228,6 @@
     }
   ],
   "positional_arguments": [
-    {
-      "name": "checkout",
-      "repeated": false
-    },
-    {
-      "name": "[<branch>]",
-      "repeated": false
-    }
+
   ]
 }

@@ -7,10 +7,11 @@ describe ManpageParser do
       command = filename.split('.').first
       command_parts = command.split('-')
       command_name = command_parts[0]
+      subcommand = command_parts[1]
       context filename do
         it 'parses as expected' do
           html_string = File.read(path)
-          manpage = described_class.parse_html_string(html_string:, command_name:)
+          manpage = described_class.parse_html_string(html_string:, command_name:, subcommand:)
           fixture_path = "./spec/fixtures/manpages/#{command}.json"
           # File.write(fixture_path, JSON.pretty_generate(manpage))
           expected = Manpage.from_json(File.read(fixture_path))
@@ -104,11 +105,12 @@ describe ManpageParser do
   end
 
   describe 'extract_positional_arguments_from_paragraph' do
-    subject { described_class.extract_positional_arguments_from_paragraph(text:, command_name:) }
+    subject { described_class.extract_positional_arguments_from_paragraph(text:, command_name:, subcommand:) }
 
     context 'chmod' do
       let(:text) { "SYNOPSIS \nchmod [-fhv] [-R [-H | -L | -P]] mode file ... \nchmod [-fhv] [-R [-H | -L | -P]] [-a | +a | =a] ACE file ...\n\nchmod [-fhv] [-R [-H | -L | -P]] [-E] file ... \nchmod [-fhv] [-R [-H | -L | -P]] [-C] file ... \nchmod [-fhv] [-R [-H | -L | -P]] [-N] file ..." }
       let(:command_name) { 'chmod' }
+      let(:subcommand) { nil }
 
       it 'parses correctly' do
         expect(subject).to eq(
@@ -129,6 +131,7 @@ describe ManpageParser do
     context 'find' do
       let(:text) { "SYNOPSIS \nfind [-H | -L | -P] [-EXdsx] [-f path] path ... [expression]\n\nfind [-H | -L | -P] [-EXdsx] -f path [path ...]\n[expression]" }
       let(:command_name) { 'find' }
+      let(:subcommand) { nil }
 
       it 'parses correctly' do
         expect(subject).to eq(
@@ -139,6 +142,23 @@ describe ManpageParser do
             },
             {
               name: '[expression]',
+              repeated: false
+            }
+          ]
+        )
+      end
+    end
+
+    context 'when there is a subcommand' do
+      let(:text) { "SYNOPSIS \ngit add [--verbose | -v] [--dry-run | -n] [--force | -f]\n[--interactive | -i] [--patch | -p] \n[--edit | -e] [--[no-]all | --[no-]ignore-removal |\n[--update | -u]] [--sparse] \n[--intent-to-add | -N] [--refresh] [--ignore-errors]\n[--ignore-missing] [--renormalize] \n[--chmod=(+|-)x] [--pathspec-from-file=<file>\n[--pathspec-file-nul]] \n[--] [<pathspec>...]" }
+      let(:command_name) { 'git' }
+      let(:subcommand) { 'add' }
+
+      it 'parses correctly' do
+        expect(subject).to eq(
+          [
+            {
+              name: '[<pathspec>...]',
               repeated: false
             }
           ]

@@ -176,10 +176,6 @@
   ],
   "positional_arguments": [
     {
-      "name": "add",
-      "repeated": false
-    },
-    {
       "name": "[<pathspec>...]",
       "repeated": false
     }

@@ -1,5 +1,5 @@
 class ManpageParser
-  def self.parse_html_string(html_string:, command_name:)
+  def self.parse_html_string(html_string:, command_name:, subcommand:)
     html = Nokogiri::HTML(html_string)
     description = nil
     flags = []
@@ -12,7 +12,7 @@ class ManpageParser
         next
       end
       if paragraph_synopsis?(text)
-        positional_arguments = extract_positional_arguments_from_paragraph(text:, command_name:)
+        positional_arguments = extract_positional_arguments_from_paragraph(text:, command_name:, subcommand:)
         next
       end
       flag = extract_flags(text)
@@ -79,17 +79,18 @@ class ManpageParser
     Flag.new(aliases:, description: text, takes_argument:)
   end
 
-  def self.extract_positional_arguments_from_paragraph(text:, command_name:)
+  def self.extract_positional_arguments_from_paragraph(text:, command_name:, subcommand:)
     words = text.split
+    num_words_in_command = subcommand.nil? ? 1 : 2
     index_of_first_usage = words.index(command_name)
-    index_of_second_usage = words[index_of_first_usage + 1, words.length].index(command_name)
+    index_of_second_usage = words[index_of_first_usage + num_words_in_command, words.length].index(command_name)
     words_of_first_usage = if index_of_second_usage.nil?
                              words[index_of_first_usage, words.length]
                            else
                              words[index_of_first_usage, index_of_second_usage + 1]
                            end
     grouped_words = group_by_brackets(words_of_first_usage)
-    positional_argument_words = grouped_words.drop(1).reject do |word|
+    positional_argument_words = grouped_words.drop(num_words_in_command).reject do |word|
       word.gsub('[', '').start_with?('-')
     end
     interpret_ellipses(positional_argument_words)

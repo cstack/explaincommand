@@ -5,7 +5,8 @@ class ManpageDirectory
     if manpage_exists?(command_name:, subcommand:)
       ManpageParser.parse_html_string(
         html_string: File.read(manpage_filepath(command_name:, subcommand:)),
-        command_name:
+        command_name:,
+        subcommand:
       )
     elsif helppage_exists?(command_name:, subcommand:)
       ManpageParser.parse_helppage_string(File.read(helppage_filepath(command_name:, subcommand:)))
