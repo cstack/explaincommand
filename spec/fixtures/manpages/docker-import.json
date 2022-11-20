@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "import"
+  },
   "description": "Import the contents from a tarball to create a filesystem image",
   "flags": [
     {

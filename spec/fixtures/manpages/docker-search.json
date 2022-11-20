@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "search"
+  },
   "description": "Search the Docker Hub for images",
   "flags": [
     {

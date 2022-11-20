@@ -8,11 +8,9 @@
 <div class="annotation" data-token-ids="<%= annotation.token_ids.join(" ") %>">
   <code><%= annotation.referenced_text %></code>
   <blockquote><%= annotation.text %></blockquote>
-  <% if annotation.source_link.present? %>
-  <a href="<%= annotation.source_link %>"><%= annotation.source_description %></a>
-  <% end %>
 </div>
 <% end %>
+<p><a href="<%= @explanation.source_link %>"><%=  @explanation.source_description %></a></p>
 <p>See something that's wrong? <a href="https://github.com/cstack/explaincommand">File an issue or open a PR</a></p>
 <% end %>
 <%= render template: "layouts/application" %>

@@ -19,6 +19,7 @@ class ManpageParser
       flags << flag unless flag.nil?
     end
     Manpage.new(
+      command_name:,
       description:,
       flags:,
       positional_arguments:
@@ -49,6 +50,7 @@ class ManpageParser
                              []
                            end
     Manpage.new(
+      command_name:,
       description:,
       flags:,
       positional_arguments:

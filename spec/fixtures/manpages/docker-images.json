@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "images"
+  },
   "description": "List images",
   "flags": [
     {

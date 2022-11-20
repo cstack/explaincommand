@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "diff"
+  },
   "description": "Inspect changes to files or directories on a container's filesystem",
   "flags": [
 

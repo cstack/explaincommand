@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "load"
+  },
   "description": "Load an image from a tar archive or STDIN",
   "flags": [
     {

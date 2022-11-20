@@ -1,7 +1,8 @@
 class Manpage
-  attr_reader :flags, :description, :positional_arguments
+  attr_reader :command_name, :flags, :description, :positional_arguments
 
-  def initialize(description:, flags:, positional_arguments:)
+  def initialize(command_name:, description:, flags:, positional_arguments:)
+    @command_name = command_name
     @description = description
     @flags = flags
     @positional_arguments = positional_arguments
@@ -15,6 +16,7 @@ class Manpage
 
   def self.from_json(json_string)
     ruby_hash = JSON.parse(json_string).transform_keys(&:to_sym)
+    ruby_hash[:command_name] = Command::Name.new(**ruby_hash[:command_name])
     ruby_hash[:flags] = ruby_hash[:flags].map do |flag_hash|
       Flag.from_hash(flag_hash)
     end
@@ -26,6 +28,7 @@ class Manpage
 
   def to_json(*args)
     {
+      'command_name' => command_name.to_hash,
       'description' => description,
       'flags' => flags,
       'positional_arguments' => positional_arguments
@@ -39,16 +42,16 @@ class Manpage
   end
 
   def source_link
-    nil
+    "https://manpages.ubuntu.com/manpages/kinetic/en/man1/#{command_name.with_dashes}.1.html"
   end
 
   def source_description
-    nil
+    'Full documentation'
   end
 
   class UnknownCommand < Manpage
-    def initialize
-      super(description: 'Unknown command', flags: [], positional_arguments: [])
+    def initialize(command_name:)
+      super(command_name:, description: 'Unknown command', flags: [], positional_arguments: [])
     end
 
     def source_link

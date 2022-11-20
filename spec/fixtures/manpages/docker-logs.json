@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "logs"
+  },
   "description": "Fetch the logs of a container",
   "flags": [
     {

@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "pull"
+  },
   "description": "Pull an image or a repository from a registry",
   "flags": [
     {

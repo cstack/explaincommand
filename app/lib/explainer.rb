@@ -8,9 +8,7 @@ class Explainer
     annotations << Annotation.new(
       referenced_text: command.display_name,
       text: manpage.description,
-      token_ids: command.command_name_tokens.map(&:id),
-      source_link: manpage.source_link,
-      source_description: manpage.source_description
+      token_ids: command.command_name_tokens.map(&:id)
     )
     remaining_positional_arguments = manpage.positional_arguments
     command.tokens.each do |token|
@@ -38,6 +36,6 @@ class Explainer
         )
       end
     end
-    Explanation.new(command:, annotations:)
+    Explanation.new(command:, annotations:, source_link: manpage.source_link, source_description: manpage.source_description)
   end
 end

@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "history"
+  },
   "description": "Show the history of an image",
   "flags": [
     {

@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "cp"
+  },
   "description": "\tdocker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH",
   "flags": [
     {

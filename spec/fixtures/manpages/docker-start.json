@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "start"
+  },
   "description": "Start one or more stopped containers",
   "flags": [
     {

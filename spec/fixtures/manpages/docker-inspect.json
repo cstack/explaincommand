@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "inspect"
+  },
   "description": "Return low-level information on Docker objects",
   "flags": [
     {

@@ -37,36 +37,29 @@
       "text": "list directory contents",
       "token_ids": [
         0
-      ],
-      "source_link": null,
-      "source_description": null
+      ]
     },
     {
       "referenced_text": "-l",
       "text": "-l (The lowercase letter\nâellâ.) List files in the long format, as \ndescribed in the The Long Format subsection below.",
       "token_ids": [
         1
-      ],
-      "source_link": null,
-      "source_description": null
+      ]
     },
     {
       "referenced_text": "-t",
       "text": "-t Sort by descending time\nmodified (most recently modified first). \nIf two files have the same modification timestamp, sort\ntheir \nnames in ascending lexicographical order. The -r option\nreverses \nboth of these sort orders.",
       "token_ids": [
         2
-      ],
-      "source_link": null,
-      "source_description": null
+      ]
     },
     {
       "referenced_text": "-r",
       "text": "-r Reverse the order of the\nsort.",
       "token_ids": [
         3
-      ],
-      "source_link": null,
-      "source_description": null
+      ]
     }
-  ]
+  ],
+  "source_link": "https://manpages.ubuntu.com/manpages/kinetic/en/man1/ls.1.html"
 }

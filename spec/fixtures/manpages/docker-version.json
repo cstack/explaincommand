@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "version"
+  },
   "description": "Show the Docker version information",
   "flags": [
     {

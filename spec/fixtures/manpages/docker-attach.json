@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "attach"
+  },
   "description": "Attach local standard input, output, and error streams to a running container",
   "flags": [
     {

@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "save"
+  },
   "description": "Save one or more images to a tar archive (streamed to STDOUT by default)",
   "flags": [
     {

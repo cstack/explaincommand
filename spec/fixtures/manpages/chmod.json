@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "chmod",
+    "subcommand": null
+  },
   "description": "change file modes or Access Control Lists",
   "flags": [
     {

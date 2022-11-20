@@ -9,6 +9,8 @@ RSpec.describe '/explain' do
       expect(response.body).to include('list directory contents')
       expect(response.body).to include('-l')
       expect(response.body).to include('List files in the long format')
+      expect(response.body).to include('Full documentation')
+      expect(response.body).to include('https://manpages.ubuntu.com/manpages/kinetic/en/man1/ls.1.html')
     end
   end
 
@@ -17,7 +19,7 @@ RSpec.describe '/explain' do
       get '/explain', params: { cmd: 'ls -ltr' }, headers: { 'ACCEPT' => 'application/json' }
 
       fixture_path = './spec/fixtures/api_responses/ls-response.json'
-      File.write(fixture_path, JSON.pretty_generate(JSON.parse(response.body)))
+      # File.write(fixture_path, JSON.pretty_generate(JSON.parse(response.body)))
       expect(JSON.parse(response.body)).to eq(JSON.parse(File.read(fixture_path)))
     end
   end

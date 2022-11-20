@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "wait"
+  },
   "description": "Block until one or more containers stop, then print their exit codes",
   "flags": [
 

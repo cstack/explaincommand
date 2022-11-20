@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "ls",
+    "subcommand": null
+  },
   "description": "list directory contents",
   "flags": [
     {

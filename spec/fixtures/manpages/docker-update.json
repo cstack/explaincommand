@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "update"
+  },
   "description": "Update configuration of one or more containers",
   "flags": [
     {

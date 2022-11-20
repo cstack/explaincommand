@@ -65,6 +65,13 @@ class Command
         subcommand == other.subcommand
     end
 
+    def to_hash
+      {
+        main_command:,
+        subcommand:,
+      }
+    end
+
     def with_dashes
       if subcommand.nil?
         main_command

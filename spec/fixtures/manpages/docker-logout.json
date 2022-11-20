@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "logout"
+  },
   "description": "Log out from a Docker registry or cloud backend.",
   "flags": [
     {

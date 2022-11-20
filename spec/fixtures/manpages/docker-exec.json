@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "exec"
+  },
   "description": "Run a command in a running container",
   "flags": [
     {

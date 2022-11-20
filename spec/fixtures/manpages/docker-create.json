@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "create"
+  },
   "description": "Create a new container",
   "flags": [
     {

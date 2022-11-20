@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "git",
+    "subcommand": "checkout"
+  },
   "description": "git-checkout - Switch branches or restore working tree",
   "flags": [
     {

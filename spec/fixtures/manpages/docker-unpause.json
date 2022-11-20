@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "unpause"
+  },
   "description": "Unpause all processes within one or more containers",
   "flags": [
 

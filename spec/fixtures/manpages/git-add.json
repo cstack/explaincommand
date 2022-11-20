@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "git",
+    "subcommand": "add"
+  },
   "description": "git-add - Add file contents to the index",
   "flags": [
     {

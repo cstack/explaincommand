@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "build"
+  },
   "description": "Build an image from a Dockerfile",
   "flags": [
     {

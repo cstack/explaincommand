@@ -13,7 +13,7 @@ class ManpageDirectory
         command_name:
       )
     else
-      Manpage::UnknownCommand.new
+      Manpage::UnknownCommand.new(command_name:)
     end
   end
 

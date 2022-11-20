@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "port"
+  },
   "description": "List port mappings or a specific mapping for the container",
   "flags": [
 

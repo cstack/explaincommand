@@ -1,4 +1,8 @@
 {
+  "command_name": {
+    "main_command": "docker",
+    "subcommand": "login"
+  },
   "description": "Log in to a Docker registry or cloud backend.",
   "flags": [
     {
