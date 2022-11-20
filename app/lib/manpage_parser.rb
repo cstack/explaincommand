@@ -122,6 +122,11 @@ class ManpageParser
     words.each do |word|
       if word == '...'
         result.last[:repeated] = true
+      elsif word.include?('...')
+        result << {
+          name: word,
+          repeated: true
+        }
       else
         result << {
           name: word,

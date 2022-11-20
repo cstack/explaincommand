@@ -347,7 +347,7 @@
   "positional_arguments": [
     {
       "name": "[file ...]",
-      "repeated": false
+      "repeated": true
     }
   ]
 }

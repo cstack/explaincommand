@@ -181,5 +181,24 @@ describe ManpageParser do
         )
       end
     end
+
+    context 'when elipses appear inside brackets' do
+      let(:text) do
+        'ls [-@ABCFGHILOPRSTUWabcdefghiklmnopqrstuvwxy1%,] [--color=when] [-D format] [file ...]'
+      end
+      let(:command_name) { 'ls' }
+      let(:subcommand) { nil }
+
+      it 'parses correctly' do
+        expect(subject).to eq(
+          [
+            {
+              name: '[file ...]',
+              repeated: true
+            }
+          ]
+        )
+      end
+    end
   end
 end
