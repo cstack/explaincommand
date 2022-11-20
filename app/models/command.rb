@@ -50,4 +50,34 @@ class Command
       type == :command_name
     end
   end
+
+  class Name
+    attr_reader :main_command, :subcommand
+
+    def initialize(main_command, subcommand = nil)
+      @main_command = main_command
+      @subcommand = subcommand
+    end
+
+    def ==(other)
+      main_command == other.main_command &&
+        subcommand == other.subcommand
+    end
+
+    def with_dashes
+      if subcommand.nil?
+        main_command
+      else
+        "#{main_command}-#{subcommand}"
+      end
+    end
+
+    def num_words
+      if subcommand.nil?
+        1
+      else
+        2
+      end
+    end
+  end
 end

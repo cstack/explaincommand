@@ -1,5 +1,5 @@
 class ManpageParser
-  def self.parse_html_string(html_string:, command_name:, subcommand:)
+  def self.parse_html_string(html_string:, command_name:)
     html = Nokogiri::HTML(html_string)
     description = nil
     flags = []
@@ -12,7 +12,7 @@ class ManpageParser
         next
       end
       if paragraph_synopsis?(text)
-        positional_arguments = extract_positional_arguments_from_paragraph(text:, command_name:, subcommand:)
+        positional_arguments = extract_positional_arguments_from_paragraph(text:, command_name:)
         next
       end
       flag = extract_flags(text)
@@ -25,7 +25,7 @@ class ManpageParser
     )
   end
 
-  def self.parse_helppage_string(helppage_string:, subcommand:)
+  def self.parse_helppage_string(helppage_string:, command_name:)
     lines = helppage_string.split("\n")
     description = nil
     flags = []
@@ -44,7 +44,7 @@ class ManpageParser
       line.match(/^Usage:\s+(.+)$/)
     end&.match(/^Usage:\s+(.+)$/)&.captures&.first
     positional_arguments = if usage_string
-                             extract_positional_arguments_from_usage_pattern(text: usage_string, subcommand:)
+                             extract_positional_arguments_from_usage_pattern(text: usage_string, command_name:)
                            else
                              []
                            end
@@ -89,27 +89,26 @@ class ManpageParser
     Flag.new(aliases:, description: text, takes_argument:)
   end
 
-  def self.extract_positional_arguments_from_paragraph(text:, command_name:, subcommand:)
-    first_usage = extract_first_usage_from_paragraph(text:, command_name:, subcommand:)
-    extract_positional_arguments_from_usage_pattern(text: first_usage, subcommand:)
+  def self.extract_positional_arguments_from_paragraph(text:, command_name:)
+    first_usage = extract_first_usage_from_paragraph(text:, command_name:)
+    extract_positional_arguments_from_usage_pattern(text: first_usage, command_name:)
   end
 
-  def self.extract_first_usage_from_paragraph(text:, command_name:, subcommand:)
+  def self.extract_first_usage_from_paragraph(text:, command_name:)
     words = text.split
-    num_words_in_command = subcommand.nil? ? 1 : 2
-    index_of_first_usage = words.index(command_name)
-    index_of_second_usage = words[index_of_first_usage + num_words_in_command, words.length].index(command_name)
+    index_of_first_usage = words.index(command_name.main_command)
+    index_of_second_usage = words[index_of_first_usage + command_name.num_words, words.length].index(command_name.main_command)
     words_of_first_usage = if index_of_second_usage.nil?
                              words[index_of_first_usage, words.length]
                            else
-                             words[index_of_first_usage, index_of_second_usage + num_words_in_command]
+                             words[index_of_first_usage, index_of_second_usage + command_name.num_words]
                            end
     words_of_first_usage.join(' ')
   end
 
-  def self.extract_positional_arguments_from_usage_pattern(text:, subcommand:)
+  def self.extract_positional_arguments_from_usage_pattern(text:, command_name:)
     words = text.split
-    num_words_in_command = subcommand.nil? ? 1 : 2
+    num_words_in_command = command_name.num_words
     grouped_words = group_by_brackets(words)
     positional_argument_words = grouped_words.drop(num_words_in_command).reject do |word|
       word.gsub('[', '').start_with?('-') ||

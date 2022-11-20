@@ -215,7 +215,7 @@ describe CommandParser do
 
     context 'when flag takes argument and manpage is provided' do
       let(:cmd) { 'docker build -t getting-started .' }
-      let(:manpage) { ManpageDirectory.get_manpage(command_name: 'docker', subcommand: 'build') }
+      let(:manpage) { ManpageDirectory.get_manpage(Command::Name.new('docker', 'build')) }
 
       it 'binds argument to flag' do
         expect(subject.tokens).to eq(
@@ -244,7 +244,7 @@ describe CommandParser do
 
     context 'when documented single-dash flag has multi-character name' do
       let(:cmd) { 'find . -type f -print0' }
-      let(:manpage) { ManpageDirectory.get_manpage(command_name: 'find', subcommand: nil) }
+      let(:manpage) { ManpageDirectory.get_manpage(Command::Name.new('find')) }
 
       it 'interprets flag correclty' do
         expect(subject.tokens).to eq(
@@ -273,7 +273,7 @@ describe CommandParser do
 
     context 'when command uses documented positional arguments' do
       let(:cmd) { 'chmod 600 id_rsa_gh_deploy' }
-      let(:manpage) { ManpageDirectory.get_manpage(command_name: 'find', subcommand: nil) }
+      let(:manpage) { ManpageDirectory.get_manpage(Command::Name.new('chmod')) }
 
       it 'labels positional arguments' do
         expect(subject.tokens).to eq(
@@ -296,14 +296,14 @@ describe CommandParser do
     end
   end
 
-  describe '.full_command' do
-    subject { described_class.full_command(string) }
+  describe '.command_name' do
+    subject { described_class.command_name(string) }
 
     context 'existing command with no subcommand' do
       let(:string) { 'ls .' }
 
       it 'parses correctly' do
-        expect(subject).to eq(['ls', nil])
+        expect(subject).to eq(Command::Name.new('ls'))
       end
     end
 
@@ -311,7 +311,7 @@ describe CommandParser do
       let(:string) { 'command-does-not-exist' }
 
       it 'parses correctly' do
-        expect(subject).to eq(['command-does-not-exist', nil])
+        expect(subject).to eq(Command::Name.new('command-does-not-exist'))
       end
     end
 
@@ -319,7 +319,7 @@ describe CommandParser do
       let(:string) { 'git add .' }
 
       it 'parses correctly' do
-        expect(subject).to eq(%w[git add])
+        expect(subject).to eq(Command::Name.new('git', 'add'))
       end
     end
   end

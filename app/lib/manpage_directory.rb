@@ -1,48 +1,39 @@
 class ManpageDirectory
   class ManpageDoesNotExist < StandardError; end
 
-  def self.get_manpage(command_name:, subcommand:)
-    if manpage_exists?(command_name:, subcommand:)
+  def self.get_manpage(command_name)
+    if manpage_exists?(command_name)
       ManpageParser.parse_html_string(
-        html_string: File.read(manpage_filepath(command_name:, subcommand:)),
-        command_name:,
-        subcommand:
+        html_string: File.read(manpage_filepath(command_name)),
+        command_name:
       )
-    elsif helppage_exists?(command_name:, subcommand:)
+    elsif helppage_exists?(command_name)
       ManpageParser.parse_helppage_string(
-        helppage_string: File.read(helppage_filepath(command_name:, subcommand:)),
-        subcommand:
+        helppage_string: File.read(helppage_filepath(command_name)),
+        command_name:
       )
     else
       Manpage::UnknownCommand.new
     end
   end
 
-  def self.exists?(command_name:, subcommand:)
-    manpage_exists?(command_name:, subcommand:) || helppage_exists?(command_name:, subcommand:)
+  def self.exists?(command_name)
+    manpage_exists?(command_name) || helppage_exists?(command_name)
   end
 
-  def self.manpage_exists?(command_name:, subcommand:)
-    File.exist?(manpage_filepath(command_name:, subcommand:))
+  def self.manpage_exists?(command_name)
+    File.exist?(manpage_filepath(command_name))
   end
 
-  def self.helppage_exists?(command_name:, subcommand:)
-    File.exist?(helppage_filepath(command_name:, subcommand:))
+  def self.helppage_exists?(command_name)
+    File.exist?(helppage_filepath(command_name))
   end
 
-  def self.manpage_filepath(command_name:, subcommand:)
-    Rails.root.join("data/manpages/#{full_name(command_name:, subcommand:)}.html")
+  def self.manpage_filepath(command_name)
+    Rails.root.join("data/manpages/#{command_name.with_dashes}.html")
   end
 
-  def self.helppage_filepath(command_name:, subcommand:)
-    Rails.root.join("data/helppages/#{full_name(command_name:, subcommand:)}.txt")
-  end
-
-  def self.full_name(command_name:, subcommand:)
-    if subcommand.nil?
-      command_name
-    else
-      "#{command_name}-#{subcommand}"
-    end
+  def self.helppage_filepath(command_name)
+    Rails.root.join("data/helppages/#{command_name.with_dashes}.txt")
   end
 end

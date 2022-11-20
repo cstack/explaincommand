@@ -29,19 +29,19 @@ class CommandParser
     command_name = tokens.first[:text]
     if tokens.length > 1
       possible_subcommand = tokens.second[:text]
-      tokens.second[:type] = :command_name if ManpageDirectory.exists?(command_name:, subcommand: possible_subcommand)
+      tokens.second[:type] = :command_name if ManpageDirectory.exists?(Command::Name.new(command_name, possible_subcommand))
     end
     tokens
   end
 
-  def self.full_command(string)
+  def self.command_name(string)
     words = string.split
-    command_name = words.shift
+    command_name = Command::Name.new(words.shift, nil)
     if words.length > 0
-      possible_subcommand = words.first
-      subcommand = possible_subcommand if ManpageDirectory.exists?(command_name:, subcommand: possible_subcommand)
+      possible_command_name = Command::Name.new(command_name.main_command, words.first)
+      command_name = possible_command_name if ManpageDirectory.exists?(possible_command_name)
     end
-    [command_name, subcommand]
+    command_name
   end
 
   def self.label_all_remaining_flags(tokens)

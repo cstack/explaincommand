@@ -6,12 +6,11 @@ describe ManpageParser do
       filename = path.split('/').last
       command = filename.split('.').first
       command_parts = command.split('-')
-      command_name = command_parts[0]
-      subcommand = command_parts[1]
+      command_name = Command::Name.new(command_parts[0], command_parts[1])
       context filename do
         it 'parses as expected' do
           html_string = File.read(path)
-          manpage = described_class.parse_html_string(html_string:, command_name:, subcommand:)
+          manpage = described_class.parse_html_string(html_string:, command_name:)
           fixture_path = "./spec/fixtures/manpages/#{command}.json"
           # File.write(fixture_path, JSON.pretty_generate(manpage))
           expected = Manpage.from_json(File.read(fixture_path))
@@ -26,11 +25,11 @@ describe ManpageParser do
       filename = path.split('/').last
       command = filename.split('.').first
       command_parts = command.split('-')
-      subcommand = command_parts[1]
+      command_name = Command::Name.new(command_parts[0], command_parts[1])
       context filename do
         it 'parses as expected' do
           helppage_string = File.read(path)
-          manpage = described_class.parse_helppage_string(helppage_string:, subcommand:)
+          manpage = described_class.parse_helppage_string(helppage_string:, command_name:)
           fixture_path = "./spec/fixtures/manpages/#{command}.json"
           # File.write(fixture_path, JSON.pretty_generate(manpage))
           expected = Manpage.from_json(File.read(fixture_path))
@@ -107,12 +106,11 @@ describe ManpageParser do
   end
 
   describe 'extract_first_usage_from_paragraph' do
-    subject { described_class.extract_first_usage_from_paragraph(text:, command_name:, subcommand:) }
+    subject { described_class.extract_first_usage_from_paragraph(text:, command_name:) }
 
     context 'when there is a subcommand' do
       let(:text) { "SYNOPSIS \ngit checkout [-q] [-f] [-m] [<branch>] \ngit checkout [-q] [-f] [-m] --detach [<branch>] \ngit checkout [-q] [-f] [-m] [--detach] <commit> \ngit checkout [-q] [-f] [-m] [[-b|-B|--orphan]\n<new-branch>] [<start-point>] \ngit checkout\n[-f|--ours|--theirs|-m|--conflict=<style>]\n[<tree-ish>] [--] <pathspec>... \ngit checkout\n[-f|--ours|--theirs|-m|--conflict=<style>]\n[<tree-ish>] --pathspec-from-file=<file>\n[--pathspec-file-nul] \ngit checkout (-p|--patch) [<tree-ish>] [--]\n[<pathspec>...]" }
-      let(:command_name) { 'git' }
-      let(:subcommand) { 'checkout' }
+      let(:command_name) { Command::Name.new('git', 'checkout') }
 
       it 'parses correctly' do
         expect(subject).to eq('git checkout [-q] [-f] [-m] [<branch>]')
@@ -121,12 +119,11 @@ describe ManpageParser do
   end
 
   describe 'extract_positional_arguments_from_usage_pattern' do
-    subject { described_class.extract_positional_arguments_from_usage_pattern(text:, subcommand:) }
+    subject { described_class.extract_positional_arguments_from_usage_pattern(text:, command_name:) }
 
     context 'chmod' do
       let(:text) { 'chmod [-fhv] [-R [-H | -L | -P]] mode file ...' }
-      let(:command_name) { 'chmod' }
-      let(:subcommand) { nil }
+      let(:command_name) { Command::Name.new('chmod') }
 
       it 'parses correctly' do
         expect(subject).to eq(
@@ -146,8 +143,7 @@ describe ManpageParser do
 
     context 'find' do
       let(:text) { 'find [-H | -L | -P] [-EXdsx] [-f path] path ... [expression]' }
-      let(:command_name) { 'find' }
-      let(:subcommand) { nil }
+      let(:command_name) { Command::Name.new('find') }
 
       it 'parses correctly' do
         expect(subject).to eq(
@@ -169,8 +165,7 @@ describe ManpageParser do
       let(:text) do
         'git checkout [-q] [-f] [-m] [<branch>]'
       end
-      let(:command_name) { 'git' }
-      let(:subcommand) { 'add' }
+      let(:command_name) { Command::Name.new('git', 'add') }
 
       it 'parses correctly' do
         expect(subject).to eq(
@@ -188,8 +183,7 @@ describe ManpageParser do
       let(:text) do
         'ls [-@ABCFGHILOPRSTUWabcdefghiklmnopqrstuvwxy1%,] [--color=when] [-D format] [file ...]'
       end
-      let(:command_name) { 'ls' }
-      let(:subcommand) { nil }
+      let(:command_name) { Command::Name.new('ls') }
 
       it 'parses correctly' do
         expect(subject).to eq(
@@ -207,8 +201,7 @@ describe ManpageParser do
       let(:text) do
         'docker attach [OPTIONS] CONTAINER'
       end
-      let(:command_name) { 'docker' }
-      let(:subcommand) { 'attach' }
+      let(:command_name) { Command::Name.new('docker', 'attach') }
 
       it 'parses correctly' do
         expect(subject).to eq(

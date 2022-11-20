@@ -6,7 +6,7 @@ describe Explanation do
 
     context 'docker build command' do
       let(:command) { CommandParser.parse('docker build -t getting-started .', manpage:) }
-      let(:manpage) { ManpageDirectory.get_manpage(command_name: 'docker', subcommand: 'build') }
+      let(:manpage) { ManpageDirectory.get_manpage(Command::Name.new('docker', 'build')) }
 
       it 'explains the command' do
         expect(subject.command_description).to eq('Build an image from a Dockerfile')
@@ -34,7 +34,7 @@ describe Explanation do
 
     context 'with positional arguments' do
       let(:command) { CommandParser.parse('chmod 600 id_rsa_gh_deploy', manpage:) }
-      let(:manpage) { ManpageDirectory.get_manpage(command_name: 'chmod', subcommand: nil) }
+      let(:manpage) { ManpageDirectory.get_manpage(Command::Name.new('chmod')) }
 
       it 'explains the command' do
         expect(subject.annotations).to eq(
