@@ -4,6 +4,13 @@
 
   ],
   "positional_arguments": [
-
+    {
+      "name": "CONTAINER",
+      "repeated": false
+    },
+    {
+      "name": "NEW_NAME",
+      "repeated": false
+    }
   ]
 }

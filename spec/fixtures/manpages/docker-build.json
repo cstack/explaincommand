@@ -140,6 +140,25 @@
     }
   ],
   "positional_arguments": [
-
+    {
+      "name": "[OPTIONS]",
+      "repeated": false
+    },
+    {
+      "name": "PATH",
+      "repeated": false
+    },
+    {
+      "name": "|",
+      "repeated": false
+    },
+    {
+      "name": "URL",
+      "repeated": false
+    },
+    {
+      "name": "|",
+      "repeated": false
+    }
   ]
 }

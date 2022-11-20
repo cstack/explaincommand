@@ -48,6 +48,13 @@
     }
   ],
   "positional_arguments": [
-
+    {
+      "name": "[OPTIONS]",
+      "repeated": false
+    },
+    {
+      "name": "CONTAINER",
+      "repeated": false
+    }
   ]
 }

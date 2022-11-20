@@ -20,7 +20,12 @@ describe Explanation do
             Annotation.new(
               referenced_text: '-t getting-started',
               text: "  -t, --tag list                Name and optionally a tag in the 'name:tag' format",
-              token_ids: [2, 3]
+              token_ids: [2]
+            ),
+            Annotation.new(
+              referenced_text: '.',
+              text: '[OPTIONS]',
+              token_ids: [3]
             )
           ]
         )

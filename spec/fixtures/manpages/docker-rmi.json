@@ -18,6 +18,17 @@
     }
   ],
   "positional_arguments": [
-
+    {
+      "name": "[OPTIONS]",
+      "repeated": false
+    },
+    {
+      "name": "IMAGE",
+      "repeated": false
+    },
+    {
+      "name": "[IMAGE...]",
+      "repeated": true
+    }
   ]
 }

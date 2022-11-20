@@ -4,6 +4,13 @@
 
   ],
   "positional_arguments": [
-
+    {
+      "name": "CONTAINER",
+      "repeated": false
+    },
+    {
+      "name": "[CONTAINER...]",
+      "repeated": true
+    }
   ]
 }

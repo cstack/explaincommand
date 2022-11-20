@@ -234,7 +234,7 @@ describe CommandParser do
               value: 'getting-started'
             ),
             Command::Token.new(
-              type: :unknown,
+              type: :positional_argument,
               text: '.'
             )
           ]

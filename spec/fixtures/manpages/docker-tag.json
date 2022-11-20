@@ -4,6 +4,13 @@
 
   ],
   "positional_arguments": [
-
+    {
+      "name": "SOURCE_IMAGE[:TAG]",
+      "repeated": false
+    },
+    {
+      "name": "TARGET_IMAGE[:TAG]",
+      "repeated": false
+    }
   ]
 }

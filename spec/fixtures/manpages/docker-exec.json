@@ -72,6 +72,21 @@
     }
   ],
   "positional_arguments": [
-
+    {
+      "name": "[OPTIONS]",
+      "repeated": false
+    },
+    {
+      "name": "CONTAINER",
+      "repeated": false
+    },
+    {
+      "name": "COMMAND",
+      "repeated": false
+    },
+    {
+      "name": "[ARG...]",
+      "repeated": true
+    }
   ]
 }

@@ -25,10 +25,12 @@ describe ManpageParser do
     Dir['./data/helppages/*'].each do |path|
       filename = path.split('/').last
       command = filename.split('.').first
+      command_parts = command.split('-')
+      subcommand = command_parts[1]
       context filename do
         it 'parses as expected' do
           helppage_string = File.read(path)
-          manpage = described_class.parse_helppage_string(helppage_string)
+          manpage = described_class.parse_helppage_string(helppage_string:, subcommand:)
           fixture_path = "./spec/fixtures/manpages/#{command}.json"
           # File.write(fixture_path, JSON.pretty_generate(manpage))
           expected = Manpage.from_json(File.read(fixture_path))

@@ -19,6 +19,17 @@
     }
   ],
   "positional_arguments": [
-
+    {
+      "name": "[OPTIONS]",
+      "repeated": false
+    },
+    {
+      "name": "CONTAINER:SRC_PATH",
+      "repeated": false
+    },
+    {
+      "name": "DEST_PATH|-",
+      "repeated": false
+    }
   ]
 }

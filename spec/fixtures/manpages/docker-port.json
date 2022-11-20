@@ -4,6 +4,13 @@
 
   ],
   "positional_arguments": [
-
+    {
+      "name": "CONTAINER",
+      "repeated": false
+    },
+    {
+      "name": "[PRIVATE_PORT[/PROTO]]",
+      "repeated": false
+    }
   ]
 }

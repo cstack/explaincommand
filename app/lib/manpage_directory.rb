@@ -9,7 +9,10 @@ class ManpageDirectory
         subcommand:
       )
     elsif helppage_exists?(command_name:, subcommand:)
-      ManpageParser.parse_helppage_string(File.read(helppage_filepath(command_name:, subcommand:)))
+      ManpageParser.parse_helppage_string(
+        helppage_string: File.read(helppage_filepath(command_name:, subcommand:)),
+        subcommand:
+      )
     else
       Manpage::UnknownCommand.new
     end

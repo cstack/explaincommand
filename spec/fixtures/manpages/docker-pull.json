@@ -33,6 +33,13 @@
     }
   ],
   "positional_arguments": [
-
+    {
+      "name": "[OPTIONS]",
+      "repeated": false
+    },
+    {
+      "name": "NAME[:TAG|@DIGEST]",
+      "repeated": false
+    }
   ]
 }

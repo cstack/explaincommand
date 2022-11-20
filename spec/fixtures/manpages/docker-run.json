@@ -697,6 +697,21 @@
     }
   ],
   "positional_arguments": [
-
+    {
+      "name": "[OPTIONS]",
+      "repeated": false
+    },
+    {
+      "name": "IMAGE",
+      "repeated": false
+    },
+    {
+      "name": "[COMMAND]",
+      "repeated": false
+    },
+    {
+      "name": "[ARG...]",
+      "repeated": true
+    }
   ]
 }

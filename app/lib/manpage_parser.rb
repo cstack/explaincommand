@@ -25,7 +25,7 @@ class ManpageParser
     )
   end
 
-  def self.parse_helppage_string(helppage_string)
+  def self.parse_helppage_string(helppage_string:, subcommand:)
     lines = helppage_string.split("\n")
     description = nil
     flags = []
@@ -40,10 +40,18 @@ class ManpageParser
       flag = extract_flags(text)
       flags << flag unless flag.nil?
     end
+    usage_string = lines.find do |line|
+      line.match(/^Usage:\s+(.+)$/)
+    end&.match(/^Usage:\s+(.+)$/)&.captures&.first
+    positional_arguments = if usage_string
+                             extract_positional_arguments_from_usage_pattern(text: usage_string, subcommand:)
+                           else
+                             []
+                           end
     Manpage.new(
       description:,
       flags:,
-      positional_arguments: []
+      positional_arguments:
     )
   end
 
