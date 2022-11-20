@@ -1,12 +1,12 @@
 class CommandParser
-  def self.parse(cmd, manpage: nil)
+  def self.parse(cmd, command_name:, manpage: nil)
     tokens = cmd.split.map do |word|
       {
         type: :unknown,
         text: word
       }
     end
-    tokens = label_command_name(tokens)
+    tokens = label_command_name(tokens:, command_name:)
     tokens = label_documented_flags(tokens:, manpage:)
     tokens = expand_combined_short_flags(tokens)
     tokens = label_all_remaining_flags(tokens)
@@ -14,6 +14,7 @@ class CommandParser
     tokens = assign_arguments_to_flags(tokens:, manpage:)
     tokens = label_documented_positional_arguments(tokens:, manpage:)
     Command.new(
+      command_name:,
       tokens:
     )
   end
@@ -24,12 +25,9 @@ class CommandParser
     end.join(' ')
   end
 
-  def self.label_command_name(tokens)
-    tokens.first[:type] = :command_name
-    command_name = tokens.first[:text]
-    if tokens.length > 1
-      possible_subcommand = tokens.second[:text]
-      tokens.second[:type] = :command_name if ManpageDirectory.exists?(Command::Name.new(command_name, possible_subcommand))
+  def self.label_command_name(tokens:, command_name:)
+    tokens.first(command_name.num_words).each do |token|
+      token[:type] = :command_name
     end
     tokens
   end

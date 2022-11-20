@@ -1,7 +1,8 @@
 class Command
-  attr_reader :tokens
+  attr_reader :command_name, :tokens
 
-  def initialize(tokens:)
+  def initialize(command_name:, tokens:)
+    @command_name = command_name
     @tokens = tokens.zip(0...tokens.length).map do |token_hash, i|
       Token.new(**token_hash.merge(id: i))
     end

@@ -1,5 +1,9 @@
 {
   "command": {
+    "command_name": {
+      "main_command": "ls",
+      "subcommand": null
+    },
     "tokens": [
       {
         "id": 0,
@@ -27,7 +31,6 @@
       }
     ]
   },
-  "command_description": "list directory contents",
   "annotations": [
     {
       "referenced_text": "ls",

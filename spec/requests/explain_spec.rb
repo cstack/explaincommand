@@ -17,7 +17,7 @@ RSpec.describe '/explain' do
       get '/explain', params: { cmd: 'ls -ltr' }, headers: { 'ACCEPT' => 'application/json' }
 
       fixture_path = './spec/fixtures/api_responses/ls-response.json'
-      # File.write(fixture_path, JSON.pretty_generate(JSON.parse(response.body)))
+      File.write(fixture_path, JSON.pretty_generate(JSON.parse(response.body)))
       expect(JSON.parse(response.body)).to eq(JSON.parse(File.read(fixture_path)))
     end
   end
