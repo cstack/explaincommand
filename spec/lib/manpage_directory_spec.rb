@@ -9,7 +9,7 @@ describe ManpageDirectory do
       let(:subcommand) { nil }
 
       it 'is true' do
-        expect(subject).to eq(true)
+        expect(subject).to be(true)
       end
     end
 
@@ -18,7 +18,7 @@ describe ManpageDirectory do
       let(:subcommand) { nil }
 
       it 'is false' do
-        expect(subject).to eq(false)
+        expect(subject).to be(false)
       end
     end
 
@@ -27,7 +27,7 @@ describe ManpageDirectory do
       let(:subcommand) { 'add' }
 
       it 'is false' do
-        expect(subject).to eq(true)
+        expect(subject).to be(true)
       end
     end
   end

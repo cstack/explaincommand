@@ -47,7 +47,7 @@ describe ManpageParser do
       let(:text) { 'this is just some text with a --flag near the end' }
 
       it 'returns nil' do
-        expect(subject).to eq(nil)
+        expect(subject).to be(nil)
       end
     end
 
@@ -56,7 +56,7 @@ describe ManpageParser do
 
       it 'extracts the flag' do
         expect(subject.aliases).to eq(['-f'])
-        expect(subject.takes_argument).to eq(false)
+        expect(subject.takes_argument).to be(false)
       end
     end
 
@@ -65,7 +65,7 @@ describe ManpageParser do
 
       it 'extracts the flag' do
         expect(subject.aliases).to eq(['--flag'])
-        expect(subject.takes_argument).to eq(false)
+        expect(subject.takes_argument).to be(false)
       end
     end
 
@@ -74,7 +74,7 @@ describe ManpageParser do
 
       it 'extracts the flags' do
         expect(subject.aliases).to eq(['-f', '--flag'])
-        expect(subject.takes_argument).to eq(false)
+        expect(subject.takes_argument).to be(false)
       end
     end
 
@@ -83,7 +83,7 @@ describe ManpageParser do
 
       it 'only extracts the flags at the beginning' do
         expect(subject.aliases).to eq(['-f', '--flag'])
-        expect(subject.takes_argument).to eq(false)
+        expect(subject.takes_argument).to be(false)
       end
     end
 
@@ -92,7 +92,7 @@ describe ManpageParser do
 
       it 'only extracts the flags at the beginning' do
         expect(subject.aliases).to eq(['--multi-word-flag'])
-        expect(subject.takes_argument).to eq(false)
+        expect(subject.takes_argument).to be(false)
       end
     end
 
@@ -101,7 +101,7 @@ describe ManpageParser do
 
       it 'recognizes the argument' do
         expect(subject.aliases).to eq(['-f', '--file'])
-        expect(subject.takes_argument).to eq(true)
+        expect(subject.takes_argument).to be(true)
       end
     end
   end
