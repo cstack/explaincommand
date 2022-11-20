@@ -110,7 +110,8 @@ class ManpageParser
     num_words_in_command = subcommand.nil? ? 1 : 2
     grouped_words = group_by_brackets(words)
     positional_argument_words = grouped_words.drop(num_words_in_command).reject do |word|
-      word.gsub('[', '').start_with?('-')
+      word.gsub('[', '').start_with?('-') ||
+        word == '[OPTIONS]'
     end
     interpret_ellipses(positional_argument_words)
   end

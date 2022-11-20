@@ -202,5 +202,24 @@ describe ManpageParser do
         )
       end
     end
+
+    context 'when there is an argument called OPTIONS' do
+      let(:text) do
+        'docker attach [OPTIONS] CONTAINER'
+      end
+      let(:command_name) { 'docker' }
+      let(:subcommand) { 'attach' }
+
+      it 'parses correctly' do
+        expect(subject).to eq(
+          [
+            {
+              name: 'CONTAINER',
+              repeated: false
+            }
+          ]
+        )
+      end
+    end
   end
 end

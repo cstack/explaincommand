@@ -24,7 +24,7 @@ describe Explanation do
             ),
             Annotation.new(
               referenced_text: '.',
-              text: '[OPTIONS]',
+              text: 'PATH',
               token_ids: [3]
             )
           ]

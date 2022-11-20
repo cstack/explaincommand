@@ -18,9 +18,6 @@
     }
   ],
   "positional_arguments": [
-    {
-      "name": "[OPTIONS]",
-      "repeated": false
-    }
+
   ]
 }

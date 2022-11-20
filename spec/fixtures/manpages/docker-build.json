@@ -141,10 +141,6 @@
   ],
   "positional_arguments": [
     {
-      "name": "[OPTIONS]",
-      "repeated": false
-    },
-    {
       "name": "PATH",
       "repeated": false
     },

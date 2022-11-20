@@ -20,10 +20,6 @@
   ],
   "positional_arguments": [
     {
-      "name": "[OPTIONS]",
-      "repeated": false
-    },
-    {
       "name": "CONTAINER:SRC_PATH",
       "repeated": false
     },

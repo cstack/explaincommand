@@ -34,10 +34,6 @@
   ],
   "positional_arguments": [
     {
-      "name": "[OPTIONS]",
-      "repeated": false
-    },
-    {
       "name": "NAME|ID",
       "repeated": false
     },
