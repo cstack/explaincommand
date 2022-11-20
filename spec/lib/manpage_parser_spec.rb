@@ -104,8 +104,22 @@ describe ManpageParser do
     end
   end
 
+  describe 'extract_first_usage_from_paragraph' do
+    subject { described_class.extract_first_usage_from_paragraph(text:, command_name:, subcommand:) }
+
+    context 'when there is a subcommand' do
+      let(:text) { "SYNOPSIS \ngit checkout [-q] [-f] [-m] [<branch>] \ngit checkout [-q] [-f] [-m] --detach [<branch>] \ngit checkout [-q] [-f] [-m] [--detach] <commit> \ngit checkout [-q] [-f] [-m] [[-b|-B|--orphan]\n<new-branch>] [<start-point>] \ngit checkout\n[-f|--ours|--theirs|-m|--conflict=<style>]\n[<tree-ish>] [--] <pathspec>... \ngit checkout\n[-f|--ours|--theirs|-m|--conflict=<style>]\n[<tree-ish>] --pathspec-from-file=<file>\n[--pathspec-file-nul] \ngit checkout (-p|--patch) [<tree-ish>] [--]\n[<pathspec>...]" }
+      let(:command_name) { 'git' }
+      let(:subcommand) { 'checkout' }
+
+      it 'parses correctly' do
+        expect(subject).to eq('git checkout [-q] [-f] [-m] [<branch>]')
+      end
+    end
+  end
+
   describe 'extract_positional_arguments_from_usage_pattern' do
-    subject { described_class.extract_positional_arguments_from_usage_pattern(text:, command_name:, subcommand:) }
+    subject { described_class.extract_positional_arguments_from_usage_pattern(text:, subcommand:) }
 
     context 'chmod' do
       let(:text) { 'chmod [-fhv] [-R [-H | -L | -P]] mode file ...' }
