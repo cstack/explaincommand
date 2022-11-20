@@ -19,11 +19,21 @@
 }
 
 #command span.highlighted {
-  background: yellow;
+  background: #ffbe85;
 }
 
 .annotation.highlighted {
-  background: yellow;
+  background: #ffbe85;
+}
+
+@media (prefers-color-scheme: dark) {
+  #command span.highlighted {
+    background: #0096bfab;
+  }
+
+  .annotation.highlighted {
+    background: #0096bfab;
+  }
 }
 
 #top-search {
