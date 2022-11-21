@@ -68,7 +68,7 @@ class Command
     def to_hash
       {
         main_command:,
-        subcommand:,
+        subcommand:
       }
     end
 

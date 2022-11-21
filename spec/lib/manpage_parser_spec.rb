@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe ManpageParser do
   describe '.parse_html_string' do
-    Dir['./data/manpages/*'].each do |path|
+    Dir['./spec/fixtures/manpages/*'].each do |path|
       filename = path.split('/').last
       command = filename.split('.').first
       command_parts = command.split('-')
@@ -11,7 +11,7 @@ describe ManpageParser do
         it 'parses as expected' do
           html_string = File.read(path)
           manpage = described_class.parse_html_string(html_string:, command_name:)
-          fixture_path = "./spec/fixtures/manpages/#{command}.json"
+          fixture_path = "./data/manpages/#{command}.json"
           # File.write(fixture_path, JSON.pretty_generate(manpage))
           expected = Manpage.from_json(File.read(fixture_path))
           expect(manpage).to eq(expected)
@@ -21,7 +21,7 @@ describe ManpageParser do
   end
 
   describe '.parse_helppage_string' do
-    Dir['./data/helppages/*'].each do |path|
+    Dir['./spec/fixtures/helppages/*'].each do |path|
       filename = path.split('/').last
       command = filename.split('.').first
       command_parts = command.split('-')
@@ -30,7 +30,7 @@ describe ManpageParser do
         it 'parses as expected' do
           helppage_string = File.read(path)
           manpage = described_class.parse_helppage_string(helppage_string:, command_name:)
-          fixture_path = "./spec/fixtures/manpages/#{command}.json"
+          fixture_path = "./data/manpages/#{command}.json"
           # File.write(fixture_path, JSON.pretty_generate(manpage))
           expected = Manpage.from_json(File.read(fixture_path))
           expect(manpage).to eq(expected)
