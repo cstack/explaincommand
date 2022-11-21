@@ -8,12 +8,17 @@ Inspired by https://github.com/idank/explainshell
 
 ## Import a man page
 ```
-man ls | groff -T html - > data/manpages/ls.html
+man ls | groff -T html - | rails manpage:parse\[ls,\]
+```
+
+## Import a man page for a subcommand
+```
+man git-add | groff -T html - | rails manpage:parse\[git,add\]
 ```
 
 ## Import a help page
 ```
-docker run --help > data/helppages/docker-run.txt
+docker run --help | rails manpage:parse_helppage\[docker,run\]
 ```
 
 ## Run server locally
