@@ -60,10 +60,6 @@
   ],
   "positional_arguments": [
     {
-      "name": "[OPTION]...",
-      "repeated": true
-    },
-    {
       "name": "DIRECTORY...",
       "repeated": true
     }

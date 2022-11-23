@@ -97,5 +97,23 @@ describe UsageParser do
         )
       end
     end
+
+    context 'when there is an argument called OPTION' do
+      let(:text) do
+        'ls [OPTION]... [FILE]...'
+      end
+      let(:command_name) { Command::Name.new('ls') }
+
+      it 'parses correctly' do
+        expect(subject).to eq(
+          [
+            {
+              name: '[FILE]...',
+              repeated: true
+            }
+          ]
+        )
+      end
+    end
   end
 end

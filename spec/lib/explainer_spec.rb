@@ -32,7 +32,7 @@ describe Explainer do
             ),
             Annotation.new(
               referenced_text: '/tmp',
-              text: '[OPTION]...',
+              text: '[FILE]...',
               token_ids: [4]
             )
           ]
