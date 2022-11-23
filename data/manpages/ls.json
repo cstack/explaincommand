@@ -7,350 +7,450 @@
   "flags": [
     {
       "aliases": [
-        "-A"
+        "-a",
+        "--all"
       ],
-      "description": "-A Include directory entries\nwhose names begin with a dot (â.â) \nexcept for . and ... Automatically set for the super-user\nunless \n-I is specified.",
+      "description": "do not ignore entries starting with .",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-B"
+        "-A",
+        "--almost-all"
       ],
-      "description": "-B Force printing of\nnon-printable characters (as defined by \nctype(3) and current locale settings) in file names as xxx,\n\nwhere xxx is the numeric value of the character in octal.\nThis \noption is not defined in IEEE Std 1003.1-2008\n(âPOSIX.1â).",
+      "description": "do not list implied . and ..",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-C"
+        "--author"
       ],
-      "description": "-C Force multi-column output;\nthis is the default when output is to \na terminal.",
+      "description": "with -l, print the author of each file",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-D"
+        "-b",
+        "--escape"
       ],
-      "description": "-D format \nWhen printing in the long (-l) format, use format to format\nthe \ndate and time output. The argument format is a string used\nby \nstrftime(3). Depending on the choice of format string, this\nmay \nresult in a different number of columns in the output. This\n\noption overrides the -T option. This option is not defined\nin \nIEEE Std 1003.1-2008 (âPOSIX.1â).",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "-F"
-      ],
-      "description": "-F Display a slash\n(â/â) immediately after each pathname that is a\n\ndirectory, an asterisk (â*â) after each that is\nexecutable, an at \nsign (â@â) after each symbolic link, an equals\nsign (â=â) after \neach socket, a percent sign (â%â) after each\nwhiteout, and a \nvertical bar (â|â) after each that is a\nFIFO.",
+      "description": "print C-style escapes for nongraphic characters",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-G"
+        "--block-size=SIZE"
       ],
-      "description": "-G Enable colorized output. This\noption is equivalent to defining \nCLICOLOR or COLORTERM in the environment and setting \n--color=auto. (See below.) This functionality can be\ncompiled \nout by removing the definition of COLORLS. This option is\nnot \ndefined in IEEE Std 1003.1-2008 (âPOSIX.1â).",
+      "description": "with -l, scale sizes by SIZE when printing them; e.g.,\n      '--block-size=M'; see SIZE format below",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-H"
+        "-B",
+        "--ignore-backups"
       ],
-      "description": "-H Symbolic links on the command\nline are followed. This option is \nassumed if none of the -F, -d, or -l options are\nspecified.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-I"
-      ],
-      "description": "-I Prevent -A from being\nautomatically set for the super-user. This \noption is not defined in IEEE Std 1003.1-2008\n(âPOSIX.1â).",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-L"
-      ],
-      "description": "-L Follow all symbolic links to\nfinal target and list the file or \ndirectory the link references rather than the link itself.\nThis \noption cancels the -P option.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-O"
-      ],
-      "description": "-O Include the file flags in a\nlong (-l) output. This option is \nincompatible with IEEE Std 1003.1-2008\n(âPOSIX.1â). See \nchflags(1) for a list of file flags and their meanings.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-P"
-      ],
-      "description": "-P If argument is a symbolic\nlink, list the link itself rather than \nthe object the link references. This option cancels the -H\nand \n-L options.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-R"
-      ],
-      "description": "-R Recursively list\nsubdirectories encountered.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-S"
-      ],
-      "description": "-S Sort by size (largest file\nfirst) before sorting the operands in \nlexicographical order.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-T"
-      ],
-      "description": "-T When printing in the long\n(-l) format, display complete time \ninformation for the file, including month, day, hour,\nminute, \nsecond, and year. The -D option gives even more control over\nthe \noutput format. This option is not defined in IEEE Std \n1003.1-2008 (âPOSIX.1â).",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-U"
-      ],
-      "description": "-U Use time when file was\ncreated for sorting or printing. This \noption is not defined in IEEE Std 1003.1-2008\n(âPOSIX.1â).",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-W"
-      ],
-      "description": "-W Display whiteouts when\nscanning directories. This option is not \ndefined in IEEE Std 1003.1-2008 (âPOSIX.1â).",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-a"
-      ],
-      "description": "-a Include directory entries\nwhose names begin with a dot (â.â).",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-b"
-      ],
-      "description": "-b As -B, but use C escape codes\nwhenever possible. This option is \nnot defined in IEEE Std 1003.1-2008\n(âPOSIX.1â).",
+      "description": "do not list implied entries ending with ~",
       "takes_argument": false
     },
     {
       "aliases": [
         "-c"
       ],
-      "description": "-c Use time when file status was\nlast changed for sorting or \nprinting.",
+      "description": "with -lt: sort by, and show, ctime (time of last modification of\n      file status information); with -l: show ctime and sort by name;\n      otherwise: sort by ctime, newest first",
       "takes_argument": false
     },
     {
       "aliases": [
-        "--color"
+        "-C"
       ],
-      "description": "--color=when \nOutput colored escape sequences based on when, which may be\nset \nto either always, auto, or never.",
+      "description": "list entries by columns",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-d"
+        "--color[=WHEN]"
       ],
-      "description": "-d Directories are listed as\nplain files (not searched recursively).",
+      "description": "colorize the output; WHEN can be 'always' (default if omitted), 'auto', or\n      'never'; more info below",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-e"
+        "-d",
+        "--directory"
       ],
-      "description": "-e Print the Access Control List\n(ACL) associated with the file, if \npresent, in long (-l) output.",
+      "description": "list directories themselves, not their contents",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-D",
+        "--dired"
+      ],
+      "description": "generate output designed for Emacs' dired mode",
       "takes_argument": false
     },
     {
       "aliases": [
         "-f"
       ],
-      "description": "-f Output is not sorted. This\noption turns on -a. It also negates \nthe effect of the -r, -S and -t options. As allowed by IEEE\nStd \n1003.1-2008 (âPOSIX.1â), this option has no\neffect on the -d, -l, \n-R and -s options.",
+      "description": "do not sort, enable -aU, disable -ls --color",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-F",
+        "--classify"
+      ],
+      "description": "append indicator (one of */=>@|) to entries",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--file-type"
+      ],
+      "description": "likewise, except do not append '*'",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--format=WORD"
+      ],
+      "description": "across -x, commas -m, horizontal -x, long -l,\n      single-column -1, verbose -l, vertical -C",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--full-time"
+      ],
+      "description": "like -l --time-style=full-iso",
       "takes_argument": false
     },
     {
       "aliases": [
         "-g"
       ],
-      "description": "-g This option has no effect. It\nis only available for \ncompatibility with 4.3BSD, where it was used to display the\ngroup \nname in the long (-l) format output. This option is\nincompatible \nwith IEEE Std 1003.1-2008 (âPOSIX.1â).",
+      "description": "like -l, but do not list owner",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-h"
+        "--group-directories-first"
       ],
-      "description": "-h When used with the -l option,\nuse unit suffixes: Byte, Kilobyte, \nMegabyte, Gigabyte, Terabyte and Petabyte in order to reduce\nthe \nnumber of digits to four or fewer using base 2 for sizes.\nThis \noption is not defined in IEEE Std 1003.1-2008\n(âPOSIX.1â).",
+      "description": "group directories before files;",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-i"
+        "-G",
+        "--no-group"
       ],
-      "description": "-i For each file, print the\nfile’s file serial number (inode \nnumber).",
+      "description": "in a long listing, don't print group names",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-k"
+        "-h",
+        "--human-readable"
       ],
-      "description": "-k This has the same effect as\nsetting environment variable \nBLOCKSIZE to 1024, except that it also nullifies any -h\noptions \nto its left.",
+      "description": "with -l and -s, print sizes like 1K 234M 2G etc.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--si"
+      ],
+      "description": "likewise, but use powers of 1000 not 1024",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-H",
+        "--dereference-command-line"
+      ],
+      "description": "follow symbolic links listed on the command line",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--dereference-command-line-symlink-to-dir"
+      ],
+      "description": "follow each command line symbolic link",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--hide=PATTERN"
+      ],
+      "description": "do not list implied entries matching shell PATTERN (overridden by\n      -a or -A)",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--hyperlink[=WHEN]"
+      ],
+      "description": "hyperlink file names; WHEN can be 'always' (default if omitted), 'auto',\n      or 'never'",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--indicator-style=WORD"
+      ],
+      "description": "append indicator with style WORD to entry names: none (default), slash\n      (-p), file-type (--file-type), classify (-F)",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-i",
+        "--inode"
+      ],
+      "description": "print the index number of each file",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-I",
+        "--ignore=PATTERN"
+      ],
+      "description": "do not list implied entries matching shell PATTERN",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-k",
+        "--kibibytes"
+      ],
+      "description": "default to 1024-byte blocks for disk usage; used only with -s and\n      per directory totals",
       "takes_argument": false
     },
     {
       "aliases": [
         "-l"
       ],
-      "description": "-l (The lowercase letter\nâellâ.) List files in the long format, as \ndescribed in the The Long Format subsection below.",
+      "description": "use a long listing format",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-L",
+        "--dereference"
+      ],
+      "description": "when showing file information for a symbolic link, show information for\n      the file the link references rather than for the link itself",
       "takes_argument": false
     },
     {
       "aliases": [
         "-m"
       ],
-      "description": "-m Stream output format; list\nfiles across the page, separated by \ncommas.",
+      "description": "fill width with a comma separated list of entries",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-n"
+        "-n",
+        "--numeric-uid-gid"
       ],
-      "description": "-n Display user and group IDs\nnumerically rather than converting to \na user or group name in a long (-l) output. This option\nturns on \nthe -l option.",
+      "description": "like -l, but list numeric user and group IDs",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-N",
+        "--literal"
+      ],
+      "description": "print entry names without quoting",
       "takes_argument": false
     },
     {
       "aliases": [
         "-o"
       ],
-      "description": "-o List in long format, but omit\nthe group id.",
+      "description": "like -l, but do not list group information",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-p"
+        "-p",
+        "--indicator-style=slash"
       ],
-      "description": "-p Write a slash\n(â/â) after each filename if that file is a \ndirectory.",
+      "description": "append / indicator to directories",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-q"
+        "-q",
+        "--hide-control-chars"
       ],
-      "description": "-q Force printing of non-graphic\ncharacters in file names as the \ncharacter â?â; this is the default when output\nis to a terminal.",
+      "description": "print ? instead of nongraphic characters",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-r"
+        "--show-control-chars"
       ],
-      "description": "-r Reverse the order of the\nsort.",
+      "description": "show nongraphic characters as-is (the default, unless program is 'ls' and\n      output is a terminal)",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-s"
+        "-Q",
+        "--quote-name"
       ],
-      "description": "-s Display the number of blocks\nused in the file system by each \nfile. Block sizes and directory totals are handled as\ndescribed \nin The Long Format subsection below, except (if the long\nformat \nis not also requested) the directory totals are not output\nwhen \nthe output is in a single column, even if multi-column\noutput is \nrequested. (-l) format, display complete time information\nfor \nthe file, including month, day, hour, minute, second, and\nyear. \nThe -D option gives even more control over the output\nformat. \nThis option is not defined in IEEE Std 1003.1-2008\n(âPOSIX.1â).",
+      "description": "enclose entry names in double quotes",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-t"
+        "--quoting-style=WORD"
       ],
-      "description": "-t Sort by descending time\nmodified (most recently modified first). \nIf two files have the same modification timestamp, sort\ntheir \nnames in ascending lexicographical order. The -r option\nreverses \nboth of these sort orders.",
+      "description": "use quoting style WORD for entry names: literal, locale, shell,\n      shell-always, shell-escape, shell-escape-always, c, escape (overrides\n      QUOTING_STYLE environment variable)",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-u"
+        "-r",
+        "--reverse"
       ],
-      "description": "-u Use time of last access,\ninstead of time of last modification of \nthe file for sorting (-t) or long printing (-l).",
+      "description": "reverse order while sorting",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-v"
+        "-R",
+        "--recursive"
       ],
-      "description": "-v Force unedited printing of\nnon-graphic characters; this is the \ndefault when output is not to a terminal.",
+      "description": "list subdirectories recursively",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-w"
+        "-s",
+        "--size"
       ],
-      "description": "-w Force raw printing of\nnon-printable characters. This is the \ndefault when output is not to a terminal. This option is not\n\ndefined in IEEE Std 1003.1-2001 (âPOSIX.1â).",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-x"
-      ],
-      "description": "-x The same as -C, except that\nthe multi-column output is produced \nwith entries sorted across, rather than down, the\ncolumns.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-y"
-      ],
-      "description": "-y When the -t option is set,\nsort the alphabetical output in the \nsame order as the time output. This has the same effect as\n\nsetting LS_SAMESORT. See the description of the -t option\nfor \nmore details. This option is not defined in IEEE Std\n1003.1-2001 \n(âPOSIX.1â).",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-1"
-      ],
-      "description": "-1 (The numeric digit\nâoneâ.) Force output to be one entry per line.\n\nThis is the default when output is not to a terminal. (-l)\n\noutput, and don’t materialize dataless directories\nwhen listing \nthem.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-1",
-        "-C",
-        "-x"
-      ],
-      "description": "The -1, -C, -x, and -l options\nall override each other; the last one \nspecified determines the format used.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-c",
-        "-u"
-      ],
-      "description": "The -c, -u, and -U options all\noverride each other; the last one \nspecified determines the file time used.",
+      "description": "print the allocated size of each file, in blocks",
       "takes_argument": false
     },
     {
       "aliases": [
         "-S"
       ],
-      "description": "The -S and -t options override\neach other; the last one specified \ndetermines the sort order used.",
+      "description": "sort by file size, largest first",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-B",
-        "-b",
-        "-w"
+        "--sort=WORD"
       ],
-      "description": "The -B, -b, -w, and -q options\nall override each other; the last one \nspecified determines the format used for non-printable\ncharacters.",
+      "description": "sort by WORD instead of name: none (-U), size (-S), time\n      (-t), version (-v), extension (-X)",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-H",
-        "-L"
+        "--time=WORD"
       ],
-      "description": "The -H, -L and -P options all\noverride each other (either partially or \nfully); they are applied in the order specified.",
+      "description": "change the default of using modification times; access time (-u):\n      atime, access, use; change time (-c): ctime, status; birth time:\n      birth, creation;",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-H"
+        "--time-style=TIME_STYLE"
       ],
-      "description": "When -H is specified (and not\noverridden by -L or -P) and a file argument \nis a symlink that resolves to a non-directory file, the\noutput will \nreflect the nature of the link, rather than that of the\nfile. In legacy \noperation, the output will describe the file.",
+      "description": "time/date format with -l; see TIME_STYLE below",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-t"
+      ],
+      "description": "sort by time, newest first; see --time",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-T",
+        "--tabsize=COLS"
+      ],
+      "description": "assume tab stops at each COLS instead of 8",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-u"
+      ],
+      "description": "with -lt: sort by, and show, access time; with -l: show\n      access time and sort by name; otherwise: sort by access time, newest\n    first",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-U"
+      ],
+      "description": "do not sort; list entries in directory order",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-v"
+      ],
+      "description": "natural sort of (version) numbers within text",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-w",
+        "--width=COLS"
+      ],
+      "description": "set output width to COLS. 0 means no limit",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-x"
+      ],
+      "description": "list entries by lines instead of by columns",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-X"
+      ],
+      "description": "sort alphabetically by entry extension",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-Z",
+        "--context"
+      ],
+      "description": "print any security context of each file",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-1"
+      ],
+      "description": "list one file per line. Avoid '\\n' with -q or -b",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--help"
+      ],
+      "description": "display this help and exit",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--version"
+      ],
+      "description": "output version information and exit",
       "takes_argument": false
     }
   ],
   "positional_arguments": [
     {
-      "name": "[file ...]",
+      "name": "[OPTION]...",
+      "repeated": true
+    },
+    {
+      "name": "[FILE]...",
       "repeated": true
     }
   ]

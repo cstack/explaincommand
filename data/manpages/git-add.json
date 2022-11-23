@@ -3,21 +3,14 @@
     "main_command": "git",
     "subcommand": "add"
   },
-  "description": "git-add - Add file contents to the index",
+  "description": "Add file contents to the index",
   "flags": [
-    {
-      "aliases": [
-        "-ADD"
-      ],
-      "description": "GIT-ADD(1) Git Manual GIT-ADD(1)",
-      "takes_argument": false
-    },
     {
       "aliases": [
         "-n",
         "--dry-run"
       ],
-      "description": "-n, --dry-run \nDonât actually add the file(s), just show if they\nexist and/or will \nbe ignored.",
+      "description": "Don’t actually add the file(s), just show if they\n  exist and/or will be ignored.",
       "takes_argument": false
     },
     {
@@ -25,7 +18,7 @@
         "-v",
         "--verbose"
       ],
-      "description": "-v, --verbose \nBe verbose.",
+      "description": "Be verbose.",
       "takes_argument": false
     },
     {
@@ -33,14 +26,14 @@
         "-f",
         "--force"
       ],
-      "description": "-f, --force \nAllow adding otherwise ignored files.",
+      "description": "Allow adding otherwise ignored files.",
       "takes_argument": false
     },
     {
       "aliases": [
         "--sparse"
       ],
-      "description": "--sparse \nAllow updating index entries outside of the sparse-checkout\ncone. \nNormally, git add refuses to update index entries whose\npaths do \nnot fit within the sparse-checkout cone, since those files\nmight be \nremoved from the working tree without warning. See\ngit-sparse- \ncheckout(1) for more details.",
+      "description": "Allow updating index entries outside of the\n  sparse-checkout cone. Normally, git add refuses to update index entries\n  whose paths do not fit within the sparse-checkout cone, since those files\n  might be removed from the working tree without warning. See\n  git-sparse-checkout(1) for more details.",
       "takes_argument": false
     },
     {
@@ -48,7 +41,7 @@
         "-i",
         "--interactive"
       ],
-      "description": "-i, --interactive \nAdd modified contents in the working tree interactively to\nthe \nindex. Optional path arguments may be supplied to limit\noperation \nto a subset of the working tree. See âInteractive\nmodeâ for \ndetails.",
+      "description": "Add modified contents in the working tree interactively\n  to the index. Optional path arguments may be supplied to limit operation to a\n  subset of the working tree. See “Interactive mode” for\n  details.",
       "takes_argument": false
     },
     {
@@ -56,7 +49,7 @@
         "-p",
         "--patch"
       ],
-      "description": "-p, --patch \nInteractively choose hunks of patch between the index and\nthe work \ntree and add them to the index. This gives the user a chance\nto \nreview the difference before adding modified contents to the\nindex.",
+      "description": "Interactively choose hunks of patch between the index and\n  the work tree and add them to the index. This gives the user a chance to\n  review the difference before adding modified contents to the index.\nThis effectively runs add --interactive, but bypasses the\n    initial command menu and directly jumps to the patch subcommand. See\n    “Interactive mode” for details.\n",
       "takes_argument": false
     },
     {
@@ -64,7 +57,7 @@
         "-e",
         "--edit"
       ],
-      "description": "-e, --edit \nOpen the diff vs. the index in an editor and let the user\nedit it. \nAfter the editor was closed, adjust the hunk headers and\napply the \npatch to the index.",
+      "description": "Open the diff vs. the index in an editor and let the user\n  edit it. After the editor was closed, adjust the hunk headers and apply the\n  patch to the index.\nThe intent of this option is to pick and choose lines of the patch\n    to apply, or even to modify the contents of lines to be staged. This can be\n    quicker and more flexible than using the interactive hunk selector. However,\n    it is easy to confuse oneself and create a patch that does not apply to the\n    index. See EDITING PATCHES below.\n",
       "takes_argument": false
     },
     {
@@ -72,7 +65,7 @@
         "-u",
         "--update"
       ],
-      "description": "-u, --update \nUpdate the index just where it already has an entry matching\n\n<pathspec>. This removes as well as modifies index\nentries to match \nthe working tree, but adds no new files.",
+      "description": "Update the index just where it already has an entry\n  matching <pathspec>. This removes as well as modifies index entries to\n  match the working tree, but adds no new files.\nIf no <pathspec> is given when -u option is used, all\n    tracked files in the entire working tree are updated (old versions of Git\n    used to limit the update to the current directory and its\n  subdirectories).\n",
       "takes_argument": false
     },
     {
@@ -81,7 +74,7 @@
         "--all",
         "--no-ignore-removal"
       ],
-      "description": "-A, --all, --no-ignore-removal\n\nUpdate the index not only where the working tree has a file\n\nmatching <pathspec> but also where the index already\nhas an entry. \nThis adds, modifies, and removes index entries to match the\nworking \ntree.",
+      "description": "Update the index not only where the working tree has a\n  file matching <pathspec> but also where the index already has an entry.\n  This adds, modifies, and removes index entries to match the working tree.\nIf no <pathspec> is given when -A option is used, all\n    files in the entire working tree are updated (old versions of Git used to\n    limit the update to the current directory and its subdirectories).\n",
       "takes_argument": false
     },
     {
@@ -89,7 +82,7 @@
         "--no-all",
         "--ignore-removal"
       ],
-      "description": "--no-all, --ignore-removal \nUpdate the index by adding new files that are unknown to the\nindex \nand files modified in the working tree, but ignore files\nthat have \nbeen removed from the working tree. This option is a no-op\nwhen no \n<pathspec> is used.",
+      "description": "Update the index by adding new files that are unknown to\n  the index and files modified in the working tree, but ignore files that have\n  been removed from the working tree. This option is a no-op when no\n  <pathspec> is used.\nThis option is primarily to help users who are used to older\n    versions of Git, whose \"git add <pathspec>...\" was a synonym\n    for \"git add --no-all <pathspec>...\", i.e. ignored removed\n    files.\n",
       "takes_argument": false
     },
     {
@@ -97,84 +90,70 @@
         "-N",
         "--intent-to-add"
       ],
-      "description": "-N, --intent-to-add \nRecord only the fact that the path will be added later. An\nentry \nfor the path is placed in the index with no content. This is\nuseful \nfor, among other things, showing the unstaged content of\nsuch files \nwith git diff and committing them with git commit -a.",
+      "description": "Record only the fact that the path will be added later.\n  An entry for the path is placed in the index with no content. This is useful\n  for, among other things, showing the unstaged content of such files with\n  git diff and committing them with git commit -a.",
       "takes_argument": false
     },
     {
       "aliases": [
         "--refresh"
       ],
-      "description": "--refresh \nDonât add the file(s), but only refresh their stat()\ninformation in \nthe index.",
+      "description": "Don’t add the file(s), but only refresh their\n  stat() information in the index.",
       "takes_argument": false
     },
     {
       "aliases": [
         "--ignore-errors"
       ],
-      "description": "--ignore-errors \nIf some files could not be added because of errors indexing\nthem, \ndo not abort the operation, but continue adding the others.\nThe \ncommand shall still exit with non-zero status. The\nconfiguration \nvariable add.ignoreErrors can be set to true to make this\nthe \ndefault behaviour.",
+      "description": "If some files could not be added because of errors\n  indexing them, do not abort the operation, but continue adding the others. The\n  command shall still exit with non-zero status. The configuration variable\n  add.ignoreErrors can be set to true to make this the default\n  behaviour.",
       "takes_argument": false
     },
     {
       "aliases": [
         "--ignore-missing"
       ],
-      "description": "--ignore-missing \nThis option can only be used together with --dry-run. By\nusing this \noption the user can check if any of the given files would be\n\nignored, no matter if they are already present in the work\ntree or \nnot.",
+      "description": "This option can only be used together with --dry-run. By\n  using this option the user can check if any of the given files would be\n  ignored, no matter if they are already present in the work tree or not.",
       "takes_argument": false
     },
     {
       "aliases": [
         "--no-warn-embedded-repo"
       ],
-      "description": "--no-warn-embedded-repo \nBy default, git add will warn when adding an embedded\nrepository to \nthe index without using git submodule add to create an entry\nin \n.gitmodules. This option will suppress the warning (e.g., if\nyou \nare manually performing operations on submodules).",
+      "description": "By default, git add will warn when adding an\n  embedded repository to the index without using git submodule add to\n  create an entry in .gitmodules. This option will suppress the warning\n  (e.g., if you are manually performing operations on submodules).",
       "takes_argument": false
     },
     {
       "aliases": [
         "--renormalize"
       ],
-      "description": "--renormalize \nApply the \"clean\" process freshly to all tracked\nfiles to forcibly \nadd them again to the index. This is useful after changing\n\ncore.autocrlf configuration or the text attribute in order\nto \ncorrect files added with wrong CRLF/LF line endings. This\noption \nimplies -u.",
+      "description": "Apply the \"clean\" process freshly to all\n  tracked files to forcibly add them again to the index. This is useful after\n  changing core.autocrlf configuration or the text attribute in\n  order to correct files added with wrong CRLF/LF line endings. This option\n  implies -u.",
       "takes_argument": false
     },
     {
       "aliases": [
-        "--chmod"
+        "--chmod=(+|-)x"
       ],
-      "description": "--chmod=(+|-)x \nOverride the executable bit of the added files. The\nexecutable bit \nis only changed in the index, the files on disk are left\nunchanged.",
+      "description": "Override the executable bit of the added files. The\n  executable bit is only changed in the index, the files on disk are left\n  unchanged.",
       "takes_argument": false
     },
     {
       "aliases": [
-        "--pathspec-from-file"
+        "--pathspec-from-file=<file>"
       ],
-      "description": "--pathspec-from-file=<file>\n\nPathspec is passed in <file> instead of commandline\nargs. If <file> \nis exactly - then standard input is used. Pathspec elements\nare \nseparated by LF or CR/LF. Pathspec elements can be quoted as\n\nexplained for the configuration variable core.quotePath (see\ngit- \nconfig(1)). See also --pathspec-file-nul and global \n--literal-pathspecs.",
+      "description": "Pathspec is passed in <file> instead of\n  commandline args. If <file> is exactly - then standard\n  input is used. Pathspec elements are separated by LF or CR/LF. Pathspec\n  elements can be quoted as explained for the configuration variable\n  core.quotePath (see git-config(1)). See also\n  --pathspec-file-nul and global --literal-pathspecs.",
       "takes_argument": false
     },
     {
       "aliases": [
         "--pathspec-file-nul"
       ],
-      "description": "--pathspec-file-nul \nOnly meaningful with --pathspec-from-file. Pathspec elements\nare \nseparated with NUL character and all other characters are\ntaken \nliterally (including newlines and quotes).",
+      "description": "Only meaningful with --pathspec-from-file.\n  Pathspec elements are separated with NUL character and all other characters\n  are taken literally (including newlines and quotes).",
       "takes_argument": false
     },
     {
       "aliases": [
         "--"
       ],
-      "description": "-- \nThis option can be used to separate command-line options\nfrom the \nlist of files, (useful when filenames might be mistaken for\n\ncommand-line options).",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-2"
-      ],
-      "description": "Update>> -2",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-ADD"
-      ],
-      "description": "Git 2.37.0 06/27/2022\nGIT-ADD(1)",
+      "description": "This option can be used to separate command-line options\n  from the list of files, (useful when filenames might be mistaken for\n  command-line options).",
       "takes_argument": false
     }
   ],

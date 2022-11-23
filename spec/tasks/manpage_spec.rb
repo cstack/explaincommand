@@ -27,18 +27,4 @@ describe 'manpage.rake' do
       end
     end
   end
-
-  describe 'parse_helppage' do
-    subject { Rake::Task['manpage:parse_helppage'].invoke(filepath, main_command, subcommand) }
-
-    context 'for a helppage with a subcommand' do
-      let(:filepath) { './spec/fixtures/helppages/docker-attach.txt' }
-      let(:main_command) { 'docker' }
-      let(:subcommand) { 'attach' }
-
-      it 'does not error' do
-        expect { subject }.not_to raise_error
-      end
-    end
-  end
 end

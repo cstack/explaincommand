@@ -3,136 +3,21 @@
     "main_command": "chmod",
     "subcommand": null
   },
-  "description": "change file modes or Access Control Lists",
+  "description": "change file mode bits",
   "flags": [
-    {
-      "aliases": [
-        "-f"
-      ],
-      "description": "-f Do not display a diagnostic\nmessage if chmod could not modify the \nmode for file, nor modify the exit status to reflect such\n\nfailures.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-H"
-      ],
-      "description": "-H If the -R option is\nspecified, symbolic links on the command line \nare followed and hence unaffected by the command. (Symbolic\n\nlinks encountered during tree traversal are not\nfollowed.)",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-h"
-      ],
-      "description": "-h If the file is a symbolic\nlink, change the mode of the link \nitself rather than the file that the link points to.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-L"
-      ],
-      "description": "-L If the -R option is\nspecified, all symbolic links are followed.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-P"
-      ],
-      "description": "-P If the -R option is\nspecified, no symbolic links are followed. \nThis is the default.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-R"
-      ],
-      "description": "-R Change the modes of the file\nhierarchies rooted in the files, \ninstead of just the files themselves. Beware of\nunintentionally \nmatching the â..â hard link to the parent\ndirectory when using \nwildcards like â.*â.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-v"
-      ],
-      "description": "-v Cause chmod to be verbose,\nshowing filenames as the mode is \nmodified. If the -v flag is specified more than once, the\nold \nand new modes of the file will also be printed, in both\noctal and \nsymbolic notation.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-H",
-        "-L"
-      ],
-      "description": "The -H, -L and -P options are\nignored unless the -R option is specified. \nIn addition, these options override each other and the\ncommand’s actions \nare determined by the last one specified.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-w"
-      ],
-      "description": "go-w deny write permission to\ngroup and others.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-w"
-      ],
-      "description": "755 \nu=rwx,go=rx \nu=rwx,go=u-w make a file readable/executable by everyone and\nwritable by \nthe owner only.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-w"
-      ],
-      "description": "g=u-w set the group bits equal\nto the user bits, but clear the \ngroup write bit.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-a"
-      ],
-      "description": "-a The -a mode is used to delete\nACL entries. All entries exactly \nmatching the supplied entry will be deleted. If the entry\nlists a \nsubset of rights granted by an entry, only the rights listed\nare \nremoved. Entries may also be deleted by index using the -a#\nmode.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-E"
-      ],
-      "description": "-E Reads the ACL information\nfrom stdin, as a sequential list of \nACEs, separated by newlines. If the information parses \ncorrectly, the existing information is replaced.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-C"
-      ],
-      "description": "-C Returns false if any of the\nnamed files have ACLs in non- \ncanonical order.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-i"
-      ],
-      "description": "-i Removes the\n’inherited’ bit from all entries in the named\nfile(s) \nACLs.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-I"
-      ],
-      "description": "-I Removes all inherited entries\nfrom the named file(s) ACL(s).",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-N"
-      ],
-      "description": "-N Removes the ACL from the\nnamed file(s).",
-      "takes_argument": false
-    }
+
   ],
   "positional_arguments": [
     {
-      "name": "mode",
-      "repeated": false
+      "name": "[OPTION]...",
+      "repeated": true
     },
     {
-      "name": "file",
+      "name": "MODE[,MODE]...",
+      "repeated": true
+    },
+    {
+      "name": "FILE...",
       "repeated": true
     }
   ]

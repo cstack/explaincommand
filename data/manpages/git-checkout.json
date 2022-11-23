@@ -3,28 +3,14 @@
     "main_command": "git",
     "subcommand": "checkout"
   },
-  "description": "git-checkout - Switch branches or restore working tree",
+  "description": "Switch branches or restore working tree files",
   "flags": [
-    {
-      "aliases": [
-        "-CHECKOUT"
-      ],
-      "description": "GIT-CHECKOUT(1) Git Manual GIT-CHECKOUT(1)",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-B"
-      ],
-      "description": "If -B is given,\n<new-branch> is created if it doesnât exist;\n\notherwise, it is reset. This is the transactional equivalent\nof",
-      "takes_argument": false
-    },
     {
       "aliases": [
         "-q",
         "--quiet"
       ],
-      "description": "OPTIONS \n-q, --quiet \nQuiet, suppress feedback messages.",
+      "description": "Quiet, suppress feedback messages.",
       "takes_argument": false
     },
     {
@@ -32,7 +18,7 @@
         "--progress",
         "--no-progress"
       ],
-      "description": "--progress, --no-progress \nProgress status is reported on the standard error stream by\ndefault \nwhen it is attached to a terminal, unless --quiet is\nspecified. \nThis flag enables progress reporting even if not attached to\na \nterminal, regardless of --quiet.",
+      "description": "Progress status is reported on the standard error stream\n  by default when it is attached to a terminal, unless --quiet is\n  specified. This flag enables progress reporting even if not attached to a\n  terminal, regardless of --quiet.",
       "takes_argument": false
     },
     {
@@ -40,7 +26,7 @@
         "-f",
         "--force"
       ],
-      "description": "-f, --force \nWhen switching branches, proceed even if the index or the\nworking \ntree differs from HEAD, and even if there are untracked\nfiles in \nthe way. This is used to throw away local changes and any\nuntracked \nfiles or directories that are in the way.",
+      "description": "When switching branches, proceed even if the index or the\n  working tree differs from HEAD, and even if there are untracked files\n  in the way. This is used to throw away local changes and any untracked files\n  or directories that are in the way.\nWhen checking out paths from the index, do not fail upon unmerged\n    entries; instead, unmerged entries are ignored.\n",
       "takes_argument": false
     },
     {
@@ -48,38 +34,36 @@
         "--ours",
         "--theirs"
       ],
-      "description": "--ours, --theirs \nWhen checking out paths from the index, check out stage #2\n(ours) \nor #3 (theirs) for unmerged paths.",
+      "description": "When checking out paths from the index, check out stage\n  #2 (ours) or #3 (theirs) for unmerged paths.\nNote that during git rebase and git pull --rebase,\n    ours and theirs may appear swapped; --ours gives the\n    version from the branch the changes are rebased onto, while --theirs\n    gives the version from the branch that holds your work that is being\n    rebased.\nThis is because rebase is used in a workflow that treats\n    the history at the remote as the shared canonical one, and treats the work\n    done on the branch you are rebasing as the third-party work to be\n    integrated, and you are temporarily assuming the role of the keeper of the\n    canonical history during the rebase. As the keeper of the canonical history,\n    you need to view the history from the remote as ours (i.e. \"our\n    shared canonical history\"), while what you did on your side branch as\n    theirs (i.e. \"one contributor’s work on top of\n  it\").\n",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-b",
-        "-branch"
+        "-b <new-branch>"
       ],
-      "description": "-b <new-branch> \nCreate a new branch named <new-branch> and start it at\n\n<start-point>; see git-branch(1) for details.",
+      "description": "Create a new branch named <new-branch> and\n  start it at <start-point>; see git-branch(1) for\n  details.",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-B",
-        "-branch"
+        "-B <new-branch>"
       ],
-      "description": "-B <new-branch> \nCreates the branch <new-branch> and start it at\n<start-point>; if \nit already exists, then reset it to <start-point>.\nThis is \nequivalent to running \"git branch\" with\n\"-f\"; see git-branch(1) for \ndetails.",
+      "description": "Creates the branch <new-branch> and start it\n  at <start-point>; if it already exists, then reset it to\n  <start-point>. This is equivalent to running \"git\n  branch\" with \"-f\"; see git-branch(1) for details.",
       "takes_argument": false
     },
     {
       "aliases": [
         "-t",
-        "--track"
+        "--track[=(direct|inherit)]"
       ],
-      "description": "-t, --track[=(direct|inherit)]\n\nWhen creating a new branch, set up \"upstream\"\nconfiguration. See \n\"--track\" in git-branch(1) for details.",
+      "description": "When creating a new branch, set up \"upstream\"\n  configuration. See \"--track\" in git-branch(1) for details.\nIf no -b option is given, the name of the new branch will\n    be derived from the remote-tracking branch, by looking at the local part of\n    the refspec configured for the corresponding remote, and then stripping the\n    initial part up to the \"*\". This would tell us to use hack\n    as the local branch when branching off of origin/hack (or\n    remotes/origin/hack, or even refs/remotes/origin/hack). If the\n    given name has no slash, or the above guessing results in an empty name, the\n    guessing is aborted. You can explicitly give a name with -b in such a\n    case.\n",
       "takes_argument": false
     },
     {
       "aliases": [
         "--no-track"
       ],
-      "description": "--no-track \nDo not set up \"upstream\" configuration, even if\nthe \nbranch.autoSetupMerge configuration variable is true.",
+      "description": "Do not set up \"upstream\" configuration, even if\n  the branch.autoSetupMerge configuration variable is true.",
       "takes_argument": false
     },
     {
@@ -87,21 +71,21 @@
         "--guess",
         "--no-guess"
       ],
-      "description": "--guess, --no-guess \nIf <branch> is not found but there does exist a\ntracking branch in \nexactly one remote (call it <remote>) with a matching\nname, treat \nas equivalent to",
+      "description": "If <branch> is not found but there does\n  exist a tracking branch in exactly one remote (call it <remote>)\n  with a matching name, treat as equivalent to\n\n\n$ git checkout -b <branch> --track <remote>/<branch>\n\nIf the branch exists in multiple remotes and one of them is named\n    by the checkout.defaultRemote configuration variable, we’ll\n    use that one for the purposes of disambiguation, even if the\n    <branch> isn’t unique across all remotes. Set it to e.g.\n    checkout.defaultRemote=origin to always checkout remote branches from\n    there if <branch> is ambiguous but exists on the origin\n    remote. See also checkout.defaultRemote in git-config(1).\n--guess is the default behavior. Use --no-guess to\n    disable it.\nThe default behavior can be set via the checkout.guess\n    configuration variable.\n",
       "takes_argument": false
     },
     {
       "aliases": [
-        "--guess"
+        "--guess is the default behavior. Use --no-guess to\n    disable it."
       ],
-      "description": "--guess is the default behavior.\nUse --no-guess to disable it.",
+      "description": "The default behavior can be set via the checkout.guess\n    configuration variable.",
       "takes_argument": false
     },
     {
       "aliases": [
         "-l"
       ],
-      "description": "-l \nCreate the new branchâs reflog; see git-branch(1) for\ndetails.",
+      "description": "Create the new branch’s reflog; see\n  git-branch(1) for details.",
       "takes_argument": false
     },
     {
@@ -109,22 +93,21 @@
         "-d",
         "--detach"
       ],
-      "description": "-d, --detach \nRather than checking out a branch to work on it, check out a\ncommit \nfor inspection and discardable experiments. This is the\ndefault \nbehavior of git checkout <commit> when <commit>\nis not a branch \nname. See the \"DETACHED HEAD\" section below for\ndetails.",
+      "description": "Rather than checking out a branch to work on it, check\n  out a commit for inspection and discardable experiments. This is the default\n  behavior of git checkout <commit> when <commit> is\n  not a branch name. See the \"DETACHED HEAD\" section below for\n  details.",
       "takes_argument": false
     },
     {
       "aliases": [
-        "--orphan",
-        "-branch"
+        "--orphan <new-branch>"
       ],
-      "description": "--orphan <new-branch> \nCreate a new orphan branch, named <new-branch>,\nstarted from \n<start-point> and switch to it. The first commit made\non this new \nbranch will have no parents and it will be the root of a new\n\nhistory totally disconnected from all the other branches and\n\ncommits.",
+      "description": "Create a new orphan branch, named\n  <new-branch>, started from <start-point> and switch\n  to it. The first commit made on this new branch will have no parents and it\n  will be the root of a new history totally disconnected from all the other\n  branches and commits.\nThe index and the working tree are adjusted as if you had\n    previously run git checkout <start-point>. This allows you to\n    start a new history that records a set of paths similar to\n    <start-point> by easily running git commit -a to make\n    the root commit.\nThis can be useful when you want to publish the tree from a commit\n    without exposing its full history. You might want to do this to publish an\n    open source branch of a project whose current tree is \"clean\", but\n    whose full history contains proprietary or otherwise encumbered bits of\n    code.\nIf you want to start a disconnected history that records a set of\n    paths that is totally different from the one of <start-point>,\n    then you should clear the index and the working tree right after creating\n    the orphan branch by running git rm -rf . from the top level of the\n    working tree. Afterwards you will be ready to prepare your new files,\n    repopulating the working tree, by copying them from elsewhere, extracting a\n    tarball, etc.\n",
       "takes_argument": false
     },
     {
       "aliases": [
         "--ignore-skip-worktree-bits"
       ],
-      "description": "--ignore-skip-worktree-bits \nIn sparse checkout mode, git checkout -- <paths> would\nupdate only \nentries matched by <paths> and sparse patterns in \n$GIT_DIR/info/sparse-checkout. This option ignores the\nsparse \npatterns and adds back any files in <paths>.",
+      "description": "In sparse checkout mode, git checkout --\n  <paths> would update only entries matched by <paths>\n  and sparse patterns in $GIT_DIR/info/sparse-checkout. This option\n  ignores the sparse patterns and adds back any files in\n  <paths>.",
       "takes_argument": false
     },
     {
@@ -132,14 +115,14 @@
         "-m",
         "--merge"
       ],
-      "description": "-m, --merge \nWhen switching branches, if you have local modifications to\none or \nmore files that are different between the current branch and\nthe \nbranch to which you are switching, the command refuses to\nswitch \nbranches in order to preserve your modifications in context.\n\nHowever, with this option, a three-way merge between the\ncurrent \nbranch, your working tree contents, and the new branch is\ndone, and \nyou will be on the new branch.",
+      "description": "When switching branches, if you have local modifications\n  to one or more files that are different between the current branch and the\n  branch to which you are switching, the command refuses to switch branches in\n  order to preserve your modifications in context. However, with this option, a\n  three-way merge between the current branch, your working tree contents, and\n  the new branch is done, and you will be on the new branch.\nWhen a merge conflict happens, the index entries for conflicting\n    paths are left unmerged, and you need to resolve the conflicts and mark the\n    resolved paths with git add (or git rm if the merge should\n    result in deletion of the path).\nWhen checking out paths from the index, this option lets you\n    recreate the conflicted merge in the specified paths.\nWhen switching branches with --merge, staged changes may be\n    lost.\n",
       "takes_argument": false
     },
     {
       "aliases": [
-        "--conflict"
+        "--conflict=<style>"
       ],
-      "description": "--conflict=<style> \nThe same as --merge option above, but changes the way the\n\nconflicting hunks are presented, overriding the\nmerge.conflictStyle \nconfiguration variable. Possible values are\n\"merge\" (default), \n\"diff3\", and \"zdiff3\".",
+      "description": "The same as --merge option above, but changes the\n  way the conflicting hunks are presented, overriding the\n  merge.conflictStyle configuration variable. Possible values are\n  \"merge\" (default), \"diff3\", and \"zdiff3\".",
       "takes_argument": false
     },
     {
@@ -147,14 +130,14 @@
         "-p",
         "--patch"
       ],
-      "description": "-p, --patch \nInteractively select hunks in the difference between the\n<tree-ish> \n(or the index, if unspecified) and the working tree. The\nchosen \nhunks are then applied in reverse to the working tree (and\nif a \n<tree-ish> was specified, the index).",
+      "description": "Interactively select hunks in the difference between the\n  <tree-ish> (or the index, if unspecified) and the working tree.\n  The chosen hunks are then applied in reverse to the working tree (and if a\n  <tree-ish> was specified, the index).\nThis means that you can use git checkout -p to selectively\n    discard edits from your current working tree. See the “Interactive\n    Mode” section of git-add(1) to learn how to operate the\n    --patch mode.\nNote that this option uses the no overlay mode by default (see\n    also --overlay), and currently doesn’t support overlay\n  mode.\n",
       "takes_argument": false
     },
     {
       "aliases": [
         "--ignore-other-worktrees"
       ],
-      "description": "--ignore-other-worktrees \ngit checkout refuses when the wanted ref is already checked\nout by \nanother worktree. This option makes it check the ref out\nanyway. In \nother words, the ref can be held by more than one\nworktree.",
+      "description": "git checkout refuses when the wanted ref is\n  already checked out by another worktree. This option makes it check the ref\n  out anyway. In other words, the ref can be held by more than one\n  worktree.",
       "takes_argument": false
     },
     {
@@ -162,7 +145,7 @@
         "--overwrite-ignore",
         "--no-overwrite-ignore"
       ],
-      "description": "--overwrite-ignore,\n--no-overwrite-ignore \nSilently overwrite ignored files when switching branches.\nThis is \nthe default behavior. Use --no-overwrite-ignore to abort the\n\noperation when the new branch contains ignored files.",
+      "description": "Silently overwrite ignored files when switching branches.\n  This is the default behavior. Use --no-overwrite-ignore to abort the\n  operation when the new branch contains ignored files.",
       "takes_argument": false
     },
     {
@@ -170,7 +153,7 @@
         "--recurse-submodules",
         "--no-recurse-submodules"
       ],
-      "description": "--recurse-submodules,\n--no-recurse-submodules \nUsing --recurse-submodules will update the content of all\nactive \nsubmodules according to the commit recorded in the\nsuperproject. If \nlocal modifications in a submodule would be overwritten the\n\ncheckout will fail unless -f is used. If nothing (or \n--no-recurse-submodules) is used, submodules working trees\nwill not \nbe updated. Just like git-submodule(1), this will detach\nHEAD of \nthe submodule.",
+      "description": "Using --recurse-submodules will update the content\n  of all active submodules according to the commit recorded in the superproject.\n  If local modifications in a submodule would be overwritten the checkout will\n  fail unless -f is used. If nothing (or --no-recurse-submodules)\n  is used, submodules working trees will not be updated. Just like\n  git-submodule(1), this will detach HEAD of the submodule.",
       "takes_argument": false
     },
     {
@@ -178,56 +161,28 @@
         "--overlay",
         "--no-overlay"
       ],
-      "description": "--overlay, --no-overlay \nIn the default overlay mode, git checkout never removes\nfiles from \nthe index or the working tree. When specifying --no-overlay,\nfiles \nthat appear in the index and working tree, but not in\n<tree-ish> \nare removed, to make them match <tree-ish>\nexactly.",
+      "description": "In the default overlay mode, git checkout never\n  removes files from the index or the working tree. When specifying\n  --no-overlay, files that appear in the index and working tree, but not\n  in <tree-ish> are removed, to make them match\n  <tree-ish> exactly.",
       "takes_argument": false
     },
     {
       "aliases": [
-        "--pathspec-from-file"
+        "--pathspec-from-file=<file>"
       ],
-      "description": "--pathspec-from-file=<file>\n\nPathspec is passed in <file> instead of commandline\nargs. If <file> \nis exactly - then standard input is used. Pathspec elements\nare \nseparated by LF or CR/LF. Pathspec elements can be quoted as\n\nexplained for the configuration variable core.quotePath (see\ngit- \nconfig(1)). See also --pathspec-file-nul and global \n--literal-pathspecs.",
+      "description": "Pathspec is passed in <file> instead of\n  commandline args. If <file> is exactly - then standard\n  input is used. Pathspec elements are separated by LF or CR/LF. Pathspec\n  elements can be quoted as explained for the configuration variable\n  core.quotePath (see git-config(1)). See also\n  --pathspec-file-nul and global --literal-pathspecs.",
       "takes_argument": false
     },
     {
       "aliases": [
         "--pathspec-file-nul"
       ],
-      "description": "--pathspec-file-nul \nOnly meaningful with --pathspec-from-file. Pathspec elements\nare \nseparated with NUL character and all other characters are\ntaken \nliterally (including newlines and quotes).",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-branch"
-      ],
-      "description": "<new-branch> \nName for the new branch.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-point"
-      ],
-      "description": "<start-point> \nThe name of a commit at which to start the new branch; see\ngit- \nbranch(1) for details. Defaults to HEAD.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-ish"
-      ],
-      "description": "<tree-ish> \nTree to checkout from (when paths are given). If not\nspecified, the \nindex will be used.",
+      "description": "Only meaningful with --pathspec-from-file.\n  Pathspec elements are separated with NUL character and all other characters\n  are taken literally (including newlines and quotes).",
       "takes_argument": false
     },
     {
       "aliases": [
         "--"
       ],
-      "description": "-- \nDo not interpret any more arguments as options.",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-CHECKOUT"
-      ],
-      "description": "Git 2.37.0 06/27/2022\nGIT-CHECKOUT(1)",
+      "description": "Do not interpret any more arguments as options.",
       "takes_argument": false
     }
   ],

@@ -7,29 +7,64 @@
   "flags": [
     {
       "aliases": [
-        "-m"
+        "-m",
+        "--mode=MODE"
       ],
-      "description": "-m mode Set the file permission\nbits of the final created \ndirectory to the specified mode. The mode argument can be\n\nin any of the formats specified to the chmod(1) command.\n\nIf a symbolic mode is specified, the operation characters\n\nâ+â and â-â are interpreted relative\nto an initial mode of \nâa=rwxâ.",
+      "description": "set file mode (as in chmod), not a=rwx - umask",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-p"
+        "-p",
+        "--parents"
       ],
-      "description": "-p Create intermediate\ndirectories as required. If this \noption is not specified, the full path prefix of each \noperand must already exist. On the other hand, with this\n\noption specified, no error will be reported if a directory\n\ngiven as an operand already exists. Intermediate \ndirectories are created with permission bits of \nârwxrwxrwxâ (0777) as modified by the current\numask, plus \nwrite and search permission for the owner.",
+      "description": "no error if existing, make parent directories as needed",
       "takes_argument": false
     },
     {
       "aliases": [
-        "-v"
+        "-v",
+        "--verbose"
       ],
-      "description": "-v Be verbose when creating\ndirectories, listing them as they \nare created.",
+      "description": "print a message for each created directory",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-Z"
+      ],
+      "description": "set SELinux security context of each created directory to the default\n    type",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--context[=CTX]"
+      ],
+      "description": "like -Z, or if CTX is specified then set the SELinux or SMACK\n      security context to CTX",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--help"
+      ],
+      "description": "display this help and exit",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--version"
+      ],
+      "description": "output version information and exit",
       "takes_argument": false
     }
   ],
   "positional_arguments": [
     {
-      "name": "directory_name",
+      "name": "[OPTION]...",
+      "repeated": true
+    },
+    {
+      "name": "DIRECTORY...",
       "repeated": true
     }
   ]

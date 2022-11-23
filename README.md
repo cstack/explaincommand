@@ -8,7 +8,10 @@ Inspired by https://github.com/idank/explainshell
 
 ## Import a man page
 ```
-man ls | groff -T html - > /tmp/ls.html
+curl https://manpages.ubuntu.com/manpages.gz/kinetic/man1/mkdir.1.gz --output /tmp/mkdir.1.gz
+gzip -d /tmp/mkdir.1.gz
+mandoc -T html /tmp/mkdir.1 > /tmp/mkdir.html
+cp /tmp/mkdir.html spec/fixtures/html_manpages/
 rails manpage:parse\[/tmp/ls.html,ls,\]
 ```
 
@@ -16,12 +19,6 @@ rails manpage:parse\[/tmp/ls.html,ls,\]
 ```
 man git-add | groff -T html - > /tmp/git-add.html
 rails manpage:parse\[/tmp/git-add.html,git,add\]
-```
-
-## Import a help page
-```
-docker run --help > /tmp/docker-run.txt
-rails manpage:parse_helppage\[/tmp/docker-run.txt,docker,run\]
 ```
 
 ## Run server locally

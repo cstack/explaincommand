@@ -8,7 +8,7 @@ RSpec.describe '/explain' do
       expect(response.body).to include('ls')
       expect(response.body).to include('list directory contents')
       expect(response.body).to include('-l')
-      expect(response.body).to include('List files in the long format')
+      expect(response.body).to include('use a long listing format')
       expect(response.body).to include('Full documentation')
       expect(response.body).to include('https://manpages.ubuntu.com/manpages/kinetic/en/man1/ls.1.html')
     end

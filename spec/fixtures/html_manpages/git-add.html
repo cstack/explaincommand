@@ -1,594 +1,425 @@
-<!-- Creator     : groff version 1.22.4 -->
-<!-- CreationDate: Sat Nov 12 14:00:31 2022 -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
+<!-- This is an automatically generated file.  Do not edit.
+   t
+       Title: git-add
+      Author: [FIXME: author] [see http://www.docbook.org/tdg5/en/html/author]
+   Generator: DocBook XSL Stylesheets vsnapshot <http://docbook.sf.net/>
+        Date: 08/16/2022
+      Manual: Git Manual
+      Source: Git 2.37.2
+    Language: English
+   -->
 <head>
-<meta name="generator" content="groff -Thtml, see www.gnu.org">
-<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<meta name="Content-Style" content="text/css">
-<style type="text/css">
-       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
-       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
-       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
-       h1      { text-align: center }
-</style>
-<title></title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    table.head, table.foot { width: 100%; }
+    td.head-rtitle, td.foot-os { text-align: right; }
+    td.head-vol { text-align: center; }
+    .Nd, .Bf, .Op { display: inline; }
+    .Pa, .Ad { font-style: italic; }
+    .Ms { font-weight: bold; }
+    .Bl-diag > dt { font-weight: bold; }
+    code.Nm, .Fl, .Cm, .Ic, code.In, .Fd, .Fn, .Cd { font-weight: bold;
+      font-family: inherit; }
+  </style>
+  <title>GIT-ADD(1)</title>
 </head>
 <body>
-
-<hr>
-
-
-<p>GIT-ADD(1) Git Manual GIT-ADD(1)</p>
-
-<p style="margin-top: 1em">NAME <br>
-git-add - Add file contents to the index</p>
-
-<p style="margin-top: 1em">SYNOPSIS <br>
-git add [--verbose | -v] [--dry-run | -n] [--force | -f]
-[--interactive | -i] [--patch | -p] <br>
-[--edit | -e] [--[no-]all | --[no-]ignore-removal |
-[--update | -u]] [--sparse] <br>
-[--intent-to-add | -N] [--refresh] [--ignore-errors]
-[--ignore-missing] [--renormalize] <br>
-[--chmod=(+|-)x] [--pathspec-from-file=&lt;file&gt;
-[--pathspec-file-nul]] <br>
-[--] [&lt;pathspec&gt;...]</p>
-
-<p style="margin-top: 1em">DESCRIPTION <br>
-This command updates the index using the current content
-found in the <br>
-working tree, to prepare the content staged for the next
-commit. It <br>
-typically adds the current content of existing paths as a
-whole, but <br>
-with some options it can also be used to add content with
-only part of <br>
-the changes made to the working tree files applied, or
-remove paths <br>
-that do not exist in the working tree anymore.</p>
-
-<p style="margin-top: 1em">The &quot;index&quot; holds a
-snapshot of the content of the working tree, and it <br>
-is this snapshot that is taken as the contents of the next
-commit. Thus <br>
-after making any changes to the working tree, and before
-running the <br>
-commit command, you must use the add command to add any new
-or modified <br>
-files to the index.</p>
-
-<p style="margin-top: 1em">This command can be performed
-multiple times before a commit. It only <br>
-adds the content of the specified file(s) at the time the
-add command <br>
-is run; if you want subsequent changes included in the next
-commit, <br>
-then you must run git add again to add the new content to
-the index.</p>
-
-<p style="margin-top: 1em">The git status command can be
-used to obtain a summary of which files <br>
-have changes that are staged for the next commit.</p>
-
-<p style="margin-top: 1em">The git add command will not add
-ignored files by default. If any <br>
-ignored files were explicitly specified on the command line,
-git add <br>
-will fail with a list of ignored files. Ignored files
-reached by <br>
-directory recursion or filename globbing performed by Git
-(quote your <br>
-globs before the shell) will be silently ignored. The git
-add command <br>
-can be used to add ignored files with the -f (force)
-option.</p>
-
-<p style="margin-top: 1em">Please see git-commit(1) for
-alternative ways to add content to a <br>
-commit.</p>
-
-<p style="margin-top: 1em">OPTIONS <br>
-&lt;pathspec&gt;... <br>
-Files to add content from. Fileglobs (e.g. *.c) can be given
-to <br>
-add all matching files. Also a leading directory name (e.g.
-dir to <br>
-add dir/file1 and dir/file2) can be given to update the
-index to <br>
-match the current state of the directory as a whole (e.g.
-<br>
-specifying dir will record not just a file dir/file1
-modified in <br>
-the working tree, a file dir/file2 added to the working
-tree, but <br>
-also a file dir/file3 removed from the working tree). Note
-that <br>
-older versions of Git used to ignore removed files; use
---no-all <br>
-option if you want to add modified or new files but ignore
-removed <br>
-ones.</p>
-
-<p style="margin-top: 1em">For more details about the
-&lt;pathspec&gt; syntax, see the pathspec <br>
-entry in gitglossary(7).</p>
-
-<p style="margin-top: 1em">-n, --dry-run <br>
-Don&acirc;t actually add the file(s), just show if they
-exist and/or will <br>
-be ignored.</p>
-
-<p style="margin-top: 1em">-v, --verbose <br>
-Be verbose.</p>
-
-<p style="margin-top: 1em">-f, --force <br>
-Allow adding otherwise ignored files.</p>
-
-<p style="margin-top: 1em">--sparse <br>
-Allow updating index entries outside of the sparse-checkout
-cone. <br>
-Normally, git add refuses to update index entries whose
-paths do <br>
-not fit within the sparse-checkout cone, since those files
-might be <br>
-removed from the working tree without warning. See
-git-sparse- <br>
-checkout(1) for more details.</p>
-
-<p style="margin-top: 1em">-i, --interactive <br>
-Add modified contents in the working tree interactively to
-the <br>
-index. Optional path arguments may be supplied to limit
-operation <br>
-to a subset of the working tree. See &acirc;Interactive
-mode&acirc; for <br>
-details.</p>
-
-<p style="margin-top: 1em">-p, --patch <br>
-Interactively choose hunks of patch between the index and
-the work <br>
-tree and add them to the index. This gives the user a chance
-to <br>
-review the difference before adding modified contents to the
-index.</p>
-
-<p style="margin-top: 1em">This effectively runs add
---interactive, but bypasses the initial <br>
-command menu and directly jumps to the patch subcommand. See
-<br>
-&acirc;Interactive mode&acirc; for details.</p>
-
-<p style="margin-top: 1em">-e, --edit <br>
-Open the diff vs. the index in an editor and let the user
-edit it. <br>
-After the editor was closed, adjust the hunk headers and
-apply the <br>
-patch to the index.</p>
-
-<p style="margin-top: 1em">The intent of this option is to
-pick and choose lines of the patch <br>
-to apply, or even to modify the contents of lines to be
-staged. <br>
-This can be quicker and more flexible than using the
-interactive <br>
-hunk selector. However, it is easy to confuse oneself and
-create a <br>
-patch that does not apply to the index. See EDITING PATCHES
-below.</p>
-
-<p style="margin-top: 1em">-u, --update <br>
-Update the index just where it already has an entry matching
-<br>
-&lt;pathspec&gt;. This removes as well as modifies index
-entries to match <br>
-the working tree, but adds no new files.</p>
-
-<p style="margin-top: 1em">If no &lt;pathspec&gt; is given
-when -u option is used, all tracked files <br>
-in the entire working tree are updated (old versions of Git
-used to <br>
-limit the update to the current directory and its
-subdirectories).</p>
-
-<p style="margin-top: 1em">-A, --all, --no-ignore-removal
-<br>
-Update the index not only where the working tree has a file
-<br>
-matching &lt;pathspec&gt; but also where the index already
-has an entry. <br>
-This adds, modifies, and removes index entries to match the
-working <br>
-tree.</p>
-
-<p style="margin-top: 1em">If no &lt;pathspec&gt; is given
-when -A option is used, all files in the <br>
-entire working tree are updated (old versions of Git used to
-limit <br>
-the update to the current directory and its
-subdirectories).</p>
-
-<p style="margin-top: 1em">--no-all, --ignore-removal <br>
-Update the index by adding new files that are unknown to the
-index <br>
-and files modified in the working tree, but ignore files
-that have <br>
-been removed from the working tree. This option is a no-op
-when no <br>
-&lt;pathspec&gt; is used.</p>
-
-<p style="margin-top: 1em">This option is primarily to help
-users who are used to older <br>
-versions of Git, whose &quot;git add
-&lt;pathspec&gt;...&quot; was a synonym for <br>
-&quot;git add --no-all &lt;pathspec&gt;...&quot;, i.e.
-ignored removed files.</p>
-
-<p style="margin-top: 1em">-N, --intent-to-add <br>
-Record only the fact that the path will be added later. An
-entry <br>
-for the path is placed in the index with no content. This is
-useful <br>
-for, among other things, showing the unstaged content of
-such files <br>
-with git diff and committing them with git commit -a.</p>
-
-<p style="margin-top: 1em">--refresh <br>
-Don&acirc;t add the file(s), but only refresh their stat()
-information in <br>
-the index.</p>
-
-<p style="margin-top: 1em">--ignore-errors <br>
-If some files could not be added because of errors indexing
-them, <br>
-do not abort the operation, but continue adding the others.
-The <br>
-command shall still exit with non-zero status. The
-configuration <br>
-variable add.ignoreErrors can be set to true to make this
-the <br>
-default behaviour.</p>
-
-<p style="margin-top: 1em">--ignore-missing <br>
-This option can only be used together with --dry-run. By
-using this <br>
-option the user can check if any of the given files would be
-<br>
-ignored, no matter if they are already present in the work
-tree or <br>
-not.</p>
-
-<p style="margin-top: 1em">--no-warn-embedded-repo <br>
-By default, git add will warn when adding an embedded
-repository to <br>
-the index without using git submodule add to create an entry
-in <br>
-.gitmodules. This option will suppress the warning (e.g., if
-you <br>
-are manually performing operations on submodules).</p>
-
-<p style="margin-top: 1em">--renormalize <br>
-Apply the &quot;clean&quot; process freshly to all tracked
-files to forcibly <br>
-add them again to the index. This is useful after changing
-<br>
-core.autocrlf configuration or the text attribute in order
-to <br>
-correct files added with wrong CRLF/LF line endings. This
-option <br>
-implies -u.</p>
-
-<p style="margin-top: 1em">--chmod=(+|-)x <br>
-Override the executable bit of the added files. The
-executable bit <br>
-is only changed in the index, the files on disk are left
-unchanged.</p>
-
-
-<p style="margin-top: 1em">--pathspec-from-file=&lt;file&gt;
-<br>
-Pathspec is passed in &lt;file&gt; instead of commandline
-args. If &lt;file&gt; <br>
-is exactly - then standard input is used. Pathspec elements
-are <br>
-separated by LF or CR/LF. Pathspec elements can be quoted as
-<br>
-explained for the configuration variable core.quotePath (see
-git- <br>
-config(1)). See also --pathspec-file-nul and global <br>
---literal-pathspecs.</p>
-
-<p style="margin-top: 1em">--pathspec-file-nul <br>
-Only meaningful with --pathspec-from-file. Pathspec elements
-are <br>
-separated with NUL character and all other characters are
-taken <br>
-literally (including newlines and quotes).</p>
-
-<p style="margin-top: 1em">-- <br>
-This option can be used to separate command-line options
-from the <br>
-list of files, (useful when filenames might be mistaken for
-<br>
-command-line options).</p>
-
-<p style="margin-top: 1em">EXAMPLES <br>
-&acirc;&cent; Adds content from all *.txt files under
-Documentation directory and <br>
-its subdirectories:</p>
-
-<p style="margin-top: 1em">$ git add Documentation/txt</p>
-
-<p style="margin-top: 1em">Note that the asterisk * is
-quoted from the shell in this example; <br>
-this lets the command include the files from subdirectories
-of <br>
-Documentation/ directory.</p>
-
-<p style="margin-top: 1em">&acirc;&cent; Considers adding
-content from all git-*.sh scripts:</p>
-
-<p style="margin-top: 1em">$ git add git-*.sh</p>
-
-<p style="margin-top: 1em">Because this example lets the
-shell expand the asterisk (i.e. you <br>
-are listing the files explicitly), it does not consider <br>
-subdir/git-foo.sh.</p>
-
-<p style="margin-top: 1em">INTERACTIVE MODE <br>
-When the command enters the interactive mode, it shows the
-output of <br>
-the status subcommand, and then goes into its interactive
-command loop.</p>
-
-<p style="margin-top: 1em">The command loop shows the list
-of subcommands available, and gives a <br>
-prompt &quot;What now&gt; &quot;. In general, when the
-prompt ends with a single &gt;, <br>
-you can pick only one of the choices given and type return,
-like this:</p>
-
-<p style="margin-top: 1em">*** Commands *** <br>
-1: status 2: update 3: revert 4: add untracked <br>
-5: patch 6: diff 7: quit 8: help <br>
-What now&gt; 1</p>
-
-<p style="margin-top: 1em">You also could say s or sta or
-status above as long as the choice is <br>
-unique.</p>
-
-<p style="margin-top: 1em">The main command loop has 6
-subcommands (plus help and quit).</p>
-
-<p style="margin-top: 1em">status <br>
-This shows the change between HEAD and index (i.e. what will
-be <br>
-committed if you say git commit), and between index and
-working <br>
-tree files (i.e. what you could stage further before git
-commit <br>
-using git add) for each path. A sample output looks like
-this:</p>
-
-<p style="margin-top: 1em">staged unstaged path <br>
-1: binary nothing foo.png <br>
-2: +403/-35 +1/-1 git-add--interactive.perl</p>
-
-<p style="margin-top: 1em">It shows that foo.png has
-differences from HEAD (but that is binary <br>
-so line count cannot be shown) and there is no difference
-between <br>
-indexed copy and the working tree version (if the working
-tree <br>
-version were also different, binary would have been shown in
-place <br>
-of nothing). The other file, git-add--interactive.perl, has
-403 <br>
-lines added and 35 lines deleted if you commit what is in
-the <br>
-index, but working tree file has further modifications (one
-<br>
-addition and one deletion).</p>
-
-<p style="margin-top: 1em">update <br>
-This shows the status information and issues an
-&quot;Update&gt;&gt;&quot; prompt. <br>
-When the prompt ends with double &gt;&gt;, you can make more
-than one <br>
-selection, concatenated with whitespace or comma. Also you
-can say <br>
-ranges. E.g. &quot;2-5 7,9&quot; to choose 2,3,4,5,7,9 from
-the list. If the <br>
-second number in a range is omitted, all remaining patches
-are <br>
-taken. E.g. &quot;7-&quot; to choose 7,8,9 from the list.
-You can say * to <br>
-choose everything.</p>
-
-<p style="margin-top: 1em">What you chose are then
-highlighted with *, like this:</p>
-
-<p style="margin-top: 1em">staged unstaged path <br>
-1: binary nothing foo.png <br>
-* 2: +403/-35 +1/-1 git-add--interactive.perl</p>
-
-<p style="margin-top: 1em">To remove selection, prefix the
-input with - like this:</p>
-
-<p style="margin-top: 1em">Update&gt;&gt; -2</p>
-
-<p style="margin-top: 1em">After making the selection,
-answer with an empty line to stage the <br>
-contents of working tree files for selected paths in the
-index.</p>
-
-<p style="margin-top: 1em">revert <br>
-This has a very similar UI to update, and the staged
-information <br>
-for selected paths are reverted to that of the HEAD version.
-<br>
-Reverting new paths makes them untracked.</p>
-
-<p style="margin-top: 1em">add untracked <br>
-This has a very similar UI to update and revert, and lets
-you add <br>
-untracked paths to the index.</p>
-
-<p style="margin-top: 1em">patch <br>
-This lets you choose one path out of a status like
-selection. After <br>
-choosing the path, it presents the diff between the index
-and the <br>
-working tree file and asks you if you want to stage the
-change of <br>
-each hunk. You can select one of the following options and
-type <br>
-return:</p>
-
-<p style="margin-top: 1em">y - stage this hunk <br>
-n - do not stage this hunk <br>
-q - quit; do not stage this hunk or any of the remaining
-ones <br>
-a - stage this hunk and all later hunks in the file <br>
-d - do not stage this hunk or any of the later hunks in the
-file <br>
-g - select a hunk to go to <br>
-/ - search for a hunk matching the given regex <br>
-j - leave this hunk undecided, see next undecided hunk <br>
-J - leave this hunk undecided, see next hunk <br>
+<table class="head">
+  <tr>
+    <td class="head-ltitle">GIT-ADD(1)</td>
+    <td class="head-vol">Git Manual</td>
+    <td class="head-rtitle">GIT-ADD(1)</td>
+  </tr>
+</table>
+<div class="manual-text">
+<section class="Sh">
+<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
+<p class="Pp">git-add - Add file contents to the index</p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
+<pre><i>git add</i> [--verbose | -v] [--dry-run | -n] [--force | -f] [--interactive | -i] [--patch | -p]
+<br/>
+          [--edit | -e] [--[no-]all | --[no-]ignore-removal | [--update | -u]] [--sparse]
+<br/>
+          [--intent-to-add | -N] [--refresh] [--ignore-errors] [--ignore-missing] [--renormalize]
+<br/>
+          [--chmod=(+|-)x] [--pathspec-from-file=&lt;file&gt; [--pathspec-file-nul]]
+<br/>
+          [--] [&lt;pathspec&gt;...]</pre>
+<p class="Pp"></p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
+<p class="Pp">This command updates the index using the current content found in
+    the working tree, to prepare the content staged for the next commit. It
+    typically adds the current content of existing paths as a whole, but with
+    some options it can also be used to add content with only part of the
+    changes made to the working tree files applied, or remove paths that do not
+    exist in the working tree anymore.</p>
+<p class="Pp">The &quot;index&quot; holds a snapshot of the content of the
+    working tree, and it is this snapshot that is taken as the contents of the
+    next commit. Thus after making any changes to the working tree, and before
+    running the commit command, you must use the <b>add</b> command to add any
+    new or modified files to the index.</p>
+<p class="Pp">This command can be performed multiple times before a commit. It
+    only adds the content of the specified file(s) at the time the add command
+    is run; if you want subsequent changes included in the next commit, then you
+    must run <b>git add</b> again to add the new content to the index.</p>
+<p class="Pp">The <b>git status</b> command can be used to obtain a summary of
+    which files have changes that are staged for the next commit.</p>
+<p class="Pp">The <b>git add</b> command will not add ignored files by default.
+    If any ignored files were explicitly specified on the command line, <b>git
+    add</b> will fail with a list of ignored files. Ignored files reached by
+    directory recursion or filename globbing performed by Git (quote your globs
+    before the shell) will be silently ignored. The <i>git add</i> command can
+    be used to add ignored files with the <b>-f</b> (force) option.</p>
+<p class="Pp">Please see <b>git-commit</b>(1) for alternative ways to add
+    content to a commit.</p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="OPTIONS"><a class="permalink" href="#OPTIONS">OPTIONS</a></h1>
+<p class="Pp">&lt;pathspec&gt;...</p>
+<div class="Bd-indent">Files to add content from. Fileglobs (e.g. <b>*.c</b>)
+  can be given to add all matching files. Also a leading directory name (e.g.
+  <b>dir</b> to add <b>dir/file1</b> and <b>dir/file2</b>) can be given to
+  update the index to match the current state of the directory as a whole (e.g.
+  specifying <b>dir</b> will record not just a file <b>dir/file1</b> modified in
+  the working tree, a file <b>dir/file2</b> added to the working tree, but also
+  a file <b>dir/file3</b> removed from the working tree). Note that older
+  versions of Git used to ignore removed files; use <b>--no-all</b> option if
+  you want to add modified or new files but ignore removed ones.
+<p class="Pp">For more details about the &lt;pathspec&gt; syntax, see the
+    <i>pathspec</i> entry in <b>gitglossary</b>(7).</p>
+</div>
+<p class="Pp">-n, --dry-run</p>
+<div class="Bd-indent">Don&#x2019;t actually add the file(s), just show if they
+  exist and/or will be ignored.</div>
+<p class="Pp">-v, --verbose</p>
+<div class="Bd-indent">Be verbose.</div>
+<p class="Pp">-f, --force</p>
+<div class="Bd-indent">Allow adding otherwise ignored files.</div>
+<p class="Pp">--sparse</p>
+<div class="Bd-indent">Allow updating index entries outside of the
+  sparse-checkout cone. Normally, <b>git add</b> refuses to update index entries
+  whose paths do not fit within the sparse-checkout cone, since those files
+  might be removed from the working tree without warning. See
+  <b>git-sparse-checkout</b>(1) for more details.</div>
+<p class="Pp">-i, --interactive</p>
+<div class="Bd-indent">Add modified contents in the working tree interactively
+  to the index. Optional path arguments may be supplied to limit operation to a
+  subset of the working tree. See &#x201C;Interactive mode&#x201D; for
+  details.</div>
+<p class="Pp">-p, --patch</p>
+<div class="Bd-indent">Interactively choose hunks of patch between the index and
+  the work tree and add them to the index. This gives the user a chance to
+  review the difference before adding modified contents to the index.
+<p class="Pp">This effectively runs <b>add --interactive</b>, but bypasses the
+    initial command menu and directly jumps to the <b>patch</b> subcommand. See
+    &#x201C;Interactive mode&#x201D; for details.</p>
+</div>
+<p class="Pp">-e, --edit</p>
+<div class="Bd-indent">Open the diff vs. the index in an editor and let the user
+  edit it. After the editor was closed, adjust the hunk headers and apply the
+  patch to the index.
+<p class="Pp">The intent of this option is to pick and choose lines of the patch
+    to apply, or even to modify the contents of lines to be staged. This can be
+    quicker and more flexible than using the interactive hunk selector. However,
+    it is easy to confuse oneself and create a patch that does not apply to the
+    index. See EDITING PATCHES below.</p>
+</div>
+<p class="Pp">-u, --update</p>
+<div class="Bd-indent">Update the index just where it already has an entry
+  matching &lt;pathspec&gt;. This removes as well as modifies index entries to
+  match the working tree, but adds no new files.
+<p class="Pp">If no &lt;pathspec&gt; is given when <b>-u</b> option is used, all
+    tracked files in the entire working tree are updated (old versions of Git
+    used to limit the update to the current directory and its
+  subdirectories).</p>
+</div>
+<p class="Pp">-A, --all, --no-ignore-removal</p>
+<div class="Bd-indent">Update the index not only where the working tree has a
+  file matching &lt;pathspec&gt; but also where the index already has an entry.
+  This adds, modifies, and removes index entries to match the working tree.
+<p class="Pp">If no &lt;pathspec&gt; is given when <b>-A</b> option is used, all
+    files in the entire working tree are updated (old versions of Git used to
+    limit the update to the current directory and its subdirectories).</p>
+</div>
+<p class="Pp">--no-all, --ignore-removal</p>
+<div class="Bd-indent">Update the index by adding new files that are unknown to
+  the index and files modified in the working tree, but ignore files that have
+  been removed from the working tree. This option is a no-op when no
+  &lt;pathspec&gt; is used.
+<p class="Pp">This option is primarily to help users who are used to older
+    versions of Git, whose &quot;git add &lt;pathspec&gt;...&quot; was a synonym
+    for &quot;git add --no-all &lt;pathspec&gt;...&quot;, i.e. ignored removed
+    files.</p>
+</div>
+<p class="Pp">-N, --intent-to-add</p>
+<div class="Bd-indent">Record only the fact that the path will be added later.
+  An entry for the path is placed in the index with no content. This is useful
+  for, among other things, showing the unstaged content of such files with
+  <b>git diff</b> and committing them with <b>git commit -a</b>.</div>
+<p class="Pp">--refresh</p>
+<div class="Bd-indent">Don&#x2019;t add the file(s), but only refresh their
+  stat() information in the index.</div>
+<p class="Pp">--ignore-errors</p>
+<div class="Bd-indent">If some files could not be added because of errors
+  indexing them, do not abort the operation, but continue adding the others. The
+  command shall still exit with non-zero status. The configuration variable
+  <b>add.ignoreErrors</b> can be set to true to make this the default
+  behaviour.</div>
+<p class="Pp">--ignore-missing</p>
+<div class="Bd-indent">This option can only be used together with --dry-run. By
+  using this option the user can check if any of the given files would be
+  ignored, no matter if they are already present in the work tree or not.</div>
+<p class="Pp">--no-warn-embedded-repo</p>
+<div class="Bd-indent">By default, <b>git add</b> will warn when adding an
+  embedded repository to the index without using <b>git submodule add</b> to
+  create an entry in <b>.gitmodules</b>. This option will suppress the warning
+  (e.g., if you are manually performing operations on submodules).</div>
+<p class="Pp">--renormalize</p>
+<div class="Bd-indent">Apply the &quot;clean&quot; process freshly to all
+  tracked files to forcibly add them again to the index. This is useful after
+  changing <b>core.autocrlf</b> configuration or the <b>text</b> attribute in
+  order to correct files added with wrong CRLF/LF line endings. This option
+  implies <b>-u</b>.</div>
+<p class="Pp">--chmod=(+|-)x</p>
+<div class="Bd-indent">Override the executable bit of the added files. The
+  executable bit is only changed in the index, the files on disk are left
+  unchanged.</div>
+<p class="Pp">--pathspec-from-file=&lt;file&gt;</p>
+<div class="Bd-indent">Pathspec is passed in <b>&lt;file&gt;</b> instead of
+  commandline args. If <b>&lt;file&gt;</b> is exactly <b>-</b> then standard
+  input is used. Pathspec elements are separated by LF or CR/LF. Pathspec
+  elements can be quoted as explained for the configuration variable
+  <b>core.quotePath</b> (see <b>git-config</b>(1)). See also
+  <b>--pathspec-file-nul</b> and global <b>--literal-pathspecs</b>.</div>
+<p class="Pp">--pathspec-file-nul</p>
+<div class="Bd-indent">Only meaningful with <b>--pathspec-from-file</b>.
+  Pathspec elements are separated with NUL character and all other characters
+  are taken literally (including newlines and quotes).</div>
+<p class="Pp">--</p>
+<div class="Bd-indent">This option can be used to separate command-line options
+  from the list of files, (useful when filenames might be mistaken for
+  command-line options).</div>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h1>
+<div class="Bd-indent">&#x2022;Adds content from all <b>*.txt</b> files under
+  <b>Documentation</b> directory and its subdirectories:
+<p class="Pp"></p>
+<div class="Bd-indent">
+<pre>$ git add Documentation/\*.txt</pre>
+</div>
+<p class="Pp">Note that the asterisk <b>*</b> is quoted from the shell in this
+    example; this lets the command include the files from subdirectories of
+    <b>Documentation/</b> directory.</p>
+</div>
+<p class="Pp"></p>
+<div class="Bd-indent">&#x2022;Considers adding content from all git-*.sh
+  scripts:
+<p class="Pp"></p>
+<div class="Bd-indent">
+<pre>$ git add git-*.sh</pre>
+</div>
+<p class="Pp">Because this example lets the shell expand the asterisk (i.e. you
+    are listing the files explicitly), it does not consider
+    <b>subdir/git-foo.sh</b>.</p>
+</div>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="INTERACTIVE_MODE"><a class="permalink" href="#INTERACTIVE_MODE">INTERACTIVE
+  MODE</a></h1>
+<p class="Pp">When the command enters the interactive mode, it shows the output
+    of the <i>status</i> subcommand, and then goes into its interactive command
+    loop.</p>
+<p class="Pp">The command loop shows the list of subcommands available, and
+    gives a prompt &quot;What now&gt; &quot;. In general, when the prompt ends
+    with a single <i>&gt;</i>, you can pick only one of the choices given and
+    type return, like this:</p>
+<p class="Pp"></p>
+<div class="Bd-indent">
+<pre>
+<br/>
+    *** Commands ***
+<br/>
+      1: status       2: update       3: revert       4: add untracked
+<br/>
+      5: patch        6: diff         7: quit         8: help
+<br/>
+    What now&gt; 1</pre>
+</div>
+<p class="Pp"></p>
+<p class="Pp">You also could say <b>s</b> or <b>sta</b> or <b>status</b> above
+    as long as the choice is unique.</p>
+<p class="Pp">The main command loop has 6 subcommands (plus help and quit).</p>
+<p class="Pp">status</p>
+<div class="Bd-indent">This shows the change between HEAD and index (i.e. what
+  will be committed if you say <b>git commit</b>), and between index and working
+  tree files (i.e. what you could stage further before <b>git commit</b> using
+  <b>git add</b>) for each path. A sample output looks like this:
+<p class="Pp"></p>
+<div class="Bd-indent">
+<pre>
+<br/>
+              staged     unstaged path
+<br/>
+     1:       binary      nothing foo.png
+<br/>
+     2:     +403/-35        +1/-1 git-add--interactive.perl</pre>
+</div>
+<p class="Pp">It shows that foo.png has differences from HEAD (but that is
+    binary so line count cannot be shown) and there is no difference between
+    indexed copy and the working tree version (if the working tree version were
+    also different, <i>binary</i> would have been shown in place of
+    <i>nothing</i>). The other file, git-add--interactive.perl, has 403 lines
+    added and 35 lines deleted if you commit what is in the index, but working
+    tree file has further modifications (one addition and one deletion).</p>
+</div>
+<p class="Pp">update</p>
+<div class="Bd-indent">This shows the status information and issues an
+  &quot;Update&gt;&gt;&quot; prompt. When the prompt ends with double
+  <i>&gt;&gt;</i>, you can make more than one selection, concatenated with
+  whitespace or comma. Also you can say ranges. E.g. &quot;2-5 7,9&quot; to
+  choose 2,3,4,5,7,9 from the list. If the second number in a range is omitted,
+  all remaining patches are taken. E.g. &quot;7-&quot; to choose 7,8,9 from the
+  list. You can say <i>*</i> to choose everything.
+<p class="Pp">What you chose are then highlighted with <i>*</i>, like this:</p>
+<p class="Pp"></p>
+<div class="Bd-indent">
+<pre>
+<br/>
+           staged     unstaged path
+<br/>
+  1:       binary      nothing foo.png
+* 2:     +403/-35        +1/-1 git-add--interactive.perl</pre>
+</div>
+<p class="Pp">To remove selection, prefix the input with <b>-</b> like this:</p>
+<p class="Pp"></p>
+<div class="Bd-indent">
+<pre>Update&gt;&gt; -2</pre>
+</div>
+<p class="Pp">After making the selection, answer with an empty line to stage the
+    contents of working tree files for selected paths in the index.</p>
+</div>
+<p class="Pp">revert</p>
+<div class="Bd-indent">This has a very similar UI to <i>update</i>, and the
+  staged information for selected paths are reverted to that of the HEAD
+  version. Reverting new paths makes them untracked.</div>
+<p class="Pp">add untracked</p>
+<div class="Bd-indent">This has a very similar UI to <i>update</i> and
+  <i>revert</i>, and lets you add untracked paths to the index.</div>
+<p class="Pp">patch</p>
+<div class="Bd-indent">This lets you choose one path out of a <i>status</i> like
+  selection. After choosing the path, it presents the diff between the index and
+  the working tree file and asks you if you want to stage the change of each
+  hunk. You can select one of the following options and type return:
+<p class="Pp"></p>
+<div class="Bd-indent">
+<pre>y - stage this hunk
+n - do not stage this hunk
+q - quit; do not stage this hunk or any of the remaining ones
+a - stage this hunk and all later hunks in the file
+d - do not stage this hunk or any of the later hunks in the file
+g - select a hunk to go to
+/ - search for a hunk matching the given regex
+j - leave this hunk undecided, see next undecided hunk
+J - leave this hunk undecided, see next hunk
 k - leave this hunk undecided, see previous undecided hunk
-<br>
-K - leave this hunk undecided, see previous hunk <br>
-s - split the current hunk into smaller hunks <br>
-e - manually edit the current hunk <br>
-? - print help</p>
-
-<p style="margin-top: 1em">After deciding the fate for all
-hunks, if there is any hunk that <br>
-was chosen, the index is updated with the selected
-hunks.</p>
-
-<p style="margin-top: 1em">You can omit having to type
-return here, by setting the <br>
-configuration variable interactive.singleKey to true.</p>
-
-<p style="margin-top: 1em">diff <br>
-This lets you review what will be committed (i.e. between
-HEAD and <br>
-index).</p>
-
-<p style="margin-top: 1em">EDITING PATCHES <br>
-Invoking git add -e or selecting e from the interactive hunk
-selector <br>
-will open a patch in your editor; after the editor exits,
-the result is <br>
-applied to the index. You are free to make arbitrary changes
-to the <br>
-patch, but note that some changes may have confusing
-results, or even <br>
-result in a patch that cannot be applied. If you want to
-abort the <br>
-operation entirely (i.e., stage nothing new in the index),
-simply <br>
-delete all lines of the patch. The list below describes some
-common <br>
-things you may see in a patch, and which editing operations
-make sense <br>
-on them.</p>
-
-<p style="margin-top: 1em">added content <br>
-Added content is represented by lines beginning with
-&quot;+&quot;. You can <br>
-prevent staging any addition lines by deleting them.</p>
-
-<p style="margin-top: 1em">removed content <br>
-Removed content is represented by lines beginning with
-&quot;-&quot;. You can <br>
-prevent staging their removal by converting the
-&quot;-&quot; to a &quot; &quot; <br>
-(space).</p>
-
-<p style="margin-top: 1em">modified content <br>
-Modified content is represented by &quot;-&quot; lines
-(removing the old <br>
-content) followed by &quot;+&quot; lines (adding the
-replacement content). <br>
-You can prevent staging the modification by converting
-&quot;-&quot; lines to <br>
-&quot; &quot;, and removing &quot;+&quot; lines. Beware that
-modifying only half of the <br>
-pair is likely to introduce confusing changes to the
-index.</p>
-
-<p style="margin-top: 1em">There are also more complex
-operations that can be performed. But <br>
-beware that because the patch is applied only to the index
-and not the <br>
-working tree, the working tree will appear to
-&quot;undo&quot; the change in the <br>
-index. For example, introducing a new line into the index
-that is in <br>
-neither the HEAD nor the working tree will stage the new
-line for <br>
-commit, but the line will appear to be reverted in the
-working tree.</p>
-
-<p style="margin-top: 1em">Avoid using these constructs, or
-do so with extreme caution.</p>
-
-<p style="margin-top: 1em">removing untouched content <br>
-Content which does not differ between the index and working
-tree <br>
-may be shown on context lines, beginning with a &quot;
-&quot; (space). You <br>
-can stage context lines for removal by converting the space
-to a <br>
-&quot;-&quot;. The resulting working tree file will appear
-to re-add the <br>
-content.</p>
-
-<p style="margin-top: 1em">modifying existing content <br>
-One can also modify context lines by staging them for
-removal (by <br>
-converting &quot; &quot; to &quot;-&quot;) and adding a
-&quot;+&quot; line with the new content. <br>
-Similarly, one can modify &quot;+&quot; lines for existing
-additions or <br>
-modifications. In all cases, the new modification will
-appear <br>
-reverted in the working tree.</p>
-
-<p style="margin-top: 1em">new content <br>
-You may also add new content that does not exist in the
-patch; <br>
-simply add new lines, each starting with &quot;+&quot;. The
-addition will <br>
-appear reverted in the working tree.</p>
-
-<p style="margin-top: 1em">There are also several
-operations which should be avoided entirely, as <br>
-they will make the patch impossible to apply:</p>
-
-<p style="margin-top: 1em">&acirc;&cent; adding context
-(&quot; &quot;) or removal (&quot;-&quot;) lines</p>
-
-<p style="margin-top: 1em">&acirc;&cent; deleting context
-or removal lines</p>
-
-<p style="margin-top: 1em">&acirc;&cent; modifying the
-contents of context or removal lines</p>
-
-<p style="margin-top: 1em">SEE ALSO <br>
-git-status(1) git-rm(1) git-reset(1) git-mv(1) git-commit(1)
-git- <br>
-update-index(1)</p>
-
-<p style="margin-top: 1em">GIT <br>
-Part of the git(1) suite</p>
-
-<p style="margin-top: 1em">Git 2.37.0 06/27/2022
-GIT-ADD(1)</p>
-<hr>
+K - leave this hunk undecided, see previous hunk
+s - split the current hunk into smaller hunks
+e - manually edit the current hunk
+? - print help</pre>
+</div>
+<p class="Pp">After deciding the fate for all hunks, if there is any hunk that
+    was chosen, the index is updated with the selected hunks.</p>
+<p class="Pp">You can omit having to type return here, by setting the
+    configuration variable <b>interactive.singleKey</b> to <b>true</b>.</p>
+</div>
+<p class="Pp">diff</p>
+<div class="Bd-indent">This lets you review what will be committed (i.e. between
+  HEAD and index).</div>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="EDITING_PATCHES"><a class="permalink" href="#EDITING_PATCHES">EDITING
+  PATCHES</a></h1>
+<p class="Pp">Invoking <b>git add -e</b> or selecting <b>e</b> from the
+    interactive hunk selector will open a patch in your editor; after the editor
+    exits, the result is applied to the index. You are free to make arbitrary
+    changes to the patch, but note that some changes may have confusing results,
+    or even result in a patch that cannot be applied. If you want to abort the
+    operation entirely (i.e., stage nothing new in the index), simply delete all
+    lines of the patch. The list below describes some common things you may see
+    in a patch, and which editing operations make sense on them.</p>
+<p class="Pp">added content</p>
+<div class="Bd-indent">Added content is represented by lines beginning with
+  &quot;+&quot;. You can prevent staging any addition lines by deleting
+  them.</div>
+<p class="Pp">removed content</p>
+<div class="Bd-indent">Removed content is represented by lines beginning with
+  &quot;-&quot;. You can prevent staging their removal by converting the
+  &quot;-&quot; to a &quot; &quot; (space).</div>
+<p class="Pp">modified content</p>
+<div class="Bd-indent">Modified content is represented by &quot;-&quot; lines
+  (removing the old content) followed by &quot;+&quot; lines (adding the
+  replacement content). You can prevent staging the modification by converting
+  &quot;-&quot; lines to &quot; &quot;, and removing &quot;+&quot; lines. Beware
+  that modifying only half of the pair is likely to introduce confusing changes
+  to the index.</div>
+<p class="Pp">There are also more complex operations that can be performed. But
+    beware that because the patch is applied only to the index and not the
+    working tree, the working tree will appear to &quot;undo&quot; the change in
+    the index. For example, introducing a new line into the index that is in
+    neither the HEAD nor the working tree will stage the new line for commit,
+    but the line will appear to be reverted in the working tree.</p>
+<p class="Pp">Avoid using these constructs, or do so with extreme caution.</p>
+<p class="Pp">removing untouched content</p>
+<div class="Bd-indent">Content which does not differ between the index and
+  working tree may be shown on context lines, beginning with a &quot; &quot;
+  (space). You can stage context lines for removal by converting the space to a
+  &quot;-&quot;. The resulting working tree file will appear to re-add the
+  content.</div>
+<p class="Pp">modifying existing content</p>
+<div class="Bd-indent">One can also modify context lines by staging them for
+  removal (by converting &quot; &quot; to &quot;-&quot;) and adding a
+  &quot;+&quot; line with the new content. Similarly, one can modify
+  &quot;+&quot; lines for existing additions or modifications. In all cases, the
+  new modification will appear reverted in the working tree.</div>
+<p class="Pp">new content</p>
+<div class="Bd-indent">You may also add new content that does not exist in the
+  patch; simply add new lines, each starting with &quot;+&quot;. The addition
+  will appear reverted in the working tree.</div>
+<p class="Pp">There are also several operations which should be avoided
+    entirely, as they will make the patch impossible to apply:</p>
+<p class="Pp"></p>
+<div class="Bd-indent">&#x2022;adding context (&quot; &quot;) or removal
+  (&quot;-&quot;) lines</div>
+<p class="Pp"></p>
+<div class="Bd-indent">&#x2022;deleting context or removal lines</div>
+<p class="Pp"></p>
+<div class="Bd-indent">&#x2022;modifying the contents of context or removal
+  lines</div>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
+  ALSO</a></h1>
+<p class="Pp"><b>git-status</b>(1) <b>git-rm</b>(1) <b>git-reset</b>(1)
+    <b>git-mv</b>(1) <b>git-commit</b>(1) <b>git-update-index</b>(1)</p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="GIT"><a class="permalink" href="#GIT">GIT</a></h1>
+<p class="Pp">Part of the <b>git</b>(1) suite</p>
+</section>
+</div>
+<table class="foot">
+  <tr>
+    <td class="foot-date">08/16/2022</td>
+    <td class="foot-os">Git 2.37.2</td>
+  </tr>
+</table>
 </body>
 </html>
