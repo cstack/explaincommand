@@ -39,5 +39,31 @@ describe Explainer do
         )
       end
     end
+
+    context 'homepage example command for find' do
+      let(:cmd) { 'find . -type f -print0' }
+
+      it 'explains the command' do
+        expect(subject.annotations).to eq(
+          [
+            Annotation.new(
+              referenced_text: 'find',
+              text: 'search for files in a directory hierarchy',
+              token_ids: [0]
+            ),
+            Annotation.new(
+              referenced_text: '.',
+              text: '[starting-point...]',
+              token_ids: [1]
+            ),
+            Annotation.new(
+              referenced_text: 'f',
+              text: '[starting-point...]',
+              token_ids: [6]
+            )
+          ]
+        )
+      end
+    end
   end
 end
