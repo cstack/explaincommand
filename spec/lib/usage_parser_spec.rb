@@ -24,26 +24,6 @@ describe UsageParser do
       end
     end
 
-    context 'find' do
-      let(:text) { 'find [-H | -L | -P] [-EXdsx] [-f path] path ... [expression]' }
-      let(:command_name) { Command::Name.new('find') }
-
-      it 'parses correctly' do
-        expect(subject).to eq(
-          [
-            {
-              name: 'path',
-              repeated: true
-            },
-            {
-              name: '[expression]',
-              repeated: false
-            }
-          ]
-        )
-      end
-    end
-
     context 'when there is a subcommand' do
       let(:text) do
         'git checkout [-q] [-f] [-m] [<branch>]'

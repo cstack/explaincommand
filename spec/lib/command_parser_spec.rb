@@ -70,16 +70,16 @@ describe CommandParser do
     end
 
     context 'when documented single-dash flag has multi-character name' do
-      let(:cmd) { 'find -type' }
-      let(:command_name) { Command::Name.new('find') }
+      let(:cmd) { 'command-name -something' }
+      let(:command_name) { Command::Name.new('command-name') }
       let(:manpage) do
         Manpage.new(
           command_name:,
           description: '',
           flags: [
             Flag.new(
-              aliases: ['-type'],
-              description: 'type flag',
+              aliases: ['-something'],
+              description: 'this flag does something',
               takes_argument: false
             )
           ],
@@ -92,11 +92,11 @@ describe CommandParser do
           [
             Command::Token.new(
               type: :command_name,
-              text: 'find'
+              text: 'command-name'
             ),
             Command::Token.new(
               type: :flag,
-              text: '-type'
+              text: '-something'
             )
           ]
         )
