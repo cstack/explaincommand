@@ -127,6 +127,41 @@ describe CommandParser do
         )
       end
     end
+
+    context 'when flag uses equal sign' do
+      let(:cmd) { 'command-name --key=value' }
+      let(:command_name) { Command::Name.new('command-name') }
+      let(:manpage) do
+        Manpage.new(
+          command_name:,
+          description: '',
+          flags: [
+            Flag.new(
+              aliases: ['--key'],
+              description: 'this flag does something',
+              takes_argument: true
+            )
+          ],
+          positional_arguments: []
+        )
+      end
+
+      it 'parses the flag and argument correctly' do
+        expect(subject.tokens).to eq(
+          [
+            Command::Token.new(
+              type: :command_name,
+              text: 'command-name'
+            ),
+            Command::Token.new(
+              type: :flag,
+              text: '--key',
+              value: 'value'
+            )
+          ]
+        )
+      end
+    end
   end
 
   describe '.command_name' do
