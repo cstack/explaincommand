@@ -208,24 +208,8 @@
   ],
   "positional_arguments": [
     {
-      "name": "Experimental",
-      "type": "BASIC"
-    },
-    {
-      "name": "PATH",
-      "type": "BASIC"
-    },
-    {
-      "name": "|",
-      "type": "BASIC"
-    },
-    {
-      "name": "URL",
-      "type": "BASIC"
-    },
-    {
-      "name": "|",
-      "type": "BASIC"
+      "name": "PATH | URL | -",
+      "type": "ONE_OF_SEVERAL"
     }
   ]
 }

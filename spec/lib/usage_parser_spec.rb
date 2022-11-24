@@ -117,5 +117,36 @@ describe UsageParser do
         )
       end
     end
+
+    context 'when a flag is labeled experimental' do
+      let(:text) do
+        'docker build [-squash] Experimental'
+      end
+      let(:command_name) { Command::Name.new('docker', 'build') }
+
+      it 'parses correctly' do
+        expect(subject).to eq(
+          []
+        )
+      end
+    end
+
+    context 'when several positional arguments are mutually exclusive' do
+      let(:text) do
+        'docker build [--ulimit[=[]]] PATH | URL | -'
+      end
+      let(:command_name) { Command::Name.new('docker', 'build') }
+
+      it 'parses correctly' do
+        expect(subject).to eq(
+          [
+            PositionalArgument.new(
+              name: 'PATH | URL | -',
+              type: PositionalArgument::Type::ONE_OF_SEVERAL
+            )
+          ]
+        )
+      end
+    end
   end
 end

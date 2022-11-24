@@ -84,7 +84,7 @@ describe Explainer do
             ),
             Annotation.new(
               referenced_text: '.',
-              text: 'Experimental',
+              text: 'PATH | URL | -',
               token_ids: [3]
             )
           ]

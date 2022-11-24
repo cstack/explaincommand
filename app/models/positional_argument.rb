@@ -30,7 +30,8 @@ class PositionalArgument
 
   class Type
     BASIC = :BASIC
-    REPEATED = :REPEATED
     COMMA_SEPARTED = :COMMA_SEPARTED
+    ONE_OF_SEVERAL = :ONE_OF_SEVERAL
+    REPEATED = :REPEATED
   end
 end

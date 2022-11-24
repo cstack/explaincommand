@@ -4,8 +4,9 @@ class UsageParser
     num_words_in_command = command_name.num_words
     grouped_words = group_by_brackets(words)
     positional_argument_words = grouped_words.drop(num_words_in_command).reject do |word|
-      word.gsub('[', '').start_with?('-') ||
-        word.include?('OPTION')
+      word_is_flag?(word) ||
+        word.include?('OPTION') ||
+        word.include?('Experimental')
     end
     args = positional_argument_words.map do |word|
       {
@@ -16,9 +17,16 @@ class UsageParser
     args = identify_comma_separated(args)
     args = identify_repeated(args)
     args = interpret_ellipses(args)
+    args = interpret_vertical_bars(args)
     args.map do |arg|
       PositionalArgument.new(**arg)
     end
+  end
+
+  def self.word_is_flag?(word)
+    return false if word == '-'
+
+    word.gsub('[', '').start_with?('-')
   end
 
   def self.group_by_brackets(words)
@@ -65,10 +73,17 @@ class UsageParser
     args
   end
 
-  def self.as_basic(word)
-    PositionalArgument.new(
-      name: word,
-      type: PositionalArgument::Type::BASIC
-    )
+  def self.interpret_vertical_bars(args)
+    result = []
+    while args.length > 0
+      arg = args.shift
+      if arg[:name] == '|'
+        result.last[:type] = PositionalArgument::Type::ONE_OF_SEVERAL
+        result.last[:name] += " | #{args.shift[:name]}"
+      else
+        result << arg
+      end
+    end
+    result
   end
 end
