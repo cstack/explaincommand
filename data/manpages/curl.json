@@ -7,38 +7,1840 @@
   "flags": [
     {
       "aliases": [
+        "--abstract-unix-socket"
+      ],
+      "description": "(HTTP) Connect through an abstract Unix domain socket, instead of using\n      the network. Note: netstat shows the path of an abstract socket prefixed\n      with '@', however the <path> argument should not have this leading\n      character.\n    Example:\n    \n\n curl --abstract-unix-socket socketpath https://example.com\n    See also --unix-socket. Added in 7.53.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--alt-svc"
+      ],
+      "description": "(HTTPS) This option enables the alt-svc parser in curl. If the file name\n      points to an existing alt-svc cache file, that will be used. After a\n      completed transfer, the cache will be saved to the file name again if it\n      has been modified.\n    Specify a \"\" file name (zero length) to avoid\n        loading/saving and make curl just handle the cache in memory.\n    If this option is used several times, curl will load contents\n        from all the files but the last one will be used for saving.\n    Example:\n    \n\n curl --alt-svc svc.txt https://example.com\n    See also --resolve and --connect-to. Added in\n        7.64.1.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--anyauth"
+      ],
+      "description": "(HTTP) Tells curl to figure out authentication method by itself, and use\n      the most secure one the remote site claims to support. This is done by\n      first doing a request and checking the response-headers, thus possibly\n      inducing an extra network round-trip. This is used instead of setting a\n      specific authentication method, which you can do with --basic,\n      --digest, --ntlm, and --negotiate.\n    Using --anyauth is not recommended if you do uploads from\n        stdin, since it may require data to be sent twice and then the client\n        must be able to rewind. If the need should arise when uploading from\n        stdin, the upload operation will fail.\n    Used together with -u, --user.\n    Example:\n    \n\n curl --anyauth --user me:pwd https://example.com\n    See also --proxy-anyauth, --basic and\n        --digest.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-a",
+        "--append"
+      ],
+      "description": "(FTP SFTP) When used in an upload, this makes curl append to the target\n      file instead of overwriting it. If the remote file does not exist, it will\n      be created. Note that this flag is ignored by some SFTP servers (including\n      OpenSSH).\n    Example:\n    \n\n curl --upload-file local --append ftp://example.com/\n    See also -r, --range and -C, --continue-at.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--aws-sigv4"
+      ],
+      "description": "Use AWS V4 signature authentication in the transfer.\n    The provider argument is a string that is used by the\n        algorithm when creating outgoing authentication headers.\n    The region argument is a string that points to a geographic\n        area of a resources collection (region-code) when the region name is\n        omitted from the endpoint.\n    The service argument is a string that points to a function\n        provided by a cloud (service-code) when the service name is omitted from\n        the endpoint.\n    Example:\n    \n\n curl --aws-sigv4 \"aws:amz:east-2:es\" --user \"key:secret\" https://example.com\n    See also --basic and -u, --user. Added in\n        7.75.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--basic"
+      ],
+      "description": "(HTTP) Tells curl to use HTTP Basic authentication with the remote host.\n      This is the default and this option is usually pointless, unless you use\n      it to override a previously set option that sets a different\n      authentication method (such as --ntlm, --digest, or\n      --negotiate).\n    Used together with -u, --user.\n    Example:\n    \n\n curl -u name:password --basic https://example.com\n    See also --proxy-basic.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--cacert"
+      ],
+      "description": "(TLS) Tells curl to use the specified certificate file to verify the peer.\n      The file may contain multiple CA certificates. The certificate(s) must be\n      in PEM format. Normally curl is built to use a default file for this, so\n      this option is typically used to alter that default file.\n    curl recognizes the environment variable named\n        'CURL_CA_BUNDLE' if it is set, and uses the given path as a path to a CA\n        cert bundle. This option overrides that variable.\n    The windows version of curl will automatically look for a CA\n        certs file named 'curl-ca-bundle.crt', either in the same directory as\n        curl.exe, or in the Current Working Directory, or in any folder along\n        your PATH.\n    If curl is built against the NSS SSL library, the NSS PEM\n        PKCS#11 module (libnsspem.so) needs to be available for this option to\n        work properly.\n    (iOS and macOS only) If curl is built against Secure\n        Transport, then this option is supported for backward compatibility with\n        other SSL engines, but it should not be set. If the option is not set,\n        then curl will use the certificates in the system and user Keychain to\n        verify the peer, which is the preferred method of verifying the peer's\n        certificate chain.\n    (Schannel only) This option is supported for Schannel in\n        Windows 7 or later with libcurl 7.60 or later. This option is supported\n        for backward compatibility with other SSL engines; instead it is\n        recommended to use Windows' store of root certificates (the default for\n        Schannel).\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --cacert CA-file.txt https://example.com\n    See also --capath and -k, --insecure.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--capath"
+      ],
+      "description": "(TLS) Tells curl to use the specified certificate directory to verify the\n      peer. Multiple paths can be provided by separating them with \":\"\n      (e.g. \"path1:path2:path3\"). The certificates must be in PEM\n      format, and if curl is built against OpenSSL, the directory must have been\n      processed using the c_rehash utility supplied with OpenSSL. Using --capath\n      can allow OpenSSL-powered curl to make SSL-connections much more\n      efficiently than using --cacert if the --cacert file contains many CA\n      certificates.\n    If this option is set, the default capath value will be\n        ignored, and if it is used several times, the last one will be used.\n    Example:\n    \n\n curl --capath /local/directory https://example.com\n    See also --cacert and -k, --insecure.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--cert-status"
+      ],
+      "description": "(TLS) Tells curl to verify the status of the server certificate by using\n      the Certificate Status Request (aka. OCSP stapling) TLS extension.\n    If this option is enabled and the server sends an invalid\n        (e.g. expired) response, if the response suggests that the server\n        certificate has been revoked, or no response at all is received, the\n        verification fails.\n    This is currently only implemented in the OpenSSL, GnuTLS and\n        NSS backends.\n    Example:\n    \n\n curl --cert-status https://example.com\n    See also --pinnedpubkey. Added in 7.41.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--cert-type"
+      ],
+      "description": "(TLS) Tells curl what type the provided client certificate is using. PEM,\n      DER, ENG and P12 are recognized types.\n    The default type depends on the TLS backend and is usually\n        PEM, however for Secure Transport and Schannel it is P12. If --cert is a\n        pkcs11: URI then ENG is the default type.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --cert-type PEM --cert file https://example.com\n    See also -E, --cert, --key and\n        --key-type.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-E",
+        "--cert"
+      ],
+      "description": "(TLS) Tells curl to use the specified client certificate file when getting\n      a file with HTTPS, FTPS or another SSL-based protocol. The certificate\n      must be in PKCS#12 format if using Secure Transport, or PEM format if\n      using any other engine. If the optional password is not specified, it will\n      be queried for on the terminal. Note that this option assumes a\n      certificate file that is the private key and the client certificate\n      concatenated. See --cert and --key to specify them independently.\n    In the <certificate> portion of the argument, you must\n        escape the character \":\" as \"\\:\" so that it is not\n        recognized as the password delimiter. Similarly, you must escape the\n        character \"\\\" as \"\\\\\" so that it is not recognized\n        as an escape character.\n    If curl is built against the NSS SSL library then this option\n        can tell curl the nickname of the certificate to use within the NSS\n        database defined by the environment variable SSL_DIR (or by default\n        /etc/pki/nssdb). If the NSS PEM PKCS#11 module (libnsspem.so) is\n        available then PEM files may be loaded.\n    If you provide a path relative to the current directory, you\n        must prefix the path with \"./\" in order to avoid confusion\n        with an NSS database nickname.\n    If curl is built against OpenSSL library, and the engine\n        pkcs11 is available, then a PKCS#11 URI (RFC 7512) can be used to\n        specify a certificate located in a PKCS#11 device. A string beginning\n        with \"pkcs11:\" will be interpreted as a PKCS#11 URI. If a\n        PKCS#11 URI is provided, then the --engine option will be set as\n        \"pkcs11\" if none was provided and the --cert-type option will\n        be set as \"ENG\" if none was provided.\n    (iOS and macOS only) If curl is built against Secure\n        Transport, then the certificate string can either be the name of a\n        certificate/private key in the system or user keychain, or the path to a\n        PKCS#12-encoded certificate and private key. If you want to use a file\n        from the current directory, please precede it with \"./\"\n        prefix, in order to avoid confusion with a nickname.\n    (Schannel only) Client certificates must be specified by a\n        path expression to a certificate store. (Loading PFX is not supported;\n        you can import it to a store first). You can use \"<store\n        location>\\<store name>\\<thumbprint>\" to refer to a\n        certificate in the system certificates store, for example,\n        \"CurrentUser\\MY\\934a7ac6f8a5d579285a74fa61e19f23ddfe8d7a\".\n        Thumbprint is usually a SHA-1 hex string which you can see in\n        certificate details. Following store locations are supported:\n        CurrentUser, LocalMachine, CurrentService, Services,\n        CurrentUserGroupPolicy, LocalMachineGroupPolicy,\n      LocalMachineEnterprise.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --cert certfile --key keyfile https://example.com\n    See also --cert-type, --key and\n        --key-type.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--ciphers"
+      ],
+      "description": "(TLS) Specifies which ciphers to use in the connection. The list of\n      ciphers must specify valid ciphers. Read up on SSL cipher list details on\n      this URL:\n    \n    \n\n https://curl.se/docs/ssl-ciphers.html\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --ciphers ECDHE-ECDSA-AES256-CCM8 https://example.com\n    See also --tlsv1.3.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--compressed-ssh"
+      ],
+      "description": "(SCP SFTP) Enables built-in SSH compression. This is a request, not an\n      order; the server may or may not do it.\n    Example:\n    \n\n curl --compressed-ssh sftp://example.com/\n    See also --compressed. Added in 7.56.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--compressed"
+      ],
+      "description": "(HTTP) Request a compressed response using one of the algorithms curl\n      supports, and automatically decompress the content. Headers are not\n      modified.\n    If this option is used and the server sends an unsupported\n        encoding, curl will report an error. This is a request, not an order;\n        the server may or may not deliver data compressed.\n    Example:\n    \n\n curl --compressed https://example.com\n    See also --compressed-ssh.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-K",
+        "--config"
+      ],
+      "description": "Specify a text file to read curl arguments from. The command line\n      arguments found in the text file will be used as if they were provided on\n      the command line.\n    Options and their parameters must be specified on the same\n        line in the file, separated by whitespace, colon, or the equals sign.\n        Long option names can optionally be given in the config file without the\n        initial double dashes and if so, the colon or equals characters can be\n        used as separators. If the option is specified with one or two dashes,\n        there can be no colon or equals character between the option and its\n        parameter.\n    If the parameter contains whitespace (or starts with : or =),\n        the parameter must be enclosed within quotes. Within double quotes, the\n        following escape sequences are available: \\\\, \\\", \\t, \\n, \\r and\n        \\v. A backslash preceding any other letter is ignored.\n    If the first column of a config line is a '#' character, the\n        rest of the line will be treated as a comment.\n    Only write one option per physical line in the config\n      file.\n    Specify the filename to --config as '-' to make curl read the\n        file from stdin.\n    Note that to be able to specify a URL in the config file, you\n        need to specify it using the --url option, and not by simply writing the\n        URL on its own line. So, it could look similar to this:\n    url = \"https://curl.se/docs/\"\n    \n    \n\n # --- Example file ---\n\n # this is a comment\n\n url = \"example.com\"\n\n output = \"curlhere.html\"\n\n user-agent = \"superagent/1.0\"\n    \n    \n\n # and fetch another URL too\n\n url = \"example.com/docs/manpage.html\"\n\n -O\n\n referer = \"http://nowhereatall.example.com/\"\n\n # --- End of example file ---\n    When curl is invoked, it (unless --disable is used) checks for\n        a default config file and uses it if found, even when --config is used.\n        The default config file is checked for in the following places in this\n        order:\n    1) \"$CURL_HOME/.curlrc\"\n    2) \"$XDG_CONFIG_HOME/.curlrc\" (Added in 7.73.0)\n    3) \"$HOME/.curlrc\"\n    4) Windows: \"%USERPROFILE%\\.curlrc\"\n    5) Windows: \"%APPDATA%\\.curlrc\"\n    6) Windows: \"%USERPROFILE%\\Application\n      Data\\.curlrc\"\n    7) Non-Windows: use getpwuid to find the home directory\n    8) On Windows, if it finds no .curlrc file in the sequence\n        described above, it checks for one in the same dir the curl executable\n        is placed.\n    On Windows two filenames are checked per location: .curlrc and\n        _curlrc, preferring the former. Older versions on Windows checked for\n        _curlrc only.\n    This option can be used multiple times to load multiple config\n        files.\n    Example:\n    \n\n curl --config file.txt https://example.com\n    See also -q, --disable.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--connect-timeout"
+      ],
+      "description": "Maximum time in seconds that you allow curl's connection to take. This\n      only limits the connection phase, so if curl connects within the given\n      period it will continue - if not it will exit. Since version 7.32.0, this\n      option accepts decimal values.\n    If this option is used several times, the last one will be\n        used.\n    Examples:\n    \n\n curl --connect-timeout 20 https://example.com\n\n curl --connect-timeout 3.14 https://example.com\n    See also -m, --max-time.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--connect-to"
+      ],
+      "description": "\n    For a request to the given HOST1:PORT1 pair, connect to\n        HOST2:PORT2 instead. This option is suitable to direct requests at a\n        specific server, e.g. at a specific cluster node in a cluster of\n        servers. This option is only used to establish the network connection.\n        It does NOT affect the hostname/port that is used for TLS/SSL (e.g. SNI,\n        certificate verification) or for the application protocols.\n        \"HOST1\" and \"PORT1\" may be the empty string, meaning\n        \"any host/port\". \"HOST2\" and \"PORT2\" may\n        also be the empty string, meaning \"use the request's original\n        host/port\".\n    A \"host\" specified to this option is compared as a\n        string, so it needs to match the name used in request URL. It can be\n        either numerical such as \"127.0.0.1\" or the full host name\n        such as \"example.org\".\n    This option can be used many times to add many connect\n      rules.\n    Example:\n    \n\n curl --connect-to example.com:443:example.net:8443 https://example.com\n    See also --resolve and -H, --header. Added in\n        7.49.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-C",
+        "--continue-at"
+      ],
+      "description": "Continue/Resume a previous file transfer at the given offset. The given\n      offset is the exact number of bytes that will be skipped, counting from\n      the beginning of the source file before it is transferred to the\n      destination. If used with uploads, the FTP server command SIZE will not be\n      used by curl.\n    Use \"-C -\" to tell curl to automatically find out\n        where/how to resume the transfer. It then uses the given output/input\n        files to figure that out.\n    If this option is used several times, the last one will be\n        used.\n    Examples:\n    \n\n curl -C - https://example.com\n\n curl -C 400 https://example.com\n    See also -r, --range.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-c",
+        "--cookie-jar"
+      ],
+      "description": "(HTTP) Specify to which file you want curl to write all cookies after a\n      completed operation. Curl writes all cookies from its in-memory cookie\n      storage to the given file at the end of operations. If no cookies are\n      known, no data will be written. The file will be written using the\n      Netscape cookie file format. If you set the file name to a single dash,\n      \"-\", the cookies will be written to stdout.\n    This command line option will activate the cookie engine that\n        makes curl record and use cookies. Another way to activate it is to use\n        the --cookie option.\n    If the cookie jar cannot be created or written to, the whole\n        curl operation will not fail or even report an error clearly. Using\n        --verbose will get a warning displayed, but that is the only visible\n        feedback you get about this possibly lethal situation.\n    If this option is used several times, the last specified file\n        name will be used.\n    Examples:\n    \n\n curl -c store-here.txt https://example.com\n\n curl -c store-here.txt -b read-these https://example.com\n    See also -b, --cookie.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-b",
+        "--cookie"
+      ],
+      "description": "(HTTP) Pass the data to the HTTP server in the Cookie header. It is\n      supposedly the data previously received from the server in a\n      \"Set-Cookie:\" line. The data should be in the format\n      \"NAME1=VALUE1; NAME2=VALUE2\". This makes curl use the cookie\n      header with this content explicitly in all outgoing request(s). If\n      multiple requests are done due to authentication, followed redirects or\n      similar, they will all get this cookie passed on.\n    If no '=' symbol is used in the argument, it is instead\n        treated as a filename to read previously stored cookie from. This option\n        also activates the cookie engine which will make curl record incoming\n        cookies, which may be handy if you are using this in combination with\n        the --location option or do multiple URL transfers on the same invoke.\n        If the file name is exactly a minus (\"-\"), curl will instead\n        read the contents from stdin.\n    The file format of the file to read cookies from should be\n        plain HTTP headers (Set-Cookie style) or the Netscape/Mozilla cookie\n        file format.\n    The file specified with --cookie is only used as input. No\n        cookies will be written to the file. To store cookies, use the\n        --cookie-jar option.\n    If you use the Set-Cookie file format and do not specify a\n        domain then the cookie is not sent since the domain will never match. To\n        address this, set a domain in Set-Cookie line (doing that will include\n        sub-domains) or preferably: use the Netscape format.\n    This option can be used multiple times.\n    Users often want to both read cookies from a file and write\n        updated cookies back to a file, so using both --cookie and --cookie-jar\n        in the same command line is common.\n    Examples:\n    \n\n curl -b cookiefile https://example.com\n\n curl -b cookiefile -c cookiefile https://example.com\n    See also -c, --cookie-jar and -j,\n        --junk-session-cookies.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--create-dirs"
+      ],
+      "description": "When used in conjunction with the --output option, curl will create the\n      necessary local directory hierarchy as needed. This option creates the\n      directories mentioned with the --output option, nothing else. If the\n      --output file name uses no directory, or if the directories it mentions\n      already exist, no directories will be created.\n    Created dirs are made with mode 0750 on unix style file\n        systems.\n    To create remote directories when using FTP or SFTP, try\n        --ftp-create-dirs.\n    Example:\n    \n\n curl --create-dirs --output local/dir/file https://example.com\n    See also --ftp-create-dirs and --output-dir.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--create-file-mode"
+      ],
+      "description": "(SFTP SCP FILE) When curl is used to create files remotely using one of\n      the supported protocols, this option allows the user to set which 'mode'\n      to set on the file at creation time, instead of the default 0644.\n    This option takes an octal number as argument.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --create-file-mode 0777 -T localfile sftp://example.com/new\n    See also --ftp-create-dirs. Added in 7.75.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--crlf"
+      ],
+      "description": "(FTP SMTP) Convert LF to CRLF in upload. Useful for MVS (OS/390).\n    (SMTP added in 7.40.0)\n    Example:\n    \n\n curl --crlf -T file ftp://example.com/\n    See also -B, --use-ascii.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--crlfile"
+      ],
+      "description": "(TLS) Provide a file using PEM format with a Certificate Revocation List\n      that may specify peer certificates that are to be considered revoked.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --crlfile rejects.txt https://example.com\n    See also --cacert and --capath.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
         "--curves"
       ],
-      "description": "with exactly the (EC) curve requested by the client, avoiding nontransparent client/server negotiations.",
+      "description": "(TLS) Tells curl to request specific curves to use during SSL session\n      establishment according to RFC 8422, 5.1. Multiple algorithms can be\n      provided by separating them with \":\" (e.g.\n      \"X25519:P-521\"). The parameter is available identically in the\n      \"openssl s_client/s_server\" utilities.\n    --curves allows a OpenSSL powered curl to make SSL-connections\n        with exactly the (EC) curve requested by the client, avoiding\n        nontransparent client/server negotiations.\n    If this option is set, the default curves list built into\n        openssl will be ignored.\n    Example:\n    \n\n curl --curves X25519 https://example.com\n    See also --ciphers. Added in 7.73.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--data-ascii"
+      ],
+      "description": "(HTTP) This is just an alias for -d, --data.\n    Example:\n    \n\n curl --data-ascii @file https://example.com\n    See also --data-binary, --data-raw and\n        --data-urlencode.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--data-binary"
+      ],
+      "description": "(HTTP) This posts data exactly as specified with no extra processing\n      whatsoever.\n    If you start the data with the letter @, the rest should be a\n        filename. Data is posted in a similar manner as --data does, except that\n        newlines and carriage returns are preserved and conversions are never\n        done.\n    Like --data the default content-type sent to the server is\n        application/x-www-form-urlencoded. If you want the data to be treated as\n        arbitrary binary data by the server then set the content-type to\n        octet-stream: -H \"Content-Type: application/octet-stream\".\n    If this option is used several times, the ones following the\n        first will append data as described in -d, --data.\n    Example:\n    \n\n curl --data-binary @filename https://example.com\n    See also --data-ascii.\n  ",
       "takes_argument": true
     },
     {
       "aliases": [
         "--data-raw"
       ],
-      "description": "interpretation of the @ character. To post data purely binary, you should instead use the --data-binary option. To URL-encode the value of a form field you may use --data-urlencode.",
+      "description": "(HTTP) This posts data similarly to --data but without the special\n      interpretation of the @ character.\n    Examples:\n    \n\n curl --data-raw \"hello\" https://example.com\n\n curl --data-raw \"@at@at@\" https://example.com\n    See also -d, --data. Added in 7.43.0.\n  ",
       "takes_argument": true
     },
     {
       "aliases": [
-        "--eprt"
+        "--data-urlencode"
       ],
-      "description": "--no-eprt is an alias for --disable-eprt.",
+      "description": "(HTTP) This posts data, similar to the other --data options with the\n      exception that this performs URL-encoding.\n    To be CGI-compliant, the <data> part should begin with a\n        name followed by a separator and a content specification. The\n        <data> part can be passed to curl using one of the following\n        syntaxes:\n  ",
       "takes_argument": true
     },
     {
       "aliases": [
-        "--epsv"
+        "-d",
+        "--data"
       ],
-      "description": "--no-epsv is an alias for --disable-epsv.",
+      "description": "(HTTP MQTT) Sends the specified data in a POST request to the HTTP server,\n      in the same way that a browser does when a user has filled in an HTML form\n      and presses the submit button. This will cause curl to pass the data to\n      the server using the content-type application/x-www-form-urlencoded.\n      Compare to -F, --form.\n    --data-raw is almost the same but does not have a special\n        interpretation of the @ character. To post data purely binary, you\n        should instead use the --data-binary option. To URL-encode the value of\n        a form field you may use --data-urlencode.\n    If any of these options is used more than once on the same\n        command line, the data pieces specified will be merged with a separating\n        &-symbol. Thus, using '-d name=daniel -d skill=lousy' would generate\n        a post chunk that looks like 'name=daniel&skill=lousy'.\n    If you start the data with the letter @, the rest should be a\n        file name to read the data from, or - if you want curl to read the data\n        from stdin. Posting data from a file named 'foobar' would thus be done\n        with -d, --data @foobar. When --data is told to read from a file\n        like that, carriage returns and newlines will be stripped out. If you do\n        not want the @ character to have a special interpretation use --data-raw\n        instead.\n    Examples:\n    \n\n curl -d \"name=curl\" https://example.com\n\n curl -d \"name=curl\" -d \"tool=cmdline\" https://example.com\n\n curl -d @filename https://example.com\n    See also --data-binary, --data-urlencode and\n        --data-raw. This option is mutually exclusive to -F,\n        --form and -I, --head and -T, --upload-file.\n  ",
       "takes_argument": true
     },
     {
       "aliases": [
+        "--delegation"
+      ],
+      "description": "(GSS/kerberos) Set LEVEL to tell the server what it is allowed to delegate\n      when it comes to user credentials.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--digest"
+      ],
+      "description": "(HTTP) Enables HTTP Digest authentication. This is an authentication\n      scheme that prevents the password from being sent over the wire in clear\n      text. Use this in combination with the normal --user option to set user\n      name and password.\n    If this option is used several times, only the first one is\n        used.\n    Example:\n    \n\n curl -u name:password --digest https://example.com\n    See also -u, --user, --proxy-digest and\n        --anyauth. This option is mutually exclusive to --basic\n        and --ntlm and --negotiate.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--disable-eprt"
+      ],
+      "description": "(FTP) Tell curl to disable the use of the EPRT and LPRT commands when\n      doing active FTP transfers. Curl will normally always first attempt to use\n      EPRT, then LPRT before using PORT, but with this option, it will use PORT\n      right away. EPRT and LPRT are extensions to the original FTP protocol, and\n      may not work on all servers, but they enable more functionality in a\n      better way than the traditional PORT command.\n    --eprt can be used to explicitly enable EPRT again and\n        --no-eprt is an alias for --disable-eprt.\n    If the server is accessed using IPv6, this option will have no\n        effect as EPRT is necessary then.\n    Disabling EPRT only changes the active behavior. If you want\n        to switch to passive mode you need to not use --ftp-port or force it\n        with --ftp-pasv.\n    Example:\n    \n\n curl --disable-eprt ftp://example.com/\n    See also --disable-epsv and -P, --ftp-port.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--disable-epsv"
+      ],
+      "description": "(FTP) Tell curl to disable the use of the EPSV command when doing passive\n      FTP transfers. Curl will normally always first attempt to use EPSV before\n      PASV, but with this option, it will not try using EPSV.\n    --epsv can be used to explicitly enable EPSV again and\n        --no-epsv is an alias for --disable-epsv.\n    If the server is an IPv6 host, this option will have no effect\n        as EPSV is necessary then.\n    Disabling EPSV only changes the passive behavior. If you want\n        to switch to active mode you need to use -P, --ftp-port.\n    Example:\n    \n\n curl --disable-epsv ftp://example.com/\n    See also --disable-eprt and -P, --ftp-port.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-q",
+        "--disable"
+      ],
+      "description": "If used as the first parameter on the command line, the curlrc\n      config file will not be read and used. See the --config for details on the\n      default config file search path.\n    Example:\n    \n\n curl -q https://example.com\n    See also -K, --config.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--disallow-username-in-url"
+      ],
+      "description": "(HTTP) This tells curl to exit if passed a URL containing a username. This\n      is probably most useful when the URL is being provided at runtime or\n      similar.\n    Example:\n    \n\n curl --disallow-username-in-url https://example.com\n    See also --proto. Added in 7.61.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--dns-interface"
+      ],
+      "description": "(DNS) Tell curl to send outgoing DNS requests through <interface>.\n      This option is a counterpart to --interface (which does not affect\n      DNS). The supplied string must be an interface name (not an address).\n    Example:\n    \n\n curl --dns-interface eth0 https://example.com\n    See also --dns-ipv4-addr and --dns-ipv6-addr.\n        --dns-interface requires that the underlying libcurl was built to\n        support c-ares. Added in 7.33.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--dns-ipv4-addr"
+      ],
+      "description": "(DNS) Tell curl to bind to <ip-address> when making IPv4 DNS\n      requests, so that the DNS requests originate from this address. The\n      argument should be a single IPv4 address.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --dns-ipv4-addr 10.1.2.3 https://example.com\n    See also --dns-interface and --dns-ipv6-addr.\n        --dns-ipv4-addr requires that the underlying libcurl was built to\n        support c-ares. Added in 7.33.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--dns-ipv6-addr"
+      ],
+      "description": "(DNS) Tell curl to bind to <ip-address> when making IPv6 DNS\n      requests, so that the DNS requests originate from this address. The\n      argument should be a single IPv6 address.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --dns-ipv6-addr 2a04:4e42::561 https://example.com\n    See also --dns-interface and --dns-ipv4-addr.\n        --dns-ipv6-addr requires that the underlying libcurl was built to\n        support c-ares. Added in 7.33.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--dns-servers"
+      ],
+      "description": "Set the list of DNS servers to be used instead of the system default. The\n      list of IP addresses should be separated with commas. Port numbers may\n      also optionally be given as :<port-number> after each IP\n      address.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --dns-servers 192.168.0.1,192.168.0.2 https://example.com\n    See also --dns-interface and --dns-ipv4-addr.\n        --dns-servers requires that the underlying libcurl was built to\n        support c-ares. Added in 7.33.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--doh-cert-status"
+      ],
+      "description": "Same as --cert-status but used for DoH (DNS-over-HTTPS).\n    Example:\n    \n\n curl --doh-cert-status --doh-url https://doh.example https://example.com\n    See also --doh-insecure. Added in 7.76.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--doh-insecure"
+      ],
+      "description": "Same as --insecure but used for DoH (DNS-over-HTTPS).\n    Example:\n    \n\n curl --doh-insecure --doh-url https://doh.example https://example.com\n    See also --doh-url. Added in 7.76.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--doh-url"
+      ],
+      "description": "Specifies which DNS-over-HTTPS (DoH) server to use to resolve hostnames,\n      instead of using the default name resolver mechanism. The URL must be\n      HTTPS.\n    Some SSL options that you set for your transfer will apply to\n        DoH since the name lookups take place over SSL. However, the certificate\n        verification settings are not inherited and can be controlled separately\n        via --doh-insecure and --doh-cert-status.\n    This option is unset if an empty string \"\" is used\n        as the URL. (Added in 7.85.0)\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --doh-url https://doh.example https://example.com\n    See also --doh-insecure. Added in 7.62.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-D",
+        "--dump-header"
+      ],
+      "description": "(HTTP FTP) Write the received protocol headers to the specified file. If\n      no headers are received, the use of this option will create an empty file.\n    When used in FTP, the FTP server response lines are considered\n        being \"headers\" and thus are saved there.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --dump-header store.txt https://example.com\n    See also -o, --output.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--egd-file"
+      ],
+      "description": "(TLS) Deprecated option. This option is ignored by curl since 7.84.0.\n      Prior to that it only had an effect on curl if built to use old versions\n      of OpenSSL.\n    Specify the path name to the Entropy Gathering Daemon socket.\n        The socket is used to seed the random engine for SSL connections.\n    Example:\n    \n\n curl --egd-file /random/here https://example.com\n    See also --random-file.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--engine"
+      ],
+      "description": "(TLS) Select the OpenSSL crypto engine to use for cipher operations. Use\n      --engine list to print a list of build-time supported engines. Note that\n      not all (and possibly none) of the engines may be available at runtime.\n    Example:\n    \n\n curl --engine flavor https://example.com\n    See also --ciphers and --curves.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--etag-compare"
+      ],
+      "description": "(HTTP) This option makes a conditional HTTP request for the specific ETag\n      read from the given file by sending a custom If-None-Match header using\n      the stored ETag.\n    For correct results, make sure that the specified file\n        contains only a single line with the desired ETag. An empty file is\n        parsed as an empty ETag.\n    Use the option --etag-save to first save the ETag from a\n        response, and then use this option to compare against the saved ETag in\n        a subsequent request.\n    Example:\n    \n\n curl --etag-compare etag.txt https://example.com\n    See also --etag-save and -z, --time-cond. Added\n        in 7.68.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--etag-save"
+      ],
+      "description": "(HTTP) This option saves an HTTP ETag to the specified file. An ETag is a\n      caching related header, usually returned in a response.\n    If no ETag is sent by the server, an empty file is\n      created.\n    Example:\n    \n\n curl --etag-save storetag.txt https://example.com\n    See also --etag-compare. Added in 7.68.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--expect100-timeout"
+      ],
+      "description": "(HTTP) Maximum time in seconds that you allow curl to wait for a\n      100-continue response when curl emits an Expects: 100-continue header in\n      its request. By default curl will wait one second. This option accepts\n      decimal values! When curl stops waiting, it will continue as if the\n      response has been received.\n    Example:\n    \n\n curl --expect100-timeout 2.5 -T file https://example.com\n    See also --connect-timeout. Added in 7.47.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--fail-early"
+      ],
+      "description": "Fail and exit on the first detected transfer error.\n    When curl is used to do multiple transfers on the command\n        line, it will attempt to operate on each given URL, one by one. By\n        default, it will ignore errors if there are more URLs given and the last\n        URL's success will determine the error code curl returns. So early\n        failures will be \"hidden\" by subsequent successful\n      transfers.\n    Using this option, curl will instead return an error on the\n        first transfer that fails, independent of the amount of URLs that are\n        given on the command line. This way, no transfer failures go undetected\n        by scripts and similar.\n    This option is global and does not need to be specified for\n        each use of -:, --next.\n    This option does not imply -f, --fail, which causes\n        transfers to fail due to the server's HTTP status code. You can combine\n        the two options, however note --fail is not global and is therefore\n        contained by -:, --next.\n    Example:\n    \n\n curl --fail-early https://example.com https://two.example\n    See also -f, --fail and --fail-with-body. Added\n        in 7.52.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--fail-with-body"
+      ],
+      "description": "(HTTP) Return an error on server errors where the HTTP response code is\n      400 or greater). In normal cases when an HTTP server fails to deliver a\n      document, it returns an HTML document stating so (which often also\n      describes why and more). This flag will still allow curl to output and\n      save that content but also to return error 22.\n    This is an alternative option to --fail which makes curl fail\n        for the same circumstances but without saving the content.\n    Example:\n    \n\n curl --fail-with-body https://example.com\n    See also -f, --fail. This option is mutually exclusive\n        to -f, --fail. Added in 7.76.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-f",
+        "--fail"
+      ],
+      "description": "(HTTP) Fail fast with no output at all on server errors. This is useful to\n      enable scripts and users to better deal with failed attempts. In normal\n      cases when an HTTP server fails to deliver a document, it returns an HTML\n      document stating so (which often also describes why and more). This flag\n      will prevent curl from outputting that and return error 22.\n    This method is not fail-safe and there are occasions where\n        non-successful response codes will slip through, especially when\n        authentication is involved (response codes 401 and 407).\n    Example:\n    \n\n curl --fail https://example.com\n    See also --fail-with-body. This option is mutually\n        exclusive to --fail-with-body.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--false-start"
+      ],
+      "description": "(TLS) Tells curl to use false start during the TLS handshake. False start\n      is a mode where a TLS client will start sending application data before\n      verifying the server's Finished message, thus saving a round trip when\n      performing a full handshake.\n    This is currently only implemented in the NSS and Secure\n        Transport (on iOS 7.0 or later, or OS X 10.9 or later) backends.\n    Example:\n    \n\n curl --false-start https://example.com\n    See also --tcp-fastopen. Added in 7.42.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--form-escape"
+      ],
+      "description": "(HTTP) Tells curl to pass on names of multipart form fields and files\n      using backslash-escaping instead of percent-encoding.\n    Example:\n    \n\n curl --form-escape -F 'field\\name=curl' -F 'file=@load\"this' https://example.com\n    See also -F, --form. Added in 7.81.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--form-string"
+      ],
+      "description": "(HTTP SMTP IMAP) Similar to --form except that the value string for the\n      named parameter is used literally. Leading '@' and '<' characters, and\n      the ';type=' string in the value have no special meaning. Use this in\n      preference to --form if there's any possibility that the string value may\n      accidentally trigger the '@' or '<' features of -F, --form.\n    Example:\n    \n\n curl --form-string \"data\" https://example.com\n    See also -F, --form.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-F",
+        "--form"
+      ],
+      "description": "(HTTP SMTP IMAP) For HTTP protocol family, this lets curl emulate a\n      filled-in form in which a user has pressed the submit button. This causes\n      curl to POST data using the Content-Type multipart/form-data according to\n      RFC 2388.\n    For SMTP and IMAP protocols, this is the means to compose a\n        multipart mail message to transmit.\n    This enables uploading of binary files etc. To force the\n        'content' part to be a file, prefix the file name with an @ sign. To\n        just get the content part from a file, prefix the file name with the\n        symbol <. The difference between @ and < is then that @ makes a\n        file get attached in the post as a file upload, while the < makes a\n        text field and just get the contents for that text field from a\n      file.\n    Tell curl to read content from stdin instead of a file by\n        using - as filename. This goes for both @ and < constructs. When\n        stdin is used, the contents is buffered in memory first by curl to\n        determine its size and allow a possible resend. Defining a part's data\n        from a named non-regular file (such as a named pipe or similar) is\n        unfortunately not subject to buffering and will be effectively read at\n        transmission time; since the full size is unknown before the transfer\n        starts, such data is sent as chunks by HTTP and rejected by IMAP.\n    Example: send an image to an HTTP server, where 'profile' is\n        the name of the form-field to which the file portrait.jpg will be the\n        input:\n    \n    \n\n curl -F profile=@portrait.jpg https://example.com/upload.cgi\n    Example: send your name and shoe size in two text fields to\n        the server:\n    \n    \n\n curl -F name=John -F shoesize=11 https://example.com/\n    Example: send your essay in a text field to the server. Send\n        it as a plain text field, but get the contents for it from a local\n      file:\n    \n    \n\n curl -F \"story=<hugefile.txt\" https://example.com/\n    You can also tell curl what Content-Type to use by using\n        'type=', in a manner similar to:\n    \n    \n\n curl -F \"web=@index.html;type=text/html\" example.com\n    or\n    \n    \n\n curl -F \"name=daniel;type=text/foo\" example.com\n    You can also explicitly change the name field of a file upload\n        part by setting filename=, like this:\n    \n    \n\n curl -F \"file=@localfile;filename=nameinpost\" example.com\n    If filename/path contains ',' or ';', it must be quoted by\n        double-quotes like:\n    \n    \n\n curl -F \"file=@\\\"local,file\\\";filename=\\\"name;in;post\\\"\" example.com\n    or\n    \n    \n\n curl -F 'file=@\"local,file\";filename=\"name;in;post\"' example.com\n    Note that if a filename/path is quoted by double-quotes, any\n        double-quote or backslash within the filename must be escaped by\n        backslash.\n    Quoting must also be applied to non-file data if it contains\n        semicolons, leading/trailing spaces or leading double quotes:\n    \n    \n\n curl -F 'colors=\"red; green; blue\";type=text/x-myapp' example.com\n    You can add custom headers to the field by setting headers=,\n        like\n    \n    \n\n  curl -F \"submit=OK;headers=\\\"X-submit-type: OK\\\"\" example.com\n    or\n    \n    \n\n  curl -F \"submit=OK;headers=@headerfile\" example.com\n    The headers= keyword may appear more that once and above notes\n        about quoting apply. When headers are read from a file, Empty lines and\n        lines starting with '#' are comments and ignored; each header can be\n        folded by splitting between two words and starting the continuation line\n        with a space; embedded carriage-returns and trailing spaces are\n        stripped. Here is an example of a header file contents:\n    \n    \n\n  # This file contain two headers.\n\n  X-header-1: this is a header\n    \n    \n\n  # The following header is folded.\n\n  X-header-2: this is\n\n   another header\n    To support sending multipart mail messages, the syntax is\n        extended as follows:\n      \n      - name can be omitted: the equal sign is the first character of the\n        argument,\n      \n      - if data starts with '(', this signals to start a new multipart: it can\n        be followed by a content type specification.\n      \n      - a multipart can be terminated with a '=)' argument.\n    Example: the following command sends an SMTP mime email\n        consisting in an inline part in two alternative formats: plain text and\n        HTML. It attaches a text file:\n    \n    \n\n curl -F '=(;type=multipart/alternative' \\\n\n      -F '=plain text message' \\\n\n      -F '= <body>HTML message</body>;type=text/html' \\\n\n      -F '=)' -F '=@textfile.txt' ...  smtp://example.com\n    Data can be encoded for transfer using encoder=. Available\n        encodings are binary and 8bit that do nothing else than\n        adding the corresponding Content-Transfer-Encoding header, 7bit\n        that only rejects 8-bit characters with a transfer error,\n        quoted-printable and base64 that encodes data according to\n        the corresponding schemes, limiting lines length to 76 characters.\n    Example: send multipart mail with a quoted-printable text\n        message and a base64 attached file:\n    \n    \n\n curl -F '=text message;encoder=quoted-printable' \\\n\n      -F '=@localfile;encoder=base64' ... smtp://example.com\n    See further examples and details in the MANUAL.\n    This option can be used multiple times.\n    Example:\n    \n\n curl --form \"name=curl\" --form \"file=@loadthis\" https://example.com\n    See also -d, --data, --form-string and\n        --form-escape. This option is mutually exclusive to -d,\n        --data and -I, --head and -T, --upload-file.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--ftp-account"
+      ],
+      "description": "(FTP) When an FTP server asks for \"account data\" after user name\n      and password has been provided, this data is sent off using the ACCT\n      command.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --ftp-account \"mr.robot\" ftp://example.com/\n    See also -u, --user.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--ftp-alternative-to-user"
+      ],
+      "description": "(FTP) If authenticating with the USER and PASS commands fails, send this\n      command. When connecting to Tumbleweed's Secure Transport server over FTPS\n      using a client certificate, using \"SITE AUTH\" will tell the\n      server to retrieve the username from the certificate.\n    Example:\n    \n\n curl --ftp-alternative-to-user \"U53r\" ftp://example.com\n    See also --ftp-account and -u, --user.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--ftp-create-dirs"
+      ],
+      "description": "(FTP SFTP) When an FTP or SFTP URL/operation uses a path that does not\n      currently exist on the server, the standard behavior of curl is to fail.\n      Using this option, curl will instead attempt to create missing\n      directories.\n    Example:\n    \n\n curl --ftp-create-dirs -T file ftp://example.com/remote/path/file\n    See also --create-dirs.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--ftp-method"
+      ],
+      "description": "(FTP) Control what method curl should use to reach a file on an FTP(S)\n      server. The method argument should be one of the following\n    alternatives:",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--ftp-pasv"
+      ],
+      "description": "(FTP) Use passive mode for the data connection. Passive is the internal\n      default behavior, but using this option can be used to override a previous\n      --ftp-port option.\n    If this option is used several times, only the first one is\n        used. Undoing an enforced passive really is not doable but you must then\n        instead enforce the correct --ftp-port again.\n    Passive mode means that curl will try the EPSV command first\n        and then PASV, unless --disable-epsv is used.\n    Example:\n    \n\n curl --ftp-pasv ftp://example.com/\n    See also --disable-epsv.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-P",
+        "--ftp-port"
+      ],
+      "description": "(FTP) Reverses the default initiator/listener roles when connecting with\n      FTP. This option makes curl use active mode. curl then tells the server to\n      connect back to the client's specified address and port, while passive\n      mode asks the server to setup an IP address and port for it to connect to.\n      <address> should be one of:",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-"
+      ],
+      "description": "make curl pick the same IP address that is already used for the control\n      connection",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--ftp-pret"
+      ],
+      "description": "(FTP) Tell curl to send a PRET command before PASV (and EPSV). Certain FTP\n      servers, mainly drftpd, require this non-standard command for directory\n      listings as well as up and downloads in PASV mode.\n    Example:\n    \n\n curl --ftp-pret ftp://example.com/\n    See also -P, --ftp-port and --ftp-pasv.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--ftp-skip-pasv-ip"
+      ],
+      "description": "(FTP) Tell curl to not use the IP address the server suggests in its\n      response to curl's PASV command when curl connects the data connection.\n      Instead curl will re-use the same IP address it already uses for the\n      control connection.\n    Since curl 7.74.0 this option is enabled by default.\n    This option has no effect if PORT, EPRT or EPSV is used\n        instead of PASV.\n    Example:\n    \n\n curl --ftp-skip-pasv-ip ftp://example.com/\n    See also --ftp-pasv.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--ftp-ssl-ccc-mode"
+      ],
+      "description": "(FTP) Sets the CCC mode. The passive mode will not initiate the shutdown,\n      but instead wait for the server to do it, and will not reply to the\n      shutdown from the server. The active mode initiates the shutdown and waits\n      for a reply from the server.\n    Example:\n    \n\n curl --ftp-ssl-ccc-mode active --ftp-ssl-ccc ftps://example.com/\n    See also --ftp-ssl-ccc.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--ftp-ssl-ccc"
+      ],
+      "description": "(FTP) Use CCC (Clear Command Channel) Shuts down the SSL/TLS layer after\n      authenticating. The rest of the control channel communication will be\n      unencrypted. This allows NAT routers to follow the FTP transaction. The\n      default mode is passive.\n    Example:\n    \n\n curl --ftp-ssl-ccc ftps://example.com/\n    See also --ssl and --ftp-ssl-ccc-mode.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--ftp-ssl-control"
+      ],
+      "description": "(FTP) Require SSL/TLS for the FTP login, clear for transfer. Allows secure\n      authentication, but non-encrypted data transfers for efficiency. Fails the\n      transfer if the server does not support SSL/TLS.\n    Example:\n    \n\n curl --ftp-ssl-control ftp://example.com\n    See also --ssl.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-G",
+        "--get"
+      ],
+      "description": "When used, this option will make all data specified with -d,\n      --data, --data-binary or --data-urlencode to be used in an HTTP GET\n      request instead of the POST request that otherwise would be used. The data\n      will be appended to the URL with a '?' separator.\n    If used in combination with -I, --head, the POST data\n        will instead be appended to the URL with a HEAD request.\n    If this option is used several times, only the first one is\n        used. This is because undoing a GET does not make sense, but you should\n        then instead enforce the alternative method you prefer.\n    Examples:\n    \n\n curl --get https://example.com\n\n curl --get -d \"tool=curl\" -d \"age=old\" https://example.com\n\n curl --get -I -d \"tool=curl\" https://example.com\n    See also -d, --data and -X, --request.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-g",
+        "--globoff"
+      ],
+      "description": "This option switches off the \"URL globbing parser\". When you set\n      this option, you can specify URLs that contain the letters {}[] without\n      having curl itself interpret them. Note that these letters are not normal\n      legal URL contents but they should be encoded according to the URI\n      standard.\n    Example:\n    \n\n curl -g \"https://example.com/{[]}}}}\"\n    See also -K, --config and -q, --disable.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--happy-eyeballs-timeout-ms"
+      ],
+      "description": "Happy Eyeballs is an algorithm that attempts to connect to both IPv4 and\n      IPv6 addresses for dual-stack hosts, giving IPv6 a head-start of the\n      specified number of milliseconds. If the IPv6 address cannot be connected\n      to within that time, then a connection attempt is made to the IPv4 address\n      in parallel. The first connection to be established is the one that is\n      used.\n    The range of suggested useful values is limited. Happy\n        Eyeballs RFC 6555 says \"It is RECOMMENDED that connection attempts\n        be paced 150-250 ms apart to balance human factors against network\n        load.\" libcurl currently defaults to 200 ms. Firefox and Chrome\n        currently default to 300 ms.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --happy-eyeballs-timeout-ms 500 https://example.com\n    See also -m, --max-time and --connect-timeout.\n        Added in 7.59.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--haproxy-protocol"
+      ],
+      "description": "(HTTP) Send a HAProxy PROXY protocol v1 header at the beginning of the\n      connection. This is used by some load balancers and reverse proxies to\n      indicate the client's true IP address and port.\n    This option is primarily useful when sending test requests to\n        a service that expects this header.\n    Example:\n    \n\n curl --haproxy-protocol https://example.com\n    See also -x, --proxy. Added in 7.60.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-I",
+        "--head"
+      ],
+      "description": "(HTTP FTP FILE) Fetch the headers only! HTTP-servers feature the command\n      HEAD which this uses to get nothing but the header of a document. When\n      used on an FTP or FILE file, curl displays the file size and last\n      modification time only.\n    Example:\n    \n\n curl -I https://example.com\n    See also -G, --get, -v, --verbose and\n        --trace-ascii.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-H",
+        "--header"
+      ],
+      "description": "(HTTP) Extra header to include in the request when sending HTTP to a\n      server. You may specify any number of extra headers. Note that if you\n      should add a custom header that has the same name as one of the internal\n      ones curl would use, your externally set header will be used instead of\n      the internal one. This allows you to make even trickier stuff than curl\n      would normally do. You should not replace internally set headers without\n      knowing perfectly well what you are doing. Remove an internal header by\n      giving a replacement without content on the right side of the colon, as\n      in: -H \"Host:\". If you send the custom header with no-value then\n      its header must be terminated with a semicolon, such as -H\n      \"X-Custom-Header;\" to send \"X-Custom-Header:\".\n    curl will make sure that each header you add/replace is sent\n        with the proper end-of-line marker, you should thus not add that\n        as a part of the header content: do not add newlines or carriage\n        returns, they will only mess things up for you.\n    This option can take an argument in @filename style, which\n        then adds a header for each line in the input file. Using @- will make\n        curl read the header file from stdin. Added in 7.55.0.\n    You need --proxy-header to send custom headers intended for an\n        HTTP proxy. Added in 7.37.0.\n    Passing on a \"Transfer-Encoding: chunked\" header\n        when doing an HTTP request with a request body, will make curl send the\n        data using chunked encoding.\n    WARNING: headers set with this option will be set in\n        all requests - even after redirects are followed, like when told with\n        -L, --location. This can lead to the header being sent to other\n        hosts than the original host, so sensitive headers should be used with\n        caution combined with following redirects.\n    This option can be used multiple times to add/replace/remove\n        multiple headers.\n    Examples:\n    \n\n curl -H \"X-First-Name: Joe\" https://example.com\n\n curl -H \"User-Agent: yes-please/2000\" https://example.com\n\n curl -H \"Host:\" https://example.com\n    See also -A, --user-agent and -e, --referer.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-h",
+        "--help"
+      ],
+      "description": "Usage help. This lists all commands of the <category>. If no arg was\n      provided, curl will display the most important command line arguments. If\n      the argument \"all\" was provided, curl will display all options\n      available. If the argument \"category\" was provided, curl will\n      display all categories and their meanings.\n    Example:\n    \n\n curl --help all\n    See also -v, --verbose.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--hostpubmd5"
+      ],
+      "description": "(SFTP SCP) Pass a string containing 32 hexadecimal digits. The string\n      should be the 128 bit MD5 checksum of the remote host's public key, curl\n      will refuse the connection with the host unless the md5sums match.\n    Example:\n    \n\n curl --hostpubmd5 e5c1c49020640a5ab0f2034854c321a8 sftp://example.com/\n    See also --hostpubsha256.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--hostpubsha256"
+      ],
+      "description": "(SFTP SCP) Pass a string containing a Base64-encoded SHA256 hash of the\n      remote host's public key. Curl will refuse the connection with the host\n      unless the hashes match.\n    Example:\n    \n\n curl --hostpubsha256 NDVkMTQxMGQ1ODdmMjQ3MjczYjAyOTY5MmRkMjVmNDQ= sftp://example.com/\n    See also --hostpubmd5. Added in 7.80.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--hsts"
+      ],
+      "description": "(HTTPS) This option enables HSTS for the transfer. If the file name points\n      to an existing HSTS cache file, that will be used. After a completed\n      transfer, the cache will be saved to the file name again if it has been\n      modified.\n    Specify a \"\" file name (zero length) to avoid\n        loading/saving and make curl just handle HSTS in memory.\n    If this option is used several times, curl will load contents\n        from all the files but the last one will be used for saving.\n    Example:\n    \n\n curl --hsts cache.txt https://example.com\n    See also --proto. Added in 7.74.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--http0.9"
+      ],
+      "description": "(HTTP) Tells curl to be fine with HTTP version 0.9 response.\n    HTTP/0.9 is a completely headerless response and therefore you\n        can also connect with this to non-HTTP servers and still get a response\n        since curl will simply transparently downgrade - if allowed.\n    Since curl 7.66.0, HTTP/0.9 is disabled by default.\n    Example:\n    \n\n curl --http0.9 https://example.com\n    See also --http1.1, --http2 and --http3.\n        Added in 7.64.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-0",
+        "--http1.0"
+      ],
+      "description": "(HTTP) Tells curl to use HTTP version 1.0 instead of using its internally\n      preferred HTTP version.\n    Example:\n    \n\n curl --http1.0 https://example.com\n    See also --http0.9 and --http1.1. This option is\n        mutually exclusive to --http1.1 and --http2 and\n        --http2-prior-knowledge and --http3.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--http1.1"
+      ],
+      "description": "(HTTP) Tells curl to use HTTP version 1.1.\n    Example:\n    \n\n curl --http1.1 https://example.com\n    See also -0, --http1.0 and --http0.9. This\n        option is mutually exclusive to -0, --http1.0 and --http2\n        and --http2-prior-knowledge and --http3. Added in\n      7.33.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--http2-prior-knowledge"
+      ],
+      "description": "(HTTP) Tells curl to issue its non-TLS HTTP requests using HTTP/2 without\n      HTTP/1.1 Upgrade. It requires prior knowledge that the server supports\n      HTTP/2 straight away. HTTPS requests will still do HTTP/2 the standard way\n      with negotiated protocol version in the TLS handshake.\n    Example:\n    \n\n curl --http2-prior-knowledge https://example.com\n    See also --http2 and --http3.\n        --http2-prior-knowledge requires that the underlying libcurl was\n        built to support HTTP/2. This option is mutually exclusive to\n        --http1.1 and -0, --http1.0 and --http2 and\n        --http3. Added in 7.49.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--http2"
+      ],
+      "description": "(HTTP) Tells curl to use HTTP version 2.\n    For HTTPS, this means curl will attempt to negotiate HTTP/2 in\n        the TLS handshake. curl does this by default.\n    For HTTP, this means curl will attempt to upgrade the request\n        to HTTP/2 using the Upgrade: request header.\n    When curl uses HTTP/2 over HTTPS, it does not itself insist on\n        TLS 1.2 or higher even though that is required by the specification. A\n        user can add this version requirement with --tlsv1.2.\n    Example:\n    \n\n curl --http2 https://example.com\n    See also --http1.1 and --http3. --http2\n        requires that the underlying libcurl was built to support HTTP/2. This\n        option is mutually exclusive to --http1.1 and -0,\n        --http1.0 and --http2-prior-knowledge and --http3.\n        Added in 7.33.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--http3"
+      ],
+      "description": "(HTTP) WARNING: this option is experimental. Do not use in\n      production.\n    Tells curl to use HTTP version 3 directly to the host and port\n        number used in the URL. A normal HTTP/3 transaction will be done to a\n        host and then get redirected via Alt-Svc, but this option allows a user\n        to circumvent that when you know that the target speaks HTTP/3 on the\n        given host and port.\n    This option will make curl fail if a QUIC connection cannot be\n        established, it cannot fall back to a lower HTTP version on its own.\n    Example:\n    \n\n curl --http3 https://example.com\n    See also --http1.1 and --http2. --http3\n        requires that the underlying libcurl was built to support HTTP/3. This\n        option is mutually exclusive to --http1.1 and -0,\n        --http1.0 and --http2 and --http2-prior-knowledge.\n        Added in 7.66.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--ignore-content-length"
+      ],
+      "description": "(FTP HTTP) For HTTP, Ignore the Content-Length header. This is\n      particularly useful for servers running Apache 1.x, which will report\n      incorrect Content-Length for files larger than 2 gigabytes.\n    For FTP (since 7.46.0), skip the RETR command to figure out\n        the size before downloading a file.\n    This option does not work for HTTP if libcurl was built to use\n        hyper.\n    Example:\n    \n\n curl --ignore-content-length https://example.com\n    See also --ftp-skip-pasv-ip.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-i",
+        "--include"
+      ],
+      "description": "Include the HTTP response headers in the output. The HTTP response headers\n      can include things like server name, cookies, date of the document, HTTP\n      version and more...\n    To view the request headers, consider the --verbose\n      option.\n    Example:\n    \n\n curl -i https://example.com\n    See also -v, --verbose.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-k",
+        "--insecure"
+      ],
+      "description": "(TLS SFTP SCP) By default, every secure connection curl makes is verified\n      to be secure before the transfer takes place. This option makes curl skip\n      the verification step and proceed without checking.\n    When this option is not used for protocols using TLS, curl\n        verifies the server's TLS certificate before it continues: that the\n        certificate contains the right name which matches the host name used in\n        the URL and that the certificate has been signed by a CA certificate\n        present in the cert store. See this online resource for further\n      details:\n    \n\n https://curl.se/docs/sslcerts.html\n    For SFTP and SCP, this option makes curl skip the\n        known_hosts verification. known_hosts is a file normally\n        stored in the user's home directory in the \".ssh\"\n        subdirectory, which contains host names and their public keys.\n    WARNING: using this option makes the transfer\n      insecure.\n    Example:\n    \n\n curl --insecure https://example.com\n    See also --proxy-insecure, --cacert and\n        --capath.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--interface"
+      ],
+      "description": "Perform an operation using a specified interface. You can enter interface\n      name, IP address or host name. An example could look like:\n    \n    \n\n curl --interface eth0:1 https://www.example.com/\n    If this option is used several times, the last one will be\n        used.\n    On Linux it can be used to specify a VRF, but the binary needs\n        to either have CAP_NET_RAW or to be run as root. More information about\n        Linux VRF:\n      https://www.kernel.org/doc/Documentation/networking/vrf.txt\n    Example:\n    \n\n curl --interface eth0 https://example.com\n    See also --dns-interface.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-4",
+        "--ipv4"
+      ],
+      "description": "This option tells curl to use IPv4 addresses only, and not for example try\n      IPv6.\n    Example:\n    \n\n curl --ipv4 https://example.com\n    See also --http1.1 and --http2. This option is\n        mutually exclusive to -6, --ipv6.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-6",
+        "--ipv6"
+      ],
+      "description": "This option tells curl to use IPv6 addresses only, and not for example try\n      IPv4.\n    Example:\n    \n\n curl --ipv6 https://example.com\n    See also --http1.1 and --http2. This option is\n        mutually exclusive to -4, --ipv4.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--json"
+      ],
+      "description": "(HTTP) Sends the specified JSON data in a POST request to the HTTP server.\n      --json works as a shortcut for passing on these three options:\n    \n    \n\n --data [arg]\n\n --header \"Content-Type: application/json\"\n\n --header \"Accept: application/json\"\n    There is no verification that the passed in data\n        is actual JSON or that the syntax is correct.\n    If you start the data with the letter @, the rest should be a\n        file name to read the data from, or a single dash (-) if you want curl\n        to read the data from stdin. Posting data from a file named 'foobar'\n        would thus be done with --json @foobar and to instead read the\n        data from stdin, use --json @-.\n    If this option is used more than once on the same command\n        line, the additional data pieces will be concatenated to the previous\n        before sending.\n    The headers this option sets can be overridden with --header\n        as usual.\n    Examples:\n    \n\n curl --json '{ \"drink\": \"coffe\" }' https://example.com\n\n curl --json '{ \"drink\":' --json ' \"coffe\" }' https://example.com\n\n curl --json @prepared https://example.com\n\n curl --json @- https://example.com < json.txt\n    See also --data-binary and --data-raw. This\n        option is mutually exclusive to -F, --form and -I, --head\n        and -T, --upload-file. Added in 7.82.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-j",
+        "--junk-session-cookies"
+      ],
+      "description": "(HTTP) When curl is told to read cookies from a given file, this option\n      will make it discard all \"session cookies\". This will basically\n      have the same effect as if a new session is started. Typical browsers\n      always discard session cookies when they are closed down.\n    Example:\n    \n\n curl --junk-session-cookies -b cookies.txt https://example.com\n    See also -b, --cookie and -c, --cookie-jar.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--keepalive-time"
+      ],
+      "description": "This option sets the time a connection needs to remain idle before sending\n      keepalive probes and the time between individual keepalive probes. It is\n      currently effective on operating systems offering the TCP_KEEPIDLE and\n      TCP_KEEPINTVL socket options (meaning Linux, recent AIX, HP-UX and more).\n      Keepalives are used by the TCP stack to detect broken networks on idle\n      connections. The number of missed keepalive probes before declaring the\n      connection down is OS dependent and is commonly 9 or 10. This option has\n      no effect if --no-keepalive is used.\n    If this option is used several times, the last one will be\n        used. If unspecified, the option defaults to 60 seconds.\n    Example:\n    \n\n curl --keepalive-time 20 https://example.com\n    See also --no-keepalive and -m, --max-time.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--key-type"
+      ],
+      "description": "(TLS) Private key file type. Specify which type your --key provided\n      private key is. DER, PEM, and ENG are supported. If not specified, PEM is\n      assumed.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --key-type DER --key here https://example.com\n    See also --key.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--key"
+      ],
+      "description": "(TLS SSH) Private key file name. Allows you to provide your private key in\n      this separate file. For SSH, if not specified, curl tries the following\n      candidates in order: '~/.ssh/id_rsa', '~/.ssh/id_dsa', './id_rsa',\n      './id_dsa'.\n    If curl is built against OpenSSL library, and the engine\n        pkcs11 is available, then a PKCS#11 URI (RFC 7512) can be used to\n        specify a private key located in a PKCS#11 device. A string beginning\n        with \"pkcs11:\" will be interpreted as a PKCS#11 URI. If a\n        PKCS#11 URI is provided, then the --engine option will be set as\n        \"pkcs11\" if none was provided and the --key-type option will\n        be set as \"ENG\" if none was provided.\n    If curl is built against Secure Transport or Schannel then\n        this option is ignored for TLS protocols (HTTPS, etc). Those backends\n        expect the private key to be already present in the keychain or PKCS#12\n        file containing the certificate.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --cert certificate --key here https://example.com\n    See also --key-type and -E, --cert.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--krb"
+      ],
+      "description": "(FTP) Enable Kerberos authentication and use. The level must be entered\n      and should be one of 'clear', 'safe', 'confidential', or 'private'. Should\n      you use a level that is not one of these, 'private' will instead be used.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --krb clear ftp://example.com/\n    See also --delegation and --ssl. --krb\n        requires that the underlying libcurl was built to support Kerberos.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--libcurl"
+      ],
+      "description": "Append this option to any ordinary curl command line, and you will get\n      libcurl-using C source code written to the file that does the equivalent\n      of what your command-line operation does!\n    This option is global and does not need to be specified for\n        each use of -:, --next.\n    If this option is used several times, the last given file name\n        will be used.\n    Example:\n    \n\n curl --libcurl client.c https://example.com\n    See also -v, --verbose.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--limit-rate"
+      ],
+      "description": "Specify the maximum transfer rate you want curl to use - for both\n      downloads and uploads. This feature is useful if you have a limited pipe\n      and you would like your transfer not to use your entire bandwidth. To make\n      it slower than it otherwise would be.\n    The given speed is measured in bytes/second, unless a suffix\n        is appended. Appending 'k' or 'K' will count the number as kilobytes,\n        'm' or 'M' makes it megabytes, while 'g' or 'G' makes it gigabytes. The\n        suffixes (k, M, G, T, P) are 1024 based. For example 1k is 1024.\n        Examples: 200K, 3m and 1G.\n    The rate limiting logic works on averaging the transfer speed\n        to no more than the set threshold over a period of multiple seconds.\n    If you also use the --speed-limit option, that option will\n        take precedence and might cripple the rate-limiting slightly, to help\n        keeping the speed-limit logic working.\n    If this option is used several times, the last one will be\n        used.\n    Examples:\n    \n\n curl --limit-rate 100K https://example.com\n\n curl --limit-rate 1000 https://example.com\n\n curl --limit-rate 10M https://example.com\n    See also -Y, --speed-limit and -y,\n      --speed-time.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-l",
+        "--list-only"
+      ],
+      "description": "(FTP POP3) (FTP) When listing an FTP directory, this switch forces a\n      name-only view. This is especially useful if the user wants to\n      machine-parse the contents of an FTP directory since the normal directory\n      view does not use a standard look or format. When used like this, the\n      option causes an NLST command to be sent to the server instead of LIST.\n    Note: Some FTP servers list only files in their response to\n        NLST; they do not include sub-directories and symbolic links.\n    (POP3) When retrieving a specific email from POP3, this switch\n        forces a LIST command to be performed instead of RETR. This is\n        particularly useful if the user wants to see if a specific message-id\n        exists on the server and what size it is.\n    Note: When combined with -X, --request, this option can\n        be used to send a UIDL command instead, so the user may use the email's\n        unique identifier rather than its message-id to make the request.\n    Example:\n    \n\n curl --list-only ftp://example.com/dir/\n    See also -Q, --quote and -X, --request.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--local-port"
+      ],
+      "description": "Set a preferred single number or range (FROM-TO) of local port numbers to\n      use for the connection(s). Note that port numbers by nature are a scarce\n      resource that will be busy at times so setting this range to something too\n      narrow might cause unnecessary connection setup failures.\n    Example:\n    \n\n curl --local-port 1000-3000 https://example.com\n    See also -g, --globoff.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--location-trusted"
+      ],
+      "description": "(HTTP) Like -L, --location, but will allow sending the name +\n      password to all hosts that the site may redirect to. This may or may not\n      introduce a security breach if the site redirects you to a site to which\n      you will send your authentication info (which is plaintext in the case of\n      HTTP Basic authentication).\n    Example:\n    \n\n curl --location-trusted -u user:password https://example.com\n    See also -u, --user.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-L",
+        "--location"
+      ],
+      "description": "(HTTP) If the server reports that the requested page has moved to a\n      different location (indicated with a Location: header and a 3XX response\n      code), this option will make curl redo the request on the new place. If\n      used together with --include or -I, --head, headers from all\n      requested pages will be shown. When authentication is used, curl only\n      sends its credentials to the initial host. If a redirect takes curl to a\n      different host, it will not be able to intercept the user+password. See\n      also --location-trusted on how to change this. You can limit the amount of\n      redirects to follow by using the --max-redirs option.\n    When curl follows a redirect and if the request is a POST, it\n        will send the following request with a GET if the HTTP response was 301,\n        302, or 303. If the response code was any other 3xx code, curl will\n        re-send the following request using the same unmodified method.\n    You can tell curl to not change POST requests to GET after a\n        30x response by using the dedicated options for that: --post301,\n        --post302 and --post303.\n    The method set with --request overrides the method curl would\n        otherwise select to use.\n    Example:\n    \n\n curl -L https://example.com\n    See also --resolve and --alt-svc.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--login-options"
+      ],
+      "description": "(IMAP LDAP POP3 SMTP) Specify the login options to use during server\n      authentication.\n    You can use login options to specify protocol specific options\n        that may be used during authentication. At present only IMAP, POP3 and\n        SMTP support login options. For more information about login options\n        please see RFC 2384, RFC 5092 and IETF draft\n        draft-earhart-url-smtp-00.txt\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --login-options 'AUTH=*' imap://example.com\n    See also -u, --user. Added in 7.34.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--mail-auth"
+      ],
+      "description": "(SMTP) Specify a single address. This will be used to specify the\n      authentication address (identity) of a submitted message that is being\n      relayed to another server.\n    Example:\n    \n\n curl --mail-auth user@example.come -T mail smtp://example.com/\n    See also --mail-rcpt and --mail-from.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--mail-from"
+      ],
+      "description": "(SMTP) Specify a single address that the given mail should get sent from.\n    Example:\n    \n\n curl --mail-from user@example.com -T mail smtp://example.com/\n    See also --mail-rcpt and --mail-auth.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--mail-rcpt-allowfails"
+      ],
+      "description": "(SMTP) When sending data to multiple recipients, by default curl will\n      abort SMTP conversation if at least one of the recipients causes RCPT TO\n      command to return an error.\n    The default behavior can be changed by passing\n        --mail-rcpt-allowfails command-line option which will make curl ignore\n        errors and proceed with the remaining valid recipients.\n    If all recipients trigger RCPT TO failures and this flag is\n        specified, curl will still abort the SMTP conversation and return the\n        error received from to the last RCPT TO command.\n    Example:\n    \n\n curl --mail-rcpt-allowfails --mail-rcpt dest@example.com smtp://example.com\n    See also --mail-rcpt. Added in 7.69.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--mail-rcpt"
+      ],
+      "description": "(SMTP) Specify a single email address, user name or mailing list name.\n      Repeat this option several times to send to multiple recipients.\n    When performing an address verification (VRFY command), the\n        recipient should be specified as the user name or user name and domain\n        (as per Section 3.5 of RFC5321). (Added in 7.34.0)\n    When performing a mailing list expand (EXPN command), the\n        recipient should be specified using the mailing list name, such as\n        \"Friends\" or \"London-Office\". (Added in 7.34.0)\n    Example:\n    \n\n curl --mail-rcpt user@example.net smtp://example.com\n    See also --mail-rcpt-allowfails.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-M",
+        "--manual"
+      ],
+      "description": "Manual. Display the huge help text.\n    Example:\n    \n\n curl --manual\n    See also -v, --verbose, --libcurl and\n        --trace.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--max-filesize"
+      ],
+      "description": "(FTP HTTP MQTT) Specify the maximum size (in bytes) of a file to download.\n      If the file requested is larger than this value, the transfer will not\n      start and curl will return with exit code 63.\n    A size modifier may be used. For example, Appending 'k' or 'K'\n        will count the number as kilobytes, 'm' or 'M' makes it megabytes, while\n        'g' or 'G' makes it gigabytes. Examples: 200K, 3m and 1G. (Added in\n        7.58.0)\n    NOTE: The file size is not always known prior to\n        download, and for such files this option has no effect even if the file\n        transfer ends up being larger than this given limit. Example:\n    \n\n curl --max-filesize 100K https://example.com\n    See also --limit-rate.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--max-redirs"
+      ],
+      "description": "(HTTP) Set maximum number of redirections to follow. When --location is\n      used, to prevent curl from following too many redirects, by default, the\n      limit is set to 50 redirects. Set this option to -1 to make it unlimited.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --max-redirs 3 --location https://example.com\n    See also -L, --location.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-m",
+        "--max-time"
+      ],
+      "description": "Maximum time in seconds that you allow each transfer to take. This is\n      useful for preventing your batch jobs from hanging for hours due to slow\n      networks or links going down. Since 7.32.0, this option accepts decimal\n      values, but the actual timeout will decrease in accuracy as the specified\n      timeout increases in decimal precision.\n    If you enable retrying the transfer (--retry) then the\n        maximum time counter is reset each time the transfer is retried. You can\n        use --retry-max-time to limit the retry time.\n    If this option is used several times, the last one will be\n        used.\n    Examples:\n    \n\n curl --max-time 10 https://example.com\n\n curl --max-time 2.92 https://example.com\n    See also --connect-timeout and\n      --retry-max-time.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--metalink"
+      ],
+      "description": "This option was previously used to specify a metalink resource. Metalink\n      support has been disabled in curl since 7.78.0 for security reasons.\n    Example:\n    \n\n curl --metalink file https://example.com\n    See also -Z, --parallel.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--negotiate"
+      ],
+      "description": "(HTTP) Enables Negotiate (SPNEGO) authentication.\n    This option requires a library built with GSS-API or SSPI\n        support. Use --version to see if your curl supports GSS-API/SSPI or\n        SPNEGO.\n    When using this option, you must also provide a fake --user\n        option to activate the authentication code properly. Sending a '-u :' is\n        enough as the user name and password from the --user option are not\n        actually used.\n    If this option is used several times, only the first one is\n        used.\n    Example:\n    \n\n curl --negotiate -u : https://example.com\n    See also --basic, --ntlm, --anyauth and\n        --proxy-negotiate.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--netrc-file"
+      ],
+      "description": "This option is similar to -n, --netrc, except that you provide the\n      path (absolute or relative) to the netrc file that curl should use. You\n      can only specify one netrc file per invocation. If several --netrc-file\n      options are provided, the last one will be used.\n    It will abide by --netrc-optional if specified.\n    Example:\n    \n\n curl --netrc-file netrc https://example.com\n    See also -n, --netrc, -u, --user and -K,\n        --config. This option is mutually exclusive to -n,\n      --netrc.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--netrc-optional"
+      ],
+      "description": "Similar to -n, --netrc, but this option makes the .netrc usage\n      optional and not mandatory as the --netrc option does.\n    Example:\n    \n\n curl --netrc-optional https://example.com\n    See also --netrc-file. This option is mutually\n        exclusive to -n, --netrc.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-n",
+        "--netrc"
+      ],
+      "description": "Makes curl scan the .netrc (_netrc on Windows) file in the\n      user's home directory for login name and password. This is typically used\n      for FTP on Unix. If used with HTTP, curl will enable user authentication.\n      See netrc(5) and ftp(1) for details on the file format. Curl\n      will not complain if that file does not have the right permissions (it\n      should be neither world- nor group-readable). The environment variable\n      \"HOME\" is used to find the home directory.\n    A quick and simple example of how to setup a .netrc to\n        allow curl to FTP to the machine host.domain.com with user name 'myself'\n        and password 'secret' could look similar to:\n    \n    \n\n machine host.domain.com\n\n login myself\n\n password secret\n    Example:\n    \n\n curl --netrc https://example.com\n    See also --netrc-file, -K, --config and -u,\n        --user.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-:",
         "--next"
       ],
-      "description": "have their values survive over to the operation following the --next instruction. Global options include -v, --verbose, --trace, --trace-ascii and --fail-early.",
+      "description": "Tells curl to use a separate operation for the following URL and\n      associated options. This allows you to send several URL requests, each\n      with their own specific options, for example, such as different user names\n      or custom requests for each.\n    --next will reset all local options and only global ones will\n        have their values survive over to the operation following the --next\n        instruction. Global options include -v, --verbose,\n        --trace, --trace-ascii and --fail-early.\n    For example, you can do both a GET and a POST in a single\n        command line:\n    \n    \n\n curl www1.example.com --next -d postthis www2.example.com\n    Examples:\n    \n\n curl https://example.com --next -d postthis www2.example.com\n\n curl -I https://example.com --next https://example.net/\n    See also -Z, --parallel and -K, --config. Added\n        in 7.36.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--no-alpn"
+      ],
+      "description": "(HTTPS) Disable the ALPN TLS extension. ALPN is enabled by default if\n      libcurl was built with an SSL library that supports ALPN. ALPN is used by\n      a libcurl that supports HTTP/2 to negotiate HTTP/2 support with the server\n      during https sessions.\n    Example:\n    \n\n curl --no-alpn https://example.com\n    See also --no-npn and --http2. --no-alpn\n        requires that the underlying libcurl was built to support TLS. Added in\n        7.36.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-N",
+        "--no-buffer"
+      ],
+      "description": "Disables the buffering of the output stream. In normal work situations,\n      curl will use a standard buffered output stream that will have the effect\n      that it will output the data in chunks, not necessarily exactly when the\n      data arrives. Using this option will disable that buffering.\n    Note that this is the negated option name documented. You can\n        thus use --buffer to enforce the buffering.\n    Example:\n    \n\n curl --no-buffer https://example.com\n    See also -#, --progress-bar.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--no-clobber"
+      ],
+      "description": "When used in conjunction with the -o, --output, -J,\n      --remote-header-name, -O, --remote-name, or --remote-name-all\n      options, curl avoids overwriting files that already exist. Instead, a dot\n      and a number gets appended to the name of the file that would be created,\n      up to filename.100 after which it will not create any file.\n    Note that this is the negated option name documented. You can\n        thus use --clobber to enforce the clobbering, even if\n        --remote-header-name or -J is specified.\n    Example:\n    \n\n curl --no-clobber --output local/dir/file https://example.com\n    See also -o, --output and -O, --remote-name.\n        Added in 7.83.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--no-keepalive"
+      ],
+      "description": "Disables the use of keepalive messages on the TCP connection. curl\n      otherwise enables them by default.\n    Note that this is the negated option name documented. You can\n        thus use --keepalive to enforce keepalive.\n    Example:\n    \n\n curl --no-keepalive https://example.com\n    See also --keepalive-time.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--no-npn"
+      ],
+      "description": "(HTTPS) Disable the NPN TLS extension. NPN is enabled by default if\n      libcurl was built with an SSL library that supports NPN. NPN is used by a\n      libcurl that supports HTTP/2 to negotiate HTTP/2 support with the server\n      during https sessions.\n    Example:\n    \n\n curl --no-npn https://example.com\n    See also --no-alpn and --http2. --no-npn\n        requires that the underlying libcurl was built to support TLS. Added in\n        7.36.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--no-progress-meter"
+      ],
+      "description": "Option to switch off the progress meter output without muting or otherwise\n      affecting warning and informational messages like --silent does.\n    Note that this is the negated option name documented. You can\n        thus use --progress-meter to enable the progress meter again.\n    Example:\n    \n\n curl --no-progress-meter -o store https://example.com\n    See also -v, --verbose and -s, --silent. Added\n        in 7.67.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--no-sessionid"
+      ],
+      "description": "(TLS) Disable curl's use of SSL session-ID caching. By default all\n      transfers are done using the cache. Note that while nothing should ever\n      get hurt by attempting to reuse SSL session-IDs, there seem to be broken\n      SSL implementations in the wild that may require you to disable this in\n      order for you to succeed.\n    Note that this is the negated option name documented. You can\n        thus use --sessionid to enforce session-ID caching.\n    Example:\n    \n\n curl --no-sessionid https://example.com\n    See also -k, --insecure.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--noproxy"
+      ],
+      "description": "Comma-separated list of hosts for which not to use a proxy, if one is\n      specified. The only wildcard is a single * character, which matches all\n      hosts, and effectively disables the proxy. Each name in this list is\n      matched as either a domain which contains the hostname, or the hostname\n      itself. For example, local.com would match local.com, local.com:80, and\n      www.local.com, but not www.notlocal.com.\n    Since 7.53.0, This option overrides the environment variables\n        that disable the proxy ('no_proxy' and 'NO_PROXY'). If there's an\n        environment variable disabling a proxy, you can set the noproxy list to\n        \"\" to override it.\n    Example:\n    \n\n curl --noproxy \"www.example\" https://example.com\n    See also -x, --proxy.\n  ",
       "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--ntlm-wb"
+      ],
+      "description": "(HTTP) Enables NTLM much in the style --ntlm does, but hand over the\n      authentication to the separate binary ntlmauth application that is\n      executed when needed.\n    Example:\n    \n\n curl --ntlm-wb -u user:password https://example.com\n    See also --ntlm and --proxy-ntlm.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--ntlm"
+      ],
+      "description": "(HTTP) Enables NTLM authentication. The NTLM authentication method was\n      designed by Microsoft and is used by IIS web servers. It is a proprietary\n      protocol, reverse-engineered by clever people and implemented in curl\n      based on their efforts. This kind of behavior should not be endorsed, you\n      should encourage everyone who uses NTLM to switch to a public and\n      documented authentication method instead, such as Digest.\n    If you want to enable NTLM for your proxy authentication, then\n        use --proxy-ntlm.\n    If this option is used several times, only the first one is\n        used.\n    Example:\n    \n\n curl --ntlm -u user:password https://example.com\n    See also --proxy-ntlm. --ntlm requires that the\n        underlying libcurl was built to support TLS. This option is mutually\n        exclusive to --basic and --negotiate and --digest\n        and --anyauth.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--oauth2-bearer"
+      ],
+      "description": "(IMAP LDAP POP3 SMTP HTTP) Specify the Bearer Token for OAUTH 2.0 server\n      authentication. The Bearer Token is used in conjunction with the user name\n      which can be specified as part of the --url or --user options.\n    The Bearer Token and user name are formatted according to RFC\n        6750.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --oauth2-bearer \"mF_9.B5f-4.1JqM\" https://example.com\n    See also --basic, --ntlm and --digest.\n        Added in 7.33.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--output-dir"
+      ],
+      "description": "\n    This option specifies the directory in which files should be\n        stored, when --remote-name or --output are used.\n    The given output directory is used for all URLs and output\n        options on the command line, up until the first -:, --next.\n    If the specified target directory does not exist, the\n        operation will fail unless --create-dirs is also used.\n    If this option is used multiple times, the last specified\n        directory will be used.\n    Example:\n    \n\n curl --output-dir \"tmp\" -O https://example.com\n    See also -O, --remote-name and -J,\n        --remote-header-name. Added in 7.73.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-o",
+        "--output"
+      ],
+      "description": "Write output to <file> instead of stdout. If you are using {} or []\n      to fetch multiple documents, you should quote the URL and you can use '#'\n      followed by a number in the <file> specifier. That variable will be\n      replaced with the current string for the URL being fetched. Like in:\n    \n    \n\n curl \"http://{one,two}.example.com\" -o \"file_#1.txt\"\n    or use several variables like:\n    \n    \n\n curl \"http://{site,host}.host[1-5].com\" -o \"#1_#2\"\n    You may use this option as many times as the number of URLs\n        you have. For example, if you specify two URLs on the same command line,\n        you can use it like this:\n    \n    \n\n  curl -o aa example.com -o bb example.net\n    and the order of the -o options and the URLs does not matter,\n        just that the first -o is for the first URL and so on, so the above\n        command line can also be written as\n    \n    \n\n  curl example.com example.net -o aa -o bb\n    See also the --create-dirs option to create the local\n        directories dynamically. Specifying the output as '-' (a single dash)\n        will force the output to be done to stdout.\n    To suppress response bodies, you can redirect output to\n        /dev/null:\n    \n    \n\n  curl example.com -o /dev/null\n    Or for Windows use nul:\n    \n    \n\n  curl example.com -o nul\n    Examples:\n    \n\n curl -o file https://example.com\n\n curl \"http://{one,two}.example.com\" -o \"file_#1.txt\"\n\n curl \"http://{site,host}.host[1-5].com\" -o \"#1_#2\"\n\n curl -o file https://example.com -o file2 https://example.net\n    See also -O, --remote-name, --remote-name-all\n        and -J, --remote-header-name.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--parallel-immediate"
+      ],
+      "description": "When doing parallel transfers, this option will instruct curl that it\n      should rather prefer opening up more connections in parallel at once\n      rather than waiting to see if new transfers can be added as multiplexed\n      streams on another connection.\n    This option is global and does not need to be specified for\n        each use of -:, --next.\n    Example:\n    \n\n curl --parallel-immediate -Z https://example.com -o file1 https://example.com -o file2\n    See also -Z, --parallel and --parallel-max.\n        Added in 7.68.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--parallel-max"
+      ],
+      "description": "When asked to do parallel transfers, using -Z, --parallel, this\n      option controls the maximum amount of transfers to do simultaneously.\n    This option is global and does not need to be specified for\n        each use of -:, --next.\n    The default is 50.\n    Example:\n    \n\n curl --parallel-max 100 -Z https://example.com ftp://example.com/\n    See also -Z, --parallel. Added in 7.66.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-Z",
+        "--parallel"
+      ],
+      "description": "Makes curl perform its transfers in parallel as compared to the regular\n      serial manner.\n    This option is global and does not need to be specified for\n        each use of -:, --next.\n    Example:\n    \n\n curl --parallel https://example.com -o file1 https://example.com -o file2\n    See also -:, --next and -v, --verbose. Added in\n        7.66.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--pass"
+      ],
+      "description": "(SSH TLS) Passphrase for the private key.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --pass secret --key file https://example.com\n    See also --key and -u, --user.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--path-as-is"
+      ],
+      "description": "Tell curl to not handle sequences of /../ or /./ in the given URL path.\n      Normally curl will squash or merge them according to standards but with\n      this option set you tell it not to do that.\n    Example:\n    \n\n curl --path-as-is https://example.com/../../etc/passwd\n    See also --request-target. Added in 7.42.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--pinnedpubkey"
+      ],
+      "description": "(TLS) Tells curl to use the specified public key file (or hashes) to\n      verify the peer. This can be a path to a file which contains a single\n      public key in PEM or DER format, or any number of base64 encoded sha256\n      hashes preceded by 'sha256//' and separated by ';'.\n    When negotiating a TLS or SSL connection, the server sends a\n        certificate indicating its identity. A public key is extracted from this\n        certificate and if it does not exactly match the public key provided to\n        this option, curl will abort the connection before sending or receiving\n        any data.\n    PEM/DER support:\n    7.39.0: OpenSSL, GnuTLS and GSKit\n    7.43.0: NSS and wolfSSL\n    7.47.0: mbedtls\n    sha256 support:\n    7.44.0: OpenSSL, GnuTLS, NSS and wolfSSL\n    7.47.0: mbedtls\n    Other SSL backends not supported.\n    If this option is used several times, the last one will be\n        used.\n    Examples:\n    \n\n curl --pinnedpubkey keyfile https://example.com\n\n curl --pinnedpubkey 'sha256//ce118b51897f4452dc' https://example.com\n    See also --hostpubsha256. Added in 7.39.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--post301"
+      ],
+      "description": "(HTTP) Tells curl to respect RFC 7231/6.4.2 and not convert POST requests\n      into GET requests when following a 301 redirection. The non-RFC behavior\n      is ubiquitous in web browsers, so curl does the conversion by default to\n      maintain consistency. However, a server may require a POST to remain a\n      POST after such a redirection. This option is meaningful only when using\n      -L, --location.\n    Example:\n    \n\n curl --post301 --location -d \"data\" https://example.com\n    See also --post302, --post303 and -L,\n        --location.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--post302"
+      ],
+      "description": "(HTTP) Tells curl to respect RFC 7231/6.4.3 and not convert POST requests\n      into GET requests when following a 302 redirection. The non-RFC behavior\n      is ubiquitous in web browsers, so curl does the conversion by default to\n      maintain consistency. However, a server may require a POST to remain a\n      POST after such a redirection. This option is meaningful only when using\n      -L, --location.\n    Example:\n    \n\n curl --post302 --location -d \"data\" https://example.com\n    See also --post301, --post303 and -L,\n        --location.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--post303"
+      ],
+      "description": "(HTTP) Tells curl to violate RFC 7231/6.4.4 and not convert POST requests\n      into GET requests when following 303 redirections. A server may require a\n      POST to remain a POST after a 303 redirection. This option is meaningful\n      only when using -L, --location.\n    Example:\n    \n\n curl --post303 --location -d \"data\" https://example.com\n    See also --post302, --post301 and -L,\n        --location.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--preproxy"
+      ],
+      "description": "Use the specified SOCKS proxy before connecting to an HTTP or HTTPS -x,\n      --proxy. In such a case curl first connects to the SOCKS proxy and\n      then connects (through SOCKS) to the HTTP or HTTPS proxy. Hence pre proxy.\n    The pre proxy string should be specified with a protocol://\n        prefix to specify alternative proxy protocols. Use socks4://,\n        socks4a://, socks5:// or socks5h:// to request the specific SOCKS\n        version to be used. No protocol specified will make curl default to\n        SOCKS4.\n    If the port number is not specified in the proxy string, it is\n        assumed to be 1080.\n    User and password that might be provided in the proxy string\n        are URL decoded by curl. This allows you to pass in special characters\n        such as @ by using %40 or pass in a colon with %3a.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --preproxy socks5://proxy.example -x http://http.example https://example.com\n    See also -x, --proxy and --socks5. Added in\n        7.52.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-#",
+        "--progress-bar"
+      ],
+      "description": "Make curl display transfer progress as a simple progress bar instead of\n      the standard, more informational, meter.\n    This progress bar draws a single line of '#' characters across\n        the screen and shows a percentage if the transfer size is known. For\n        transfers without a known size, there will be space ship (-=o=-) that\n        moves back and forth but only while data is being transferred, with a\n        set of flying hash sign symbols on top.\n    This option is global and does not need to be specified for\n        each use of -:, --next.\n    Example:\n    \n\n curl -# -O https://example.com\n    See also --styled-output.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--proto-default"
+      ],
+      "description": "Tells curl to use protocol for any URL missing a scheme name.\n    An unknown or unsupported protocol causes error\n        CURLE_UNSUPPORTED_PROTOCOL (1).\n    This option does not change the default proxy protocol\n      (http).\n    Without this option set, curl guesses protocol based on the\n        host name, see --url for details.\n    Example:\n    \n\n curl --proto-default https ftp.example.com\n    See also --proto and --proto-redir. Added in\n        7.45.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proto-redir"
+      ],
+      "description": "Tells curl to limit what protocols it may use on redirect. Protocols\n      denied by --proto are not overridden by this option. See --proto for how\n      protocols are represented.\n    Example, allow only HTTP and HTTPS on redirect:\n    \n    \n\n curl --proto-redir -all,http,https http://example.com\n    By default curl will only allow HTTP, HTTPS, FTP and FTPS on\n        redirect (since 7.65.2). Specifying all or +all enables\n        all protocols on redirects, which is not good for security.\n    Example:\n    \n\n curl --proto-redir =http,https https://example.com\n    See also --proto.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proto"
+      ],
+      "description": "Tells curl to limit what protocols it may use for transfers. Protocols are\n      evaluated left to right, are comma separated, and are each a protocol name\n      or 'all', optionally prefixed by zero or more modifiers. Available\n      modifiers are:",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-"
+      ],
+      "description": "Deny this protocol, removing it from the list of protocols already\n      permitted.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--proto"
+      ],
+      "description": "uses the default protocols, but disables ftps",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proto"
+      ],
+      "description": "only enables http and https",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proto"
+      ],
+      "description": "also only enables http and https",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proxy-anyauth"
+      ],
+      "description": "Tells curl to pick a suitable authentication method when communicating\n      with the given HTTP proxy. This might cause an extra request/response\n      round-trip.\n    Example:\n    \n\n curl --proxy-anyauth --proxy-user user:passwd -x proxy https://example.com\n    See also -x, --proxy, --proxy-basic and\n        --proxy-digest.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--proxy-basic"
+      ],
+      "description": "Tells curl to use HTTP Basic authentication when communicating with the\n      given proxy. Use --basic for enabling HTTP Basic with a remote host. Basic\n      is the default authentication method curl uses with proxies.\n    Example:\n    \n\n curl --proxy-basic --proxy-user user:passwd -x proxy https://example.com\n    See also -x, --proxy, --proxy-anyauth and\n        --proxy-digest.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--proxy-cacert"
+      ],
+      "description": "Same as --cacert but used in HTTPS proxy context.\n    Example:\n    \n\n curl --proxy-cacert CA-file.txt -x https://proxy https://example.com\n    See also --proxy-capath, --cacert,\n        --capath and -x, --proxy. Added in 7.52.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proxy-capath"
+      ],
+      "description": "Same as --capath but used in HTTPS proxy context.\n    Example:\n    \n\n curl --proxy-capath /local/directory -x https://proxy https://example.com\n    See also --proxy-cacert, -x, --proxy and\n        --capath. Added in 7.52.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proxy-cert-type"
+      ],
+      "description": "Same as --cert-type but used in HTTPS proxy context.\n    Example:\n    \n\n curl --proxy-cert-type PEM --proxy-cert file -x https://proxy https://example.com\n    See also --proxy-cert. Added in 7.52.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proxy-cert"
+      ],
+      "description": "Same as --cert but used in HTTPS proxy context.\n    Example:\n    \n\n curl --proxy-cert file -x https://proxy https://example.com\n    See also --proxy-cert-type. Added in 7.52.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proxy-ciphers"
+      ],
+      "description": "Same as --ciphers but used in HTTPS proxy context.\n    Example:\n    \n\n curl --proxy-ciphers ECDHE-ECDSA-AES256-CCM8 -x https://proxy https://example.com\n    See also --ciphers, --curves and -x,\n        --proxy. Added in 7.52.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proxy-crlfile"
+      ],
+      "description": "Same as --crlfile but used in HTTPS proxy context.\n    Example:\n    \n\n curl --proxy-crlfile rejects.txt -x https://proxy https://example.com\n    See also --crlfile and -x, --proxy. Added in\n        7.52.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proxy-digest"
+      ],
+      "description": "Tells curl to use HTTP Digest authentication when communicating with the\n      given proxy. Use --digest for enabling HTTP Digest with a remote host.\n    Example:\n    \n\n curl --proxy-digest --proxy-user user:passwd -x proxy https://example.com\n    See also -x, --proxy, --proxy-anyauth and\n        --proxy-basic.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--proxy-header"
+      ],
+      "description": "(HTTP) Extra header to include in the request when sending HTTP to a\n      proxy. You may specify any number of extra headers. This is the equivalent\n      option to --header but is for proxy communication only like in CONNECT\n      requests when you want a separate header sent to the proxy to what is sent\n      to the actual remote host.\n    curl will make sure that each header you add/replace is sent\n        with the proper end-of-line marker, you should thus not add that\n        as a part of the header content: do not add newlines or carriage\n        returns, they will only mess things up for you.\n    Headers specified with this option will not be included in\n        requests that curl knows will not be sent to a proxy.\n    Starting in 7.55.0, this option can take an argument in\n        @filename style, which then adds a header for each line in the input\n        file. Using @- will make curl read the header file from stdin.\n    This option can be used multiple times to add/replace/remove\n        multiple headers.\n    Examples:\n    \n\n curl --proxy-header \"X-First-Name: Joe\" -x http://proxy https://example.com\n\n curl --proxy-header \"User-Agent: surprise\" -x http://proxy https://example.com\n\n curl --proxy-header \"Host:\" -x http://proxy https://example.com\n    See also -x, --proxy. Added in 7.37.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proxy-insecure"
+      ],
+      "description": "Same as --insecure but used in HTTPS proxy context.\n    Example:\n    \n\n curl --proxy-insecure -x https://proxy https://example.com\n    See also -x, --proxy and -k, --insecure. Added\n        in 7.52.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--proxy-key-type"
+      ],
+      "description": "Same as --key-type but used in HTTPS proxy context.\n    Example:\n    \n\n curl --proxy-key-type DER --proxy-key here -x https://proxy https://example.com\n    See also --proxy-key and -x, --proxy. Added in\n        7.52.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proxy-key"
+      ],
+      "description": "Same as --key but used in HTTPS proxy context.\n    Example:\n    \n\n curl --proxy-key here -x https://proxy https://example.com\n    See also --proxy-key-type and -x, --proxy. Added\n        in 7.52.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proxy-negotiate"
+      ],
+      "description": "Tells curl to use HTTP Negotiate (SPNEGO) authentication when\n      communicating with the given proxy. Use --negotiate for enabling HTTP\n      Negotiate (SPNEGO) with a remote host.\n    Example:\n    \n\n curl --proxy-negotiate --proxy-user user:passwd -x proxy https://example.com\n    See also --proxy-anyauth and --proxy-basic.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--proxy-ntlm"
+      ],
+      "description": "Tells curl to use HTTP NTLM authentication when communicating with the\n      given proxy. Use --ntlm for enabling NTLM with a remote host.\n    Example:\n    \n\n curl --proxy-ntlm --proxy-user user:passwd -x http://proxy https://example.com\n    See also --proxy-negotiate and\n      --proxy-anyauth.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--proxy-pass"
+      ],
+      "description": "Same as --pass but used in HTTPS proxy context.\n    Example:\n    \n\n curl --proxy-pass secret --proxy-key here -x https://proxy https://example.com\n    See also -x, --proxy and --proxy-key. Added in\n        7.52.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proxy-pinnedpubkey"
+      ],
+      "description": "(TLS) Tells curl to use the specified public key file (or hashes) to\n      verify the proxy. This can be a path to a file which contains a single\n      public key in PEM or DER format, or any number of base64 encoded sha256\n      hashes preceded by 'sha256//' and separated by ';'.\n    When negotiating a TLS or SSL connection, the server sends a\n        certificate indicating its identity. A public key is extracted from this\n        certificate and if it does not exactly match the public key provided to\n        this option, curl will abort the connection before sending or receiving\n        any data.\n    If this option is used several times, the last one will be\n        used.\n    Examples:\n    \n\n curl --proxy-pinnedpubkey keyfile https://example.com\n\n curl --proxy-pinnedpubkey 'sha256//ce118b51897f4452dc' https://example.com\n    See also --pinnedpubkey and -x, --proxy. Added\n        in 7.59.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proxy-service-name"
+      ],
+      "description": "This option allows you to change the service name for proxy negotiation.\n    Example:\n    \n\n curl --proxy-service-name \"shrubbery\" -x proxy https://example.com\n    See also --service-name and -x, --proxy. Added\n        in 7.43.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proxy-ssl-allow-beast"
+      ],
+      "description": "Same as --ssl-allow-beast but used in HTTPS proxy context.\n    Example:\n    \n\n curl --proxy-ssl-allow-beast -x https://proxy https://example.com\n    See also --ssl-allow-beast and -x, --proxy.\n        Added in 7.52.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--proxy-ssl-auto-client-cert"
+      ],
+      "description": "Same as --ssl-auto-client-cert but used in HTTPS proxy context.\n    Example:\n    \n\n curl --proxy-ssl-auto-client-cert -x https://proxy https://example.com\n    See also --ssl-auto-client-cert and -x, --proxy.\n        Added in 7.77.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--proxy-tls13-ciphers"
+      ],
+      "description": "(TLS) Specifies which cipher suites to use in the connection to your HTTPS\n      proxy when it negotiates TLS 1.3. The list of ciphers suites must specify\n      valid ciphers. Read up on TLS 1.3 cipher suite details on this URL:\n    \n    \n\n https://curl.se/docs/ssl-ciphers.html\n    This option is currently used only when curl is built to use\n        OpenSSL 1.1.1 or later. If you are using a different SSL backend you can\n        try setting TLS 1.3 cipher suites by using the --proxy-ciphers\n      option.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --proxy-tls13-ciphers TLS_AES_128_GCM_SHA256 -x proxy https://example.com\n    See also --tls13-ciphers and --curves. Added in\n        7.61.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proxy-tlsauthtype"
+      ],
+      "description": "Same as --tlsauthtype but used in HTTPS proxy context.\n    Example:\n    \n\n curl --proxy-tlsauthtype SRP -x https://proxy https://example.com\n    See also -x, --proxy and --proxy-tlsuser. Added\n        in 7.52.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proxy-tlspassword"
+      ],
+      "description": "Same as --tlspassword but used in HTTPS proxy context.\n    Example:\n    \n\n curl --proxy-tlspassword passwd -x https://proxy https://example.com\n    See also -x, --proxy and --proxy-tlsuser. Added\n        in 7.52.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proxy-tlsuser"
+      ],
+      "description": "Same as --tlsuser but used in HTTPS proxy context.\n    Example:\n    \n\n curl --proxy-tlsuser smith -x https://proxy https://example.com\n    See also -x, --proxy and --proxy-tlspassword.\n        Added in 7.52.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proxy-tlsv1"
+      ],
+      "description": "Same as --tlsv1 but used in HTTPS proxy context.\n    Example:\n    \n\n curl --proxy-tlsv1 -x https://proxy https://example.com\n    See also -x, --proxy. Added in 7.52.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-U",
+        "--proxy-user"
+      ],
+      "description": "Specify the user name and password to use for proxy authentication.\n    If you use a Windows SSPI-enabled curl binary and do either\n        Negotiate or NTLM authentication then you can tell curl to select the\n        user name and password from your environment by specifying a single\n        colon with this option: \"-U :\".\n    On systems where it works, curl will hide the given option\n        argument from process listings. This is not enough to protect\n        credentials from possibly getting seen by other users on the same system\n        as they will still be visible for a moment before cleared. Such\n        sensitive data should be retrieved from a file instead or similar and\n        never used in clear text in a command line.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --proxy-user name:pwd -x proxy https://example.com\n    See also --proxy-pass.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-x",
+        "--proxy"
+      ],
+      "description": "Use the specified proxy.\n    The proxy string can be specified with a protocol:// prefix.\n        No protocol specified or http:// will be treated as HTTP proxy. Use\n        socks4://, socks4a://, socks5:// or socks5h:// to request a specific\n        SOCKS version to be used.\n    \n    Unix domain sockets are supported for socks proxy. Set\n        localhost for the host part. e.g.\n        socks5h://localhost/path/to/socket.sock\n    HTTPS proxy support via https:// protocol prefix was added in\n        7.52.0 for OpenSSL, GnuTLS and NSS.\n    Unrecognized and unsupported proxy protocols cause an error\n        since 7.52.0. Prior versions may ignore the protocol and use http://\n        instead.\n    If the port number is not specified in the proxy string, it is\n        assumed to be 1080.\n    This option overrides existing environment variables that set\n        the proxy to use. If there's an environment variable setting a proxy,\n        you can set proxy to \"\" to override it.\n    All operations that are performed over an HTTP proxy will\n        transparently be converted to HTTP. It means that certain protocol\n        specific operations might not be available. This is not the case if you\n        can tunnel through the proxy, as one with the --proxytunnel option.\n    User and password that might be provided in the proxy string\n        are URL decoded by curl. This allows you to pass in special characters\n        such as @ by using %40 or pass in a colon with %3a.\n    The proxy host can be specified the same way as the proxy\n        environment variables, including the protocol prefix (http://) and the\n        embedded user + password.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --proxy http://proxy.example https://example.com\n    See also --socks5 and --proxy-basic.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--proxy1.0"
+      ],
+      "description": "Use the specified HTTP 1.0 proxy. If the port number is not specified, it\n      is assumed at port 1080.\n    The only difference between this and the HTTP proxy option\n        -x, --proxy, is that attempts to use CONNECT through the proxy\n        will specify an HTTP 1.0 protocol instead of the default HTTP 1.1.\n    Example:\n    \n\n curl --proxy1.0 -x http://proxy https://example.com\n    See also -x, --proxy, --socks5 and\n        --preproxy.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-p",
+        "--proxytunnel"
+      ],
+      "description": "When an HTTP proxy is used -x, --proxy, this option will make curl\n      tunnel through the proxy. The tunnel approach is made with the HTTP proxy\n      CONNECT request and requires that the proxy allows direct connect to the\n      remote port number curl wants to tunnel through to.\n    To suppress proxy CONNECT response headers when curl is set to\n        output headers use --suppress-connect-headers.\n    Example:\n    \n\n curl --proxytunnel -x http://proxy https://example.com\n    See also -x, --proxy.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--pubkey"
+      ],
+      "description": "(SFTP SCP) Public key file name. Allows you to provide your public key in\n      this separate file.\n    If this option is used several times, the last one will be\n        used.\n    (As of 7.39.0, curl attempts to automatically extract the\n        public key from the private key file, so passing this option is\n        generally not required. Note that this public key extraction requires\n        libcurl to be linked against a copy of libssh2 1.2.8 or higher that is\n        itself linked against OpenSSL.)\n    Example:\n    \n\n curl --pubkey file.pub sftp://example.com/\n    See also --pass.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-Q",
+        "--quote"
+      ],
+      "description": "(FTP SFTP) Send an arbitrary command to the remote FTP or SFTP server.\n      Quote commands are sent BEFORE the transfer takes place (just after the\n      initial PWD command in an FTP transfer, to be exact). To make commands\n      take place after a successful transfer, prefix them with a dash '-'.\n    (FTP only) To make commands be sent after curl has changed the\n        working directory, just before the file transfer command(s), prefix the\n        command with a '+'. This is not performed when a directory listing is\n        performed.\n    You may specify any number of commands.\n    By default curl will stop at first failure. To make curl\n        continue even if the command fails, prefix the command with an asterisk\n        (*). Otherwise, if the server returns failure for one of the commands,\n        the entire operation will be aborted.\n    You must send syntactically correct FTP commands as RFC 959\n        defines to FTP servers, or one of the commands listed below to SFTP\n        servers.\n    This option can be used multiple times.\n    SFTP is a binary protocol. Unlike for FTP, curl interprets\n        SFTP quote commands itself before sending them to the server. File names\n        may be quoted shell-style to embed spaces or special characters.\n        Following is the list of all supported SFTP quote commands:\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--random-file"
+      ],
+      "description": "Deprecated option. This option is ignored by curl since 7.84.0. Prior to\n      that it only had an effect on curl if built to use old versions of\n      OpenSSL.\n    Specify the path name to file containing what will be\n        considered as random data. The data may be used to seed the random\n        engine for SSL connections.\n    Example:\n    \n\n curl --random-file rubbish https://example.com\n    See also --egd-file.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-r",
+        "--range"
+      ],
+      "description": "(HTTP FTP SFTP FILE) Retrieve a byte range (i.e. a partial document) from\n      an HTTP/1.1, FTP or SFTP server or a local FILE. Ranges can be specified\n      in a number of ways.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-500"
+      ],
+      "description": "specifies the last 500 bytes",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--rate"
+      ],
+      "description": "Specify the maximum transfer frequency you allow curl to use - in number\n      of transfer starts per time unit (sometimes called request rate). Without\n      this option, curl will start the next transfer as fast as possible.\n    If given several URLs and a transfer completes faster than the\n        allowed rate, curl will wait until the next transfer is started to\n        maintain the requested rate. This option has no effect when --parallel\n        is used.\n    The request rate is provided as \"N/U\" where N is an\n        integer number and U is a time unit. Supported units are 's' (second),\n        'm' (minute), 'h' (hour) and 'd' /(day, as in a 24 hour unit). The\n        default time unit, if no \"/U\" is provided, is number of\n        transfers per hour.\n    If curl is told to allow 10 requests per minute, it will not\n        start the next request until 6 seconds have elapsed since the previous\n        transfer was started.\n    This function uses millisecond resolution. If the allowed\n        frequency is set more than 1000 per second, it will instead run\n        unrestricted.\n    When retrying transfers, enabled with --retry, the\n        separate retry delay logic is used and not this setting.\n    If this option is used several times, the last one will be\n        used.\n    Examples:\n    \n\n curl --rate 2/s https://example.com\n\n curl --rate 3/h https://example.com\n\n curl --rate 14/m https://example.com\n    See also --limit-rate and --retry-delay. Added\n        in 7.84.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--raw"
+      ],
+      "description": "(HTTP) When used, it disables all internal HTTP decoding of content or\n      transfer encodings and instead makes them passed on unaltered, raw.\n    Example:\n    \n\n curl --raw https://example.com\n    See also --tr-encoding.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-e",
+        "--referer"
+      ],
+      "description": "(HTTP) Sends the \"Referrer Page\" information to the HTTP server.\n      This can also be set with the --header flag of course. When used with\n      --location you can append \";auto\" to the --referer URL to make\n      curl automatically set the previous URL when it follows a Location:\n      header. The \";auto\" string can be used alone, even if you do not\n      set an initial -e, --referer.\n    If this option is used several times, the last one will be\n        used.\n    Examples:\n    \n\n curl --referer \"https://fake.example\" https://example.com\n\n curl --referer \"https://fake.example;auto\" -L https://example.com\n\n curl --referer \";auto\" -L https://example.com\n    See also -A, --user-agent and -H, --header.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-J",
+        "--remote-header-name"
+      ],
+      "description": "(HTTP) This option tells the --remote-name option to use the\n      server-specified Content-Disposition filename instead of extracting a\n      filename from the URL. If the server-provided file name contains a path,\n      that will be stripped off before the file name is used.\n    The file is saved in the current directory, or in the\n        directory specified with --output-dir.\n    If the server specifies a file name and a file with that name\n        already exists in the destination directory, it will not be overwritten\n        and an error will occur. If the server does not specify a file name then\n        this option has no effect.\n    There's no attempt to decode %-sequences (yet) in the provided\n        file name, so this option may provide you with rather unexpected file\n        names.\n    WARNING: Exercise judicious use of this option,\n        especially on Windows. A rogue server could send you the name of a DLL\n        or other file that could be loaded automatically by Windows or some\n        third party software.\n    Example:\n    \n\n curl -OJ https://example.com/file\n    See also -O, --remote-name.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--remote-name-all"
+      ],
+      "description": "This option changes the default action for all given URLs to be dealt with\n      as if --remote-name were used for each one. So if you want to disable that\n      for a specific URL after --remote-name-all has been used, you must use\n      \"-o -\" or --no-remote-name.\n    Example:\n    \n\n curl --remote-name-all ftp://example.com/file1 ftp://example.com/file2\n    See also -O, --remote-name.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-O",
+        "--remote-name"
+      ],
+      "description": "Write output to a local file named like the remote file we get. (Only the\n      file part of the remote file is used, the path is cut off.)\n    The file will be saved in the current working directory. If\n        you want the file saved in a different directory, make sure you change\n        the current working directory before invoking curl with this option or\n        use --output-dir.\n    The remote file name to use for saving is extracted from the\n        given URL, nothing else, and if it already exists it will be\n        overwritten. If you want the server to be able to choose the file name\n        refer to --remote-header-name which can be used in addition to this\n        option. If the server chooses a file name and that name already exists\n        it will not be overwritten.\n    There is no URL decoding done on the file name. If it has %20\n        or other URL encoded parts of the name, they will end up as-is as file\n        name.\n    You may use this option as many times as the number of URLs\n        you have.\n    Example:\n    \n\n curl -O https://example.com/filename\n    See also --remote-name-all, --output-dir and\n        -J, --remote-header-name.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-R",
+        "--remote-time"
+      ],
+      "description": "When used, this will make curl attempt to figure out the timestamp of the\n      remote file, and if that is available make the local file get that same\n      timestamp.\n    Example:\n    \n\n curl --remote-time -o foo https://example.com\n    See also -O, --remote-name and -z,\n      --time-cond.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--remove-on-error"
+      ],
+      "description": "When curl returns an error when told to save output in a local file, this\n      option removes that saved file before exiting. This prevents curl from\n      leaving a partial file in the case of an error during transfer.\n    If the output is not a file, this option has no effect.\n    Example:\n    \n\n curl --remove-on-error -o output https://example.com\n    See also -f, --fail. Added in 7.83.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--request-target"
+      ],
+      "description": "(HTTP) Tells curl to use an alternative \"target\" (path) instead\n      of using the path as provided in the URL. Particularly useful when wanting\n      to issue HTTP requests without leading slash or other data that does not\n      follow the regular URL pattern, like \"OPTIONS *\".\n    Example:\n    \n\n curl --request-target \"*\" -X OPTIONS https://example.com\n    See also -X, --request. Added in 7.55.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-X",
+        "--request"
+      ],
+      "description": "(HTTP) Specifies a custom request method to use when communicating with\n      the HTTP server. The specified request method will be used instead of the\n      method otherwise used (which defaults to GET). Read the HTTP 1.1\n      specification for details and explanations. Common additional HTTP\n      requests include PUT and DELETE, but related technologies like WebDAV\n      offers PROPFIND, COPY, MOVE and more.\n    Normally you do not need this option. All sorts of GET, HEAD,\n        POST and PUT requests are rather invoked by using dedicated command line\n        options.\n    This option only changes the actual word used in the HTTP\n        request, it does not alter the way curl behaves. So for example if you\n        want to make a proper HEAD request, using -X HEAD will not suffice. You\n        need to use the --head option.\n    The method string you set with --request will be used for all\n        requests, which if you for example use --location may cause unintended\n        side-effects when curl does not change request method according to the\n        HTTP 30x response codes - and similar.\n    (FTP) Specifies a custom FTP command to use instead of LIST\n        when doing file lists with FTP.\n    (POP3) Specifies a custom POP3 command to use instead of LIST\n        or RETR.\n    \n    (IMAP) Specifies a custom IMAP command to use instead of LIST.\n        (Added in 7.30.0)\n    (SMTP) Specifies a custom SMTP command to use instead of HELP\n        or VRFY. (Added in 7.34.0)\n    If this option is used several times, the last one will be\n        used.\n    Examples:\n    \n\n curl -X \"DELETE\" https://example.com\n\n curl -X NLST ftp://example.com/\n    See also --request-target.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--resolve"
+      ],
+      "description": "Provide a custom address for a specific host and port pair. Using this,\n      you can make the curl requests(s) use a specified address and prevent the\n      otherwise normally resolved address to be used. Consider it a sort of\n      /etc/hosts alternative provided on the command line. The port number\n      should be the number used for the specific protocol the host will be used\n      for. It means you need several entries if you want to provide address for\n      the same host but different ports.\n    By specifying '*' as host you can tell curl to resolve any\n        host and specific port pair to the specified address. Wildcard is\n        resolved last so any --resolve with a specific host and port will be\n        used first.\n    The provided address set by this option will be used even if\n        --ipv4 or --ipv6 is set to make curl use another IP version.\n    By prefixing the host with a '+' you can make the entry time\n        out after curl's default timeout (1 minute). Note that this will only\n        make sense for long running parallel transfers with a lot of files. In\n        such cases, if this option is used curl will try to resolve the host as\n        it normally would once the timeout has expired.\n    Support for providing the IP address within [brackets] was\n        added in 7.57.0.\n    Support for providing multiple IP addresses per entry was\n        added in 7.59.0.\n    Support for resolving with wildcard was added in 7.64.0.\n    Support for the '+' prefix was was added in 7.75.0.\n    This option can be used many times to add many host names to\n        resolve.\n    Example:\n    \n\n curl --resolve example.com:443:127.0.0.1 https://example.com\n    See also --connect-to and --alt-svc.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--retry-all-errors"
+      ],
+      "description": "Retry on any error. This option is used together with --retry.\n    This option is the \"sledgehammer\" of retrying. Do\n        not use this option by default (eg in curlrc), there may be unintended\n        consequences such as sending or receiving duplicate data. Do not use\n        with redirected input or output. You'd be much better off handling your\n        unique problems in shell script. Please read the example below.\n    WARNING: For server compatibility curl attempts to\n        retry failed flaky transfers as close as possible to how they were\n        started, but this is not possible with redirected input or output. For\n        example, before retrying it removes output data from a failed partial\n        transfer that was written to an output file. However this is not true of\n        data redirected to a | pipe or > file, which are not reset. We\n        strongly suggest you do not parse or record output via redirect in\n        combination with this option, since you may receive duplicate data.\n    By default curl will not error on an HTTP response code that\n        indicates an HTTP error, if the transfer was successful. For example, if\n        a server replies 404 Not Found and the reply is fully received then that\n        is not an error. When --retry is used then curl will retry on some HTTP\n        response codes that indicate transient HTTP errors, but that does not\n        include most 4xx response codes such as 404. If you want to retry on all\n        response codes that indicate HTTP errors (4xx and 5xx) then combine with\n        -f, --fail.\n    Example:\n    \n\n curl --retry 5 --retry-all-errors https://example.com\n    See also --retry. Added in 7.71.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--retry-connrefused"
+      ],
+      "description": "In addition to the other conditions, consider ECONNREFUSED as a transient\n      error too for --retry. This option is used together with --retry.\n    Example:\n    \n\n curl --retry-connrefused --retry https://example.com\n    See also --retry and --retry-all-errors. Added\n        in 7.52.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--retry-delay"
+      ],
+      "description": "Make curl sleep this amount of time before each retry when a transfer has\n      failed with a transient error (it changes the default backoff time\n      algorithm between retries). This option is only interesting if --retry is\n      also used. Setting this delay to zero will make curl use the default\n      backoff time.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --retry-delay 5 --retry https://example.com\n    See also --retry.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--retry-max-time"
+      ],
+      "description": "The retry timer is reset before the first transfer attempt. Retries will\n      be done as usual (see --retry) as long as the timer has not reached\n      this given limit. Notice that if the timer has not reached the limit, the\n      request will be made and while performing, it may take longer than this\n      given time period. To limit a single request's maximum time, use -m,\n      --max-time. Set this option to zero to not timeout retries.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --retry-max-time 30 --retry 10 https://example.com\n    See also --retry.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--retry"
+      ],
+      "description": "If a transient error is returned when curl tries to perform a transfer, it\n      will retry this number of times before giving up. Setting the number to 0\n      makes curl do no retries (which is the default). Transient error means\n      either: a timeout, an FTP 4xx response code or an HTTP 408, 429, 500, 502,\n      503 or 504 response code.\n    When curl is about to retry a transfer, it will first wait one\n        second and then for all forthcoming retries it will double the waiting\n        time until it reaches 10 minutes which then will be the delay between\n        the rest of the retries. By using --retry-delay you disable this\n        exponential backoff algorithm. See also --retry-max-time to limit the\n        total time allowed for retries.\n    Since curl 7.66.0, curl will comply with the Retry-After:\n        response header if one was present to know when to issue the next\n      retry.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --retry 7 https://example.com\n    See also --retry-max-time.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--sasl-authzid"
+      ],
+      "description": "Use this authorization identity (authzid), during SASL PLAIN\n      authentication, in addition to the authentication identity (authcid) as\n      specified by -u, --user.\n    If the option is not specified, the server will derive the\n        authzid from the authcid, but if specified, and depending on the server\n        implementation, it may be used to access another user's inbox, that the\n        user has been granted access to, or a shared mailbox for example.\n    Example:\n    \n\n curl --sasl-authzid zid imap://example.com/\n    See also --login-options. Added in 7.66.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--sasl-ir"
+      ],
+      "description": "Enable initial response in SASL authentication.\n    Example:\n    \n\n curl --sasl-ir imap://example.com/\n    See also --sasl-authzid. Added in 7.31.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--service-name"
+      ],
+      "description": "This option allows you to change the service name for SPNEGO.\n    Examples: --negotiate --service-name sockd would use\n        sockd/server-name.\n    Example:\n    \n\n curl --service-name sockd/server https://example.com\n    See also --negotiate and --proxy-service-name.\n        Added in 7.43.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-S",
+        "--show-error"
+      ],
+      "description": "When used with -s, --silent, it makes curl show an error message if\n      it fails.\n    This option is global and does not need to be specified for\n        each use of -:, --next.\n    Example:\n    \n\n curl --show-error --silent https://example.com\n    See also --no-progress-meter.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-s",
+        "--silent"
+      ],
+      "description": "Silent or quiet mode. Do not show progress meter or error messages. Makes\n      Curl mute. It will still output the data you ask for, potentially even to\n      the terminal/stdout unless you redirect it.\n    Use --show-error in addition to this option to disable\n        progress meter but still show error messages.\n    Example:\n    \n\n curl -s https://example.com\n    See also -v, --verbose, --stderr and\n        --no-progress-meter.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--socks4"
+      ],
+      "description": "Use the specified SOCKS4 proxy. If the port number is not specified, it is\n      assumed at port 1080. Using this socket type make curl resolve the host\n      name and passing the address on to the proxy.\n    To specify proxy on a unix domain socket, use localhost for\n        host, e.g. socks4://localhost/path/to/socket.sock\n    This option overrides any previous use of -x, --proxy,\n        as they are mutually exclusive.\n    This option is superfluous since you can specify a socks4\n        proxy with --proxy using a socks4:// protocol prefix.\n    Since 7.52.0, --preproxy can be used to specify a SOCKS proxy\n        at the same time --proxy is used with an HTTP/HTTPS proxy. In such a\n        case curl first connects to the SOCKS proxy and then connects (through\n        SOCKS) to the HTTP or HTTPS proxy.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --socks4 hostname:4096 https://example.com\n    See also --socks4a, --socks5 and\n        --socks5-hostname.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--socks4a"
+      ],
+      "description": "Use the specified SOCKS4a proxy. If the port number is not specified, it\n      is assumed at port 1080. This asks the proxy to resolve the host name.\n    To specify proxy on a unix domain socket, use localhost for\n        host, e.g. socks4a://localhost/path/to/socket.sock\n    This option overrides any previous use of -x, --proxy,\n        as they are mutually exclusive.\n    This option is superfluous since you can specify a socks4a\n        proxy with --proxy using a socks4a:// protocol prefix.\n    Since 7.52.0, --preproxy can be used to specify a SOCKS proxy\n        at the same time --proxy is used with an HTTP/HTTPS proxy. In such a\n        case curl first connects to the SOCKS proxy and then connects (through\n        SOCKS) to the HTTP or HTTPS proxy.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --socks4a hostname:4096 https://example.com\n    See also --socks4, --socks5 and\n        --socks5-hostname.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--socks5-basic"
+      ],
+      "description": "Tells curl to use username/password authentication when connecting to a\n      SOCKS5 proxy. The username/password authentication is enabled by default.\n      Use --socks5-gssapi to force GSS-API authentication to SOCKS5 proxies.\n    Example:\n    \n\n curl --socks5-basic --socks5 hostname:4096 https://example.com\n    See also --socks5. Added in 7.55.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--socks5-gssapi-nec"
+      ],
+      "description": "As part of the GSS-API negotiation a protection mode is negotiated. RFC\n      1961 says in section 4.3/4.4 it should be protected, but the NEC reference\n      implementation does not. The option --socks5-gssapi-nec allows the\n      unprotected exchange of the protection mode negotiation.\n    Example:\n    \n\n curl --socks5-gssapi-nec --socks5 hostname:4096 https://example.com\n    See also --socks5.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--socks5-gssapi-service"
+      ],
+      "description": "The default service name for a socks server is rcmd/server-fqdn. This\n      option allows you to change it.\n    Examples: --socks5 proxy-name --socks5-gssapi-service sockd\n        would use sockd/proxy-name --socks5 proxy-name --socks5-gssapi-service\n        sockd/real-name would use sockd/real-name for cases where the proxy-name\n        does not match the principal name.\n    Example:\n    \n\n curl --socks5-gssapi-service sockd --socks5 hostname:4096 https://example.com\n    See also --socks5.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--socks5-gssapi"
+      ],
+      "description": "Tells curl to use GSS-API authentication when connecting to a SOCKS5\n      proxy. The GSS-API authentication is enabled by default (if curl is\n      compiled with GSS-API support). Use --socks5-basic to force\n      username/password authentication to SOCKS5 proxies.\n    Example:\n    \n\n curl --socks5-gssapi --socks5 hostname:4096 https://example.com\n    See also --socks5. Added in 7.55.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--socks5-hostname"
+      ],
+      "description": "Use the specified SOCKS5 proxy (and let the proxy resolve the host name).\n      If the port number is not specified, it is assumed at port 1080.\n    To specify proxy on a unix domain socket, use localhost for\n        host, e.g. socks5h://localhost/path/to/socket.sock\n    This option overrides any previous use of -x, --proxy,\n        as they are mutually exclusive.\n    This option is superfluous since you can specify a socks5\n        hostname proxy with --proxy using a socks5h:// protocol prefix.\n    Since 7.52.0, --preproxy can be used to specify a SOCKS proxy\n        at the same time --proxy is used with an HTTP/HTTPS proxy. In such a\n        case curl first connects to the SOCKS proxy and then connects (through\n        SOCKS) to the HTTP or HTTPS proxy.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --socks5-hostname proxy.example:7000 https://example.com\n    See also --socks5 and --socks4a.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--socks5"
+      ],
+      "description": "Use the specified SOCKS5 proxy - but resolve the host name locally. If the\n      port number is not specified, it is assumed at port 1080.\n    To specify proxy on a unix domain socket, use localhost for\n        host, e.g. socks5://localhost/path/to/socket.sock\n    This option overrides any previous use of -x, --proxy,\n        as they are mutually exclusive.\n    This option is superfluous since you can specify a socks5\n        proxy with --proxy using a socks5:// protocol prefix.\n    Since 7.52.0, --preproxy can be used to specify a SOCKS proxy\n        at the same time --proxy is used with an HTTP/HTTPS proxy. In such a\n        case curl first connects to the SOCKS proxy and then connects (through\n        SOCKS) to the HTTP or HTTPS proxy.\n    If this option is used several times, the last one will be\n        used.\n    This option (as well as --socks4) does not work with\n        IPV6, FTPS or LDAP.\n    Example:\n    \n\n curl --socks5 proxy.example:7000 https://example.com\n    See also --socks5-hostname and --socks4a.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-Y",
+        "--speed-limit"
+      ],
+      "description": "If a transfer is slower than this given speed (in bytes per second) for\n      speed-time seconds it gets aborted. speed-time is set with --speed-time\n      and is 30 if not set.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --speed-limit 300 --speed-time 10 https://example.com\n    See also -y, --speed-time, --limit-rate and\n        -m, --max-time.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-y",
+        "--speed-time"
+      ],
+      "description": "If a transfer runs slower than speed-limit bytes per second during a\n      speed-time period, the transfer is aborted. If speed-time is used, the\n      default speed-limit will be 1 unless set with -Y, --speed-limit.\n    This option controls transfers (in both directions) but will\n        not affect slow connects etc. If this is a concern for you, try the\n        --connect-timeout option.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --speed-limit 300 --speed-time 10 https://example.com\n    See also -Y, --speed-limit and --limit-rate.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--ssl-allow-beast"
+      ],
+      "description": "This option tells curl to not work around a security flaw in the SSL3 and\n      TLS1.0 protocols known as BEAST. If this option is not used, the SSL layer\n      may use workarounds known to cause interoperability problems with some\n      older SSL implementations.\n    WARNING: this option loosens the SSL security, and by\n        using this flag you ask for exactly that.\n    Example:\n    \n\n curl --ssl-allow-beast https://example.com\n    See also --proxy-ssl-allow-beast and -k,\n        --insecure.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--ssl-auto-client-cert"
+      ],
+      "description": "Tell libcurl to automatically locate and use a client certificate for\n      authentication, when requested by the server. This option is only\n      supported for Schannel (the native Windows SSL library). Prior to 7.77.0\n      this was the default behavior in libcurl with Schannel. Since the server\n      can request any certificate that supports client authentication in the OS\n      certificate store it could be a privacy violation and unexpected.\n    Example:\n    \n\n curl --ssl-auto-client-cert https://example.com\n    See also --proxy-ssl-auto-client-cert. Added in\n      7.77.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--ssl-no-revoke"
+      ],
+      "description": "(Schannel) This option tells curl to disable certificate revocation\n      checks. WARNING: this option loosens the SSL security, and by using this\n      flag you ask for exactly that.\n    Example:\n    \n\n curl --ssl-no-revoke https://example.com\n    See also --crlfile. Added in 7.44.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--ssl-reqd"
+      ],
+      "description": "(FTP IMAP POP3 SMTP LDAP) Require SSL/TLS for the connection. Terminates\n      the connection if the server does not support SSL/TLS.\n    This option is handled in LDAP since version 7.81.0. It is\n        fully supported by the openldap backend and rejected by the generic ldap\n        backend if explicit TLS is required.\n    This option was formerly known as --ftp-ssl-reqd.\n    Example:\n    \n\n curl --ssl-reqd ftp://example.com\n    See also --ssl and -k, --insecure.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--ssl-revoke-best-effort"
+      ],
+      "description": "(Schannel) This option tells curl to ignore certificate revocation checks\n      when they failed due to missing/offline distribution points for the\n      revocation check lists.\n    Example:\n    \n\n curl --ssl-revoke-best-effort https://example.com\n    See also --crlfile and -k, --insecure. Added in\n        7.70.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--ssl"
+      ],
+      "description": "(FTP IMAP POP3 SMTP LDAP) Try to use SSL/TLS for the connection. Reverts\n      to a non-secure connection if the server does not support SSL/TLS. See\n      also --ftp-ssl-control and --ssl-reqd for different levels of encryption\n      required.\n    This option is handled in LDAP since version 7.81.0. It is\n        fully supported by the openldap backend and ignored by the generic ldap\n        backend.\n    Please note that a server may close the connection if the\n        negotiation does not succeed.\n    This option was formerly known as --ftp-ssl. That option name\n        can still be used but will be removed in a future version.\n    Example:\n    \n\n curl --ssl pop3://example.com/\n    See also -k, --insecure and --ciphers.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-2",
+        "--sslv2"
+      ],
+      "description": "(SSL) This option previously asked curl to use SSLv2, but starting in curl\n      7.77.0 this instruction is ignored. SSLv2 is widely considered insecure\n      (see RFC 6176).\n    Example:\n    \n\n curl --sslv2 https://example.com\n    See also --http1.1 and --http2. -2,\n        --sslv2 requires that the underlying libcurl was built to support\n        TLS. This option is mutually exclusive to -3, --sslv3 and -1,\n        --tlsv1 and --tlsv1.1 and --tlsv1.2.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-3",
+        "--sslv3"
+      ],
+      "description": "(SSL) This option previously asked curl to use SSLv3, but starting in curl\n      7.77.0 this instruction is ignored. SSLv3 is widely considered insecure\n      (see RFC 7568).\n    Example:\n    \n\n curl --sslv3 https://example.com\n    See also --http1.1 and --http2. -3,\n        --sslv3 requires that the underlying libcurl was built to support\n        TLS. This option is mutually exclusive to -2, --sslv2 and -1,\n        --tlsv1 and --tlsv1.1 and --tlsv1.2.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--stderr"
+      ],
+      "description": "Redirect all writes to stderr to the specified file instead. If the file\n      name is a plain '-', it is instead written to stdout.\n    This option is global and does not need to be specified for\n        each use of -:, --next.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --stderr output.txt https://example.com\n    See also -v, --verbose and -s, --silent.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--styled-output"
+      ],
+      "description": "Enables the automatic use of bold font styles when writing HTTP headers to\n      the terminal. Use --no-styled-output to switch them off.\n    This option is global and does not need to be specified for\n        each use of -:, --next.\n    Example:\n    \n\n curl --styled-output -I https://example.com\n    See also -I, --head and -v, --verbose. Added in\n        7.61.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--suppress-connect-headers"
+      ],
+      "description": "When --proxytunnel is used and a CONNECT request is made do not output\n      proxy CONNECT response headers. This option is meant to be used with\n      --dump-header or --include which are used to show protocol headers in the\n      output. It has no effect on debug options such as --verbose or\n      --trace, or any statistics.\n    Example:\n    \n\n curl --suppress-connect-headers --include -x proxy https://example.com\n    See also -D, --dump-header, -i, --include and\n        -p, --proxytunnel. Added in 7.54.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--tcp-fastopen"
+      ],
+      "description": "Enable use of TCP Fast Open (RFC7413).\n    Example:\n    \n\n curl --tcp-fastopen https://example.com\n    See also --false-start. Added in 7.49.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--tcp-nodelay"
+      ],
+      "description": "Turn on the TCP_NODELAY option. See the curl_easy_setopt(3) man\n      page for details about this option.\n    Since 7.50.2, curl sets this option by default and you need to\n        explicitly switch it off if you do not want it on.\n    Example:\n    \n\n curl --tcp-nodelay https://example.com\n    See also -N, --no-buffer.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-t",
+        "--telnet-option"
+      ],
+      "description": "Pass options to the telnet protocol. Supported options are:\n    TTYPE=<term> Sets the terminal type.\n    XDISPLOC=<X display> Sets the X display location.\n    NEW_ENV=<var,val> Sets an environment variable.\n    Example:\n    \n\n curl -t TTYPE=vt100 telnet://example.com/\n    See also -K, --config.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--tftp-blksize"
+      ],
+      "description": "(TFTP) Set TFTP BLKSIZE option (must be >512). This is the block size\n      that curl will try to use when transferring data to or from a TFTP server.\n      By default 512 bytes will be used.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --tftp-blksize 1024 tftp://example.com/file\n    See also --tftp-no-options.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--tftp-no-options"
+      ],
+      "description": "(TFTP) Tells curl not to send TFTP options requests.\n    This option improves interop with some legacy servers that do\n        not acknowledge or properly implement TFTP options. When this option is\n        used --tftp-blksize is ignored.\n    Example:\n    \n\n curl --tftp-no-options tftp://192.168.0.1/\n    See also --tftp-blksize. Added in 7.48.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-z",
+        "--time-cond"
+      ],
+      "description": "(HTTP FTP) Request a file that has been modified later than the given time\n      and date, or one that has been modified before that time. The <date\n      expression> can be all sorts of date strings or if it does not match\n      any internal ones, it is taken as a filename and tries to get the\n      modification date (mtime) from <file> instead. See the\n      curl_getdate(3) man pages for date expression details.\n    Start the date expression with a dash (-) to make it request\n        for a document that is older than the given date/time, default is a\n        document that is newer than the specified date/time.\n    If this option is used several times, the last one will be\n        used.\n    Examples:\n    \n\n curl -z \"Wed 01 Sep 2021 12:18:00\" https://example.com\n\n curl -z \"-Wed 01 Sep 2021 12:18:00\" https://example.com\n\n curl -z file https://example.com\n    See also --etag-compare and -R,\n      --remote-time.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--tls-max"
+      ],
+      "description": "(SSL) VERSION defines maximum supported TLS version. The minimum\n      acceptable version is set by tlsv1.0, tlsv1.1, tlsv1.2 or tlsv1.3.\n    If the connection is done without TLS, this option has no\n        effect. This includes QUIC-using (HTTP/3) transfers.\n    \n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--tls13-ciphers"
+      ],
+      "description": "(TLS) Specifies which cipher suites to use in the connection if it\n      negotiates TLS 1.3. The list of ciphers suites must specify valid ciphers.\n      Read up on TLS 1.3 cipher suite details on this URL:\n    \n    \n\n https://curl.se/docs/ssl-ciphers.html\n    This option is currently used only when curl is built to use\n        OpenSSL 1.1.1 or later. If you are using a different SSL backend you can\n        try setting TLS 1.3 cipher suites by using the --ciphers option.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --tls13-ciphers TLS_AES_128_GCM_SHA256 https://example.com\n    See also --ciphers and --curves. Added in\n        7.61.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--tlsauthtype"
+      ],
+      "description": "Set TLS authentication type. Currently, the only supported option is\n      \"SRP\", for TLS-SRP (RFC 5054). If --tlsuser and --tlspassword\n      are specified but --tlsauthtype is not, then this option defaults to\n      \"SRP\". This option works only if the underlying libcurl is built\n      with TLS-SRP support, which requires OpenSSL or GnuTLS with TLS-SRP\n      support.\n    Example:\n    \n\n curl --tlsauthtype SRP https://example.com\n    See also --tlsuser.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--tlspassword"
+      ],
+      "description": "Set password for use with the TLS authentication method specified with\n      --tlsauthtype. Requires that --tlsuser also be set.\n    This option does not work with TLS 1.3.\n    Example:\n    \n\n curl --tlspassword pwd --tlsuser user https://example.com\n    See also --tlsuser.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--tlsuser"
+      ],
+      "description": "Set username for use with the TLS authentication method specified with\n      --tlsauthtype. Requires that --tlspassword also is set.\n    This option does not work with TLS 1.3.\n    Example:\n    \n\n curl --tlspassword pwd --tlsuser user https://example.com\n    See also --tlspassword.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--tlsv1.0"
+      ],
+      "description": "(TLS) Forces curl to use TLS version 1.0 or later when connecting to a\n      remote TLS server.\n    In old versions of curl this option was documented to allow\n        _only_ TLS 1.0. That behavior was inconsistent depending on the TLS\n        library. Use --tls-max if you want to set a maximum TLS version.\n    Example:\n    \n\n curl --tlsv1.0 https://example.com\n    See also --tlsv1.3. Added in 7.34.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--tlsv1.1"
+      ],
+      "description": "(TLS) Forces curl to use TLS version 1.1 or later when connecting to a\n      remote TLS server.\n    In old versions of curl this option was documented to allow\n        _only_ TLS 1.1. That behavior was inconsistent depending on the TLS\n        library. Use --tls-max if you want to set a maximum TLS version.\n    Example:\n    \n\n curl --tlsv1.1 https://example.com\n    See also --tlsv1.3 and --tls-max. Added in\n        7.34.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--tlsv1.2"
+      ],
+      "description": "(TLS) Forces curl to use TLS version 1.2 or later when connecting to a\n      remote TLS server.\n    In old versions of curl this option was documented to allow\n        _only_ TLS 1.2. That behavior was inconsistent depending on the TLS\n        library. Use --tls-max if you want to set a maximum TLS version.\n    Example:\n    \n\n curl --tlsv1.2 https://example.com\n    See also --tlsv1.3 and --tls-max. Added in\n        7.34.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--tlsv1.3"
+      ],
+      "description": "(TLS) Forces curl to use TLS version 1.3 or later when connecting to a\n      remote TLS server.\n    If the connection is done without TLS, this option has no\n        effect. This includes QUIC-using (HTTP/3) transfers.\n    Note that TLS 1.3 is not supported by all TLS backends.\n    Example:\n    \n\n curl --tlsv1.3 https://example.com\n    See also --tlsv1.2 and --tls-max. Added in\n        7.52.0.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-1",
+        "--tlsv1"
+      ],
+      "description": "(SSL) Tells curl to use at least TLS version 1.x when negotiating with a\n      remote TLS server. That means TLS version 1.0 or higher\n    Example:\n    \n\n curl --tlsv1 https://example.com\n    See also --http1.1 and --http2. -1,\n        --tlsv1 requires that the underlying libcurl was built to support\n        TLS. This option is mutually exclusive to --tlsv1.1 and\n        --tlsv1.2 and --tlsv1.3.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--tr-encoding"
+      ],
+      "description": "(HTTP) Request a compressed Transfer-Encoding response using one of the\n      algorithms curl supports, and uncompress the data while receiving it.\n    Example:\n    \n\n curl --tr-encoding https://example.com\n    See also --compressed.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--trace-ascii"
+      ],
+      "description": "Enables a full trace dump of all incoming and outgoing data, including\n      descriptive information, to the given output file. Use \"-\" as\n      filename to have the output sent to stdout.\n    This is similar to --trace, but leaves out the hex part\n        and only shows the ASCII part of the dump. It makes smaller output that\n        might be easier to read for untrained humans.\n    This option is global and does not need to be specified for\n        each use of -:, --next.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --trace-ascii log.txt https://example.com\n    See also -v, --verbose and --trace. This option\n        is mutually exclusive to --trace and -v, --verbose.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--trace-time"
+      ],
+      "description": "Prepends a time stamp to each trace or verbose line that curl displays.\n    This option is global and does not need to be specified for\n        each use of -:, --next.\n    Example:\n    \n\n curl --trace-time --trace-ascii output https://example.com\n    See also --trace and -v, --verbose.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--trace"
+      ],
+      "description": "Enables a full trace dump of all incoming and outgoing data, including\n      descriptive information, to the given output file. Use \"-\" as\n      filename to have the output sent to stdout. Use \"%\" as filename\n      to have the output sent to stderr.\n    This option is global and does not need to be specified for\n        each use of -:, --next.\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl --trace log.txt https://example.com\n    See also --trace-ascii and --trace-time. This\n        option is mutually exclusive to -v, --verbose and\n        --trace-ascii.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--unix-socket"
+      ],
+      "description": "(HTTP) Connect through this Unix domain socket, instead of using the\n      network.\n    Example:\n    \n\n curl --unix-socket socket-path https://example.com\n    See also --abstract-unix-socket. Added in 7.40.0.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-T",
+        "--upload-file"
+      ],
+      "description": "This transfers the specified local file to the remote URL. If there is no\n      file part in the specified URL, curl will append the local file name. NOTE\n      that you must use a trailing / on the last directory to really prove to\n      Curl that there is no file name or curl will think that your last\n      directory name is the remote file name to use. That will most likely cause\n      the upload operation to fail. If this is used on an HTTP(S) server, the\n      PUT command will be used.\n    Use the file name \"-\" (a single dash) to use stdin\n        instead of a given file. Alternately, the file name \".\" (a\n        single period) may be specified instead of \"-\" to use stdin in\n        non-blocking mode to allow reading server output while stdin is being\n        uploaded.\n    You can specify one --upload-file for each URL on the command\n        line. Each -T, --upload-file + URL pair specifies what to upload\n        and to where. curl also supports \"globbing\" of the\n        --upload-file argument, meaning that you can upload multiple files to a\n        single URL by using the same URL globbing style supported in the\n      URL.\n    When uploading to an SMTP server: the uploaded data is assumed\n        to be RFC 5322 formatted. It has to feature the necessary set of headers\n        and mail body formatted correctly by the user as curl will not transcode\n        nor encode it further in any way.\n    Examples:\n    \n\n curl -T file https://example.com\n\n curl -T \"img[1-1000].png\" ftp://ftp.example.com/\n\n curl --upload-file \"{file1,file2}\" https://example.com\n    See also -G, --get and -I, --head.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--url"
+      ],
+      "description": "Specify a URL to fetch. This option is mostly handy when you want to\n      specify URL(s) in a config file.\n    If the given URL is missing a scheme name (such as\n        \"http://\" or \"ftp://\" etc) then curl will make a\n        guess based on the host. If the outermost sub-domain name matches DICT,\n        FTP, IMAP, LDAP, POP3 or SMTP then that protocol will be used, otherwise\n        HTTP will be used. Since 7.45.0 guessing can be disabled by setting a\n        default protocol, see --proto-default for details.\n    This option may be used any number of times. To control where\n        this URL is written, use the --output or the --remote-name options.\n    WARNING: On Windows, particular file:// accesses can be\n        converted to network accesses by the operating system. Beware!\n    Example:\n    \n\n curl --url https://example.com\n    See also -:, --next and -K, --config.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-B",
+        "--use-ascii"
+      ],
+      "description": "(FTP LDAP) Enable ASCII transfer. For FTP, this can also be enforced by\n      using a URL that ends with \";type=A\". This option causes data\n      sent to stdout to be in text mode for win32 systems.\n    Example:\n    \n\n curl -B ftp://example.com/README\n    See also --crlf and --data-ascii.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-A",
+        "--user-agent"
+      ],
+      "description": "(HTTP) Specify the User-Agent string to send to the HTTP server. To encode\n      blanks in the string, surround the string with single quote marks. This\n      header can also be set with the --header or the --proxy-header options.\n    If you give an empty argument to -A, --user-agent\n        (\"\"), it will remove the header completely from the request.\n        If you prefer a blank header, you can set it to a single space (\"\n        \").\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl -A \"Agent 007\" https://example.com\n    See also -H, --header and --proxy-header.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-u",
+        "--user"
+      ],
+      "description": "Specify the user name and password to use for server authentication.\n      Overrides --netrc and --netrc-optional.\n    If you simply specify the user name, curl will prompt for a\n        password.\n    The user name and passwords are split up on the first colon,\n        which makes it impossible to use a colon in the user name with this\n        option. The password can, still.\n    On systems where it works, curl will hide the given option\n        argument from process listings. This is not enough to protect\n        credentials from possibly getting seen by other users on the same system\n        as they will still be visible for a moment before cleared. Such\n        sensitive data should be retrieved from a file instead or similar and\n        never used in clear text in a command line.\n    When using Kerberos V5 with a Windows based server you should\n        include the Windows domain name in the user name, in order for the\n        server to successfully obtain a Kerberos Ticket. If you do not, then the\n        initial authentication handshake may fail.\n    When using NTLM, the user name can be specified simply as the\n        user name, without the domain, if there is a single domain and forest in\n        your setup for example.\n    To specify the domain name use either Down-Level Logon Name or\n        UPN (User Principal Name) formats. For example, EXAMPLE\\user and\n        user@example.com respectively.\n    If you use a Windows SSPI-enabled curl binary and perform\n        Kerberos V5, Negotiate, NTLM or Digest authentication then you can tell\n        curl to select the user name and password from your environment by\n        specifying a single colon with this option: \"-u :\".\n    If this option is used several times, the last one will be\n        used.\n    Example:\n    \n\n curl -u user:secret https://example.com\n    See also -n, --netrc and -K, --config.\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-v",
+        "--verbose"
+      ],
+      "description": "Makes curl verbose during the operation. Useful for debugging and seeing\n      what's going on \"under the hood\". A line starting with '>'\n      means \"header data\" sent by curl, '<' means \"header\n      data\" received by curl that is hidden in normal cases, and a line\n      starting with '*' means additional info provided by curl.\n    If you only want HTTP headers in the output, --include might\n        be the option you are looking for.\n    If you think this option still does not give you enough\n        details, consider using --trace or --trace-ascii instead.\n    This option is global and does not need to be specified for\n        each use of -:, --next.\n    Use --silent to make curl really quiet.\n    Example:\n    \n\n curl --verbose https://example.com\n    See also -i, --include. This option is mutually\n        exclusive to --trace and --trace-ascii.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-V",
+        "--version"
+      ],
+      "description": "Displays information about curl and the libcurl version it uses.\n    The first line includes the full version of curl, libcurl and\n        other 3rd party libraries linked with the executable.\n    The second line (starts with \"Protocols:\") shows all\n        protocols that libcurl reports to support.\n    The third line (starts with \"Features:\") shows\n        specific features libcurl reports to offer. Available features\n      include:\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-w",
+        "--write-out"
+      ],
+      "description": "Make curl display information on stdout after a completed transfer. The\n      format is a string that may contain plain text mixed with any number of\n      variables. The format can be specified as a literal \"string\", or\n      you can have curl read the format from a file with \"@filename\"\n      and to tell curl to read the format from stdin you write \"@-\".\n    The variables present in the output format will be substituted\n        by the value or text that curl thinks fit, as described below. All\n        variables are specified as %{variable_name} and to output a normal % you\n        just write them as %%. You can output a newline by using \\n, a carriage\n        return with \\r and a tab space with \\t.\n    The output will be written to standard output, but this can be\n        switched to standard error by using %{stderr}.\n    Output HTTP headers from the most recent request by using\n        %header{name} where name is the case insensitive name of\n        the header (without the trailing colon). The header contents are exactly\n        as sent over the network, with leading and trailing whitespace trimmed.\n        Added in curl 7.84.0.\n    NOTE: The %-symbol is a special symbol in the\n        win32-environment, where all occurrences of % must be doubled when using\n        this option.\n    The variables available are:\n  ",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--xattr"
+      ],
+      "description": "When saving output to a file, this option tells curl to store certain file\n      metadata in extended file attributes. Currently, the URL is stored in the\n      xdg.origin.url attribute and, for HTTP, the content type is stored in the\n      mime_type attribute. If the file system does not support extended\n      attributes, a warning is issued.\n    Example:\n    \n\n curl --xattr -o storage https://example.com\n    See also -R, --remote-time, -w, --write-out and\n        -v, --verbose.\n  ",
+      "takes_argument": false
     }
   ],
   "positional_arguments": [

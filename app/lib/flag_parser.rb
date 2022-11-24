@@ -132,16 +132,12 @@ class FlagParser
     def matches_document?
       return false if options_section.nil?
 
-      num_paragraphs = options_section.css('p').length
-      return false if num_paragraphs == 0
-
-      num_divs = options_section.css('div').length
-      (num_paragraphs - num_divs).abs > 10
+      flag_paragraphs.length > 0
     end
 
     def extract_flags
       flags = []
-      options_section.css('p').each do |paragraph|
+      flag_paragraphs.each do |paragraph|
         text = paragraph.text
         next unless text.start_with?('-')
 
@@ -155,6 +151,12 @@ class FlagParser
         )
       end
       flags
+    end
+
+    def flag_paragraphs
+      options_section.children.select do |child|
+        child.name == 'p' && child.text.start_with?('-')
+      end
     end
 
     def options_section
