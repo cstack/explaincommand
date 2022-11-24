@@ -37,6 +37,18 @@ class FlagParser
     }
   end
 
+  def self.parse_flag_description(description_element)
+    description = description_element.children[0].text.gsub(/\s+/, ' ').strip
+    max_length = 500
+    description_element.children.drop(1).each do |child|
+      to_add = child.text.gsub(/\s+/, ' ').strip
+      return description if description.length + to_add.length > max_length
+
+      description += " #{to_add}"
+    end
+    description
+  end
+
   class Format
     attr_reader :html
 
@@ -79,7 +91,7 @@ class FlagParser
       result = FlagParser.parse_flag_definition(aliases_text)
       aliases = result[:aliases]
       takes_argument = result[:takes_argument]
-      description = row.second.text
+      description = FlagParser.parse_flag_description(row.second)
       Flag.new(aliases:, description:, takes_argument:)
     end
   end
@@ -120,7 +132,7 @@ class FlagParser
         result = FlagParser.parse_flag_definition(paragraph.text)
         aliases = result[:aliases]
         takes_argument = result[:takes_argument]
-        description = paragraph.next.next.text
+        description = FlagParser.parse_flag_description(paragraph.next.next)
         Flag.new(aliases:, description:, takes_argument:)
       end
     end

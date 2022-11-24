@@ -91,5 +91,36 @@ describe Explainer do
         )
       end
     end
+
+    context 'homepage example command for curl' do
+      let(:cmd) { 'curl -F person=anonymous -F secret=@file.txt http://example.com/submit.cgi' }
+
+      it 'explains the command' do
+        expect(subject.annotations).to eq(
+          [
+            Annotation.new(
+              referenced_text: 'curl',
+              text: 'transfer a URL',
+              token_ids: [0]
+            ),
+            Annotation.new(
+              referenced_text: '-F person=anonymous',
+              text: "(HTTP SMTP IMAP) For HTTP protocol family, this lets curl emulate a filled-in form in which a user has pressed the submit button. This causes curl to POST data using the Content-Type multipart/form-data according to RFC 2388. For SMTP and IMAP protocols, this is the means to compose a multipart mail message to transmit. ",
+              token_ids: [1]
+            ),
+            Annotation.new(
+              referenced_text: '-F secret=@file.txt',
+              text: "(HTTP SMTP IMAP) For HTTP protocol family, this lets curl emulate a filled-in form in which a user has pressed the submit button. This causes curl to POST data using the Content-Type multipart/form-data according to RFC 2388. For SMTP and IMAP protocols, this is the means to compose a multipart mail message to transmit. ",
+              token_ids: [2]
+            ),
+            Annotation.new(
+              referenced_text: 'http://example.com/submit.cgi',
+              text: "[options / URLs]",
+              token_ids: [3]
+            )
+          ]
+        )
+      end
+    end
   end
 end
