@@ -1,23 +1,18 @@
 require 'rails_helper'
 
 describe FlagParser do
-  describe '.extract_flags_from_dl_in_description_section' do
-    subject { described_class.extract_flags_from_dl_in_description_section(html) }
-
-    let(:html) { Nokogiri::HTML(File.read('spec/fixtures/html_manpages/ls.html')) }
-
-    it 'parses flags from ls' do
-      expect(subject.length).to eq(59)
-    end
-  end
-
-  describe '.extract_flags_from_alternating_p_and_div_in_options_section' do
-    subject { described_class.extract_flags_from_alternating_p_and_div_in_options_section(html) }
-
-    let(:html) { Nokogiri::HTML(File.read('spec/fixtures/html_manpages/git-add.html')) }
-
-    it 'parses flags from git-add' do
-      expect(subject.length).to eq(20)
+  describe '.identify_format' do
+    it 'identifies right format for each command' do
+      [
+        ['ls', FlagParser::Format1],
+        ['git-add', FlagParser::Format2],
+        ['git-checkout', FlagParser::Format2],
+        ['docker-build', FlagParser::Format3]
+      ].each do |row|
+        command_name = row[0]
+        html = Nokogiri::HTML(File.read("spec/fixtures/html_manpages/#{command_name}.html"))
+        expect([command_name, described_class.identify_format(html)]).to eq(row)
+      end
     end
   end
 end

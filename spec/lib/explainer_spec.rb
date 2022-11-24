@@ -65,5 +65,31 @@ describe Explainer do
         )
       end
     end
+
+    context 'homepage example command for docker build' do
+      let(:cmd) { 'docker build -t getting-started .' }
+
+      it 'explains the command' do
+        expect(subject.annotations).to eq(
+          [
+            Annotation.new(
+              referenced_text: 'docker build',
+              text: 'Build an image from a Dockerfile',
+              token_ids: [0, 1]
+            ),
+            Annotation.new(
+              referenced_text: '-t getting-started',
+              text: 'Repository names (and optionally with tags) to be applied to the resulting image in case of success. Refer to docker-tag(1) for more information about valid tag names.',
+              token_ids: [2]
+            ),
+            Annotation.new(
+              referenced_text: '.',
+              text: 'Experimental',
+              token_ids: [3]
+            )
+          ]
+        )
+      end
+    end
   end
 end
