@@ -7,7 +7,18 @@ class UsageParser
       word.gsub('[', '').start_with?('-') ||
         word.include?('OPTION')
     end
-    interpret_ellipses(positional_argument_words)
+    args = positional_argument_words.map do |word|
+      {
+        name: word,
+        type: PositionalArgument::Type::BASIC
+      }
+    end
+    args = identify_comma_separated(args)
+    args = identify_repeated(args)
+    args = interpret_ellipses(args)
+    args.map do |arg|
+      PositionalArgument.new(**arg)
+    end
   end
 
   def self.group_by_brackets(words)
@@ -20,23 +31,44 @@ class UsageParser
     result
   end
 
-  def self.interpret_ellipses(words)
+  def self.interpret_ellipses(args)
     result = []
-    words.each do |word|
-      if word == '...'
-        result.last[:repeated] = true
-      elsif word.include?('...')
-        result << {
-          name: word,
-          repeated: true
-        }
+    args.each do |arg|
+      if arg[:name] == '...'
+        result.last[:type] = PositionalArgument::Type::REPEATED
       else
-        result << {
-          name: word,
-          repeated: false
-        }
+        result << arg
       end
     end
     result
+  end
+
+  def self.identify_comma_separated(args)
+    args.each do |arg|
+      match_result = arg[:name].match(/(.+)\[,.+\]\.\.\./)
+      if match_result
+        arg[:type] = PositionalArgument::Type::COMMA_SEPARTED
+        arg[:name] = match_result[1]
+      end
+    end
+    args
+  end
+
+  def self.identify_repeated(args)
+    args.each do |arg|
+      match_result = arg[:name].match(/(.+)\.\.\./)
+      if match_result && arg[:type] == PositionalArgument::Type::BASIC
+        arg[:type] = PositionalArgument::Type::REPEATED
+        arg[:name] = match_result[1].gsub('[', '').gsub(']', '').strip
+      end
+    end
+    args
+  end
+
+  def self.as_basic(word)
+    PositionalArgument.new(
+      name: word,
+      type: PositionalArgument::Type::BASIC
+    )
   end
 end

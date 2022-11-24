@@ -60,8 +60,8 @@
   ],
   "positional_arguments": [
     {
-      "name": "DIRECTORY...",
-      "repeated": true
+      "name": "DIRECTORY",
+      "type": "REPEATED"
     }
   ]
 }

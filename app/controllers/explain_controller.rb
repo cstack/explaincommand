@@ -2,8 +2,8 @@ class ExplainController < ApplicationController
   def index
     @examples = [
       'ls -ltr /tmp',
-      'docker build -t getting-started .',
-      'chmod 600 id_rsa_gh_deploy'
+      'chmod 600 id_rsa_gh_deploy',
+      'docker build -t getting-started .'
     ]
   end
 

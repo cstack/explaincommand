@@ -24,10 +24,10 @@ class Explainer
         )
       when :positional_argument
         argument_explanation = remaining_positional_arguments[0]
-        remaining_positional_arguments.shift unless argument_explanation[:repeated]
+        remaining_positional_arguments.shift unless argument_explanation.repeated?
         next if argument_explanation.nil?
 
-        argument_name = argument_explanation[:name]
+        argument_name = argument_explanation.name
 
         annotations << Annotation.new(
           referenced_text: token.original_text,

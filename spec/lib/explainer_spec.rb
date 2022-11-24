@@ -32,8 +32,34 @@ describe Explainer do
             ),
             Annotation.new(
               referenced_text: '/tmp',
-              text: '[FILE]...',
+              text: 'FILE',
               token_ids: [4]
+            )
+          ]
+        )
+      end
+    end
+
+    context 'homepage example command for chmod' do
+      let(:cmd) { 'chmod 600 id_rsa_gh_deploy' }
+
+      it 'explains the command' do
+        expect(subject.annotations).to eq(
+          [
+            Annotation.new(
+              referenced_text: 'chmod',
+              text: 'change file mode bits',
+              token_ids: [0]
+            ),
+            Annotation.new(
+              referenced_text: '600',
+              text: 'MODE',
+              token_ids: [1]
+            ),
+            Annotation.new(
+              referenced_text: 'id_rsa_gh_deploy',
+              text: 'FILE',
+              token_ids: [2]
             )
           ]
         )

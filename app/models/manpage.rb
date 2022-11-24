@@ -21,7 +21,7 @@ class Manpage
       Flag.from_hash(flag_hash)
     end
     ruby_hash[:positional_arguments] = ruby_hash[:positional_arguments].map do |arg|
-      arg.transform_keys(&:to_sym)
+      PositionalArgument.from_hash(arg)
     end
     new(**ruby_hash)
   end
@@ -31,7 +31,7 @@ class Manpage
       'command_name' => command_name.to_hash,
       'description' => description,
       'flags' => flags,
-      'positional_arguments' => positional_arguments
+      'positional_arguments' => positional_arguments.map(&:to_hash)
     }.to_json(*args)
   end
 

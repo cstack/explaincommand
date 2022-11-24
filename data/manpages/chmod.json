@@ -9,12 +9,12 @@
   ],
   "positional_arguments": [
     {
-      "name": "MODE[,MODE]...",
-      "repeated": true
+      "name": "MODE",
+      "type": "COMMA_SEPARTED"
     },
     {
-      "name": "FILE...",
-      "repeated": true
+      "name": "FILE",
+      "type": "REPEATED"
     }
   ]
 }

@@ -159,8 +159,8 @@
   ],
   "positional_arguments": [
     {
-      "name": "[<pathspec>...]",
-      "repeated": true
+      "name": "<pathspec>",
+      "type": "REPEATED"
     }
   ]
 }

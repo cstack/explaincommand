@@ -114,7 +114,7 @@ class CommandParser
     return tokens if manpage.nil?
 
     num_positional_arguments = manpage.positional_arguments.length
-    has_repeated_arg = manpage.positional_arguments.any? { |arg| arg[:repeated] }
+    has_repeated_arg = manpage.positional_arguments.any?(&:repeated?)
     tokens.map do |token|
       next token unless token[:type] == :unknown
       next token unless num_positional_arguments > 0 || has_repeated_arg

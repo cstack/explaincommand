@@ -146,19 +146,19 @@
   "positional_arguments": [
     {
       "name": "PATH",
-      "repeated": false
+      "type": "BASIC"
     },
     {
       "name": "|",
-      "repeated": false
+      "type": "BASIC"
     },
     {
       "name": "URL",
-      "repeated": false
+      "type": "BASIC"
     },
     {
       "name": "|",
-      "repeated": false
+      "type": "BASIC"
     }
   ]
 }

@@ -189,7 +189,7 @@
   "positional_arguments": [
     {
       "name": "[<branch>]",
-      "repeated": false
+      "type": "BASIC"
     }
   ]
 }

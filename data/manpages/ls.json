@@ -446,8 +446,8 @@
   ],
   "positional_arguments": [
     {
-      "name": "[FILE]...",
-      "repeated": true
+      "name": "FILE",
+      "type": "REPEATED"
     }
   ]
 }
