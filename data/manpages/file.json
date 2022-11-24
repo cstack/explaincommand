@@ -1,0 +1,16 @@
+{
+  "command_name": {
+    "main_command": "file",
+    "subcommand": null
+  },
+  "description": "file — determine\n    file type",
+  "flags": [
+
+  ],
+  "positional_arguments": [
+    {
+      "name": "file",
+      "type": "REPEATED"
+    }
+  ]
+}

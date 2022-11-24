@@ -1,9 +1,15 @@
 class UsageParser
+  def self.break_usage_pattern_into_words(text)
+    # Some manpages have nonbreaking spaces
+    normalized = text.gsub(/ /, ' ')
+    words = normalized.split
+    group_by_brackets(words)
+  end
+
   def self.extract_positional_arguments_from_usage_pattern(text:, command_name:)
-    words = text.split
+    words = break_usage_pattern_into_words(text)
     num_words_in_command = command_name.num_words
-    grouped_words = group_by_brackets(words)
-    positional_argument_words = grouped_words.drop(num_words_in_command).reject do |word|
+    positional_argument_words = words.drop(num_words_in_command).reject do |word|
       word_is_flag?(word) ||
         word.include?('OPTION') ||
         word.include?('Experimental')

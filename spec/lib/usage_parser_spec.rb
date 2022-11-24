@@ -149,4 +149,16 @@ describe UsageParser do
       end
     end
   end
+
+  describe '.break_usage_pattern_into_words' do
+    subject { described_class.break_usage_pattern_into_words(text) }
+
+    context 'when there is a nonbreaking space' do
+      let(:text) { 'file [-P name=value] file ...' }
+
+      it 'treats nonbreaking spaces as spaces' do
+        expect(subject).to eq(['file', '[-P name=value]', 'file', '...'])
+      end
+    end
+  end
 end
