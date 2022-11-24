@@ -1,0 +1,106 @@
+{
+  "command_name": {
+    "main_command": "cat",
+    "subcommand": null
+  },
+  "description": "concatenate files and print on the standard output",
+  "flags": [
+    {
+      "aliases": [
+        "-A",
+        "--show-all"
+      ],
+      "description": "equivalent to -vET",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-b",
+        "--number-nonblank"
+      ],
+      "description": "number nonempty output lines, overrides -n",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-e"
+      ],
+      "description": "equivalent to -vE",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-E",
+        "--show-ends"
+      ],
+      "description": "display $ at end of each line",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-n",
+        "--number"
+      ],
+      "description": "number all output lines",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-s",
+        "--squeeze-blank"
+      ],
+      "description": "suppress repeated empty output lines",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-t"
+      ],
+      "description": "equivalent to -vT",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-T",
+        "--show-tabs"
+      ],
+      "description": "display TAB characters as ^I",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-u"
+      ],
+      "description": "(ignored)",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-v",
+        "--show-nonprinting"
+      ],
+      "description": "use ^ and M- notation, except for LFD and TAB",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--help"
+      ],
+      "description": "display this help and exit",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--version"
+      ],
+      "description": "output version information and exit",
+      "takes_argument": false
+    }
+  ],
+  "positional_arguments": [
+    {
+      "name": "FILE",
+      "type": "REPEATED"
+    }
+  ]
+}

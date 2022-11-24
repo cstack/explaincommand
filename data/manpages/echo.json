@@ -1,0 +1,50 @@
+{
+  "command_name": {
+    "main_command": "echo",
+    "subcommand": null
+  },
+  "description": "display a line of text",
+  "flags": [
+    {
+      "aliases": [
+        "-n"
+      ],
+      "description": "do not output the trailing newline",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-e"
+      ],
+      "description": "enable interpretation of backslash escapes",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-E"
+      ],
+      "description": "disable interpretation of backslash escapes (default)",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--help"
+      ],
+      "description": "display this help and exit",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--version"
+      ],
+      "description": "output version information and exit",
+      "takes_argument": false
+    }
+  ],
+  "positional_arguments": [
+    {
+      "name": "STRING",
+      "type": "REPEATED"
+    }
+  ]
+}

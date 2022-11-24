@@ -1,0 +1,50 @@
+{
+  "command_name": {
+    "main_command": "curl",
+    "subcommand": null
+  },
+  "description": "transfer a URL",
+  "flags": [
+    {
+      "aliases": [
+        "--curves"
+      ],
+      "description": "with exactly the (EC) curve requested by the client, avoiding nontransparent client/server negotiations.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--data-raw"
+      ],
+      "description": "interpretation of the @ character. To post data purely binary, you should instead use the --data-binary option. To URL-encode the value of a form field you may use --data-urlencode.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--eprt"
+      ],
+      "description": "--no-eprt is an alias for --disable-eprt.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--epsv"
+      ],
+      "description": "--no-epsv is an alias for --disable-epsv.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--next"
+      ],
+      "description": "have their values survive over to the operation following the --next instruction. Global options include -v, --verbose, --trace, --trace-ascii and --fail-early.",
+      "takes_argument": true
+    }
+  ],
+  "positional_arguments": [
+    {
+      "name": "[options / URLs]",
+      "type": "BASIC"
+    }
+  ]
+}
