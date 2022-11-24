@@ -20,6 +20,23 @@ class FlagParser
     end
   end
 
+  def self.parse_flag_definition(text)
+    aliases = text.split(', ')
+    last_alias = aliases.pop
+    if last_alias.include?(' ')
+      aliases << last_alias.split.first
+      takes_argument = true
+    else
+      aliases << last_alias
+      takes_argument = false
+    end
+
+    {
+      aliases:,
+      takes_argument:
+    }
+  end
+
   class Format
     attr_reader :html
 
@@ -59,9 +76,11 @@ class FlagParser
 
     def flag_from_row(row)
       aliases_text = row.first.text.gsub(/\s+/, ' ')
-      aliases = aliases_text.split(', ')
+      result = FlagParser.parse_flag_definition(aliases_text)
+      aliases = result[:aliases]
+      takes_argument = result[:takes_argument]
       description = row.second.text
-      Flag.new(aliases:, description:, takes_argument: false)
+      Flag.new(aliases:, description:, takes_argument:)
     end
   end
 
@@ -98,9 +117,11 @@ class FlagParser
       options_section.css('p').select do |paragraph|
         paragraph.text.start_with?('-')
       end.map do |paragraph|
-        aliases = paragraph.text.split(', ')
+        result = FlagParser.parse_flag_definition(paragraph.text)
+        aliases = result[:aliases]
+        takes_argument = result[:takes_argument]
         description = paragraph.next.next.text
-        Flag.new(aliases:, description:, takes_argument: false)
+        Flag.new(aliases:, description:, takes_argument:)
       end
     end
   end
@@ -125,12 +146,9 @@ class FlagParser
         next unless text.start_with?('-')
 
         flag_usage = text.split("\n").first
-        aliases = flag_usage.split(', ')
-        parts = aliases.pop.split
-        last_alias = parts[0]
-        argument = parts.drop(1).join(' ')
-        aliases << last_alias
-        takes_argument = !argument.nil?
+        result = FlagParser.parse_flag_definition(flag_usage)
+        aliases = result[:aliases]
+        takes_argument = result[:takes_argument]
         description = text.split("\n").drop(1).join(' ').gsub(/\s+/, ' ').strip
         flags << Flag.new(
           aliases:, description:, takes_argument:

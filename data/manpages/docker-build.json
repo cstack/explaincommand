@@ -81,7 +81,7 @@
         "--help"
       ],
       "description": "Print usage statement",
-      "takes_argument": true
+      "takes_argument": false
     },
     {
       "aliases": [

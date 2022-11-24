@@ -39,17 +39,17 @@
     },
     {
       "aliases": [
-        "-b <new-branch>"
+        "-b"
       ],
       "description": "Create a new branch named <new-branch> and\n  start it at <start-point>; see git-branch(1) for\n  details.",
-      "takes_argument": false
+      "takes_argument": true
     },
     {
       "aliases": [
-        "-B <new-branch>"
+        "-B"
       ],
       "description": "Creates the branch <new-branch> and start it\n  at <start-point>; if it already exists, then reset it to\n  <start-point>. This is equivalent to running \"git\n  branch\" with \"-f\"; see git-branch(1) for details.",
-      "takes_argument": false
+      "takes_argument": true
     },
     {
       "aliases": [
@@ -76,10 +76,10 @@
     },
     {
       "aliases": [
-        "--guess is the default behavior. Use --no-guess to\n    disable it."
+        "--guess"
       ],
       "description": "The default behavior can be set via the checkout.guess\n    configuration variable.",
-      "takes_argument": false
+      "takes_argument": true
     },
     {
       "aliases": [
@@ -98,10 +98,10 @@
     },
     {
       "aliases": [
-        "--orphan <new-branch>"
+        "--orphan"
       ],
       "description": "Create a new orphan branch, named\n  <new-branch>, started from <start-point> and switch\n  to it. The first commit made on this new branch will have no parents and it\n  will be the root of a new history totally disconnected from all the other\n  branches and commits.\nThe index and the working tree are adjusted as if you had\n    previously run git checkout <start-point>. This allows you to\n    start a new history that records a set of paths similar to\n    <start-point> by easily running git commit -a to make\n    the root commit.\nThis can be useful when you want to publish the tree from a commit\n    without exposing its full history. You might want to do this to publish an\n    open source branch of a project whose current tree is \"clean\", but\n    whose full history contains proprietary or otherwise encumbered bits of\n    code.\nIf you want to start a disconnected history that records a set of\n    paths that is totally different from the one of <start-point>,\n    then you should clear the index and the working tree right after creating\n    the orphan branch by running git rm -rf . from the top level of the\n    working tree. Afterwards you will be ready to prepare your new files,\n    repopulating the working tree, by copying them from elsewhere, extracting a\n    tarball, etc.\n",
-      "takes_argument": false
+      "takes_argument": true
     },
     {
       "aliases": [

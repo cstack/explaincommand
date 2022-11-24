@@ -53,10 +53,10 @@
     {
       "aliases": [
         "-e",
-        "--exclude testname"
+        "--exclude"
       ],
       "description": "Exclude the test named in testname from the list of\n      tests made to determine the file type. Valid test names are:\n    \n      apptype\n      EMX\n          application type (only on EMX).\n      ascii\n      Various types of text files (this test will try to guess the text\n          encoding, irrespective of the setting of the ‘encoding’\n          option).\n      encoding\n      Different text encodings for soft magic tests.\n      tokens\n      Ignored for backwards compatibility.\n      cdf\n      Prints details of Compound Document Files.\n      compress\n      Checks for, and looks inside, compressed files.\n      csv\n      Checks Comma Separated Value files.\n      elf\n      Prints ELF file details, provided soft magic tests are enabled and the\n          elf magic is found.\n      json\n      Examines JSON (RFC-7159) files by parsing them for compliance.\n      soft\n      Consults magic files.\n      tar\n      Examines tar files by verifying the checksum of the 512 byte tar\n          header. Excluding this test can provide more detailed content\n          description by using the soft magic method.\n      text\n      A synonym for ‘ascii’.\n    \n  ",
-      "takes_argument": false
+      "takes_argument": true
     },
     {
       "aliases": [
@@ -75,18 +75,18 @@
     {
       "aliases": [
         "-F",
-        "--separator separator"
+        "--separator"
       ],
       "description": "Use the specified string as the separator between the filename and the\n      file result returned. Defaults to ‘:’.",
-      "takes_argument": false
+      "takes_argument": true
     },
     {
       "aliases": [
         "-f",
-        "--files-from namefile"
+        "--files-from"
       ],
       "description": "Read the names of the files to be examined from\n      namefile (one per line) before the argument list.\n      Either namefile or at least one filename argument\n      must be present; to test the standard input, use ‘-’ as a\n      filename argument. Please note that namefile is\n      unwrapped and the enclosed filenames are processed when this option is\n      encountered and before any further options processing is done. This allows\n      one to process multiple lists of files with different command line\n      arguments on the same file invocation. Thus if you\n      want to set the delimiter, you need to do it before you specify the list\n      of files, like: “-F @\n      -f namefile”, instead\n      of: “-f namefile\n      -F @”.",
-      "takes_argument": false
+      "takes_argument": true
     },
     {
       "aliases": [
@@ -139,10 +139,10 @@
     {
       "aliases": [
         "-m",
-        "--magic-file magicfiles"
+        "--magic-file"
       ],
       "description": "Specify an alternate list of files and directories containing magic. This\n      can be a single item, or a colon-separated list. If a compiled magic file\n      is found alongside a file or directory, it will be used instead.",
-      "takes_argument": false
+      "takes_argument": true
     },
     {
       "aliases": [
@@ -171,10 +171,10 @@
     {
       "aliases": [
         "-P",
-        "--parameter name=value"
+        "--parameter"
       ],
       "description": "Set various parameter limits.\n    \n      \n        Name\n        Default\n        Explanation\n      \n      \n        bytes\n        1048576\n        max number of bytes to read from file\n      \n      \n        elf_notes\n        256\n        max ELF notes processed\n      \n      \n        elf_phnum\n        2048\n        max ELF program sections processed\n      \n      \n        elf_shnum\n        32768\n        max ELF sections processed\n      \n      \n        encoding\n        65536\n        max number of bytes to scan for encoding evaluation\n      \n      \n        indir\n        50\n        recursion limit for indirect magic\n      \n      \n        name\n        50\n        use count limit for name/use magic\n      \n      \n        regex\n        8192\n        length limit for regex searches\n      \n    \n  ",
-      "takes_argument": false
+      "takes_argument": true
     },
     {
       "aliases": [

@@ -16,4 +16,41 @@ describe FlagParser do
       end
     end
   end
+
+  describe '.parse_flag_definition' do
+    subject { described_class.parse_flag_definition(text) }
+
+    context 'when flag has two aliases and an argument' do
+      let(:text) { '-m, --magic-file magicfiles' }
+
+      it 'parses out both aliases and the argument' do
+        expect(subject).to eq({
+                                aliases: ['-m', '--magic-file'],
+                                takes_argument: true
+                              })
+      end
+    end
+
+    context 'when flag has two aliases and a name value pair' do
+      let(:text) { '-P, --parameter name=value' }
+
+      it 'parses out both aliases and the argument' do
+        expect(subject).to eq({
+                                aliases: ['-P', '--parameter'],
+                                takes_argument: true
+                              })
+      end
+    end
+
+    context 'when flag takes a parameter using equal sign' do
+      let(:text) { '--reference=RFILE' }
+
+      it 'treats the whole thing as a flag without an argument' do
+        expect(subject).to eq({
+                                aliases: ['--reference=RFILE'],
+                                takes_argument: false
+                              })
+      end
+    end
+  end
 end
