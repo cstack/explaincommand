@@ -12,7 +12,8 @@ class FlagParser
     [
       Format1,
       Format2,
-      Format3
+      Format3,
+      Format4
     ].find do |format_class|
       format = format_class.new(html)
       format.matches_document?
@@ -25,28 +26,13 @@ class FlagParser
     def initialize(html)
       @html = html
     end
-  end
-
-  class Format1 < Format
-    # Flags are in a <dl> element in the description section
-    def matches_document?
-      !description_section.nil? && description_section.css('dl').length > 0
-    end
-
-    def extract_flags
-      rows = html.css('h1#DESCRIPTION').first.parent.css('dl').flat_map do |dl|
-        extract_description_list(dl)
-      end
-      rows_with_flags = rows.select do |row|
-        row.first.text.start_with?('-')
-      end
-      rows_with_flags.map do |row|
-        flag_from_row(row)
-      end
-    end
 
     def description_section
       html.css('h1#DESCRIPTION').first&.parent
+    end
+
+    def options_section
+      html.css('h1#OPTIONS').first&.parent
     end
 
     def extract_description_list(description_list)
@@ -79,6 +65,25 @@ class FlagParser
     end
   end
 
+  class Format1 < Format
+    # Flags are in a <dl> element in the description section
+    def matches_document?
+      !description_section.nil? && description_section.css('dl').length > 0
+    end
+
+    def extract_flags
+      rows = description_section.css('dl').flat_map do |dl|
+        extract_description_list(dl)
+      end
+      rows_with_flags = rows.select do |row|
+        row.first.text.start_with?('-')
+      end
+      rows_with_flags.map do |row|
+        flag_from_row(row)
+      end
+    end
+  end
+
   class Format2 < Format
     # Flags are in alternating <p> and <div> elements in the options section
     def matches_document?
@@ -97,10 +102,6 @@ class FlagParser
         description = paragraph.next.next.text
         Flag.new(aliases:, description:, takes_argument: false)
       end
-    end
-
-    def options_section
-      html.css('h1#OPTIONS').first&.parent
     end
   end
 
@@ -140,6 +141,25 @@ class FlagParser
 
     def options_section
       html.css('h1#OPTIONS').first&.parent
+    end
+  end
+
+  class Format4 < Format
+    # Flags are in a <dl> element in the OPTIONS section
+    def matches_document?
+      !options_section.nil? && options_section.css('dl').length > 0
+    end
+
+    def extract_flags
+      rows = options_section.css('dl').flat_map do |dl|
+        extract_description_list(dl)
+      end
+      rows_with_flags = rows.select do |row|
+        row.first.text.start_with?('-')
+      end
+      rows_with_flags.map do |row|
+        flag_from_row(row)
+      end
     end
   end
 end

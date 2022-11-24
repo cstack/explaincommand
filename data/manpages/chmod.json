@@ -5,7 +5,74 @@
   },
   "description": "change file mode bits",
   "flags": [
-
+    {
+      "aliases": [
+        "-c",
+        "--changes"
+      ],
+      "description": "like verbose but report only when a change is made",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-f",
+        "--silent",
+        "--quiet"
+      ],
+      "description": "suppress most error messages",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-v",
+        "--verbose"
+      ],
+      "description": "output a diagnostic for every file processed",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--no-preserve-root"
+      ],
+      "description": "do not treat '/' specially (the default)",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--preserve-root"
+      ],
+      "description": "fail to operate recursively on '/'",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--reference=RFILE"
+      ],
+      "description": "use RFILE's mode instead of MODE values",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-R",
+        "--recursive"
+      ],
+      "description": "change files and directories recursively",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--help"
+      ],
+      "description": "display this help and exit",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--version"
+      ],
+      "description": "output version information and exit",
+      "takes_argument": false
+    }
   ],
   "positional_arguments": [
     {

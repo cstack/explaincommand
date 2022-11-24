@@ -5,7 +5,240 @@
   },
   "description": "file — determine\n    file type",
   "flags": [
-
+    {
+      "aliases": [
+        "--apple"
+      ],
+      "description": "Causes the file command to output the file type\n      and creator code as used by older MacOS versions. The code consists of\n      eight letters, the first describing the file type, the latter the creator.\n      This option works properly only for file formats that have the apple-style\n      output defined.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-b",
+        "--brief"
+      ],
+      "description": "Do not prepend filenames to output lines (brief mode).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-C",
+        "--compile"
+      ],
+      "description": "Write a magic.mgc output file that contains a\n      pre-parsed version of the magic file or directory.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-c",
+        "--checking-printout"
+      ],
+      "description": "Cause a checking printout of the parsed form of the magic file. This is\n      usually used in conjunction with the -m option to\n      debug a new magic file before installing it.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-d"
+      ],
+      "description": "Prints internal debugging information to stderr.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-E"
+      ],
+      "description": "On filesystem errors (file not found etc), instead of handling the error\n      as regular output as POSIX mandates and keep going, issue an error message\n      and exit.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-e",
+        "--exclude testname"
+      ],
+      "description": "Exclude the test named in testname from the list of\n      tests made to determine the file type. Valid test names are:\n    \n      apptype\n      EMX\n          application type (only on EMX).\n      ascii\n      Various types of text files (this test will try to guess the text\n          encoding, irrespective of the setting of the ‘encoding’\n          option).\n      encoding\n      Different text encodings for soft magic tests.\n      tokens\n      Ignored for backwards compatibility.\n      cdf\n      Prints details of Compound Document Files.\n      compress\n      Checks for, and looks inside, compressed files.\n      csv\n      Checks Comma Separated Value files.\n      elf\n      Prints ELF file details, provided soft magic tests are enabled and the\n          elf magic is found.\n      json\n      Examines JSON (RFC-7159) files by parsing them for compliance.\n      soft\n      Consults magic files.\n      tar\n      Examines tar files by verifying the checksum of the 512 byte tar\n          header. Excluding this test can provide more detailed content\n          description by using the soft magic method.\n      text\n      A synonym for ‘ascii’.\n    \n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--exclude-quiet"
+      ],
+      "description": "Like --exclude but ignore tests that\n      file does not know about. This is intended for\n      compatibility with older versions of file.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--extension"
+      ],
+      "description": "Print a slash-separated list of valid extensions for the file type\n    found.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-F",
+        "--separator separator"
+      ],
+      "description": "Use the specified string as the separator between the filename and the\n      file result returned. Defaults to ‘:’.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-f",
+        "--files-from namefile"
+      ],
+      "description": "Read the names of the files to be examined from\n      namefile (one per line) before the argument list.\n      Either namefile or at least one filename argument\n      must be present; to test the standard input, use ‘-’ as a\n      filename argument. Please note that namefile is\n      unwrapped and the enclosed filenames are processed when this option is\n      encountered and before any further options processing is done. This allows\n      one to process multiple lists of files with different command line\n      arguments on the same file invocation. Thus if you\n      want to set the delimiter, you need to do it before you specify the list\n      of files, like: “-F @\n      -f namefile”, instead\n      of: “-f namefile\n      -F @”.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-h",
+        "--no-dereference"
+      ],
+      "description": "This option causes symlinks not to be followed (on systems that support\n      symbolic links). This is the default if the environment variable\n      POSIXLY_CORRECT is not defined.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-i",
+        "--mime"
+      ],
+      "description": "Causes the file command to output mime type\n      strings rather than the more traditional human readable ones. Thus it may\n      say ‘text/plain; charset=us-ascii’ rather than “ASCII\n      text”.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--mime-type",
+        "--mime-encoding"
+      ],
+      "description": "Like -i, but print only the specified\n    element(s).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-k",
+        "--keep-going"
+      ],
+      "description": "Don't stop at the first match, keep going. Subsequent matches will be have\n      the string ‘\\012- ’ prepended. (If you want a newline, see\n      the -r option.) The magic pattern with the highest\n      strength (see the -l option) comes first.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-l",
+        "--list"
+      ],
+      "description": "Shows a list of patterns and their strength sorted descending by\n      magic(5) strength which is used for the matching (see\n      also the -k option).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-L",
+        "--dereference"
+      ],
+      "description": "This option causes symlinks to be followed, as the like-named option in\n      ls(1) (on systems that support symbolic links). This is\n      the default if the environment variable\n      POSIXLY_CORRECT is defined.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-m",
+        "--magic-file magicfiles"
+      ],
+      "description": "Specify an alternate list of files and directories containing magic. This\n      can be a single item, or a colon-separated list. If a compiled magic file\n      is found alongside a file or directory, it will be used instead.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-N",
+        "--no-pad"
+      ],
+      "description": "Don't pad filenames so that they align in the output.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-n",
+        "--no-buffer"
+      ],
+      "description": "Force stdout to be flushed after checking each file. This is only useful\n      if checking a list of files. It is intended to be used by programs that\n      want filetype output from a pipe.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-p",
+        "--preserve-date"
+      ],
+      "description": "On systems that support utime(3) or\n      utimes(2), attempt to preserve the access time of files\n      analyzed, to pretend that file never read\n    them.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-P",
+        "--parameter name=value"
+      ],
+      "description": "Set various parameter limits.\n    \n      \n        Name\n        Default\n        Explanation\n      \n      \n        bytes\n        1048576\n        max number of bytes to read from file\n      \n      \n        elf_notes\n        256\n        max ELF notes processed\n      \n      \n        elf_phnum\n        2048\n        max ELF program sections processed\n      \n      \n        elf_shnum\n        32768\n        max ELF sections processed\n      \n      \n        encoding\n        65536\n        max number of bytes to scan for encoding evaluation\n      \n      \n        indir\n        50\n        recursion limit for indirect magic\n      \n      \n        name\n        50\n        use count limit for name/use magic\n      \n      \n        regex\n        8192\n        length limit for regex searches\n      \n    \n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-r",
+        "--raw"
+      ],
+      "description": "Don't translate unprintable characters to \\ooo. Normally\n      file translates unprintable characters to their\n      octal representation.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-s",
+        "--special-files"
+      ],
+      "description": "Normally, file only attempts to read and determine\n      the type of argument files which stat(2) reports are\n      ordinary files. This prevents problems, because reading special files may\n      have peculiar consequences. Specifying the -s\n      option causes file to also read argument files\n      which are block or character special files. This is useful for determining\n      the filesystem types of the data in raw disk partitions, which are block\n      special files. This option also causes file to\n      disregard the file size as reported by stat(2) since on\n      some systems it reports a zero size for raw disk partitions.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-S",
+        "--no-sandbox"
+      ],
+      "description": "On systems where libseccomp\n      (https://github.com/seccomp/libseccomp) is\n      available, the -S option disables sandboxing which\n      is enabled by default. This option is needed for\n      file to execute external decompressing programs,\n      i.e. when the -z option is specified and the\n      built-in decompressors are not available. On systems where sandboxing is\n      not available, this option has no effect.\n    Note:\n        This Debian version of file was built without seccomp support, so this\n        option has no effect.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-v",
+        "--version"
+      ],
+      "description": "Print the version of the program and exit.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-z",
+        "--uncompress"
+      ],
+      "description": "Try to look inside compressed files.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-Z",
+        "--uncompress-noreport"
+      ],
+      "description": "Try to look inside compressed files, but report information about the\n      contents only not the compression.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-0",
+        "--print0"
+      ],
+      "description": "Output a null character ‘\\0’ after the end of the filename.\n      Nice to cut(1) the output. This does not affect the\n      separator, which is still printed.\n    If this option is repeated more than once, then\n        file prints just the filename followed by a NUL\n        followed by the description (or ERROR: text) followed by a second NUL\n        for each entry.\n  ",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--help"
+      ],
+      "description": "Print a help message and exit.",
+      "takes_argument": false
+    }
   ],
   "positional_arguments": [
     {

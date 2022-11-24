@@ -7,7 +7,8 @@ describe FlagParser do
         ['ls', FlagParser::Format1],
         ['git-add', FlagParser::Format2],
         ['git-checkout', FlagParser::Format2],
-        ['docker-build', FlagParser::Format3]
+        ['docker-build', FlagParser::Format3],
+        ['chmod', FlagParser::Format4]
       ].each do |row|
         command_name = row[0]
         html = Nokogiri::HTML(File.read("spec/fixtures/html_manpages/#{command_name}.html"))
