@@ -105,17 +105,17 @@ describe Explainer do
             ),
             Annotation.new(
               referenced_text: '-F person=anonymous',
-              text: "(HTTP SMTP IMAP) For HTTP protocol family, this lets curl emulate a filled-in form in which a user has pressed the submit button. This causes curl to POST data using the Content-Type multipart/form-data according to RFC 2388. For SMTP and IMAP protocols, this is the means to compose a multipart mail message to transmit. ",
+              text: '(HTTP SMTP IMAP) For HTTP protocol family, this lets curl emulate a filled-in form in which a user has pressed the submit button. This causes curl to POST data using the Content-Type multipart/form-data according to RFC 2388. For SMTP and IMAP protocols, this is the means to compose a multipart mail message to transmit. ',
               token_ids: [1]
             ),
             Annotation.new(
               referenced_text: '-F secret=@file.txt',
-              text: "(HTTP SMTP IMAP) For HTTP protocol family, this lets curl emulate a filled-in form in which a user has pressed the submit button. This causes curl to POST data using the Content-Type multipart/form-data according to RFC 2388. For SMTP and IMAP protocols, this is the means to compose a multipart mail message to transmit. ",
+              text: '(HTTP SMTP IMAP) For HTTP protocol family, this lets curl emulate a filled-in form in which a user has pressed the submit button. This causes curl to POST data using the Content-Type multipart/form-data according to RFC 2388. For SMTP and IMAP protocols, this is the means to compose a multipart mail message to transmit. ',
               token_ids: [2]
             ),
             Annotation.new(
               referenced_text: 'http://example.com/submit.cgi',
-              text: "[options / URLs]",
+              text: '[options / URLs]',
               token_ids: [3]
             )
           ]

@@ -46,10 +46,10 @@
     },
     {
       "aliases": [
-        "--reference=RFILE"
+        "--reference"
       ],
       "description": "use RFILE's mode instead of MODE values",
-      "takes_argument": false
+      "takes_argument": true
     },
     {
       "aliases": [

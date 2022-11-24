@@ -32,6 +32,17 @@ describe FlagParser do
       end
     end
 
+    context 'when flag takes a parameter using equal sign' do
+      let(:text) { '--reference=RFILE' }
+
+      it 'parses out both aliases and the argument' do
+        expect(subject).to eq({
+                                aliases: ['--reference'],
+                                takes_argument: true
+                              })
+      end
+    end
+
     context 'when flag has two aliases and a name value pair' do
       let(:text) { '-P, --parameter name=value' }
 
@@ -39,17 +50,6 @@ describe FlagParser do
         expect(subject).to eq({
                                 aliases: ['-P', '--parameter'],
                                 takes_argument: true
-                              })
-      end
-    end
-
-    context 'when flag takes a parameter using equal sign' do
-      let(:text) { '--reference=RFILE' }
-
-      it 'treats the whole thing as a flag without an argument' do
-        expect(subject).to eq({
-                                aliases: ['--reference=RFILE'],
-                                takes_argument: false
                               })
       end
     end

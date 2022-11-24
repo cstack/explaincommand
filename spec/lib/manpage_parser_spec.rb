@@ -8,8 +8,6 @@ describe ManpageParser do
       command_parts = command.split('-')
       command_name = Command::Name.new(command_parts[0], command_parts[1])
       context filename do
-        next unless command == 'curl'
-
         it 'parses as expected' do
           html_string = File.read(path)
           manpage = described_class.parse_html_string(html_string:, command_name:)

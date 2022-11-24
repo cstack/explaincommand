@@ -26,6 +26,9 @@ class FlagParser
     if last_alias.include?(' ')
       aliases << last_alias.split.first
       takes_argument = true
+    elsif last_alias.include?('=')
+      aliases << last_alias.split('=').first
+      takes_argument = true
     else
       aliases << last_alias
       takes_argument = false
@@ -169,10 +172,6 @@ class FlagParser
       options_section.children.select do |child|
         child.name == 'p' && child.text.start_with?('-')
       end
-    end
-
-    def options_section
-      html.css('h1#OPTIONS').first&.parent
     end
   end
 

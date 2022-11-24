@@ -25,7 +25,7 @@
       "aliases": [
         "--author"
       ],
-      "description": "with -l, print the author of each file",
+      "description": "with -l , print the author of each file",
       "takes_argument": false
     },
     {
@@ -38,10 +38,10 @@
     },
     {
       "aliases": [
-        "--block-size=SIZE"
+        "--block-size"
       ],
-      "description": "with -l, scale sizes by SIZE when printing them; e.g.,\n      '--block-size=M'; see SIZE format below",
-      "takes_argument": false
+      "description": "with -l , scale sizes by SIZE when printing them; e.g., '--block-size=M'; see SIZE format below",
+      "takes_argument": true
     },
     {
       "aliases": [
@@ -55,7 +55,7 @@
       "aliases": [
         "-c"
       ],
-      "description": "with -lt: sort by, and show, ctime (time of last modification of\n      file status information); with -l: show ctime and sort by name;\n      otherwise: sort by ctime, newest first",
+      "description": "with -lt : sort by, and show, ctime (time of last modification of file status information); with -l : show ctime and sort by name; otherwise: sort by ctime, newest first",
       "takes_argument": false
     },
     {
@@ -67,10 +67,10 @@
     },
     {
       "aliases": [
-        "--color[=WHEN]"
+        "--color["
       ],
-      "description": "colorize the output; WHEN can be 'always' (default if omitted), 'auto', or\n      'never'; more info below",
-      "takes_argument": false
+      "description": "colorize the output; WHEN can be 'always' (default if omitted), 'auto', or 'never'; more info below",
+      "takes_argument": true
     },
     {
       "aliases": [
@@ -92,7 +92,7 @@
       "aliases": [
         "-f"
       ],
-      "description": "do not sort, enable -aU, disable -ls --color",
+      "description": "do not sort, enable -aU , disable -ls  --color",
       "takes_argument": false
     },
     {
@@ -112,23 +112,23 @@
     },
     {
       "aliases": [
-        "--format=WORD"
+        "--format"
       ],
-      "description": "across -x, commas -m, horizontal -x, long -l,\n      single-column -1, verbose -l, vertical -C",
-      "takes_argument": false
+      "description": "across -x , commas -m , horizontal -x , long -l , single-column -1 , verbose -l , vertical -C",
+      "takes_argument": true
     },
     {
       "aliases": [
         "--full-time"
       ],
-      "description": "like -l --time-style=full-iso",
+      "description": "like -l  --time-style = full-iso",
       "takes_argument": false
     },
     {
       "aliases": [
         "-g"
       ],
-      "description": "like -l, but do not list owner",
+      "description": "like -l , but do not list owner",
       "takes_argument": false
     },
     {
@@ -151,7 +151,7 @@
         "-h",
         "--human-readable"
       ],
-      "description": "with -l and -s, print sizes like 1K 234M 2G etc.",
+      "description": "with -l and -s , print sizes like 1K 234M 2G etc.",
       "takes_argument": false
     },
     {
@@ -178,24 +178,24 @@
     },
     {
       "aliases": [
-        "--hide=PATTERN"
+        "--hide"
       ],
-      "description": "do not list implied entries matching shell PATTERN (overridden by\n      -a or -A)",
-      "takes_argument": false
+      "description": "do not list implied entries matching shell PATTERN (overridden by -a or -A )",
+      "takes_argument": true
     },
     {
       "aliases": [
-        "--hyperlink[=WHEN]"
+        "--hyperlink["
       ],
-      "description": "hyperlink file names; WHEN can be 'always' (default if omitted), 'auto',\n      or 'never'",
-      "takes_argument": false
+      "description": "hyperlink file names; WHEN can be 'always' (default if omitted), 'auto', or 'never'",
+      "takes_argument": true
     },
     {
       "aliases": [
-        "--indicator-style=WORD"
+        "--indicator-style"
       ],
-      "description": "append indicator with style WORD to entry names: none (default), slash\n      (-p), file-type (--file-type), classify (-F)",
-      "takes_argument": false
+      "description": "append indicator with style WORD to entry names: none (default), slash ( -p ), file-type ( --file-type ), classify ( -F )",
+      "takes_argument": true
     },
     {
       "aliases": [
@@ -208,17 +208,17 @@
     {
       "aliases": [
         "-I",
-        "--ignore=PATTERN"
+        "--ignore"
       ],
       "description": "do not list implied entries matching shell PATTERN",
-      "takes_argument": false
+      "takes_argument": true
     },
     {
       "aliases": [
         "-k",
         "--kibibytes"
       ],
-      "description": "default to 1024-byte blocks for disk usage; used only with -s and\n      per directory totals",
+      "description": "default to 1024-byte blocks for disk usage; used only with -s and per directory totals",
       "takes_argument": false
     },
     {
@@ -233,7 +233,7 @@
         "-L",
         "--dereference"
       ],
-      "description": "when showing file information for a symbolic link, show information for\n      the file the link references rather than for the link itself",
+      "description": "when showing file information for a symbolic link, show information for the file the link references rather than for the link itself",
       "takes_argument": false
     },
     {
@@ -248,7 +248,7 @@
         "-n",
         "--numeric-uid-gid"
       ],
-      "description": "like -l, but list numeric user and group IDs",
+      "description": "like -l , but list numeric user and group IDs",
       "takes_argument": false
     },
     {
@@ -263,16 +263,16 @@
       "aliases": [
         "-o"
       ],
-      "description": "like -l, but do not list group information",
+      "description": "like -l , but do not list group information",
       "takes_argument": false
     },
     {
       "aliases": [
         "-p",
-        "--indicator-style=slash"
+        "--indicator-style"
       ],
       "description": "append / indicator to directories",
-      "takes_argument": false
+      "takes_argument": true
     },
     {
       "aliases": [
@@ -286,7 +286,7 @@
       "aliases": [
         "--show-control-chars"
       ],
-      "description": "show nongraphic characters as-is (the default, unless program is 'ls' and\n      output is a terminal)",
+      "description": "show nongraphic characters as-is (the default, unless program is 'ls' and output is a terminal)",
       "takes_argument": false
     },
     {
@@ -299,10 +299,10 @@
     },
     {
       "aliases": [
-        "--quoting-style=WORD"
+        "--quoting-style"
       ],
-      "description": "use quoting style WORD for entry names: literal, locale, shell,\n      shell-always, shell-escape, shell-escape-always, c, escape (overrides\n      QUOTING_STYLE environment variable)",
-      "takes_argument": false
+      "description": "use quoting style WORD for entry names: literal, locale, shell, shell-always, shell-escape, shell-escape-always, c, escape (overrides QUOTING_STYLE environment variable)",
+      "takes_argument": true
     },
     {
       "aliases": [
@@ -337,24 +337,24 @@
     },
     {
       "aliases": [
-        "--sort=WORD"
+        "--sort"
       ],
-      "description": "sort by WORD instead of name: none (-U), size (-S), time\n      (-t), version (-v), extension (-X)",
-      "takes_argument": false
+      "description": "sort by WORD instead of name: none ( -U ), size ( -S ), time ( -t ), version ( -v ), extension ( -X )",
+      "takes_argument": true
     },
     {
       "aliases": [
-        "--time=WORD"
+        "--time"
       ],
-      "description": "change the default of using modification times; access time (-u):\n      atime, access, use; change time (-c): ctime, status; birth time:\n      birth, creation;",
-      "takes_argument": false
+      "description": "change the default of using modification times; access time ( -u ): atime, access, use; change time ( -c ): ctime, status; birth time: birth, creation;",
+      "takes_argument": true
     },
     {
       "aliases": [
-        "--time-style=TIME_STYLE"
+        "--time-style"
       ],
-      "description": "time/date format with -l; see TIME_STYLE below",
-      "takes_argument": false
+      "description": "time/date format with -l ; see TIME_STYLE below",
+      "takes_argument": true
     },
     {
       "aliases": [
@@ -366,16 +366,16 @@
     {
       "aliases": [
         "-T",
-        "--tabsize=COLS"
+        "--tabsize"
       ],
       "description": "assume tab stops at each COLS instead of 8",
-      "takes_argument": false
+      "takes_argument": true
     },
     {
       "aliases": [
         "-u"
       ],
-      "description": "with -lt: sort by, and show, access time; with -l: show\n      access time and sort by name; otherwise: sort by access time, newest\n    first",
+      "description": "with -lt : sort by, and show, access time; with -l : show access time and sort by name; otherwise: sort by access time, newest first",
       "takes_argument": false
     },
     {
@@ -395,10 +395,10 @@
     {
       "aliases": [
         "-w",
-        "--width=COLS"
+        "--width"
       ],
       "description": "set output width to COLS. 0 means no limit",
-      "takes_argument": false
+      "takes_argument": true
     },
     {
       "aliases": [
