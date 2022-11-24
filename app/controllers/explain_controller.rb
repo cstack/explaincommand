@@ -3,7 +3,8 @@ class ExplainController < ApplicationController
     @examples = [
       'ls -ltr /tmp',
       'chmod 600 id_rsa_gh_deploy',
-      'docker build -t getting-started .'
+      'docker build -t getting-started .',
+      'curl -o /dev/null --silent -Iw "%{http_code}" https://example.com/my.remote.tarball.gz'
     ]
   end
 
