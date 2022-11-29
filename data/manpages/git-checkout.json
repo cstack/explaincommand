@@ -54,7 +54,7 @@
     {
       "aliases": [
         "-t",
-        "--track["
+        "--track"
       ],
       "description": "When creating a new branch, set up \"upstream\" configuration. See \"--track\" in git-branch (1) for details.",
       "takes_argument": true

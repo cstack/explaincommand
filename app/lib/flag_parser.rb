@@ -21,17 +21,20 @@ class FlagParser
   end
 
   def self.parse_flag_definition(text)
+    takes_argument = false
     aliases = text.split(', ')
-    last_alias = aliases.pop
-    if last_alias.include?(' ')
-      aliases << last_alias.split.first
+    if aliases.last.include?(' ')
+      last_part = aliases.pop
+      aliases << last_part.split.first
       takes_argument = true
-    elsif last_alias.include?('=')
-      aliases << last_alias.split('=').first
-      takes_argument = true
-    else
-      aliases << last_alias
-      takes_argument = false
+    end
+    aliases = aliases.map do |alias_definition|
+      if (match_result = alias_definition.match(/(.+)\[=(.+)\]/)) || (match_result = alias_definition.match(/(.+)=(.+)/))
+        takes_argument = true
+        match_result[1]
+      else
+        alias_definition
+      end
     end
 
     {

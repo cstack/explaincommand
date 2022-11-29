@@ -67,7 +67,7 @@
     },
     {
       "aliases": [
-        "--color["
+        "--color"
       ],
       "description": "colorize the output; WHEN can be 'always' (default if omitted), 'auto', or 'never'; more info below",
       "takes_argument": true
@@ -185,7 +185,7 @@
     },
     {
       "aliases": [
-        "--hyperlink["
+        "--hyperlink"
       ],
       "description": "hyperlink file names; WHEN can be 'always' (default if omitted), 'auto', or 'never'",
       "takes_argument": true

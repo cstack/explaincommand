@@ -38,7 +38,7 @@
     },
     {
       "aliases": [
-        "--context["
+        "--context"
       ],
       "description": "like -Z , or if CTX is specified then set the SELinux or SMACK security context to CTX",
       "takes_argument": true

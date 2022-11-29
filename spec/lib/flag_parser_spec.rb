@@ -4,12 +4,13 @@ describe FlagParser do
   describe '.identify_format' do
     it 'identifies right format for each command' do
       [
-        ['ls', FlagParser::Format1],
+        ['chmod', FlagParser::Format4],
+        ['curl', FlagParser::Format4],
+        ['docker-build', FlagParser::Format3],
         ['git-add', FlagParser::Format2],
         ['git-checkout', FlagParser::Format2],
-        ['docker-build', FlagParser::Format3],
-        ['chmod', FlagParser::Format4],
-        ['curl', FlagParser::Format4]
+        ['grep', FlagParser::Format4],
+        ['ls', FlagParser::Format1]
       ].each do |row|
         command_name = row[0]
         html = Nokogiri::HTML(File.read("spec/fixtures/html_manpages/#{command_name}.html"))
@@ -51,6 +52,19 @@ describe FlagParser do
                                 aliases: ['-P', '--parameter'],
                                 takes_argument: true
                               })
+      end
+    end
+
+    context 'when flag takes an optional argument' do
+      let(:text) { '--color[=WHEN], --colour[=WHEN]' }
+
+      it 'parses out both aliases and the argument' do
+        expect(subject).to eq(
+          {
+            aliases: ['--color', '--colour'],
+            takes_argument: true
+          }
+        )
       end
     end
   end
