@@ -1,0 +1,392 @@
+{
+  "command_name": {
+    "main_command": "grep",
+    "subcommand": null
+  },
+  "description": "print lines that match patterns",
+  "flags": [
+    {
+      "aliases": [
+        "--help"
+      ],
+      "description": "Output a usage message and exit.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-V",
+        "--version"
+      ],
+      "description": "Output the version number of grep and exit.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-E",
+        "--extended-regexp"
+      ],
+      "description": "Interpret PATTERNS as extended regular expressions (EREs, see below).",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-F",
+        "--fixed-strings"
+      ],
+      "description": "Interpret PATTERNS as fixed strings, not regular expressions.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-G",
+        "--basic-regexp"
+      ],
+      "description": "Interpret PATTERNS as basic regular expressions (BREs, see below). This is the default.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-P",
+        "--perl-regexp"
+      ],
+      "description": "Interpret I<PATTERNS> as Perl-compatible regular expressions (PCREs). This option is experimental when combined with the -z ( --null-data ) option, and grep -P may warn of unimplemented features.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-e PATTERNS",
+        "--regexp"
+      ],
+      "description": "Use PATTERNS as the patterns. If this option is used multiple times or is combined with the -f ( --file ) option, search for all patterns given. This option can be used to protect a pattern beginning with “-”.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-f FILE",
+        "--file"
+      ],
+      "description": "Obtain patterns from FILE , one per line. If this option is used multiple times or is combined with the -e ( --regexp ) option, search for all patterns given. The empty file contains zero patterns, and therefore matches nothing.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-i",
+        "--ignore-case"
+      ],
+      "description": "Ignore case distinctions in patterns and input data, so that characters that differ only in case match each other.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--no-ignore-case"
+      ],
+      "description": "Do not ignore case distinctions in patterns and input data. This is the default. This option is useful for passing to shell scripts that already use -i , to cancel its effects because the two options override each other.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-v",
+        "--invert-match"
+      ],
+      "description": "Invert the sense of matching, to select non-matching lines.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-w",
+        "--word-regexp"
+      ],
+      "description": "Select only those lines containing matches that form whole words. The test is that the matching substring must either be at the beginning of the line, or preceded by a non-word constituent character. Similarly, it must be either at the end of the line or followed by a non-word constituent character. Word-constituent characters are letters, digits, and the underscore. This option has no effect if -x is also specified.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-x",
+        "--line-regexp"
+      ],
+      "description": "Select only those matches that exactly match the whole line. For a regular expression pattern, this is like parenthesizing the pattern and then surrounding it with ^ and $ .",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-y"
+      ],
+      "description": "Obsolete synonym for -i .",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-c",
+        "--count"
+      ],
+      "description": "Suppress normal output; instead print a count of matching lines for each input file. With the -v , --invert-match option (see below), count non-matching lines.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--color[=WHEN]",
+        "--colour["
+      ],
+      "description": "Surround the matched (non-empty) strings, matching lines, context lines, file names, line numbers, byte offsets, and separators (for fields and groups of context lines) with escape sequences to display them in color on the terminal. The colors are defined by the environment variable GREP_COLORS . The deprecated environment variable GREP_COLOR is still supported, but its setting does not have priority. WHEN is never , always , or auto .",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-L",
+        "--files-without-match"
+      ],
+      "description": "Suppress normal output; instead print the name of each input file from which no output would normally have been printed.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-l",
+        "--files-with-matches"
+      ],
+      "description": "Suppress normal output; instead print the name of each input file from which output would normally have been printed. Scanning each input file stops upon first match.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-m NUM",
+        "--max-count"
+      ],
+      "description": "Stop reading a file after NUM matching lines. If the input is standard input from a regular file, and NUM matching lines are output, grep ensures that the standard input is positioned to just after the last matching line before exiting, regardless of the presence of trailing context lines. This enables a calling process to resume a search. When grep stops after NUM matching lines, it outputs any trailing context lines. When the -c or --count option is also used, grep",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-o",
+        "--only-matching"
+      ],
+      "description": "Print only the matched (non-empty) parts of a matching line, with each such part on a separate output line.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-q",
+        "--quiet",
+        "--silent"
+      ],
+      "description": "Quiet; do not write anything to standard output. Exit immediately with zero status if any match is found, even if an error was detected. Also see the -s or --no-messages option.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-s",
+        "--no-messages"
+      ],
+      "description": "Suppress error messages about nonexistent or unreadable files.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-b",
+        "--byte-offset"
+      ],
+      "description": "Print the 0-based byte offset within the input file before each line of output. If -o ( --only-matching ) is specified, print the offset of the matching part itself.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-H",
+        "--with-filename"
+      ],
+      "description": "Print the file name for each match. This is the default when there is more than one file to search. This is a GNU extension.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-h",
+        "--no-filename"
+      ],
+      "description": "Suppress the prefixing of file names on output. This is the default when there is only one file (or only standard input) to search.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--label"
+      ],
+      "description": "Display input actually coming from standard input as input coming from file LABEL . This can be useful for commands that transform a file's contents before searching, e.g., gzip -cd foo.gz | grep --label=foo -H 'some pattern' . See also the -H option.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-n",
+        "--line-number"
+      ],
+      "description": "Prefix each line of output with the 1-based line number within its input file.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-T",
+        "--initial-tab"
+      ],
+      "description": "Make sure that the first character of actual line content lies on a tab stop, so that the alignment of tabs looks normal. This is useful with options that prefix their output to the actual content: -H , -n , and -b . In order to improve the probability that lines from a single file will all start at the same column, this also causes the line number and byte offset (if present) to be printed in a minimum size field width.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-Z",
+        "--null"
+      ],
+      "description": "Output a zero byte (the ASCII NUL character) instead of the character that normally follows a file name. For example, grep -lZ outputs a zero byte after each file name instead of the usual newline. This option makes the output unambiguous, even in the presence of file names containing unusual characters like newlines. This option can be used with commands like find -print0 , perl -0 , sort -z , and xargs -0 to process arbitrary file names, even those that contain newline characters.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-A NUM",
+        "--after-context"
+      ],
+      "description": "Print NUM lines of trailing context after matching lines. Places a line containing a group separator ( -- ) between contiguous groups of matches. With the -o or --only-matching option, this has no effect and a warning is given.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-B NUM",
+        "--before-context"
+      ],
+      "description": "Print NUM lines of leading context before matching lines. Places a line containing a group separator ( -- ) between contiguous groups of matches. With the -o or --only-matching option, this has no effect and a warning is given.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-C NUM",
+        "-NUM",
+        "--context"
+      ],
+      "description": "Print NUM lines of output context. Places a line containing a group separator ( -- ) between contiguous groups of matches. With the -o or --only-matching option, this has no effect and a warning is given.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--group-separator"
+      ],
+      "description": "When -A , -B , or -C are in use, print SEP instead of -- between groups of lines.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--no-group-separator"
+      ],
+      "description": "When -A , -B , or -C are in use, do not print a separator between groups of lines.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-a",
+        "--text"
+      ],
+      "description": "Process a binary file as if it were text; this is equivalent to the --binary-files=text option.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--binary-files"
+      ],
+      "description": "If a file's data or metadata indicate that the file contains binary data, assume that the file is of type TYPE . Non-text bytes indicate binary data; these are either output bytes that are improperly encoded for the current locale, or null input bytes when the -z option is not given.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-D ACTION",
+        "--devices"
+      ],
+      "description": "If an input file is a device, FIFO or socket, use ACTION to process it. By default, ACTION is read , which means that devices are read just as if they were ordinary files. If ACTION is skip , devices are silently skipped.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-d ACTION",
+        "--directories"
+      ],
+      "description": "If an input file is a directory, use ACTION to process it. By default, ACTION is read , i.e., read directories just as if they were ordinary files. If ACTION is skip , silently skip directories. If ACTION is recurse , read all files under each directory, recursively, following symbolic links only if they are on the command line. This is equivalent to the -r option.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--exclude"
+      ],
+      "description": "Skip any command-line file with a name suffix that matches the pattern GLOB , using wildcard matching; a name suffix is either the whole name, or a trailing part that starts with a non-slash character immediately after a slash ( / ) in the name. When searching recursively, skip any subfile whose base name matches GLOB ; the base name is the part after the last slash. A pattern can use * , ? , and [ ... ] as wildcards, and \\ to quote a wildcard or backslash character literally.",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--exclude-from"
+      ],
+      "description": "Skip files whose base name matches any of the file-name globs read from FILE (using wildcard matching as described under --exclude ).",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "--exclude-dir"
+      ],
+      "description": "Skip any command-line directory with a name suffix that matches the pattern GLOB . When searching recursively, skip any subdirectory whose base name matches GLOB . Ignore any redundant trailing slashes in GLOB .",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-I"
+      ],
+      "description": "Process a binary file as if it did not contain matching data; this is equivalent to the --binary-files=without-match option.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--include"
+      ],
+      "description": "Search only files whose base name matches GLOB (using wildcard matching as described under --exclude ). If contradictory --include and --exclude options are given, the last matching one wins. If no --include or --exclude options match, a file is included unless the first such option is --include .",
+      "takes_argument": true
+    },
+    {
+      "aliases": [
+        "-r",
+        "--recursive"
+      ],
+      "description": "Read all files under each directory, recursively, following symbolic links only if they are on the command line. Note that if no file operand is given, B<grep> searches the working directory. This is equivalent to the -d recurse option.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-R",
+        "--dereference-recursive"
+      ],
+      "description": "Read all files under each directory, recursively. Follow all symbolic links, unlike -r .",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "--line-buffered"
+      ],
+      "description": "Use line buffering on output. This can cause a performance penalty.",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-U",
+        "--binary"
+      ],
+      "description": "Treat the file(s) as binary. By default, under MS-DOS and MS-Windows, grep guesses whether a file is text or binary as described for the --binary-files option. If grep decides the file is a text file, it strips the CR characters from the original file contents (to make regular expressions with ^ and $ work correctly). Specifying -U",
+      "takes_argument": false
+    },
+    {
+      "aliases": [
+        "-z",
+        "--null-data"
+      ],
+      "description": "Treat input and output data as sequences of lines, each terminated by a zero byte (the ASCII NUL character) instead of a newline. Like the -Z or --null option, this option can be used with commands like sort -z to process arbitrary file names.",
+      "takes_argument": false
+    }
+  ],
+  "positional_arguments": [
+    {
+      "name": "PATTERNS",
+      "type": "BASIC"
+    },
+    {
+      "name": "FILE",
+      "type": "REPEATED"
+    }
+  ]
+}
