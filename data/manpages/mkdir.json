@@ -11,7 +11,7 @@
         "--mode"
       ],
       "description": "set file mode (as in chmod), not a=rwx - umask",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
@@ -19,7 +19,7 @@
         "--parents"
       ],
       "description": "no error if existing, make parent directories as needed",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -27,35 +27,35 @@
         "--verbose"
       ],
       "description": "print a message for each created directory",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-Z"
       ],
       "description": "set SELinux security context of each created directory to the default type",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--context"
       ],
       "description": "like -Z , or if CTX is specified then set the SELinux or SMACK security context to CTX",
-      "takes_argument": true
+      "argument_type": "OPTIONAL_SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--help"
       ],
       "description": "display this help and exit",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--version"
       ],
       "description": "output version information and exit",
-      "takes_argument": false
+      "argument_type": "NONE"
     }
   ],
   "positional_arguments": [

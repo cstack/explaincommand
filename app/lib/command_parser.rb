@@ -102,8 +102,8 @@ class CommandParser
     while tokens.length > 0
       token = tokens.shift
       if token[:type] == :flag && token[:value].nil?
-        takes_argument = manpage&.get_flag(token[:text])&.takes_argument?
-        token[:value] = tokens.shift[:text] if takes_argument && tokens.length > 0 && tokens.first[:type] == :unknown
+        flag = manpage&.get_flag(token[:text])
+        token[:value] = tokens.shift[:text] if !flag.nil? && flag.takes_argument_separated_by_space? && tokens.length > 0 && tokens.first[:type] == :unknown
       end
       new_tokens << token
     end

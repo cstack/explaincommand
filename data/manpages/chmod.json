@@ -11,7 +11,7 @@
         "--changes"
       ],
       "description": "like verbose but report only when a change is made",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -20,7 +20,7 @@
         "--quiet"
       ],
       "description": "suppress most error messages",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -28,28 +28,28 @@
         "--verbose"
       ],
       "description": "output a diagnostic for every file processed",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--no-preserve-root"
       ],
       "description": "do not treat '/' specially (the default)",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--preserve-root"
       ],
       "description": "fail to operate recursively on '/'",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--reference"
       ],
       "description": "use RFILE's mode instead of MODE values",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
@@ -57,21 +57,21 @@
         "--recursive"
       ],
       "description": "change files and directories recursively",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--help"
       ],
       "description": "display this help and exit",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--version"
       ],
       "description": "output version information and exit",
-      "takes_argument": false
+      "argument_type": "NONE"
     }
   ],
   "positional_arguments": [

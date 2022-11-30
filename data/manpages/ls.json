@@ -11,7 +11,7 @@
         "--all"
       ],
       "description": "do not ignore entries starting with .",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -19,14 +19,14 @@
         "--almost-all"
       ],
       "description": "do not list implied . and ..",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--author"
       ],
       "description": "with -l , print the author of each file",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -34,14 +34,14 @@
         "--escape"
       ],
       "description": "print C-style escapes for nongraphic characters",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--block-size"
       ],
       "description": "with -l , scale sizes by SIZE when printing them; e.g., '--block-size=M'; see SIZE format below",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
@@ -49,28 +49,28 @@
         "--ignore-backups"
       ],
       "description": "do not list implied entries ending with ~",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-c"
       ],
       "description": "with -lt : sort by, and show, ctime (time of last modification of file status information); with -l : show ctime and sort by name; otherwise: sort by ctime, newest first",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-C"
       ],
       "description": "list entries by columns",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--color"
       ],
       "description": "colorize the output; WHEN can be 'always' (default if omitted), 'auto', or 'never'; more info below",
-      "takes_argument": true
+      "argument_type": "OPTIONAL_SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
@@ -78,7 +78,7 @@
         "--directory"
       ],
       "description": "list directories themselves, not their contents",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -86,14 +86,14 @@
         "--dired"
       ],
       "description": "generate output designed for Emacs' dired mode",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-f"
       ],
       "description": "do not sort, enable -aU , disable -ls  --color",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -101,42 +101,42 @@
         "--classify"
       ],
       "description": "append indicator (one of */=>@|) to entries",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--file-type"
       ],
       "description": "likewise, except do not append '*'",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--format"
       ],
       "description": "across -x , commas -m , horizontal -x , long -l , single-column -1 , verbose -l , vertical -C",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--full-time"
       ],
       "description": "like -l  --time-style = full-iso",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-g"
       ],
       "description": "like -l , but do not list owner",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--group-directories-first"
       ],
       "description": "group directories before files;",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -144,7 +144,7 @@
         "--no-group"
       ],
       "description": "in a long listing, don't print group names",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -152,14 +152,14 @@
         "--human-readable"
       ],
       "description": "with -l and -s , print sizes like 1K 234M 2G etc.",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--si"
       ],
       "description": "likewise, but use powers of 1000 not 1024",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -167,35 +167,35 @@
         "--dereference-command-line"
       ],
       "description": "follow symbolic links listed on the command line",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--dereference-command-line-symlink-to-dir"
       ],
       "description": "follow each command line symbolic link",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--hide"
       ],
       "description": "do not list implied entries matching shell PATTERN (overridden by -a or -A )",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--hyperlink"
       ],
       "description": "hyperlink file names; WHEN can be 'always' (default if omitted), 'auto', or 'never'",
-      "takes_argument": true
+      "argument_type": "OPTIONAL_SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--indicator-style"
       ],
       "description": "append indicator with style WORD to entry names: none (default), slash ( -p ), file-type ( --file-type ), classify ( -F )",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
@@ -203,7 +203,7 @@
         "--inode"
       ],
       "description": "print the index number of each file",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -211,7 +211,7 @@
         "--ignore"
       ],
       "description": "do not list implied entries matching shell PATTERN",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
@@ -219,14 +219,14 @@
         "--kibibytes"
       ],
       "description": "default to 1024-byte blocks for disk usage; used only with -s and per directory totals",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-l"
       ],
       "description": "use a long listing format",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -234,14 +234,14 @@
         "--dereference"
       ],
       "description": "when showing file information for a symbolic link, show information for the file the link references rather than for the link itself",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-m"
       ],
       "description": "fill width with a comma separated list of entries",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -249,7 +249,7 @@
         "--numeric-uid-gid"
       ],
       "description": "like -l , but list numeric user and group IDs",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -257,14 +257,14 @@
         "--literal"
       ],
       "description": "print entry names without quoting",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-o"
       ],
       "description": "like -l , but do not list group information",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -272,7 +272,7 @@
         "--indicator-style"
       ],
       "description": "append / indicator to directories",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
@@ -280,14 +280,14 @@
         "--hide-control-chars"
       ],
       "description": "print ? instead of nongraphic characters",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--show-control-chars"
       ],
       "description": "show nongraphic characters as-is (the default, unless program is 'ls' and output is a terminal)",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -295,14 +295,14 @@
         "--quote-name"
       ],
       "description": "enclose entry names in double quotes",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--quoting-style"
       ],
       "description": "use quoting style WORD for entry names: literal, locale, shell, shell-always, shell-escape, shell-escape-always, c, escape (overrides QUOTING_STYLE environment variable)",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
@@ -310,7 +310,7 @@
         "--reverse"
       ],
       "description": "reverse order while sorting",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -318,7 +318,7 @@
         "--recursive"
       ],
       "description": "list subdirectories recursively",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -326,42 +326,42 @@
         "--size"
       ],
       "description": "print the allocated size of each file, in blocks",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-S"
       ],
       "description": "sort by file size, largest first",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--sort"
       ],
       "description": "sort by WORD instead of name: none ( -U ), size ( -S ), time ( -t ), version ( -v ), extension ( -X )",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--time"
       ],
       "description": "change the default of using modification times; access time ( -u ): atime, access, use; change time ( -c ): ctime, status; birth time: birth, creation;",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--time-style"
       ],
       "description": "time/date format with -l ; see TIME_STYLE below",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "-t"
       ],
       "description": "sort by time, newest first; see --time",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -369,28 +369,28 @@
         "--tabsize"
       ],
       "description": "assume tab stops at each COLS instead of 8",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "-u"
       ],
       "description": "with -lt : sort by, and show, access time; with -l : show access time and sort by name; otherwise: sort by access time, newest first",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-U"
       ],
       "description": "do not sort; list entries in directory order",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-v"
       ],
       "description": "natural sort of (version) numbers within text",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -398,21 +398,21 @@
         "--width"
       ],
       "description": "set output width to COLS. 0 means no limit",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "-x"
       ],
       "description": "list entries by lines instead of by columns",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-X"
       ],
       "description": "sort alphabetically by entry extension",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -420,28 +420,28 @@
         "--context"
       ],
       "description": "print any security context of each file",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-1"
       ],
       "description": "list one file per line. Avoid '\\n' with -q or -b",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--help"
       ],
       "description": "display this help and exit",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--version"
       ],
       "description": "output version information and exit",
-      "takes_argument": false
+      "argument_type": "NONE"
     }
   ],
   "positional_arguments": [

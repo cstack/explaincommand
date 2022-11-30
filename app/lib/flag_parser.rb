@@ -21,16 +21,19 @@ class FlagParser
   end
 
   def self.parse_flag_definition(text)
-    takes_argument = false
+    argument_type = Flag::ArgumentType::NONE
     aliases = text.split(', ')
     if aliases.last.include?(' ')
       last_part = aliases.pop
       aliases << last_part.split.first
-      takes_argument = true
+      argument_type = Flag::ArgumentType::SEPARATED_BY_SPACE
     end
     aliases = aliases.map do |alias_definition|
-      if (match_result = alias_definition.match(/(.+)\[=(.+)\]/)) || (match_result = alias_definition.match(/(.+)=(.+)/))
-        takes_argument = true
+      if (match_result = alias_definition.match(/(.+)\[=(.+)\]/))
+        argument_type = Flag::ArgumentType::OPTIONAL_SEPARATED_BY_EQUAL_SIGN
+        match_result[1]
+      elsif (match_result = alias_definition.match(/(.+)=(.+)/))
+        argument_type = Flag::ArgumentType::SEPARATED_BY_EQUAL_SIGN
         match_result[1]
       else
         alias_definition
@@ -39,7 +42,7 @@ class FlagParser
 
     {
       aliases:,
-      takes_argument:
+      argument_type:
     }
   end
 
@@ -95,10 +98,10 @@ class FlagParser
     def flag_from_row(row)
       aliases_text = row.first.text.gsub(/\s+/, ' ')
       result = FlagParser.parse_flag_definition(aliases_text)
-      aliases = result[:aliases]
-      takes_argument = result[:takes_argument]
+      aliases = result.fetch(:aliases)
+      argument_type = result.fetch(:argument_type)
       description = FlagParser.parse_flag_description(row.second)
-      Flag.new(aliases:, description:, takes_argument:)
+      Flag.new(aliases:, description:, argument_type:)
     end
   end
 
@@ -136,10 +139,10 @@ class FlagParser
         paragraph.text.start_with?('-')
       end.map do |paragraph|
         result = FlagParser.parse_flag_definition(paragraph.text)
-        aliases = result[:aliases]
-        takes_argument = result[:takes_argument]
+        aliases = result.fetch(:aliases)
+        argument_type = result.fetch(:argument_type)
         description = FlagParser.parse_flag_description(paragraph.next.next)
-        Flag.new(aliases:, description:, takes_argument:)
+        Flag.new(aliases:, description:, argument_type:)
       end
     end
   end
@@ -161,11 +164,11 @@ class FlagParser
 
         flag_usage = text.split("\n").first
         result = FlagParser.parse_flag_definition(flag_usage)
-        aliases = result[:aliases]
-        takes_argument = result[:takes_argument]
+        aliases = result.fetch(:aliases)
+        argument_type = result.fetch(:argument_type)
         description = text.split("\n").drop(1).join(' ').gsub(/\s+/, ' ').strip
         flags << Flag.new(
-          aliases:, description:, takes_argument:
+          aliases:, description:, argument_type:
         )
       end
       flags

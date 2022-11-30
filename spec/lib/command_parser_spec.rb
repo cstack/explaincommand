@@ -39,10 +39,28 @@ describe CommandParser do
       end
     end
 
-    context 'when flag takes argument and manpage is provided' do
+    context 'when flag is documented as taking argument separated by space' do
       let(:cmd) { 'docker build -t getting-started .' }
       let(:command_name) { Command::Name.new('docker', 'build') }
-      let(:manpage) { ManpageDirectory.get_manpage(command_name) }
+      let(:manpage) do
+        Manpage.new(
+          command_name:,
+          description: '',
+          flags: [
+            Flag.new(
+              aliases: ['-t'],
+              description: 'this flag does something',
+              argument_type: :SEPARATED_BY_SPACE
+            )
+          ],
+          positional_arguments: [
+            PositionalArgument.new(
+              name: 'foo',
+              type: PositionalArgument::Type::BASIC
+            )
+          ]
+        )
+      end
 
       it 'binds argument to flag' do
         expect(subject.tokens).to eq(
@@ -80,7 +98,7 @@ describe CommandParser do
             Flag.new(
               aliases: ['-something'],
               description: 'this flag does something',
-              takes_argument: false
+              argument_type: :NONE
             )
           ],
           positional_arguments: []
@@ -139,7 +157,7 @@ describe CommandParser do
             Flag.new(
               aliases: ['--key'],
               description: 'this flag does something',
-              takes_argument: true
+              argument_type: Flag::ArgumentType::SEPARATED_BY_EQUAL_SIGN
             )
           ],
           positional_arguments: []

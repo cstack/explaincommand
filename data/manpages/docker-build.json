@@ -11,91 +11,91 @@
         "--file"
       ],
       "description": "Path to the Dockerfile to use. If the path is a relative path and you are building from a local directory, then the path must be relative to that directory. If you are building from a remote URL pointing to either a tarball or a Git repository, then the path must be relative to the root of the remote context. In all cases, the file must be within the build context. The default is Dockerfile.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--squash"
       ],
       "description": "Experimental Only Once the image is built, squash the new layers into a new image with a single new layer. Squashing does not destroy any existing image, rather it creates a new image with the content of the squashed layers. This effectively makes it look like all Dockerfile commands were created with a single layer. The build cache is preserved with this method.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--add-host"
       ],
       "description": "Add a custom host-to-IP mapping (host:ip)",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--build-arg"
       ],
       "description": "name and value of a buildarg.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--cache-from"
       ],
       "description": "Set image that will be used as a build cache source.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--force-rm"
       ],
       "description": "Always remove intermediate containers, even after unsuccessful builds. The default is false.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--isolation"
       ],
       "description": "Isolation specifies the type of isolation technology used by containers.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--label"
       ],
       "description": "Set metadata for an image",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--no-cache"
       ],
       "description": "Do not use cache when building the image. The default is false.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--iidfile"
       ],
       "description": "Write the image ID to the file",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--help"
       ],
       "description": "Print usage statement",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--pull"
       ],
       "description": "Always attempt to pull a newer version of the image. The default is false.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--compress"
       ],
       "description": "Compress the build context using gzip. The default is false.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
@@ -103,14 +103,14 @@
         "--quiet"
       ],
       "description": "Suppress the build output and print image ID on success. The default is false.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--rm"
       ],
       "description": "Remove intermediate containers after a successful build. The default is true.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
@@ -118,7 +118,7 @@
         "--tag"
       ],
       "description": "Repository names (and optionally with tags) to be applied to the resulting image in case of success. Refer to docker-tag(1) for more information about valid tag names.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
@@ -126,84 +126,84 @@
         "--memory"
       ],
       "description": "Memory limit",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--memory-swap"
       ],
       "description": "Combined memory plus swap limit; S is an optional suffix which can be one of b (bytes), k (kilobytes), m (megabytes), or g (gigabytes).",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--network"
       ],
       "description": "Set the networking mode for the RUN instructions during build. Supported standard values are: none, bridge, host and container:<name|id>. Any other value is taken as a custom network's name or ID which this container should connect to.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--shm-size"
       ],
       "description": "Size of /dev/shm. The format is <number><unit>. number must be greater than 0. Unit is optional and can be b (bytes), k (kilobytes), m (megabytes), or g (gigabytes). If you omit the unit, the system uses bytes. If you omit the size entirely, the system uses 64m.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--cpu-shares"
       ],
       "description": "CPU shares (relative weight).",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--cpu-period"
       ],
       "description": "Limit the CPU CFS (Completely Fair Scheduler) period.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--cpu-quota"
       ],
       "description": "Limit the CPU CFS (Completely Fair Scheduler) quota.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--cpuset-cpus"
       ],
       "description": "CPUs in which to allow execution (0-3, 0,1).",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--cpuset-mems"
       ],
       "description": "Memory nodes (MEMs) in which to allow execution (0-3, 0,1). Only effective on NUMA systems.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--cgroup-parent"
       ],
       "description": "Path to cgroups under which the container's cgroup are created.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--target"
       ],
       "description": "Set the target build stage name.",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--ulimit"
       ],
       "description": "Ulimit options",
-      "takes_argument": true
+      "argument_type": "SEPARATED_BY_SPACE"
     }
   ],
   "positional_arguments": [

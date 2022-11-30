@@ -26,10 +26,12 @@ describe FlagParser do
       let(:text) { '-m, --magic-file magicfiles' }
 
       it 'parses out both aliases and the argument' do
-        expect(subject).to eq({
-                                aliases: ['-m', '--magic-file'],
-                                takes_argument: true
-                              })
+        expect(subject).to eq(
+          {
+            aliases: ['-m', '--magic-file'],
+            argument_type: :SEPARATED_BY_SPACE
+          }
+        )
       end
     end
 
@@ -37,10 +39,12 @@ describe FlagParser do
       let(:text) { '--reference=RFILE' }
 
       it 'parses out both aliases and the argument' do
-        expect(subject).to eq({
-                                aliases: ['--reference'],
-                                takes_argument: true
-                              })
+        expect(subject).to eq(
+          {
+            aliases: ['--reference'],
+            argument_type: :SEPARATED_BY_EQUAL_SIGN
+          }
+        )
       end
     end
 
@@ -48,10 +52,12 @@ describe FlagParser do
       let(:text) { '-P, --parameter name=value' }
 
       it 'parses out both aliases and the argument' do
-        expect(subject).to eq({
-                                aliases: ['-P', '--parameter'],
-                                takes_argument: true
-                              })
+        expect(subject).to eq(
+          {
+            aliases: ['-P', '--parameter'],
+            argument_type: :SEPARATED_BY_SPACE
+          }
+        )
       end
     end
 
@@ -62,7 +68,7 @@ describe FlagParser do
         expect(subject).to eq(
           {
             aliases: ['--color', '--colour'],
-            takes_argument: true
+            argument_type: :OPTIONAL_SEPARATED_BY_EQUAL_SIGN
           }
         )
       end
