@@ -224,6 +224,50 @@ describe CommandParser do
         )
       end
     end
+
+    context 'when flag has optional argument which is present' do
+      let(:cmd) { 'grep --color=never bbo' }
+      let(:command_name) { Command::Name.new('grep') }
+      let(:manpage) do
+        Manpage.new(
+          command_name:,
+          description: '',
+          flags: [
+            Flag.new(
+              aliases: ['--color'],
+              description: 'this flag does something',
+              argument_type: Flag::ArgumentType::OPTIONAL_SEPARATED_BY_EQUAL_SIGN
+            )
+          ],
+          positional_arguments: [
+            PositionalArgument.new(
+              name: 'PATTERN',
+              type: PositionalArgument::Type::BASIC
+            )
+          ]
+        )
+      end
+
+      it 'parses the flag and argument correctly' do
+        expect(subject.tokens).to eq(
+          [
+            Command::Token.new(
+              type: :command_name,
+              text: 'grep'
+            ),
+            Command::Token.new(
+              type: :flag,
+              text: '--color',
+              value: 'never'
+            ),
+            Command::Token.new(
+              type: :positional_argument,
+              text: 'bbo'
+            )
+          ]
+        )
+      end
+    end
   end
 
   describe '.command_name' do
