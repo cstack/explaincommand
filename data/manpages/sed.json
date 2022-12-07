@@ -1,0 +1,153 @@
+{
+  "command_name": {
+    "main_command": "sed",
+    "subcommand": null
+  },
+  "description": "stream editor for filtering and transforming text",
+  "flags": [
+    {
+      "aliases": [
+        "-n",
+        "--quiet",
+        "--silent"
+      ],
+      "description": "suppress automatic printing of pattern space",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "--debug"
+      ],
+      "description": "annotate program execution",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "-e"
+      ],
+      "description": "add the script to the commands to be executed",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
+        "--expression"
+      ],
+      "description": "add the script to the commands to be executed",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "-f"
+      ],
+      "description": "add the contents of script-file to the commands to be executed",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
+        "--file"
+      ],
+      "description": "add the contents of script-file to the commands to be executed",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--follow-symlinks"
+      ],
+      "description": "follow symlinks when processing in place",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "-i[SUFFIX]",
+        "--in-place"
+      ],
+      "description": "edit files in place (makes backup if SUFFIX supplied)",
+      "argument_type": "OPTIONAL_SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "-l"
+      ],
+      "description": "specify the desired line-wrap length for the `l' command",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
+        "--line-length"
+      ],
+      "description": "specify the desired line-wrap length for the `l' command",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--posix"
+      ],
+      "description": "disable all GNU extensions.",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "-E",
+        "-r",
+        "--regexp-extended"
+      ],
+      "description": "use extended regular expressions in the script (for portability use POSIX -E ).",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "-s",
+        "--separate"
+      ],
+      "description": "consider files as separate rather than as a single, continuous long stream.",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "--sandbox"
+      ],
+      "description": "operate in sandbox mode (disable e/r/w commands).",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "-u",
+        "--unbuffered"
+      ],
+      "description": "load minimal amounts of data from the input files and flush the output buffers more often",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "-z",
+        "--null-data"
+      ],
+      "description": "separate lines by NUL characters",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "--help"
+      ],
+      "description": "display this help and exit",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "--version"
+      ],
+      "description": "output version information and exit",
+      "argument_type": "NONE"
+    }
+  ],
+  "positional_arguments": [
+    {
+      "name": "{script-only-if-no-other-script}",
+      "type": "BASIC"
+    },
+    {
+      "name": "input-file",
+      "type": "REPEATED"
+    }
+  ]
+}

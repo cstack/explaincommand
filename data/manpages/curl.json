@@ -1048,34 +1048,6 @@
     },
     {
       "aliases": [
-        "-"
-      ],
-      "description": "Deny this protocol, removing it from the list of protocols already permitted.",
-      "argument_type": "NONE"
-    },
-    {
-      "aliases": [
-        "--proto"
-      ],
-      "description": "uses the default protocols, but disables ftps",
-      "argument_type": "SEPARATED_BY_SPACE"
-    },
-    {
-      "aliases": [
-        "--proto"
-      ],
-      "description": "only enables http and https",
-      "argument_type": "SEPARATED_BY_SPACE"
-    },
-    {
-      "aliases": [
-        "--proto"
-      ],
-      "description": "also only enables http and https",
-      "argument_type": "SEPARATED_BY_SPACE"
-    },
-    {
-      "aliases": [
         "--proxy-anyauth"
       ],
       "description": "Tells curl to pick a suitable authentication method when communicating with the given HTTP proxy. This might cause an extra request/response round-trip. Example:  curl --proxy-anyauth --proxy-user user:passwd -x proxy https://example.com  See also -x, --proxy, --proxy-basic and --proxy-digest. ",

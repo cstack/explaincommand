@@ -33,7 +33,7 @@
       "aliases": [
         "--sparse"
       ],
-      "description": "Allow updating index entries outside of the sparse-checkout cone. Normally, git add refuses to update index entries whose paths do not fit within the sparse-checkout cone, since those files might be removed from the working tree without warning. See git-sparse-checkout (1) for more details.",
+      "description": "Allow updating index entries outside of the sparse-checkout cone. Normally, git add refuses to update index entries whose paths do not fit within the sparse-checkout cone, since those files might be removed from the working tree without warning. See git-sparse-checkout(1) for more details.",
       "argument_type": "NONE"
     },
     {
@@ -90,7 +90,7 @@
         "-N",
         "--intent-to-add"
       ],
-      "description": "Record only the fact that the path will be added later. An entry for the path is placed in the index with no content. This is useful for, among other things, showing the unstaged content of such files with git diff and committing them with git commit -a .",
+      "description": "Record only the fact that the path will be added later. An entry for the path is placed in the index with no content. This is useful for, among other things, showing the unstaged content of such files with git diff and committing them with git commit -a.",
       "argument_type": "NONE"
     },
     {
@@ -118,14 +118,14 @@
       "aliases": [
         "--no-warn-embedded-repo"
       ],
-      "description": "By default, git add will warn when adding an embedded repository to the index without using git submodule add to create an entry in .gitmodules . This option will suppress the warning (e.g., if you are manually performing operations on submodules).",
+      "description": "By default, git add will warn when adding an embedded repository to the index without using git submodule add to create an entry in .gitmodules. This option will suppress the warning (e.g., if you are manually performing operations on submodules).",
       "argument_type": "NONE"
     },
     {
       "aliases": [
         "--renormalize"
       ],
-      "description": "Apply the \"clean\" process freshly to all tracked files to forcibly add them again to the index. This is useful after changing core.autocrlf configuration or the text attribute in order to correct files added with wrong CRLF/LF line endings. This option implies -u .",
+      "description": "Apply the \"clean\" process freshly to all tracked files to forcibly add them again to the index. This is useful after changing core.autocrlf configuration or the text attribute in order to correct files added with wrong CRLF/LF line endings. This option implies -u.",
       "argument_type": "NONE"
     },
     {
@@ -139,14 +139,14 @@
       "aliases": [
         "--pathspec-from-file"
       ],
-      "description": "Pathspec is passed in <file> instead of commandline args. If <file> is exactly - then standard input is used. Pathspec elements are separated by LF or CR/LF. Pathspec elements can be quoted as explained for the configuration variable core.quotePath (see git-config (1)). See also --pathspec-file-nul and global --literal-pathspecs .",
+      "description": "Pathspec is passed in <file> instead of commandline args. If <file> is exactly - then standard input is used. Pathspec elements are separated by LF or CR/LF. Pathspec elements can be quoted as explained for the configuration variable core.quotePath (see git-config(1)). See also --pathspec-file-nul and global --literal-pathspecs.",
       "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--pathspec-file-nul"
       ],
-      "description": "Only meaningful with --pathspec-from-file . Pathspec elements are separated with NUL character and all other characters are taken literally (including newlines and quotes).",
+      "description": "Only meaningful with --pathspec-from-file. Pathspec elements are separated with NUL character and all other characters are taken literally (including newlines and quotes).",
       "argument_type": "NONE"
     },
     {

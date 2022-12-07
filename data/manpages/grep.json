@@ -54,7 +54,13 @@
     },
     {
       "aliases": [
-        "-e PATTERNS",
+        "-e"
+      ],
+      "description": "Use PATTERNS as the patterns. If this option is used multiple times or is combined with the -f ( --file ) option, search for all patterns given. This option can be used to protect a pattern beginning with “-”.",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
         "--regexp"
       ],
       "description": "Use PATTERNS as the patterns. If this option is used multiple times or is combined with the -f ( --file ) option, search for all patterns given. This option can be used to protect a pattern beginning with “-”.",
@@ -62,7 +68,13 @@
     },
     {
       "aliases": [
-        "-f FILE",
+        "-f"
+      ],
+      "description": "Obtain patterns from FILE , one per line. If this option is used multiple times or is combined with the -e ( --regexp ) option, search for all patterns given. The empty file contains zero patterns, and therefore matches nothing.",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
         "--file"
       ],
       "description": "Obtain patterns from FILE , one per line. If this option is used multiple times or is combined with the -e ( --regexp ) option, search for all patterns given. The empty file contains zero patterns, and therefore matches nothing.",
@@ -148,7 +160,13 @@
     },
     {
       "aliases": [
-        "-m NUM",
+        "-m"
+      ],
+      "description": "Stop reading a file after NUM matching lines. If the input is standard input from a regular file, and NUM matching lines are output, grep ensures that the standard input is positioned to just after the last matching line before exiting, regardless of the presence of trailing context lines. This enables a calling process to resume a search. When grep stops after NUM matching lines, it outputs any trailing context lines. When the -c or --count option is also used, grep",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
         "--max-count"
       ],
       "description": "Stop reading a file after NUM matching lines. If the input is standard input from a regular file, and NUM matching lines are output, grep ensures that the standard input is positioned to just after the last matching line before exiting, regardless of the presence of trailing context lines. This enables a calling process to resume a search. When grep stops after NUM matching lines, it outputs any trailing context lines. When the -c or --count option is also used, grep",
@@ -236,7 +254,13 @@
     },
     {
       "aliases": [
-        "-A NUM",
+        "-A"
+      ],
+      "description": "Print NUM lines of trailing context after matching lines. Places a line containing a group separator ( -- ) between contiguous groups of matches. With the -o or --only-matching option, this has no effect and a warning is given.",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
         "--after-context"
       ],
       "description": "Print NUM lines of trailing context after matching lines. Places a line containing a group separator ( -- ) between contiguous groups of matches. With the -o or --only-matching option, this has no effect and a warning is given.",
@@ -244,7 +268,13 @@
     },
     {
       "aliases": [
-        "-B NUM",
+        "-B"
+      ],
+      "description": "Print NUM lines of leading context before matching lines. Places a line containing a group separator ( -- ) between contiguous groups of matches. With the -o or --only-matching option, this has no effect and a warning is given.",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
         "--before-context"
       ],
       "description": "Print NUM lines of leading context before matching lines. Places a line containing a group separator ( -- ) between contiguous groups of matches. With the -o or --only-matching option, this has no effect and a warning is given.",
@@ -252,8 +282,20 @@
     },
     {
       "aliases": [
-        "-C NUM",
-        "-NUM",
+        "-C"
+      ],
+      "description": "Print NUM lines of output context. Places a line containing a group separator ( -- ) between contiguous groups of matches. With the -o or --only-matching option, this has no effect and a warning is given.",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
+        "-NUM"
+      ],
+      "description": "Print NUM lines of output context. Places a line containing a group separator ( -- ) between contiguous groups of matches. With the -o or --only-matching option, this has no effect and a warning is given.",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
         "--context"
       ],
       "description": "Print NUM lines of output context. Places a line containing a group separator ( -- ) between contiguous groups of matches. With the -o or --only-matching option, this has no effect and a warning is given.",
@@ -290,7 +332,13 @@
     },
     {
       "aliases": [
-        "-D ACTION",
+        "-D"
+      ],
+      "description": "If an input file is a device, FIFO or socket, use ACTION to process it. By default, ACTION is read , which means that devices are read just as if they were ordinary files. If ACTION is skip , devices are silently skipped.",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
         "--devices"
       ],
       "description": "If an input file is a device, FIFO or socket, use ACTION to process it. By default, ACTION is read , which means that devices are read just as if they were ordinary files. If ACTION is skip , devices are silently skipped.",
@@ -298,7 +346,13 @@
     },
     {
       "aliases": [
-        "-d ACTION",
+        "-d"
+      ],
+      "description": "If an input file is a directory, use ACTION to process it. By default, ACTION is read , i.e., read directories just as if they were ordinary files. If ACTION is skip , silently skip directories. If ACTION is recurse , read all files under each directory, recursively, following symbolic links only if they are on the command line. This is equivalent to the -r option.",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
         "--directories"
       ],
       "description": "If an input file is a directory, use ACTION to process it. By default, ACTION is read , i.e., read directories just as if they were ordinary files. If ACTION is skip , silently skip directories. If ACTION is recurse , read all files under each directory, recursively, following symbolic links only if they are on the command line. This is equivalent to the -r option.",
