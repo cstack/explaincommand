@@ -152,9 +152,12 @@ class FlagParser
     end
 
     def flags_from_dt(dt_element)
+      return [] if dt_element.text.blank?
+
+      # Find first non-blank dd after dt
       dd = dt_element.next
-      dd = dd.next while dd.name != 'dd'
-      return [] unless dt_element.text.present? && dd.text.present?
+      dd = dd.next until dd.present? && dd.name == 'dd' && dd.text.present?
+      return [] if dd.nil?
 
       aliases_text = dt_element.text.gsub(/\s+/, ' ')
       result = FlagParser.parse_flag_definition(aliases_text)
