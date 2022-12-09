@@ -122,5 +122,71 @@ describe Explainer do
         )
       end
     end
+
+    context 'homepage example command for wget' do
+      let(:cmd) { 'wget -r -l1 -H -t1 -nd -N -np -A mp3 -e robots=off http://example.com' }
+
+      it 'explains the command' do
+        expect(subject.annotations).to eq(
+          [
+            Annotation.new(
+              referenced_text: 'wget',
+              text: 'The non-interactive network downloader.',
+              token_ids: [0]
+            ),
+            Annotation.new(
+              referenced_text: '-r',
+              text: 'Turn on recursive retrieving. The default maximum depth is 5.',
+              token_ids: [1]
+            ),
+            Annotation.new(
+              referenced_text: '-l',
+              text: 'Set the maximum number of subdirectories that Wget will recurse into to depth . In order to prevent one from accidentally downloading very large websites when using recursion this is limited to a depth of 5 by default, i.e., it will traverse at most 5 directories deep starting from the provided URL. Set -l 0 or -l inf for infinite recursion depth.   wget -r -l 0 http://<site>/1.html ',
+              token_ids: [2]
+            ),
+            Annotation.new(
+              referenced_text: '-H',
+              text: 'Enable spanning across hosts when doing recursive retrieving.',
+              token_ids: [4]
+            ),
+            Annotation.new(
+              referenced_text: '-t',
+              text: 'Set number of tries to number . Specify 0 or inf for infinite retrying. The default is to retry 20 times, with the exception of fatal errors like "connection refused" or "not found" (404), which are not retried.',
+              token_ids: [5]
+            ),
+            Annotation.new(
+              referenced_text: '-nd',
+              text: 'Do not create a hierarchy of directories when retrieving recursively. With this option turned on, all files will get saved to the current directory, without clobbering (if a name shows up more than once, the filenames will get extensions .n ).',
+              token_ids: [7]
+            ),
+            Annotation.new(
+              referenced_text: '-N',
+              text: 'Turn on time-stamping.',
+              token_ids: [8]
+            ),
+            Annotation.new(
+              referenced_text: '-np',
+              text: 'Do not ever ascend to the parent directory when retrieving recursively. This is a useful option, since it guarantees that only the files below a certain hierarchy will be downloaded.',
+              token_ids: [9]
+            ),
+            Annotation.new(
+              referenced_text: '-A mp3',
+              text: "Specify comma-separated lists of file name suffixes or patterns to accept or reject. Note that if any of the wildcard characters, * , ? , [ or ] , appear in an element of acclist or rejlist , it will be treated as a pattern, rather than a suffix. In this case, you have to enclose the pattern into quotes to prevent your shell from expanding it, like in -A \"*.mp3\" or -A '*.mp3' .",
+              token_ids: [10]
+            ),
+            Annotation.new(
+              referenced_text: '-e robots=off',
+              text: 'Execute command as if it were a part of .wgetrc . A command thus invoked will be executed after the commands in .wgetrc , thus taking precedence over them. If you need to specify more than one wgetrc command, use multiple instances of -e .',
+              token_ids: [11]
+            ),
+            Annotation.new(
+              referenced_text: 'http://example.com',
+              text: 'option',
+              token_ids: [12]
+            )
+          ]
+        )
+      end
+    end
   end
 end
