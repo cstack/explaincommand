@@ -156,7 +156,7 @@ class FlagParser
 
       # Find first non-blank dd after dt
       dd = dt_element.next
-      dd = dd.next until dd.present? && dd.name == 'dd' && dd.text.present?
+      dd = dd.next until dd.nil? || (dd.name == 'dd' && dd.text.present?)
       return [] if dd.nil?
 
       aliases_text = dt_element.text.gsub(/\s+/, ' ')
