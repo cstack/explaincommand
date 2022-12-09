@@ -96,6 +96,42 @@ describe UsageParser do
       end
     end
 
+    context 'when there is an argument called [option]...' do
+      let(:text) do
+        'wget [option]... [URL]...'
+      end
+      let(:command_name) { Command::Name.new('wget') }
+
+      it 'does not treat [option]... as a positional argument' do
+        expect(subject).to eq(
+          [
+            PositionalArgument.new(
+              name: 'URL',
+              type: PositionalArgument::Type::REPEATED
+            )
+          ]
+        )
+      end
+    end
+
+    context 'when there is an argument called [options / URLs]' do
+      let(:text) do
+        'curl [options / URLs]'
+      end
+      let(:command_name) { Command::Name.new('curl') }
+
+      it 'treats [options / URLs] as a positional argument' do
+        expect(subject).to eq(
+          [
+            PositionalArgument.new(
+              name: '[options / URLs]',
+              type: PositionalArgument::Type::BASIC
+            )
+          ]
+        )
+      end
+    end
+
     context 'when a positional argument is comma-separated' do
       let(:text) do
         'chmod [OPTION]... MODE[,MODE]... FILE...'

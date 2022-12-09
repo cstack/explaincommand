@@ -10,9 +10,10 @@ class UsageParser
     words = break_usage_pattern_into_words(text)
     num_words_in_command = command_name.num_words
     positional_argument_words = words.drop(num_words_in_command).reject do |word|
-      word_is_flag?(word) ||
-        word.include?('OPTION') ||
-        word.include?('Experimental')
+      next true if word_is_flag?(word)
+
+      normalized_word = word.tr('[].', '').upcase
+      %w[OPTION OPTIONS EXPERIMENTAL].include?(normalized_word)
     end
     args = positional_argument_words.map do |word|
       {
