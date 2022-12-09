@@ -6,7 +6,10 @@ namespace :manpage do
     command_name = Command::Name.new(main_command, subcommand)
 
     puts 'Fetching manpage...'
-    `curl https://manpages.ubuntu.com/manpages.gz/kinetic/man1/#{command_name.with_dashes}.1.gz --output /tmp/#{command_name.with_dashes}.1.gz`
+    url = "https://manpages.ubuntu.com/manpages.gz/kinetic/man1/#{command_name.with_dashes}.1.gz"
+    success = system("curl -fL #{url} --output /tmp/#{command_name.with_dashes}.1.gz")
+    raise "Failed to download #{url}" unless success
+
     puts 'Unzipping...'
     `gzip -d /tmp/#{command_name.with_dashes}.1.gz`
     puts 'Converting to html...'
