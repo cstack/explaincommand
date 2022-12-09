@@ -15,7 +15,8 @@ class FlagParser
   end
 
   def self.parse_flag_definition(text)
-    aliases = text.split(', ')
+    normalized = text.gsub(/ /, ' ')
+    aliases = normalized.split(', ')
     aliases = aliases.map do |alias_definition|
       if alias_definition.include?(' ')
         {
