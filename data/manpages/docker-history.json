@@ -5,41 +5,12 @@
   },
   "description": "Show the history of an image",
   "flags": [
-    {
-      "aliases": [
-        "--format"
-      ],
-      "description": "      --format string   Pretty-print images using a Go template",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "-H",
-        "--human"
-      ],
-      "description": "  -H, --human           Print sizes and dates in human readable format (default true)",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "--no-trunc"
-      ],
-      "description": "      --no-trunc        Don't truncate output",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-q",
-        "--quiet"
-      ],
-      "description": "  -q, --quiet           Only show image IDs",
-      "takes_argument": false
-    }
+
   ],
   "positional_arguments": [
     {
       "name": "IMAGE",
-      "repeated": false
+      "type": "BASIC"
     }
   ]
 }

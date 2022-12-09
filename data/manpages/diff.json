@@ -10,7 +10,7 @@
         "--normal"
       ],
       "description": "output a normal diff (the default)",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -18,7 +18,7 @@
         "--brief"
       ],
       "description": "report only when files differ",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -26,25 +26,37 @@
         "--report-identical-files"
       ],
       "description": "report when two files are the same",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-c",
-        "-C NUM",
-        "--context[=NUM]"
+        "--context"
       ],
       "description": "output NUM (default 3) lines of copied context",
-      "takes_argument": false
+      "argument_type": "OPTIONAL_SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "-C"
+      ],
+      "description": "output NUM (default 3) lines of copied context",
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "-u",
-        "-U NUM",
-        "--unified[=NUM]"
+        "--unified"
       ],
       "description": "output NUM (default 3) lines of unified context",
-      "takes_argument": false
+      "argument_type": "OPTIONAL_SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "-U"
+      ],
+      "description": "output NUM (default 3) lines of unified context",
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
@@ -52,7 +64,7 @@
         "--ed"
       ],
       "description": "output an ed script",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -60,7 +72,7 @@
         "--rcs"
       ],
       "description": "output an RCS format diff",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -68,29 +80,29 @@
         "--side-by-side"
       ],
       "description": "output in two columns",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-W",
-        "--width=NUM"
+        "--width"
       ],
       "description": "output at most NUM (default 130) print columns",
-      "takes_argument": false
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--left-column"
       ],
       "description": "output only the left column of common lines",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--suppress-common-lines"
       ],
       "description": "do not output common lines",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -98,22 +110,22 @@
         "--show-c-function"
       ],
       "description": "show which C function each change is in",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-F",
-        "--show-function-line=RE"
+        "--show-function-line"
       ],
       "description": "show the most recent line matching RE",
-      "takes_argument": false
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
-        "--label LABEL"
+        "--label"
       ],
       "description": "use LABEL instead of file name and timestamp (can be repeated)",
-      "takes_argument": false
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
@@ -121,7 +133,7 @@
         "--expand-tabs"
       ],
       "description": "expand tabs to spaces in output",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -129,21 +141,21 @@
         "--initial-tab"
       ],
       "description": "make tabs line up by prepending a tab",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
-        "--tabsize=NUM"
+        "--tabsize"
       ],
       "description": "tab stops every NUM (default 8) print columns",
-      "takes_argument": false
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--suppress-blank-empty"
       ],
       "description": "suppress space or tab before empty output lines",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -151,7 +163,7 @@
         "--paginate"
       ],
       "description": "pass output through 'pr' to paginate it",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -159,14 +171,14 @@
         "--recursive"
       ],
       "description": "recursively compare any subdirectories found",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--no-dereference"
       ],
       "description": "don't follow symbolic links",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -174,66 +186,66 @@
         "--new-file"
       ],
       "description": "treat absent files as empty",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--unidirectional-new-file"
       ],
       "description": "treat absent first files as empty",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--ignore-file-name-case"
       ],
       "description": "ignore case when comparing file names",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--no-ignore-file-name-case"
       ],
       "description": "consider case when comparing file names",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-x",
-        "--exclude=PAT"
+        "--exclude"
       ],
       "description": "exclude files that match PAT",
-      "takes_argument": false
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "-X",
-        "--exclude-from=FILE"
+        "--exclude-from"
       ],
       "description": "exclude files that match any pattern in FILE",
-      "takes_argument": false
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "-S",
-        "--starting-file=FILE"
+        "--starting-file"
       ],
       "description": "start with FILE when comparing directories",
-      "takes_argument": false
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
-        "--from-file=FILE1"
+        "--from-file"
       ],
       "description": "compare FILE1 to all operands; FILE1 can be a directory",
-      "takes_argument": false
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
-        "--to-file=FILE2"
+        "--to-file"
       ],
       "description": "compare all operands to FILE2; FILE2 can be a directory",
-      "takes_argument": false
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
@@ -241,7 +253,7 @@
         "--ignore-case"
       ],
       "description": "ignore case differences in file contents",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -249,7 +261,7 @@
         "--ignore-tab-expansion"
       ],
       "description": "ignore changes due to tab expansion",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -257,7 +269,7 @@
         "--ignore-trailing-space"
       ],
       "description": "ignore white space at line end",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -265,7 +277,7 @@
         "--ignore-space-change"
       ],
       "description": "ignore changes in the amount of white space",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -273,7 +285,7 @@
         "--ignore-all-space"
       ],
       "description": "ignore all white space",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -281,15 +293,15 @@
         "--ignore-blank-lines"
       ],
       "description": "ignore changes where lines are all blank",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-I",
-        "--ignore-matching-lines=RE"
+        "--ignore-matching-lines"
       ],
       "description": "ignore changes where all lines match RE",
-      "takes_argument": false
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
@@ -297,43 +309,43 @@
         "--text"
       ],
       "description": "treat all files as text",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--strip-trailing-cr"
       ],
       "description": "strip trailing carriage return on input",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-D",
-        "--ifdef=NAME"
+        "--ifdef"
       ],
       "description": "output merged file with '#ifdef NAME' diffs",
-      "takes_argument": false
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
-        "--GTYPE-group-format=GFMT"
+        "--GTYPE-group-format"
       ],
       "description": "format GTYPE input groups with GFMT",
-      "takes_argument": false
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
-        "--line-format=LFMT"
+        "--line-format"
       ],
       "description": "format all input lines with LFMT",
-      "takes_argument": false
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
-        "--LTYPE-line-format=LFMT"
+        "--LTYPE-line-format"
       ],
       "description": "format LTYPE input lines with LFMT",
-      "takes_argument": false
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
@@ -341,42 +353,42 @@
         "--minimal"
       ],
       "description": "try hard to find a smaller set of changes",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
-        "--horizon-lines=NUM"
+        "--horizon-lines"
       ],
       "description": "keep NUM lines of the common prefix and suffix",
-      "takes_argument": false
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--speed-large-files"
       ],
       "description": "assume large files and many scattered small changes",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
-        "--color[=WHEN]"
+        "--color"
       ],
-      "description": "color output; WHEN is 'never', 'always', or 'auto'; plain --color\n      means --color='auto'",
-      "takes_argument": false
+      "description": "color output; WHEN is 'never', 'always', or 'auto'; plain --color means --color= 'auto'",
+      "argument_type": "OPTIONAL_SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
-        "--palette=PALETTE"
+        "--palette"
       ],
-      "description": "the colors to use when --color is active; PALETTE is a\n      colon-separated list of terminfo capabilities",
-      "takes_argument": false
+      "description": "the colors to use when --color is active; PALETTE is a colon-separated list of terminfo capabilities",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--help"
       ],
       "description": "display this help and exit",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
@@ -384,7 +396,7 @@
         "--version"
       ],
       "description": "output version information and exit",
-      "takes_argument": false
+      "argument_type": "NONE"
     }
   ],
   "positional_arguments": [

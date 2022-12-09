@@ -3,21 +3,14 @@
     "main_command": "docker",
     "subcommand": "export"
   },
-  "description": "Export a container's filesystem as a tar archive",
+  "description": "Export a container's filesystem as a tar\n  archive",
   "flags": [
-    {
-      "aliases": [
-        "-o",
-        "--output"
-      ],
-      "description": "  -o, --output string   Write to a file, instead of STDOUT",
-      "takes_argument": true
-    }
+
   ],
   "positional_arguments": [
     {
       "name": "CONTAINER",
-      "repeated": false
+      "type": "BASIC"
     }
   ]
 }

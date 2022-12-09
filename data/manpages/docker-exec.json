@@ -5,88 +5,20 @@
   },
   "description": "Run a command in a running container",
   "flags": [
-    {
-      "aliases": [
-        "-d",
-        "--detach"
-      ],
-      "description": "  -d, --detach               Detached mode: run command in the background",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "--detach-keys"
-      ],
-      "description": "      --detach-keys string   Override the key sequence for detaching a container",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "-e",
-        "--env"
-      ],
-      "description": "  -e, --env list             Set environment variables",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--env-file"
-      ],
-      "description": "      --env-file list        Read in a file of environment variables",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "-i",
-        "--interactive"
-      ],
-      "description": "  -i, --interactive          Keep STDIN open even if not attached",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "--privileged"
-      ],
-      "description": "      --privileged           Give extended privileges to the command",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-t",
-        "--tty"
-      ],
-      "description": "  -t, --tty                  Allocate a pseudo-TTY",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-u",
-        "--user"
-      ],
-      "description": "  -u, --user string          Username or UID (format: <name|uid>[:<group|gid>])",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "-w",
-        "--workdir"
-      ],
-      "description": "  -w, --workdir string       Working directory inside the container",
-      "takes_argument": true
-    }
+
   ],
   "positional_arguments": [
     {
       "name": "CONTAINER",
-      "repeated": false
+      "type": "BASIC"
     },
     {
       "name": "COMMAND",
-      "repeated": false
+      "type": "BASIC"
     },
     {
-      "name": "[ARG...]",
-      "repeated": true
+      "name": "ARG",
+      "type": "REPEATED"
     }
   ]
 }

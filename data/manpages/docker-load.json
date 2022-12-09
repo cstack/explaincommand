@@ -5,22 +5,7 @@
   },
   "description": "Load an image from a tar archive or STDIN",
   "flags": [
-    {
-      "aliases": [
-        "-i",
-        "--input"
-      ],
-      "description": "  -i, --input string   Read from tar archive file, instead of STDIN",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "-q",
-        "--quiet"
-      ],
-      "description": "  -q, --quiet          Suppress the load output",
-      "takes_argument": false
-    }
+
   ],
   "positional_arguments": [
 

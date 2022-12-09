@@ -3,41 +3,14 @@
     "main_command": "docker",
     "subcommand": "login"
   },
-  "description": "Log in to a Docker registry or cloud backend.",
+  "description": "Log in to a Docker registry",
   "flags": [
-    {
-      "aliases": [
-        "-h",
-        "--help"
-      ],
-      "description": "  -h, --help              Help for login",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-p",
-        "--password"
-      ],
-      "description": "  -p, --password string   password",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--password-stdin"
-      ],
-      "description": "      --password-stdin    Take the password from stdin",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-u",
-        "--username"
-      ],
-      "description": "  -u, --username string   username",
-      "takes_argument": true
-    }
+
   ],
   "positional_arguments": [
-
+    {
+      "name": "[SERVER]",
+      "type": "BASIC"
+    }
   ]
 }

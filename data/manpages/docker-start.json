@@ -5,38 +5,16 @@
   },
   "description": "Start one or more stopped containers",
   "flags": [
-    {
-      "aliases": [
-        "-a",
-        "--attach"
-      ],
-      "description": "  -a, --attach               Attach STDOUT/STDERR and forward signals",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "--detach-keys"
-      ],
-      "description": "      --detach-keys string   Override the key sequence for detaching a container",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "-i",
-        "--interactive"
-      ],
-      "description": "  -i, --interactive          Attach container's STDIN",
-      "takes_argument": false
-    }
+
   ],
   "positional_arguments": [
     {
       "name": "CONTAINER",
-      "repeated": false
+      "type": "BASIC"
     },
     {
-      "name": "[CONTAINER...]",
-      "repeated": true
+      "name": "CONTAINER",
+      "type": "REPEATED"
     }
   ]
 }

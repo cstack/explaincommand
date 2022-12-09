@@ -3,18 +3,14 @@
     "main_command": "docker",
     "subcommand": "logout"
   },
-  "description": "Log out from a Docker registry or cloud backend.",
+  "description": "Log out from a Docker registry",
   "flags": [
-    {
-      "aliases": [
-        "-h",
-        "--help"
-      ],
-      "description": "  -h, --help   Help for logout",
-      "takes_argument": false
-    }
+
   ],
   "positional_arguments": [
-
+    {
+      "name": "[SERVER]",
+      "type": "BASIC"
+    }
   ]
 }

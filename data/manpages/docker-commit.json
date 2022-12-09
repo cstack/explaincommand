@@ -5,47 +5,16 @@
   },
   "description": "Create a new image from a container's changes",
   "flags": [
-    {
-      "aliases": [
-        "-a",
-        "--author"
-      ],
-      "description": "  -a, --author string    Author (e.g., \"John Hannibal Smith <hannibal@a-team.com>\")",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "-c",
-        "--change"
-      ],
-      "description": "  -c, --change list      Apply Dockerfile instruction to the created image",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "-m",
-        "--message"
-      ],
-      "description": "  -m, --message string   Commit message",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "-p",
-        "--pause"
-      ],
-      "description": "  -p, --pause            Pause container during commit (default true)",
-      "takes_argument": false
-    }
+
   ],
   "positional_arguments": [
     {
       "name": "CONTAINER",
-      "repeated": false
+      "type": "BASIC"
     },
     {
       "name": "[REPOSITORY[:TAG]]",
-      "repeated": false
+      "type": "BASIC"
     }
   ]
 }

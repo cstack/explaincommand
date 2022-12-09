@@ -7,711 +7,620 @@
   "flags": [
     {
       "aliases": [
-        "--add-host"
-      ],
-      "description": "      --add-host list                  Add a custom host-to-IP mapping (host:ip)",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
         "-a",
         "--attach"
       ],
-      "description": "  -a, --attach list                    Attach to STDIN, STDOUT or STDERR",
-      "takes_argument": true
+      "description": "Attach to STDIN, STDOUT or STDERR.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--add-host"
+      ],
+      "description": "Add a custom host-to-IP mapping (host:ip)",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--blkio-weight"
       ],
-      "description": "      --blkio-weight uint16            Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)",
-      "takes_argument": true
+      "description": "Block IO weight (relative weight) accepts a weight value between 10 and 1000.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--blkio-weight-device"
       ],
-      "description": "      --blkio-weight-device list       Block IO weight (relative device weight) (default [])",
-      "takes_argument": true
+      "description": "Block IO weight (relative device weight, format: DEVICE_NAME:WEIGHT).",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--cpu-shares"
+      ],
+      "description": "CPU shares (relative weight)",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--cap-add"
       ],
-      "description": "      --cap-add list                   Add Linux capabilities",
-      "takes_argument": true
+      "description": "Add Linux capabilities",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--cap-drop"
       ],
-      "description": "      --cap-drop list                  Drop Linux capabilities",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--cgroup-parent"
-      ],
-      "description": "      --cgroup-parent string           Optional parent cgroup for the container",
-      "takes_argument": true
+      "description": "Drop Linux capabilities",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--cgroupns"
       ],
-      "description": "      --cgroupns string                Cgroup namespace to use (host|private)",
-      "takes_argument": true
+      "description": "Set the cgroup namespace mode for the container. host: run the container in the host's cgroup namespace private: run the container in its own private cgroup namespace \"\": (unset) use the daemon's default configuration (host on cgroup v1, private on cgroup v2)",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
-        "-cgroupns-mode"
+        "--cgroup-parent"
       ],
-      "description": "                                                  default-cgroupns-mode option on the daemon (default)",
-      "takes_argument": false
+      "description": "Path to cgroups under which the cgroup for the container will be created. If the path is not absolute, the path is considered to be relative to the cgroups path of the init process. Cgroups will be created if they do not already exist.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--cidfile"
       ],
-      "description": "      --cidfile string                 Write the container ID to the file",
-      "takes_argument": true
+      "description": "Write the container ID to the file",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--cpu-count"
+      ],
+      "description": "Limit the number of CPUs available for execution by the container.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--cpu-percent"
+      ],
+      "description": "Limit the percentage of CPU available for execution by a container running on a Windows daemon.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--cpu-period"
       ],
-      "description": "      --cpu-period int                 Limit CPU CFS (Completely Fair Scheduler) period",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--cpu-quota"
-      ],
-      "description": "      --cpu-quota int                  Limit CPU CFS (Completely Fair Scheduler) quota",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--cpu-rt-period"
-      ],
-      "description": "      --cpu-rt-period int              Limit CPU real-time period in microseconds",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--cpu-rt-runtime"
-      ],
-      "description": "      --cpu-rt-runtime int             Limit CPU real-time runtime in microseconds",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "-c",
-        "--cpu-shares"
-      ],
-      "description": "  -c, --cpu-shares int                 CPU shares (relative weight)",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--cpus"
-      ],
-      "description": "      --cpus decimal                   Number of CPUs",
-      "takes_argument": true
+      "description": "Limit the CPU CFS (Completely Fair Scheduler) period",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--cpuset-cpus"
       ],
-      "description": "      --cpuset-cpus string             CPUs in which to allow execution (0-3, 0,1)",
-      "takes_argument": true
+      "description": "CPUs in which to allow execution (0-3, 0,1)",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--cpuset-mems"
       ],
-      "description": "      --cpuset-mems string             MEMs in which to allow execution (0-3, 0,1)",
-      "takes_argument": true
+      "description": "Memory nodes (MEMs) in which to allow execution (0-3, 0,1). Only effective on NUMA systems.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--cpu-quota"
+      ],
+      "description": "Limit the CPU CFS (Completely Fair Scheduler) quota",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--cpu-rt-period"
+      ],
+      "description": "Limit the CPU real-time period in microseconds",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--cpu-rt-runtime"
+      ],
+      "description": "Limit the CPU real-time runtime in microseconds",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--cpus"
+      ],
+      "description": "Number of CPUs. The default is 0.0 which means no limit.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "-d",
         "--detach"
       ],
-      "description": "  -d, --detach                         Run container in background and print container ID",
-      "takes_argument": false
+      "description": "Detached mode: run the container in the background and print the new container ID. The default is false.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--detach-keys"
       ],
-      "description": "      --detach-keys string             Override the key sequence for detaching a container",
-      "takes_argument": true
+      "description": "Override the key sequence for detaching a container; key is a single character from the [a-Z] range, or ctrl-value, where value is one of: a-z, @, ^, [, ,, or _.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--device"
       ],
-      "description": "      --device list                    Add a host device to the container",
-      "takes_argument": true
+      "description": "Add a host device onhost to the container under the incontainer name. Optional mode parameter can be used to specify device permissions, it is a combination of r (for read), w (for write), and m (for mknod(2)).",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--device-cgroup-rule"
       ],
-      "description": "      --device-cgroup-rule list        Add a rule to the cgroup allowed devices list",
-      "takes_argument": true
+      "description": "major:minor mode\" Add a rule to the cgroup allowed devices list. The rule is expected to be in the format specified in the Linux kernel documentation (Documentation/cgroup-v1/devices.txt): - type: a (all), c (char), or b (block); - major and minor: either a number, or * for all; - mode: a composition of r (read), w (write), and m (mknod(2)).",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--device-read-bps"
       ],
-      "description": "      --device-read-bps list           Limit read rate (bytes per second) from a device (default [])",
-      "takes_argument": true
+      "description": "Limit read rate from a device (e.g. --device-read-bps=/dev/sda:1mb)",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--device-read-iops"
       ],
-      "description": "      --device-read-iops list          Limit read rate (IO per second) from a device (default [])",
-      "takes_argument": true
+      "description": "Limit read rate from a device (e.g. --device-read-iops=/dev/sda:1000)",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--device-write-bps"
       ],
-      "description": "      --device-write-bps list          Limit write rate (bytes per second) to a device (default [])",
-      "takes_argument": true
+      "description": "Limit write rate to a device (e.g. --device-write-bps=/dev/sda:1mb)",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--device-write-iops"
       ],
-      "description": "      --device-write-iops list         Limit write rate (IO per second) to a device (default [])",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--disable-content-trust"
-      ],
-      "description": "      --disable-content-trust          Skip image verification (default true)",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "--dns"
-      ],
-      "description": "      --dns list                       Set custom DNS servers",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--dns-option"
-      ],
-      "description": "      --dns-option list                Set DNS options",
-      "takes_argument": true
+      "description": "Limit write rate to a device (e.g. --device-write-iops=/dev/sda:1000)",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--dns-search"
       ],
-      "description": "      --dns-search list                Set custom DNS search domains",
-      "takes_argument": true
+      "description": "Set custom DNS search domains (Use --dns-search=. if you don't wish to set the search domain)",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--dns-option"
+      ],
+      "description": "Set custom DNS options",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--dns"
+      ],
+      "description": "Set custom DNS servers",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--domainname"
       ],
-      "description": "      --domainname string              Container NIS domain name",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--entrypoint"
-      ],
-      "description": "      --entrypoint string              Overwrite the default ENTRYPOINT of the image",
-      "takes_argument": true
+      "description": "Container NIS domain name",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "-e",
         "--env"
       ],
-      "description": "  -e, --env list                       Set environment variables",
-      "takes_argument": true
+      "description": "Set environment variables",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--entrypoint"
+      ],
+      "description": "Overwrite the default ENTRYPOINT of the image",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--env-file"
       ],
-      "description": "      --env-file list                  Read in a file of environment variables",
-      "takes_argument": true
+      "description": "Read in a line delimited file of environment variables",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--expose"
       ],
-      "description": "      --expose list                    Expose a port or a range of ports",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--gpus",
-        "-request"
-      ],
-      "description": "      --gpus gpu-request               GPU devices to add to the container ('all' to pass all GPUs)",
-      "takes_argument": false
+      "description": "Expose a port, or a range of ports (e.g. --expose=3300-3310) informs Docker that the container listens on the specified network ports at runtime. Docker uses this information to interconnect containers using links and to set up port redirection on the host system.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--group-add"
       ],
-      "description": "      --group-add list                 Add additional groups to join",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--health-cmd"
-      ],
-      "description": "      --health-cmd string              Command to run to check health",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--health-interval"
-      ],
-      "description": "      --health-interval duration       Time between running the check (ms|s|m|h) (default 0s)",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--health-retries"
-      ],
-      "description": "      --health-retries int             Consecutive failures needed to report unhealthy",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--health-start-period"
-      ],
-      "description": "      --health-start-period duration   Start period for the container to initialize before starting health-retries countdown (ms|s|m|h) (default 0s)",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--health-timeout"
-      ],
-      "description": "      --health-timeout duration        Maximum time to allow one check to run (ms|s|m|h) (default 0s)",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--help"
-      ],
-      "description": "      --help                           Print usage",
-      "takes_argument": false
+      "description": "Add additional groups to run as",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "-h",
         "--hostname"
       ],
-      "description": "  -h, --hostname string                Container host name",
-      "takes_argument": true
+      "description": "Container host name",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--help"
+      ],
+      "description": "Print usage statement",
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--init"
       ],
-      "description": "      --init                           Run an init inside the container that forwards signals and reaps processes",
-      "takes_argument": false
+      "description": "Run an init inside the container that forwards signals and reaps processes",
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-i",
         "--interactive"
       ],
-      "description": "  -i, --interactive                    Keep STDIN open even if not attached",
-      "takes_argument": false
+      "description": "Keep STDIN open even if not attached. The default is false.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--ip"
       ],
-      "description": "      --ip string                      IPv4 address (e.g., 172.30.100.104)",
-      "takes_argument": true
+      "description": "Sets the container's interface IPv4 address (e.g., 172.23.0.9)",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--ip6"
       ],
-      "description": "      --ip6 string                     IPv6 address (e.g., 2001:db8::33)",
-      "takes_argument": true
+      "description": "Sets the container's interface IPv6 address (e.g., 2001:db8::1b99)",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--ipc"
       ],
-      "description": "      --ipc string                     IPC mode to use",
-      "takes_argument": true
+      "description": "Sets the IPC mode for the container. The following values are accepted:",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--isolation"
       ],
-      "description": "      --isolation string               Container isolation technology",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--kernel-memory"
-      ],
-      "description": "      --kernel-memory bytes            Kernel memory limit",
-      "takes_argument": true
+      "description": "Isolation specifies the type of isolation technology used by containers. Note that the default on Windows server is process, and the default on Windows client is hyperv. Linux only supports default.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "-l",
         "--label"
       ],
-      "description": "  -l, --label list                     Set meta data on a container",
-      "takes_argument": true
+      "description": "Set metadata on the container (for example, --label com.example.key=value).",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
+        "--kernel-memory"
+      ],
+      "description": "Kernel memory limit; S is an optional suffix which can be one of b, k, m, or g.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--label-file"
       ],
-      "description": "      --label-file list                Read in a line delimited file of labels",
-      "takes_argument": true
+      "description": "Read in a line delimited file of labels",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--link"
       ],
-      "description": "      --link list                      Add link to another container",
-      "takes_argument": true
+      "description": "Add link to another container.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--link-local-ip"
       ],
-      "description": "      --link-local-ip list             Container IPv4/IPv6 link-local addresses",
-      "takes_argument": true
+      "description": "Add one or more link-local IPv4/IPv6 addresses to the container's interface",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--log-driver"
       ],
-      "description": "      --log-driver string              Logging driver for the container",
-      "takes_argument": true
+      "description": "Logging driver for the container. Default is defined by daemon --log-driver flag. Warning: the docker logs command works only for the json-file and journald logging drivers.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--log-opt"
       ],
-      "description": "      --log-opt list                   Log driver options",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--mac-address"
-      ],
-      "description": "      --mac-address string             Container MAC address (e.g., 92:d0:c6:0a:29:33)",
-      "takes_argument": true
+      "description": "Logging driver specific options.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "-m",
         "--memory"
       ],
-      "description": "  -m, --memory bytes                   Memory limit",
-      "takes_argument": true
+      "description": "Memory limit; S is an optional suffix which can be one of b, k, m, or g.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--memory-reservation"
       ],
-      "description": "      --memory-reservation bytes       Memory soft limit",
-      "takes_argument": true
+      "description": "Memory soft limit; S is an optional suffix which can be one of b, k, m, or g.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--memory-swap"
       ],
-      "description": "      --memory-swap bytes              Swap limit equal to memory plus swap: '-1' to enable unlimited swap",
-      "takes_argument": true
+      "description": "Combined memory plus swap limit; S is an optional suffix which can be one of b, k, m, or g.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
-        "--memory-swappiness"
+        "--mac-address"
       ],
-      "description": "      --memory-swappiness int          Tune container memory swappiness (0 to 100) (default -1)",
-      "takes_argument": true
+      "description": "Container MAC address (e.g., 92:d0:c6:0a:29:33)",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--mount"
       ],
-      "description": "      --mount mount                    Attach a filesystem mount to the container",
-      "takes_argument": true
+      "description": "type=TYPE,TYPE-SPECIFIC-OPTION[,...] Attach a filesystem mount to the container",
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--name"
       ],
-      "description": "      --name string                    Assign a name to the container",
-      "takes_argument": true
+      "description": "Assign a name to the container",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--network"
       ],
-      "description": "      --network network                Connect a container to a network",
-      "takes_argument": true
+      "description": "Set the Network mode for the container. Supported values are:",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--network-alias"
       ],
-      "description": "      --network-alias list             Add network-scoped alias for the container",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--no-healthcheck"
-      ],
-      "description": "      --no-healthcheck                 Disable any container-specified HEALTHCHECK",
-      "takes_argument": false
+      "description": "Add network-scoped alias for the container",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--oom-kill-disable"
       ],
-      "description": "      --oom-kill-disable               Disable OOM Killer",
-      "takes_argument": false
+      "description": "Whether to disable OOM Killer for the container or not.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--oom-score-adj"
       ],
-      "description": "      --oom-score-adj int              Tune host's OOM preferences (-1000 to 1000)",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--pid"
-      ],
-      "description": "      --pid string                     PID namespace to use",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--pids-limit"
-      ],
-      "description": "      --pids-limit int                 Tune container pids limit (set -1 for unlimited)",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--platform"
-      ],
-      "description": "      --platform string                Set platform if server is multi-platform capable",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--privileged"
-      ],
-      "description": "      --privileged                     Give extended privileges to this container",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-p",
-        "--publish"
-      ],
-      "description": "  -p, --publish list                   Publish a container's port(s) to the host",
-      "takes_argument": true
+      "description": "Tune the host's OOM preferences for containers (accepts -1000 to 1000)",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "-P",
         "--publish-all"
       ],
-      "description": "  -P, --publish-all                    Publish all exposed ports to random ports",
-      "takes_argument": false
+      "description": "Publish all exposed ports to random ports on the host interfaces. The default is false.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
-        "--pull"
+        "-p",
+        "--publish"
       ],
-      "description": "      --pull string                    Pull image before running (\"always\"|\"missing\"|\"never\") (default \"missing\")",
-      "takes_argument": true
+      "description": "ip:[hostPort]:containerPort | [hostPort:]containerPort Publish a container's port, or range of ports, to the host.",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "--pid"
+      ],
+      "description": "Set the PID mode for the container Default is to create a private PID namespace for the container 'container:': join another container's PID namespace 'host': use the host's PID namespace for the container. Note: the host mode gives the container full access to local PID and is therefore considered insecure.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--userns"
+      ],
+      "description": "Set the usernamespace mode for the container when userns-remap option is enabled. host: use the host usernamespace and enable all privileged options (e.g., pid=host or --privileged).",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--pids-limit"
+      ],
+      "description": "Tune the container's pids (process IDs) limit. Set to -1 to have unlimited pids for the container.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--uts"
+      ],
+      "description": "Set the UTS mode for the container. The only possible type is host, meaning to use the host's UTS namespace inside the container. Note: the host mode gives the container access to changing the host's hostname and is therefore considered insecure.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--privileged"
+      ],
+      "description": "Give extended privileges to this container. A \"privileged\" container is given access to all devices.",
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--read-only"
       ],
-      "description": "      --read-only                      Mount the container's root filesystem as read only",
-      "takes_argument": false
+      "description": "Mount the container's root filesystem as read only.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--restart"
       ],
-      "description": "      --restart string                 Restart policy to apply when a container exits (default \"no\")",
-      "takes_argument": true
+      "description": "Restart policy to apply when a container exits. Supported values are:",
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--rm"
       ],
-      "description": "      --rm                             Automatically remove the container when it exits",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "--runtime"
-      ],
-      "description": "      --runtime string                 Runtime to use for this container",
-      "takes_argument": true
+      "description": "Automatically remove the container when it exits. The default is false. --rm flag can work together with -d, and auto-removal will be done on daemon side. Note that it's incompatible with any restart policy other than none.",
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--security-opt"
       ],
-      "description": "      --security-opt list              Security Options",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--shm-size"
-      ],
-      "description": "      --shm-size bytes                 Size of /dev/shm",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--sig-proxy"
-      ],
-      "description": "      --sig-proxy                      Proxy received signals to the process (default true)",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "--stop-signal"
-      ],
-      "description": "      --stop-signal string             Signal to stop a container (default \"SIGTERM\")",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--stop-timeout"
-      ],
-      "description": "      --stop-timeout int               Timeout (in seconds) to stop a container",
-      "takes_argument": true
+      "description": "Security Options for the container. The following options can be given:",
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
         "--storage-opt"
       ],
-      "description": "      --storage-opt list               Storage driver options for the container",
-      "takes_argument": true
+      "description": "Storage driver options per container",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "--stop-signal"
+      ],
+      "description": "Signal to stop the container. Default is SIGTERM.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--stop-timeout"
+      ],
+      "description": "Timeout (in seconds) to stop a container, or -1 to disable timeout.",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "--shm-size"
+      ],
+      "description": "Size of /dev/shm. The format is <number><unit>. number must be greater than 0. Unit is optional and can be b (bytes), k (kilobytes), m(megabytes), or g (gigabytes). If you omit the unit, the system uses bytes. If you omit the size entirely, the system uses 64m.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--sysctl"
       ],
-      "description": "      --sysctl map                     Sysctl options (default map[])",
-      "takes_argument": true
+      "description": "Configure namespaced kernel parameters at runtime",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
-        "--tmpfs"
+        "--sig-proxy"
       ],
-      "description": "      --tmpfs list                     Mount a tmpfs directory",
-      "takes_argument": true
+      "description": "Proxy received signals to the process (non-TTY mode only). SIGCHLD, SIGSTOP, and SIGKILL are not proxied. The default is true.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "--memory-swappiness"
+      ],
+      "description": "Tune a container's memory swappiness behavior. Accepts an integer between 0 and 100.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "-t",
         "--tty"
       ],
-      "description": "  -t, --tty                            Allocate a pseudo-TTY",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "--ulimit"
-      ],
-      "description": "      --ulimit ulimit                  Ulimit options (default [])",
-      "takes_argument": true
+      "description": "Allocate a pseudo-TTY. The default is false.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "-u",
         "--user"
       ],
-      "description": "  -u, --user string                    Username or UID (format: <name|uid>[:<group|gid>])",
-      "takes_argument": true
+      "description": "Sets the username or UID used and optionally the groupname or GID for the specified command.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
-        "--userns"
+        "--ulimit"
       ],
-      "description": "      --userns string                  User namespace to use",
-      "takes_argument": true
+      "description": "Ulimit options",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
-        "--uts"
+        "-v|--volume"
       ],
-      "description": "      --uts string                     UTS namespace to use",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "-v",
-        "--volume"
-      ],
-      "description": "  -v, --volume list                    Bind mount a volume",
-      "takes_argument": true
+      "description": "Create a bind mount. If you specify, -v /HOST-DIR:/CONTAINER-DIR, Docker bind mounts /HOST-DIR in the host to /CONTAINER-DIR in the Docker container. If 'HOST-DIR' is omitted, Docker automatically creates the new volume on the host. The OPTIONS are a comma delimited list and can be:",
+      "argument_type": "OPTIONAL_SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--volume-driver"
       ],
-      "description": "      --volume-driver string           Optional volume driver for the container",
-      "takes_argument": true
+      "description": "Container's volume driver. This driver creates volumes specified either from a Dockerfile's VOLUME instruction or from the docker run -v flag. See docker-volume-create(1) for full details.",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "--volumes-from"
       ],
-      "description": "      --volumes-from list              Mount volumes from the specified container(s)",
-      "takes_argument": true
+      "description": "Mount volumes from the specified container(s)",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     },
     {
       "aliases": [
         "-w",
         "--workdir"
       ],
-      "description": "  -w, --workdir string                 Working directory inside the container",
-      "takes_argument": true
+      "description": "Working directory inside the container",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
     }
   ],
   "positional_arguments": [
-    {
-      "name": "IMAGE",
-      "repeated": false
-    },
-    {
-      "name": "[COMMAND]",
-      "repeated": false
-    },
-    {
-      "name": "[ARG...]",
-      "repeated": true
-    }
+
   ]
 }

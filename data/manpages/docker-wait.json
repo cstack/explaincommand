@@ -3,18 +3,18 @@
     "main_command": "docker",
     "subcommand": "wait"
   },
-  "description": "Block until one or more containers stop, then print their exit codes",
+  "description": "Block until one or more containers stop, then print\n    their exit codes",
   "flags": [
 
   ],
   "positional_arguments": [
     {
       "name": "CONTAINER",
-      "repeated": false
+      "type": "BASIC"
     },
     {
-      "name": "[CONTAINER...]",
-      "repeated": true
+      "name": "CONTAINER",
+      "type": "REPEATED"
     }
   ]
 }

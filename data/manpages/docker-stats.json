@@ -3,42 +3,14 @@
     "main_command": "docker",
     "subcommand": "stats"
   },
-  "description": "Display a live stream of container(s) resource usage statistics",
+  "description": "Display a live stream of container(s) resource\n    usage statistics",
   "flags": [
-    {
-      "aliases": [
-        "-a",
-        "--all"
-      ],
-      "description": "  -a, --all             Show all containers (default shows just running)",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "--format"
-      ],
-      "description": "      --format string   Pretty-print images using a Go template",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--no-stream"
-      ],
-      "description": "      --no-stream       Disable streaming stats and only pull the first result",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "--no-trunc"
-      ],
-      "description": "      --no-trunc        Do not truncate output",
-      "takes_argument": false
-    }
+
   ],
   "positional_arguments": [
     {
-      "name": "[CONTAINER...]",
-      "repeated": true
+      "name": "CONTAINER",
+      "type": "REPEATED"
     }
   ]
 }

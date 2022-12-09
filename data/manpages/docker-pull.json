@@ -5,41 +5,12 @@
   },
   "description": "Pull an image or a repository from a registry",
   "flags": [
-    {
-      "aliases": [
-        "-a",
-        "--all-tags"
-      ],
-      "description": "  -a, --all-tags                Download all tagged images in the repository",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "--disable-content-trust"
-      ],
-      "description": "      --disable-content-trust   Skip image verification (default true)",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "--platform"
-      ],
-      "description": "      --platform string         Set platform if server is multi-platform capable",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "-q",
-        "--quiet"
-      ],
-      "description": "  -q, --quiet                   Suppress verbose output",
-      "takes_argument": false
-    }
+
   ],
   "positional_arguments": [
     {
       "name": "NAME[:TAG|@DIGEST]",
-      "repeated": false
+      "type": "BASIC"
     }
   ]
 }

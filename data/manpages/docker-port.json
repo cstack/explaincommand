@@ -3,18 +3,18 @@
     "main_command": "docker",
     "subcommand": "port"
   },
-  "description": "List port mappings or a specific mapping for the container",
+  "description": "List port mappings or a specific mapping for the\n    container",
   "flags": [
 
   ],
   "positional_arguments": [
     {
       "name": "CONTAINER",
-      "repeated": false
+      "type": "BASIC"
     },
     {
       "name": "[PRIVATE_PORT[/PROTO]]",
-      "repeated": false
+      "type": "BASIC"
     }
   ]
 }

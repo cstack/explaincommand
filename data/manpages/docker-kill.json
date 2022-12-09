@@ -5,23 +5,16 @@
   },
   "description": "Kill one or more running containers",
   "flags": [
-    {
-      "aliases": [
-        "-s",
-        "--signal"
-      ],
-      "description": "  -s, --signal string   Signal to send to the container (default \"KILL\")",
-      "takes_argument": true
-    }
+
   ],
   "positional_arguments": [
     {
       "name": "CONTAINER",
-      "repeated": false
+      "type": "BASIC"
     },
     {
-      "name": "[CONTAINER...]",
-      "repeated": true
+      "name": "CONTAINER",
+      "type": "REPEATED"
     }
   ]
 }

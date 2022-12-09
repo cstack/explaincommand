@@ -3,18 +3,18 @@
     "main_command": "docker",
     "subcommand": "unpause"
   },
-  "description": "Unpause all processes within one or more containers",
+  "description": "Unpause all processes within one or more\n    containers",
   "flags": [
 
   ],
   "positional_arguments": [
     {
       "name": "CONTAINER",
-      "repeated": false
+      "type": "BASIC"
     },
     {
-      "name": "[CONTAINER...]",
-      "repeated": true
+      "name": "CONTAINER",
+      "type": "REPEATED"
     }
   ]
 }

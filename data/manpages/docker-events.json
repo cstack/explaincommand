@@ -5,35 +5,7 @@
   },
   "description": "Get real time events from the server",
   "flags": [
-    {
-      "aliases": [
-        "-f",
-        "--filter"
-      ],
-      "description": "  -f, --filter filter   Filter output based on conditions provided",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--format"
-      ],
-      "description": "      --format string   Format the output using the given Go template",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--since"
-      ],
-      "description": "      --since string    Show all events created since timestamp",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "--until"
-      ],
-      "description": "      --until string    Stream events until this timestamp",
-      "takes_argument": true
-    }
+
   ],
   "positional_arguments": [
 

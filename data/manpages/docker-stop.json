@@ -5,23 +5,16 @@
   },
   "description": "Stop one or more running containers",
   "flags": [
-    {
-      "aliases": [
-        "-t",
-        "--time"
-      ],
-      "description": "  -t, --time int   Seconds to wait for stop before killing it (default 10)",
-      "takes_argument": true
-    }
+
   ],
   "positional_arguments": [
     {
       "name": "CONTAINER",
-      "repeated": false
+      "type": "BASIC"
     },
     {
-      "name": "[CONTAINER...]",
-      "repeated": true
+      "name": "CONTAINER",
+      "type": "REPEATED"
     }
   ]
 }

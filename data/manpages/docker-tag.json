@@ -3,18 +3,18 @@
     "main_command": "docker",
     "subcommand": "tag"
   },
-  "description": "Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE",
+  "description": "Create a tag TARGET_IMAGE that refers to\n  SOURCE_IMAGE",
   "flags": [
 
   ],
   "positional_arguments": [
     {
       "name": "SOURCE_IMAGE[:TAG]",
-      "repeated": false
+      "type": "BASIC"
     },
     {
       "name": "TARGET_IMAGE[:TAG]",
-      "repeated": false
+      "type": "BASIC"
     }
   ]
 }

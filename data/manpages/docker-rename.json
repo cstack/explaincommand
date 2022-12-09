@@ -10,11 +10,11 @@
   "positional_arguments": [
     {
       "name": "CONTAINER",
-      "repeated": false
+      "type": "BASIC"
     },
     {
       "name": "NEW_NAME",
-      "repeated": false
+      "type": "BASIC"
     }
   ]
 }

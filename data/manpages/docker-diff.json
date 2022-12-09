@@ -3,14 +3,14 @@
     "main_command": "docker",
     "subcommand": "diff"
   },
-  "description": "Inspect changes to files or directories on a container's filesystem",
+  "description": "Inspect changes to files or directories on a\n    container's filesystem",
   "flags": [
 
   ],
   "positional_arguments": [
     {
       "name": "CONTAINER",
-      "repeated": false
+      "type": "BASIC"
     }
   ]
 }

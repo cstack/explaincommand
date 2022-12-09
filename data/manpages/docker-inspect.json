@@ -3,47 +3,18 @@
     "main_command": "docker",
     "subcommand": "inspect"
   },
-  "description": "Return low-level information on Docker objects",
+  "description": "Return low-level information on Docker\n  objects",
   "flags": [
-    {
-      "aliases": [
-        "-level"
-      ],
-      "description": "Return low-level information on Docker objects",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "-f",
-        "--format"
-      ],
-      "description": "  -f, --format string   Format the output using the given Go template",
-      "takes_argument": true
-    },
-    {
-      "aliases": [
-        "-s",
-        "--size"
-      ],
-      "description": "  -s, --size            Display total file sizes if the type is container",
-      "takes_argument": false
-    },
-    {
-      "aliases": [
-        "--type"
-      ],
-      "description": "      --type string     Return JSON for specified type",
-      "takes_argument": true
-    }
+
   ],
   "positional_arguments": [
     {
       "name": "NAME|ID",
-      "repeated": false
+      "type": "BASIC"
     },
     {
-      "name": "[NAME|ID...]",
-      "repeated": true
+      "name": "NAME|ID",
+      "type": "REPEATED"
     }
   ]
 }
