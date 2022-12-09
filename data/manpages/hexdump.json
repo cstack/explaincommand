@@ -1,0 +1,127 @@
+{
+  "command_name": {
+    "main_command": "hexdump",
+    "subcommand": null
+  },
+  "description": "display file contents in hexadecimal, decimal, octal, or\n    ascii",
+  "flags": [
+    {
+      "aliases": [
+        "-b",
+        "--one-byte-octal"
+      ],
+      "description": "One-byte octal display. Display the input offset in hexadecimal, followed by sixteen space-separated, three-column, zero-filled bytes of input data, in octal, per line.",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "-c",
+        "--one-byte-char"
+      ],
+      "description": "One-byte character display. Display the input offset in hexadecimal, followed by sixteen space-separated, three-column, space-filled characters of input data per line.",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "-C",
+        "--canonical"
+      ],
+      "description": "Canonical hex+ASCII display. Display the input offset in hexadecimal, followed by sixteen space-separated, two-column, hexadecimal bytes, followed by the same sixteen bytes in %_p format enclosed in | characters. Invoking the program as hd implies this option.",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "-d",
+        "--two-bytes-decimal"
+      ],
+      "description": "Two-byte decimal display. Display the input offset in hexadecimal, followed by eight space-separated, five-column, zero-filled, two-byte units of input data, in unsigned decimal, per line.",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "-e",
+        "--format"
+      ],
+      "description": "Specify a format string to be used for displaying data.",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
+        "-f",
+        "--format-file"
+      ],
+      "description": "Specify a file that contains one or more newline-separated format strings. Empty lines and lines whose first non-blank character is a hash mark (#) are ignored.",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
+        "-L",
+        "--color"
+      ],
+      "description": "Accept color units for the output. The optional argument when can be auto, never or always. If the when argument is omitted, it defaults to auto. The colors can be disabled; for the current built-in default see the --help output. See also the Colors subsection and the COLORS section below.",
+      "argument_type": "OPTIONAL_SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "-n",
+        "--length"
+      ],
+      "description": "Interpret only length bytes of input.",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
+        "-o",
+        "--two-bytes-octal"
+      ],
+      "description": "Two-byte octal display. Display the input offset in hexadecimal, followed by eight space-separated, six-column, zero-filled, two-byte quantities of input data, in octal, per line.",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "-s",
+        "--skip"
+      ],
+      "description": "Skip offset bytes from the beginning of the input.",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
+        "-v",
+        "--no-squeezing"
+      ],
+      "description": "The -v option causes hexdump to display all input data. Without the -v option, any number of groups of output lines which would be identical to the immediately preceding group of output lines (except for the input offsets), are replaced with a line comprised of a single asterisk.",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "-x",
+        "--two-bytes-hex"
+      ],
+      "description": "Two-byte hexadecimal display. Display the input offset in hexadecimal, followed by eight space-separated, four-column, zero-filled, two-byte quantities of input data, in hexadecimal, per line.",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "-h",
+        "--help"
+      ],
+      "description": "Display help text and exit.",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "-V",
+        "--version"
+      ],
+      "description": "Print version and exit.",
+      "argument_type": "NONE"
+    }
+  ],
+  "positional_arguments": [
+    {
+      "name": "file",
+      "type": "REPEATED"
+    }
+  ]
+}
