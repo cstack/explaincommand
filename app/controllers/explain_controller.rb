@@ -5,7 +5,7 @@ class ExplainController < ApplicationController
       'chmod 600 id_rsa_gh_deploy',
       'docker build -t getting-started .',
       'curl -F person=anonymous -F secret=@file.txt http://example.com/submit.cgi',
-      'wget -r -l1 -H -t1 -nd -N -np -A mp3 -e robots=off http://example.com'
+      'wget -r -l 1 -H -t 1 -nd -N -np -A mp3 -e robots=off http://example.com'
     ]
   end
 

@@ -124,7 +124,7 @@ describe Explainer do
     end
 
     context 'homepage example command for wget' do
-      let(:cmd) { 'wget -r -l1 -H -t1 -nd -N -np -A mp3 -e robots=off http://example.com' }
+      let(:cmd) { 'wget -r -l 1 -H -t 1 -nd -N -np -A mp3 -e robots=off http://example.com' }
 
       it 'explains the command' do
         expect(subject.annotations).to eq(
@@ -140,7 +140,7 @@ describe Explainer do
               token_ids: [1]
             ),
             Annotation.new(
-              referenced_text: '-l',
+              referenced_text: '-l 1',
               text: 'Set the maximum number of subdirectories that Wget will recurse into to depth . In order to prevent one from accidentally downloading very large websites when using recursion this is limited to a depth of 5 by default, i.e., it will traverse at most 5 directories deep starting from the provided URL. Set -l 0 or -l inf for infinite recursion depth.   wget -r -l 0 http://<site>/1.html ',
               token_ids: [2]
             ),
@@ -150,7 +150,7 @@ describe Explainer do
               token_ids: [4]
             ),
             Annotation.new(
-              referenced_text: '-t',
+              referenced_text: '-t 1',
               text: 'Set number of tries to number . Specify 0 or inf for infinite retrying. The default is to retry 20 times, with the exception of fatal errors like "connection refused" or "not found" (404), which are not retried.',
               token_ids: [5]
             ),
