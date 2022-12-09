@@ -10,38 +10,42 @@
         "-n"
       ],
       "description": "do not output the trailing newline",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-e"
       ],
       "description": "enable interpretation of backslash escapes",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "-E"
       ],
       "description": "disable interpretation of backslash escapes (default)",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--help"
       ],
       "description": "display this help and exit",
-      "takes_argument": false
+      "argument_type": "NONE"
     },
     {
       "aliases": [
         "--version"
       ],
       "description": "output version information and exit",
-      "takes_argument": false
+      "argument_type": "NONE"
     }
   ],
   "positional_arguments": [
+    {
+      "name": "SHORT-OPTION",
+      "type": "REPEATED"
+    },
     {
       "name": "STRING",
       "type": "REPEATED"
