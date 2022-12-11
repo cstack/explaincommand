@@ -1,8 +1,6 @@
 require:
   - rubocop-rails
   - rubocop-rspec
-Layout/LineLength:
-  Enabled: false
 Metrics/AbcSize:
   Enabled: false
 Metrics/ClassLength:

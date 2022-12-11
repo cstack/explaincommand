@@ -24,7 +24,23 @@ describe ManpageParser do
     subject { described_class.extract_first_usage_from_paragraph(text:, command_name:) }
 
     context 'when there is a subcommand' do
-      let(:text) { "SYNOPSIS \ngit checkout [-q] [-f] [-m] [<branch>] \ngit checkout [-q] [-f] [-m] --detach [<branch>] \ngit checkout [-q] [-f] [-m] [--detach] <commit> \ngit checkout [-q] [-f] [-m] [[-b|-B|--orphan]\n<new-branch>] [<start-point>] \ngit checkout\n[-f|--ours|--theirs|-m|--conflict=<style>]\n[<tree-ish>] [--] <pathspec>... \ngit checkout\n[-f|--ours|--theirs|-m|--conflict=<style>]\n[<tree-ish>] --pathspec-from-file=<file>\n[--pathspec-file-nul] \ngit checkout (-p|--patch) [<tree-ish>] [--]\n[<pathspec>...]" }
+      let(:text) do
+        "SYNOPSIS \n" \
+          "git checkout [-q] [-f] [-m] [<branch>] \n" \
+          "git checkout [-q] [-f] [-m] --detach [<branch>] \n" \
+          "git checkout [-q] [-f] [-m] [--detach] <commit> \n" \
+          "git checkout [-q] [-f] [-m] [[-b|-B|--orphan]\n" \
+          "<new-branch>] [<start-point>] \n" \
+          "git checkout\n" \
+          "[-f|--ours|--theirs|-m|--conflict=<style>]\n" \
+          "[<tree-ish>] [--] <pathspec>... \n" \
+          "git checkout\n" \
+          "[-f|--ours|--theirs|-m|--conflict=<style>]\n" \
+          "[<tree-ish>] --pathspec-from-file=<file>\n" \
+          "[--pathspec-file-nul] \n" \
+          "git checkout (-p|--patch) [<tree-ish>] [--]\n" \
+          '[<pathspec>...]'
+      end
       let(:command_name) { Command::Name.new('git', 'checkout') }
 
       it 'parses correctly' do

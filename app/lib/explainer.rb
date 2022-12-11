@@ -36,6 +36,11 @@ class Explainer
         )
       end
     end
-    Explanation.new(command:, annotations:, source_link: manpage.source_link, source_description: manpage.source_description)
+    Explanation.new(
+      command:,
+      annotations:,
+      source_link: manpage.source_link,
+      source_description: manpage.source_description
+    )
   end
 end

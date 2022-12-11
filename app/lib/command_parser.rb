@@ -97,13 +97,17 @@ class CommandParser
     end
   end
 
+  # Combine adjacent tokens if they are [flag] [argument]
   def self.assign_arguments_to_flags(tokens:, manpage:)
     new_tokens = []
     while tokens.length > 0
       token = tokens.shift
       if token[:type] == :flag && token[:value].nil?
         flag = manpage&.get_flag(token[:text])
-        token[:value] = tokens.shift[:text] if !flag.nil? && flag.takes_argument_separated_by_space? && tokens.length > 0 && tokens.first[:type] == :unknown
+        next_token_could_be_argument = flag&.takes_argument_separated_by_space?
+        next_token_unassigned = tokens.first&.fetch(:type) == :unknown
+        should_assign_argument = next_token_could_be_argument && next_token_unassigned
+        token[:value] = tokens.shift[:text] if should_assign_argument
       end
       new_tokens << token
     end

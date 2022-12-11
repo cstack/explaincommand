@@ -39,10 +39,14 @@ class ManpageParser
     UsageParser.extract_positional_arguments_from_usage_pattern(text: first_usage, command_name:)
   end
 
+  # Given some text containing one or more usage patterns, return the text of the first usage pattern
+  # A usage pattern looks like:
+  #   git checkout [-q] [-f] [-m] [<branch>]
   def self.extract_first_usage_from_paragraph(text:, command_name:)
     words = text.split
     index_of_first_usage = words.index(command_name.main_command)
-    index_of_second_usage = words[index_of_first_usage + command_name.num_words, words.length].index(command_name.main_command)
+    rest_of_text = words[index_of_first_usage + command_name.num_words, words.length]
+    index_of_second_usage = rest_of_text.index(command_name.main_command)
     words_of_first_usage = if index_of_second_usage.nil?
                              words[index_of_first_usage, words.length]
                            else

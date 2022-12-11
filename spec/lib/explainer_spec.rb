@@ -79,7 +79,8 @@ describe Explainer do
             ),
             Annotation.new(
               referenced_text: '-t getting-started',
-              text: 'Repository names (and optionally with tags) to be applied to the resulting image in case of success. Refer to docker-tag(1) for more information about valid tag names.',
+              text: 'Repository names (and optionally with tags) to be applied to the resulting image in case of ' \
+                    'success. Refer to docker-tag(1) for more information about valid tag names.',
               token_ids: [2]
             ),
             Annotation.new(
@@ -105,12 +106,18 @@ describe Explainer do
             ),
             Annotation.new(
               referenced_text: '-F person=anonymous',
-              text: '(HTTP SMTP IMAP) For HTTP protocol family, this lets curl emulate a filled-in form in which a user has pressed the submit button. This causes curl to POST data using the Content-Type multipart/form-data according to RFC 2388. For SMTP and IMAP protocols, this is the means to compose a multipart mail message to transmit. ',
+              text: '(HTTP SMTP IMAP) For HTTP protocol family, this lets curl emulate a filled-in form in which a ' \
+                    'user has pressed the submit button. This causes curl to POST data using the Content-Type ' \
+                    'multipart/form-data according to RFC 2388. For SMTP and IMAP protocols, this is the means to ' \
+                    'compose a multipart mail message to transmit. ',
               token_ids: [1]
             ),
             Annotation.new(
               referenced_text: '-F secret=@file.txt',
-              text: '(HTTP SMTP IMAP) For HTTP protocol family, this lets curl emulate a filled-in form in which a user has pressed the submit button. This causes curl to POST data using the Content-Type multipart/form-data according to RFC 2388. For SMTP and IMAP protocols, this is the means to compose a multipart mail message to transmit. ',
+              text: '(HTTP SMTP IMAP) For HTTP protocol family, this lets curl emulate a filled-in form in which a ' \
+                    'user has pressed the submit button. This causes curl to POST data using the Content-Type ' \
+                    'multipart/form-data according to RFC 2388. For SMTP and IMAP protocols, this is the means to ' \
+                    'compose a multipart mail message to transmit. ',
               token_ids: [2]
             ),
             Annotation.new(
@@ -141,7 +148,11 @@ describe Explainer do
             ),
             Annotation.new(
               referenced_text: '-l 1',
-              text: 'Set the maximum number of subdirectories that Wget will recurse into to depth . In order to prevent one from accidentally downloading very large websites when using recursion this is limited to a depth of 5 by default, i.e., it will traverse at most 5 directories deep starting from the provided URL. Set -l 0 or -l inf for infinite recursion depth.   wget -r -l 0 http://<site>/1.html ',
+              text: 'Set the maximum number of subdirectories that Wget will recurse into to depth . ' \
+                    'In order to prevent one from accidentally downloading very large websites when using recursion ' \
+                    'this is limited to a depth of 5 by default, i.e., it will traverse at most 5 directories deep ' \
+                    'starting from the provided URL. Set -l 0 or -l inf for infinite recursion depth.   ' \
+                    'wget -r -l 0 http://<site>/1.html ',
               token_ids: [2]
             ),
             Annotation.new(
@@ -151,12 +162,16 @@ describe Explainer do
             ),
             Annotation.new(
               referenced_text: '-t 1',
-              text: 'Set number of tries to number . Specify 0 or inf for infinite retrying. The default is to retry 20 times, with the exception of fatal errors like "connection refused" or "not found" (404), which are not retried.',
+              text: 'Set number of tries to number . Specify 0 or inf for infinite retrying. The default is to retry ' \
+                    '20 times, with the exception of fatal errors like "connection refused" or "not found" (404), ' \
+                    'which are not retried.',
               token_ids: [4]
             ),
             Annotation.new(
               referenced_text: '-nd',
-              text: 'Do not create a hierarchy of directories when retrieving recursively. With this option turned on, all files will get saved to the current directory, without clobbering (if a name shows up more than once, the filenames will get extensions .n ).',
+              text: 'Do not create a hierarchy of directories when retrieving recursively. ' \
+                    'With this option turned on, all files will get saved to the current directory, ' \
+                    'without clobbering (if a name shows up more than once, the filenames will get extensions .n ).',
               token_ids: [5]
             ),
             Annotation.new(
@@ -166,17 +181,26 @@ describe Explainer do
             ),
             Annotation.new(
               referenced_text: '-np',
-              text: 'Do not ever ascend to the parent directory when retrieving recursively. This is a useful option, since it guarantees that only the files below a certain hierarchy will be downloaded.',
+              text: 'Do not ever ascend to the parent directory when retrieving recursively. ' \
+                    'This is a useful option, since it guarantees that only the files below a certain hierarchy will ' \
+                    'be downloaded.',
               token_ids: [7]
             ),
             Annotation.new(
               referenced_text: '-A mp3',
-              text: "Specify comma-separated lists of file name suffixes or patterns to accept or reject. Note that if any of the wildcard characters, * , ? , [ or ] , appear in an element of acclist or rejlist , it will be treated as a pattern, rather than a suffix. In this case, you have to enclose the pattern into quotes to prevent your shell from expanding it, like in -A \"*.mp3\" or -A '*.mp3' .",
+              text: 'Specify comma-separated lists of file name suffixes or patterns to accept or reject. ' \
+                    'Note that if any of the wildcard characters, * , ? , [ or ] , appear in an element of acclist ' \
+                    'or rejlist , it will be treated as a pattern, rather than a suffix. In this case, you have to ' \
+                    'enclose the pattern into quotes to prevent your shell from expanding it, like in -A "*.mp3" ' \
+                    "or -A '*.mp3' .",
               token_ids: [8]
             ),
             Annotation.new(
               referenced_text: '-e robots=off',
-              text: 'Execute command as if it were a part of .wgetrc . A command thus invoked will be executed after the commands in .wgetrc , thus taking precedence over them. If you need to specify more than one wgetrc command, use multiple instances of -e .',
+              text: 'Execute command as if it were a part of .wgetrc . ' \
+                    'A command thus invoked will be executed after the commands in .wgetrc , ' \
+                    'thus taking precedence over them. If you need to specify more than one wgetrc command, ' \
+                    'use multiple instances of -e .',
               token_ids: [9]
             ),
             Annotation.new(
