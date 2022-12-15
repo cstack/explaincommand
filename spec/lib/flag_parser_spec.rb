@@ -74,20 +74,5 @@ describe FlagParser do
         )
       end
     end
-
-    context 'when definition includes nonbreaking space' do
-      let(:text) { '--shell SHELL' }
-
-      it 'deals with the nonbreaking space' do
-        expect(subject).to eq(
-          [
-            {
-              aliases: ['--shell'],
-              argument_type: Flag::ArgumentType::SEPARATED_BY_SPACE
-            }
-          ]
-        )
-      end
-    end
   end
 end

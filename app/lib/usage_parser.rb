@@ -1,8 +1,6 @@
 class UsageParser
   def self.break_usage_pattern_into_words(text)
-    # Some manpages have nonbreaking spaces
-    normalized = text.gsub(/ /, ' ')
-    words = normalized.split
+    words = text.split
     group_by_brackets(words)
   end
 

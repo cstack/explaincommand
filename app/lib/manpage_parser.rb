@@ -1,10 +1,12 @@
 class ManpageParser
   def self.parse_html_string(html_string:, command_name:)
-    html = Nokogiri::HTML(html_string)
+    # Some manpages have nonbreaking spaces
+    normalized = html_string.gsub(/&#x00A0;/, ' ')
+    html = Nokogiri::HTML(normalized)
     description = extract_description(html)
-    usage_text = extract_synopsis_text(html)
-    usage_text = extract_usage_from_name_section(html) if usage_text.nil?
-    positional_arguments = extract_positional_arguments_from_paragraph(text: usage_text, command_name:)
+    usages = extract_usages(html)
+    usage = extract_first_usage(text: usages, command_name:)
+    positional_arguments = UsageParser.extract_positional_arguments_from_usage_pattern(text: usage, command_name:)
     flags = FlagParser.extract_flags(html)
     Manpage.new(
       command_name:,
@@ -12,6 +14,31 @@ class ManpageParser
       flags:,
       positional_arguments:
     )
+  end
+
+  # Given some text containing one or more usage patterns, return the text of the first usage pattern
+  # A usage pattern looks like:
+  #   git checkout [-q] [-f] [-m] [<branch>]
+  def self.extract_first_usage(text:, command_name:)
+    words = text.split
+    num_words_in_first_usage = 0
+    words.each_with_index do |word, i|
+      next if i < command_name.num_words
+
+      if word == command_name.main_command
+        num_words_in_first_usage = i + 2 if words[i + 1] == '...'
+        break
+      else
+        num_words_in_first_usage = i + 1
+      end
+    end
+    words_of_first_usage = words[0, num_words_in_first_usage]
+    words_of_first_usage.join(' ')
+  end
+
+  def self.extract_usages(html)
+    text = extract_synopsis_text(html) || extract_usage_from_name_section(html)
+    text.strip.gsub(/\s/, ' ')
   end
 
   def self.extract_synopsis_text(html)
@@ -31,27 +58,5 @@ class ManpageParser
 
   def self.extract_description(html)
     html.css('h1#NAME').first.parent.css('p').first.text.split(' - ').last
-  end
-
-  def self.extract_positional_arguments_from_paragraph(text:, command_name:)
-    text = text.strip.gsub(/\s/, ' ')
-    first_usage = extract_first_usage_from_paragraph(text:, command_name:)
-    UsageParser.extract_positional_arguments_from_usage_pattern(text: first_usage, command_name:)
-  end
-
-  # Given some text containing one or more usage patterns, return the text of the first usage pattern
-  # A usage pattern looks like:
-  #   git checkout [-q] [-f] [-m] [<branch>]
-  def self.extract_first_usage_from_paragraph(text:, command_name:)
-    words = text.split
-    index_of_first_usage = words.index(command_name.main_command)
-    rest_of_text = words[index_of_first_usage + command_name.num_words, words.length]
-    index_of_second_usage = rest_of_text.index(command_name.main_command)
-    words_of_first_usage = if index_of_second_usage.nil?
-                             words[index_of_first_usage, words.length]
-                           else
-                             words[index_of_first_usage, index_of_second_usage + command_name.num_words]
-                           end
-    words_of_first_usage.join(' ')
   end
 end
