@@ -8,12 +8,33 @@ describe FlagParser do
       let(:text) { '-m, --magic-file magicfiles' }
 
       it 'parses out both aliases and the argument' do
-        expect(subject).to eq([
-                                {
-                                  aliases: ['-m', '--magic-file'],
-                                  argument_type: :SEPARATED_BY_SPACE
-                                }
-                              ])
+        expect(subject).to eq(
+          [
+            {
+              aliases: ['-m', '--magic-file'],
+              argument_type: :SEPARATED_BY_SPACE
+            }
+          ]
+        )
+      end
+    end
+
+    context 'when flag has two aliases and an argument using an equal sign' do
+      let(:text) { '-c, --bytes=[-]NUM' }
+
+      it 'parses out both aliases and the argument' do
+        expect(subject).to eq(
+          [
+            {
+              aliases: ['-c'],
+              argument_type: Flag::ArgumentType::SEPARATED_BY_SPACE
+            },
+            {
+              aliases: ['--bytes'],
+              argument_type: Flag::ArgumentType::SEPARATED_BY_EQUAL_SIGN
+            }
+          ]
+        )
       end
     end
 
@@ -56,7 +77,7 @@ describe FlagParser do
       end
     end
 
-    context 'when flag takes argument with out without equal depending on alias' do
+    context 'when flag takes argument with or without equal depending on alias' do
       let(:text) { '-e script, --expression=script' }
 
       it 'parses out both forms' do

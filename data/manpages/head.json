@@ -1,0 +1,82 @@
+{
+  "command_name": {
+    "main_command": "head",
+    "subcommand": null
+  },
+  "description": "output the first part of files",
+  "flags": [
+    {
+      "aliases": [
+        "-c"
+      ],
+      "description": "print the first NUM bytes of each file; with the leading '-', print all but the last NUM bytes of each file",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
+        "--bytes"
+      ],
+      "description": "print the first NUM bytes of each file; with the leading '-', print all but the last NUM bytes of each file",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "-n"
+      ],
+      "description": "print the first NUM lines instead of the first 10; with the leading '-', print all but the last NUM lines of each file",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
+        "--lines"
+      ],
+      "description": "print the first NUM lines instead of the first 10; with the leading '-', print all but the last NUM lines of each file",
+      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+    },
+    {
+      "aliases": [
+        "-q",
+        "--quiet",
+        "--silent"
+      ],
+      "description": "never print headers giving file names",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "-v",
+        "--verbose"
+      ],
+      "description": "always print headers giving file names",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "-z",
+        "--zero-terminated"
+      ],
+      "description": "line delimiter is NUL, not newline",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "--help"
+      ],
+      "description": "display this help and exit",
+      "argument_type": "NONE"
+    },
+    {
+      "aliases": [
+        "--version"
+      ],
+      "description": "output version information and exit",
+      "argument_type": "NONE"
+    }
+  ],
+  "positional_arguments": [
+    {
+      "name": "FILE",
+      "type": "REPEATED"
+    }
+  ]
+}

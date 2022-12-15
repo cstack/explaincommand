@@ -7,7 +7,13 @@
   "flags": [
     {
       "aliases": [
-        "-m",
+        "-m"
+      ],
+      "description": "set file mode (as in chmod), not a=rwx - umask",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
         "--mode"
       ],
       "description": "set file mode (as in chmod), not a=rwx - umask",

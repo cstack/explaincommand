@@ -14,6 +14,10 @@ class FlagParser
     end
   end
 
+  # Flag definitions look like, e.g.:
+  #   -m, --magic-file magicfiles
+  #   -c, --bytes=[-]NUM
+  #   --color[=WHEN], --colour[=WHEN]
   def self.parse_flag_definition(text)
     aliases = text.split(', ')
     aliases = aliases.map do |alias_definition|
@@ -43,7 +47,9 @@ class FlagParser
     aliases.each do |alias_definition|
       break unless alias_definition[:argument_type] == Flag::ArgumentType::NONE
 
-      alias_definition[:argument_type] = aliases.last[:argument_type]
+      if aliases.last[:argument_type] != Flag::ArgumentType::NONE
+        alias_definition[:argument_type] = Flag::ArgumentType::SEPARATED_BY_SPACE
+      end
     end
 
     aliases.group_by do |alias_definition|

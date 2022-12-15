@@ -58,7 +58,13 @@
     },
     {
       "aliases": [
-        "-i[SUFFIX]",
+        "-i[SUFFIX]"
+      ],
+      "description": "edit files in place (makes backup if SUFFIX supplied)",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
         "--in-place"
       ],
       "description": "edit files in place (makes backup if SUFFIX supplied)",

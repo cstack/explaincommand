@@ -55,7 +55,13 @@
     },
     {
       "aliases": [
-        "-L",
+        "-L"
+      ],
+      "description": "Accept color units for the output. The optional argument when can be auto, never or always. If the when argument is omitted, it defaults to auto. The colors can be disabled; for the current built-in default see the --help output. See also the Colors subsection and the COLORS section below.",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
         "--color"
       ],
       "description": "Accept color units for the output. The optional argument when can be auto, never or always. If the when argument is omitted, it defaults to auto. The colors can be disabled; for the current built-in default see the --help output. See also the Colors subsection and the COLORS section below.",

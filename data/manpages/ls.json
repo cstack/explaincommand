@@ -207,7 +207,13 @@
     },
     {
       "aliases": [
-        "-I",
+        "-I"
+      ],
+      "description": "do not list implied entries matching shell PATTERN",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
         "--ignore"
       ],
       "description": "do not list implied entries matching shell PATTERN",
@@ -268,11 +274,10 @@
     },
     {
       "aliases": [
-        "-p",
-        "--indicator-style"
+        "-p"
       ],
       "description": "append / indicator to directories",
-      "argument_type": "SEPARATED_BY_EQUAL_SIGN"
+      "argument_type": "SEPARATED_BY_SPACE"
     },
     {
       "aliases": [
@@ -365,7 +370,13 @@
     },
     {
       "aliases": [
-        "-T",
+        "-T"
+      ],
+      "description": "assume tab stops at each COLS instead of 8",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
         "--tabsize"
       ],
       "description": "assume tab stops at each COLS instead of 8",
@@ -394,7 +405,13 @@
     },
     {
       "aliases": [
-        "-w",
+        "-w"
+      ],
+      "description": "set output width to COLS. 0 means no limit",
+      "argument_type": "SEPARATED_BY_SPACE"
+    },
+    {
+      "aliases": [
         "--width"
       ],
       "description": "set output width to COLS. 0 means no limit",
