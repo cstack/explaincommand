@@ -15,7 +15,7 @@
   <body>
     <h1><a href="/">ExplainCommand</a></h1>
     <form action="/explain" method="get">
-      <input id="top-search" name="cmd" type="text" autocapitalize="off" autocorrect="off" value="<%= @cmd %>" placeholder="explain...">
+      <input id="top-search" name="cmd" type="text" autocapitalize="off" autocorrect="off" value="<%= @cmd %>" placeholder="explain..." autofocus>
     </form>
     <%= yield(:content) %>
   </body>
